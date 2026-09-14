@@ -1,0 +1,59 @@
+---
+title: "Flow Exemplars"
+description: "Provide example flows the AI can use when generating new flows."
+icon: "lightbulb"
+---
+
+**AI Flow → Flow Exemplars** contains example flows that help the AI generate better automations.
+
+While the [Node Catalog](/admin/ai-node-catalog) explains what each node does, an exemplar shows the AI what a complete flow should look like.
+
+When generating a flow, the AI selects an exemplar that closely matches the customer's request and uses it as a reference.
+
+<Note>
+  An exemplar is a **teaching example, not a template**. The AI creates a new flow based on the example. Customers cannot see or select exemplars.
+</Note>
+
+## Exemplar list
+
+| Column        | Description                                                      |
+| ------------- | ---------------------------------------------------------------- |
+| **Name**      | Name of the exemplar.                                            |
+| **Flow Type** | Type of flow it demonstrates.                                    |
+| **Source**    | Whether it was added manually or created from a real generation. |
+| **Nodes**     | Number of nodes in the flow.                                     |
+| **Status**    | Whether the AI can use the exemplar.                             |
+
+An inactive exemplar remains in the list but is not used by the AI.
+
+## Add an exemplar
+
+Click **Add Exemplar** and enter the following details:
+
+| Field           | Description                                      |
+| --------------- | ------------------------------------------------ |
+| **Name**        | Name of the exemplar, such as `Lead capture`.    |
+| **Slug**        | Unique identifier, such as `lead-capture`.       |
+| **Flow Type**   | Type of flow the example demonstrates.           |
+| **Description** | Requirement or use case that the flow addresses. |
+| **Sort Order**  | Position of the exemplar in the list.            |
+| **Graph JSON**  | Flow structure containing `nodes` and `edges`.   |
+
+<Info>
+  **Description** is used by the AI to match customer requests with exemplars. Describe the requirement the flow solves, such as "Book and confirm an appointment, then remind the customer the day before."
+</Info>
+
+<Note>
+  **Graph JSON** must contain both `nodes` and `edges` arrays and pass validation. The easiest way to create valid JSON is to build the flow in the automation builder and copy its structure.
+</Note>
+
+## Best practices
+
+Create exemplars that:
+
+- Represent flows you would use in production.
+- Cover different customer use cases.
+- Match the types of flows your customers commonly request.
+- Avoid having many similar examples.
+
+A few strong and different exemplars are more useful than many similar ones.

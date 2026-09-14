@@ -1,102 +1,135 @@
 {
   "$schema": "https://mintlify.com/docs.json",
+  "theme": "maple",
   "name": "WaMatrix Reseller",
-  "theme": "luma",
-  "logo": {
-    "light": "https://media.brand.dev/f18240d0-5a43-48bc-9063-1ee6bd48c0ea.png",
-    "dark": "https://media.brand.dev/793ca225-6a7d-4264-b1d2-02edba334ca9.png"
-  },
-  "favicon": "https://media.brand.dev/c9d8ec9f-d0bc-4d74-a0ea-77a69017b0ab.png",
   "colors": {
-    "primary": "#14142c",
-    "light": "#5360e2",
-    "dark": "#8cc3ec"
+    "primary": "#025DFA",
+    "light": "#0563F6",
+    "dark": "#0563F6"
   },
-  "navbar": {
-    "primary": {
-      "type": "button",
-      "label": "Apply for Access",
-      "href": "https://wamatrix.io/reseller"
-    }
-  },
+  "favicon": "/images/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Reseller Guide",
-        "groups": [
+        "tab": "Docs",
+        "pages": [
           {
-            "group": "Get Started",
+            "group": "Getting started",
             "pages": [
-              "introduction",
-              "quickstart",
-              "applying-for-access"
-            ]
+              "admin/quick-start",
+              "admin/branding",
+              "admin/currency-setup",
+              "admin/plans-and-pricing",
+              "admin/billing-and-payouts",
+              "admin/onboarding-a-sub-tenant"
+            ],
+            "icon": "rocket"
           },
           {
-            "group": "White-Label Setup",
+            "group": "Sales",
             "pages": [
-              "white-label/custom-domain",
-              "white-label/branding",
-              "white-label/plan-configuration"
-            ]
+              "admin/subscriptions",
+              "admin/invoices-and-payments",
+              "admin/offline-payments",
+              "admin/coupons",
+              "admin/taxes"
+            ],
+            "icon": "shopping-cart"
           },
           {
-            "group": "Managing Clients",
+            "group": "Customers",
             "pages": [
-              "clients/creating-workspaces",
-              "clients/billing-and-plans",
-              "clients/onboarding-clients"
-            ]
+              "admin/managing-customers",
+              "admin/plan-limits-and-customer-access"
+            ],
+            "icon": "building-2"
           },
           {
-            "group": "Client Features",
+            "group": "Settings",
             "pages": [
-              "features/broadcast-campaigns",
-              "features/chatbot-builder",
-              "features/team-inbox",
-              "features/automation-flows",
-              "features/contact-management",
-              "features/template-management"
-            ]
+              "admin/core-platform",
+              "admin/infrastructure-and-security",
+              "admin/channels"
+            ],
+            "icon": "settings"
           },
           {
-            "group": "Support & FAQ",
+            "group": "Team & audit",
             "pages": [
-              "support/founding-partner-perks",
-              "support/faq",
-              "support/getting-help"
-            ]
+              "admin/users-and-roles",
+              "admin/media-library",
+              "admin/seeder-library",
+              "admin/activity-log"
+            ],
+            "icon": "users"
+          },
+          {
+            "group": "AI Flow",
+            "pages": [
+              "admin/ai-node-catalog",
+              "admin/ai-flow-exemplars",
+              "admin/ai-generations"
+            ],
+            "icon": "workflow"
           }
         ]
       },
       {
-        "tab": "API Reference",
-        "groups": [
+        "tab": "API",
+        "openapi": "/api-collection/openapi.json",
+        "pages": [
+          "api/overview",
           {
-            "group": "Overview",
+            "group": "Plans",
+            "icon": "layers",
             "pages": [
-              "api/introduction",
-              "api/authentication"
-            ]
-          },
-          {
-            "group": "Endpoints",
-            "pages": [
-              "api/workspaces",
-              "api/contacts",
-              "api/messages",
-              "api/campaigns",
-              "api/templates"
+              "GET /api/v1/plans",
+              "GET /api/v1/plans/{id}"
             ]
           }
         ]
       }
     ]
   },
+  "logo": {
+    "light": "/logo/light.svg",
+    "dark": "/logo/dark.svg"
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "Support",
+        "href": "mailto:support@wamatrix.io"
+      }
+    ],
+    "primary": {
+      "type": "button",
+      "label": "Apply for Access",
+      "href": "https://wamatrix.io/reseller"
+    }
+  },
+  "contextual": {
+    "options": [
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
+  },
   "footer": {
     "socials": {
       "x": "https://x.com/wamatrix_io",
-      "linkedin": "https://www.linkedin.com/company/wamatrixio"
+      "linkedin": "https://linkedin.com/company/wamatrixio"
     }
+  },
+  "icons": {
+    "library": "lucide"
+  },
+  "fonts": {
+    "family": "Geist"
   }
 }

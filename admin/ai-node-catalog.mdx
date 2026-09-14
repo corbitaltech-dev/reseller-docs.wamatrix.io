@@ -1,0 +1,50 @@
+---
+title: "Node Catalog"
+description: "Control which automation nodes the AI can use when generating flows."
+icon: "boxes"
+---
+
+**AI Flow → Node Catalog** lists the nodes available to the AI when generating automations.
+
+You can enable or disable nodes and update their **Purpose** to help the AI use them correctly.
+
+<Note>
+  These settings apply only to **AI-generated flows**. Customers can still use all nodes when building flows manually.
+</Note>
+
+## Node list
+
+| Column        | Description                                      |
+| ------------- | ------------------------------------------------ |
+| **Node Type** | Internal name of the node.                       |
+| **Label**     | Display name of the node.                        |
+| **Category**  | Category the node belongs to.                    |
+| **Branching** | Whether the node can create multiple flow paths. |
+| **Enabled**   | Whether the AI can use the node.                 |
+
+## Configure a node
+
+Open a node to view its details.
+
+You can edit the following field:
+
+**Purpose** — Describe what the node does and when the AI should use it.
+
+The **Purpose** is included in every AI flow generation request. A clear description helps the AI select and use the node correctly.
+
+<Info>
+  **Node Type, Label, Category, and Branching** are read-only. These values are controlled by the platform and updated automatically.
+</Info>
+
+## Enable or disable a node
+
+Use the **Enabled** switch to control whether the AI can use a node.
+
+- **Enabled** — The AI can use the node in generated flows.
+- **Disabled** — The node is excluded from AI generation.
+
+Disabling a node does not remove it from the manual automation builder.
+
+<Warning>
+  Disabling commonly used nodes, such as message nodes, can reduce the quality of AI-generated flows.
+</Warning>

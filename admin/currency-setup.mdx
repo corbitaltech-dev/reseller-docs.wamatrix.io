@@ -1,0 +1,39 @@
+---
+title: "Currency setup"
+description: "Set the base currency used for plans, invoices, and payments."
+icon: "coins"
+---
+
+The base currency is used for all plans, invoices, and payments on the platform.
+
+It must be set before creating a plan. The currency is managed from **Currency** link in the sidebar.
+
+## Before You Start
+
+<Warning>
+  Once a tenant has an active, past-due, or billing-only subscription, the
+  **ISO Code cannot be changed**. For example, **INR cannot be changed to USD** because existing plan prices and coupon amounts use the original currency.
+
+  The currency **name and symbol** can still be changed.
+</Warning>
+
+## Set the Base Currency
+
+![The Edit Currency panel, showing the Currency Name, ISO Code and Symbol fields](/images/admin/currency-edit-sheet.png)
+
+1. Go to **Currency** in the sidebar.
+2. Click **Add Currency**.
+3. Fill in:
+    - **Currency Name** — e.g. "Indian Rupee".
+    - **ISO Code** — a 3-character ISO 4217 code, e.g. "INR". This is typed
+      in manually and uppercased automatically.
+    - **Symbol** — e.g. "₹".
+4. Click **Save**.
+
+## What You Can and Cannot Change Later
+
+The name and symbol can be edited at any time. Three things are restricted:
+
+- **Only one currency.** A second currency cannot be added — edit the existing one instead.
+- **The ISO Code locks once a tenant subscribes.** After that, the name and symbol stay editable, but the ISO Code itself cannot be changed.
+- **Currency cannot be deleted while a plan uses it.** Change or delete those plans first.

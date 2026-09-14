@@ -1,0 +1,84 @@
+---
+title: "Plans & pricing"
+description: "Create the plans you offer, including their pricing and feature limits."
+icon: "layers"
+---
+
+Each plan includes:
+
+- **Price** — The amount charged to the tenant.
+- **Billing period** — How often the tenant is charged.
+- **Feature limits** — Limits for features such as contacts, WhatsApp channels, and AI features.
+
+A tenant can be subscribed to **one plan at a time**.
+
+## Before You Start
+
+<Warning>
+  A base currency must be configured before a plan can be created. See
+  [Currency setup](/admin/currency-setup). The **Add Plan** button stays disabled,
+  with a tooltip explaining why, until a currency exists.
+</Warning>
+
+<Info>
+  A tenant plan cannot have higher limits than your own plan. If your plan
+  allows 10,000 contacts, a tenant plan can allow up to 10,000 contacts,
+  but not more.
+
+  Each field shows the maximum allowed value, such as **Max 10000**.
+  **Unlimited** is available only when your own plan has an unlimited limit.
+</Info>
+
+## Create a Plan
+
+![The Add Plan form: plan details and pricing on the left, plan features with their limits on the right](/images/admin/plan-form.png)
+
+1. Go to **Plans** and click **Add Plan**.
+2. Fill in the plan details on the left:
+    - **Plan name** and **Description**.
+    - **Slug** — auto-generated from the name, and locked once saved.
+    - **Billing period** and **Price** — one period only (Monthly,
+      Quarterly, Half-Yearly, Yearly, or Lifetime).
+    - **Private** — hides the plan from the public pricing page, The plan can only be assigned manually to tenants.
+    - **Free plan** — see [Free Plans](#free-plans) below.
+3. On the right, in **Plan features**, turn on every feature and limit the
+   plan should include.
+4. Click **Save**.
+
+<Info>
+  The **Save button** stays disabled until all required features limits are set correctly. An error message shows which required limit is missing or incorrect.
+
+  - **Channels**, **contacts**, **conversations** and **cloud media library
+    space** — each needs a value above zero.
+  - **Channels** also needs at least one connection method, such as manual
+    connect or Embedded Signup.
+  - **API access**, **appointment forms** and **AI chat assist** each need
+    their matching quota turned on.
+</Info>
+
+## Free Plans
+
+When **Free plan** is enabled, the plan does not require a price or billing
+period. Instead, you set **Trial days** from 1 to 365 days. Tenants can sign
+up and use the platform without paying.
+
+<Note>
+  A tenant can use a free plan only if they have never used a paid plan or
+  another free plan before.
+
+  For example, if a tenant has already used a paid plan, they cannot switch
+  to a free plan later. A tenant who has already used a free plan also
+  cannot use another free plan.
+</Note>
+
+While any tenant is still on the trial, the **Free plan** switch is
+disabled and the plan cannot be made paid. It unlocks once every trial on
+that plan has ended.
+
+## Editing and Removing Plans
+
+- **Duplicate** — Creates a copy of the plan. The copy starts as private and
+  must be published separately.
+- **Make private / Make public** — Changes whether the plan is visible on the
+  storefront. Pricing and features remain unchanged.
+- **Delete** — Permanently deletes the plan.

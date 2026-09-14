@@ -1,0 +1,294 @@
+---
+title: "Core Platform"
+description: "Configure platform settings, billing details, notifications, and API access."
+icon: "settings"
+---
+
+**Settings → Core Platform** contains settings that apply to your entire platform.
+
+## System
+
+Configure your platform name, logo, favicon, timezone, and date and time formats.
+
+See [Branding](/admin/branding#system-core-settings).
+
+## Company Information
+
+Add the business details shown on tenant invoices, including company name, address, GST number, and contact details.
+
+See [Billing & payouts](/admin/billing-and-payouts#company-information).
+
+## Email
+
+Configure the SMTP connection and sender details used to send emails.
+
+See [Branding](/admin/branding#sender-identity-smtp).
+
+## Email Layout
+
+Customize the logo, colors, and footer used in outgoing emails.
+
+See [Branding](/admin/branding#email-layout).
+
+## AI
+
+**Settings → AI** controls how AI features use AI provider accounts.
+
+![The AI settings tab, with the billing choice and the current provider, model and usage](/images/admin/ai-settings.png)
+
+### Choose AI billing
+
+You can choose between:
+
+- **Platform tokens** — Use the AI allowance included with your plan. Usage counts toward your monthly limits.
+- **My own API key** — Use your own AI provider account. AI usage is billed directly by the provider.
+
+<Info>
+  **My own API key** is available only on plans that include this option. If **Upgrade** is shown, you must upgrade your plan first.
+</Info>
+
+When using **Platform tokens**, the page shows the current provider, model, and remaining allowance.
+
+### Use your own API key
+
+When **My own API key** is selected, configure:
+
+![The AI tab with My own API key selected, showing the provider key fields](/images/admin/ai-own-key.png)
+
+| Field               | Description                                 |
+| ------------------- | ------------------------------------------- |
+| **API key**         | API key from your AI provider.              |
+| **Provider to use** | OpenAI, Google Gemini, Anthropic, or Groq.  |
+| **Model**           | AI model to use from the selected provider. |
+
+The API key is stored securely, and AI usage is billed to your provider account.
+
+<Info>
+  Using your own API key removes the AI usage limits based on your platform plan. You can set the AI limits for your tenants independently.
+</Info>
+
+<Warning>
+  If your plan no longer supports your own API key, the platform automatically switches back to **Platform tokens**. If you select your own API key but do not save a key, the option is treated as not configured.
+</Warning>
+
+### AI assistants and knowledge bases
+
+**AI assistants and their knowledge bases always use Platform tokens.**
+
+Their usage counts toward your plan's monthly AI allowance, even if you have configured your own API key.
+
+### Website reading
+
+AI assistants can use website content as a knowledge base. Some websites use JavaScript to load their content, which may prevent the platform from reading the page normally.
+
+Enable browser-based reading to use a browser service for these websites.
+
+![The website reading settings, with the reader endpoint, page cap and test field](/images/admin/ai-website-reading.png)
+
+| Field                            | Description                                                       |
+| -------------------------------- | ----------------------------------------------------------------- |
+| **Enable browser-based reading** | Enables browser-based website reading.                            |
+| **Reader endpoint**              | Service used to read website pages.                               |
+| **Max pages per website**        | Maximum number of pages that can be added from one website.       |
+| **API key (optional)**           | API key for the reader service. Leave blank to use the free tier. |
+
+Use **Test it on a page** to check the configuration.
+
+<Note>
+  This setting applies to all tenants. Tenants do not need to configure it separately.
+</Note>
+
+## API Keys
+
+API Keys allow your external website to retrieve your platform's plans and prices.
+
+![The API Keys tab, with the base URL, endpoints, auth header, and the token list](/images/admin/api-keys.png)
+
+### Create an API token
+
+1. Click **Add Token**.
+2. Enter a **Name**.
+3. Select the required **Scopes**.
+4. Set an **Expiration Date**, or leave it blank for no expiration.
+5. Create the token.
+
+![The Add API Token panel, with the name, scopes, and expiration date fields](/images/admin/api-keys-add-token.png)
+
+The page also shows the **Base URL**, available endpoints, and **Authorization** header. Use the copy buttons to copy these values.
+
+Existing tokens can be regenerated or deleted.
+
+<Info>
+  The API token is shown **only once** when it is created. Copy and store it securely. If you lose it, regenerate the token to create a new one. The old token will no longer work.
+</Info>
+
+## Tenant Settings
+
+Configure tenant registration, email verification, welcome emails, registration emails, and tenant plan limit warnings.
+
+See [Onboarding a tenant](/admin/onboarding-a-sub-tenant#registration-verification-settings).
+
+## Notification
+
+Configure email alerts and in-app notifications for platform events.
+
+Set the **Alert Email Address** to the email address where you want to receive alerts.
+
+![The Alert Email Address field at the top of the Notification tab](/images/admin/notification-alert-email.png)
+
+### Email Alerts
+
+![The Email Alerts tab, with a switch for each event](/images/admin/notification-email-alerts.png)
+
+| Event                         | Sent when                                     |
+| ----------------------------- | --------------------------------------------- |
+| **New Tenant Registered**     | A new tenant registers.                       |
+| **Payment Failed**            | A tenant's payment fails.                     |
+| **Subscription Expired**      | A tenant's subscription expires.              |
+| **Subscription Renewed**      | A tenant renews their subscription.           |
+| **Plan Changed**              | A tenant changes their plan.                  |
+| **Tenant Suspended**          | A tenant is suspended.                        |
+| **Tenant Reactivated**        | A suspended tenant is restored.               |
+| **Tenant Deactivated**        | A tenant is marked inactive.                  |
+| **Subscription Cancelled**    | A tenant cancels their subscription.          |
+| **Tenant Deleted**            | A tenant is deleted.                          |
+| **Offline Payment Submitted** | A tenant submits an offline payment request.  |
+| **Plan Limit Almost Reached** | Your own plan is close to reaching a limit.   |
+| **Daily Summary Email**       | A daily summary of platform activity is sent. |
+
+All email alerts require an **Alert Email Address**.
+
+For **Plan Limit Almost Reached**, you can set the percentage at which the warning is sent.
+
+<Note>
+  **Plan Limit Almost Reached** applies to your own plan. Tenant plan limit alerts are configured separately under [Tenant Plan Limit Alerts](/admin/onboarding-a-sub-tenant#tenant-plan-limit-alerts).
+</Note>
+
+### App Notifications
+
+These notifications appear in the notification centre.
+
+![The App Notifications tab, with a switch for each event](/images/admin/notification-app-notifications.png)
+
+| Event                               | Shown when                                     |
+| ----------------------------------- | ---------------------------------------------- |
+| **New Tenant**                      | A new tenant registers.                        |
+| **Payment Completed**               | A tenant's payment succeeds.                   |
+| **Payment Failed**                  | A tenant's payment fails.                      |
+| **Plan Changed**                    | A tenant changes their plan.                   |
+| **Offline Payment Submitted**       | A tenant submits an offline payment request.   |
+| **Subscription Cancelled**          | A tenant cancels their subscription.           |
+| **Tenant Suspended**                | A tenant is suspended.                         |
+| **Subscription Expired**            | A tenant's subscription expires.               |
+| **Subscription Renewed**            | A tenant's subscription renews.                |
+| **Analytics Snapshot Stale**        | A WhatsApp account stops collecting analytics. |
+| **Analytics Divergence Detected**   | Stored analytics do not match Meta's data.     |
+| **Facebook Lead Ads Token Revoked** | A Facebook Page token is revoked.              |
+
+<Warning>
+  Keep **Analytics Snapshot Stale** enabled. Analytics data that is not collected may be permanently lost after 7 days.
+</Warning>
+
+The last three notifications are technical alerts and do not have email equivalents.
+
+## Invoice
+
+Configure the invoice prefix, next invoice number, footer notes, and whether tax is added to invoices.
+
+See [Billing & payouts](/admin/billing-and-payouts#invoice-settings).
+
+## Subscription Lifecycle
+
+Configure what happens when a tenant's subscription expires or a payment fails.
+
+<Info>
+  These settings apply to **your tenants**, not your own subscription.
+</Info>
+
+### Grace Period & Suspension
+
+![The Grace Period & Suspension card, with the grace period and billing-only days](/images/admin/lifecycle-grace-period.png)
+
+Configure how long tenants keep access after their subscription expires or trial ends.
+
+| Field                   | Description                                                         | Default |
+| ----------------------- | ------------------------------------------------------------------- | ------- |
+| **Grace Period (days)** | Days of full access after expiry. Set to 0 to suspend immediately.  | 3       |
+| **Billing Only (days)** | Days the tenant can sign in and pay, but cannot use other features. | 3       |
+
+The subscription moves through these stages:
+
+**Full access → Billing Only → Expired**
+
+<Note>
+  A grace period gives tenants time to complete a payment that may still be processing.
+</Note>
+
+### Deletion Scheduling
+
+![The Deletion Scheduling card, with the deletion delay in days](/images/admin/lifecycle-deletion-scheduling.png)
+
+**Deletion Delay (days)** controls how long after automatic suspension before the tenant's data is scheduled for permanent deletion.
+
+Default: **14 days**.
+
+<Warning>
+  This can permanently delete tenant data. Set a period that gives tenants enough time to restore their account.
+</Warning>
+
+This setting applies only to tenants automatically suspended through **Payment Retry**.
+
+### Auto-Renewal (eMandate)
+
+![The Auto-Renewal card, with the lead time and pre-debit wait](/images/admin/lifecycle-auto-renewal.png)
+
+These settings control Razorpay auto-renewal timing.
+
+| Field                      | Description                                          | Default |
+| -------------------------- | ---------------------------------------------------- | ------- |
+| **Lead Time (days)**       | Days before renewal when the renewal process starts. | 3       |
+| **Pre-debit Wait (hours)** | Time between the pre-debit notice and the charge.    | 24      |
+
+<Info>
+  In production, **RBI requires a 24-hour pre-debit period**. Use a lower value only for testing.
+</Info>
+
+### Payment Retry (Dunning)
+
+![The Payment Retry card, with the retry limit and the interval between attempts](/images/admin/lifecycle-dunning.png)
+
+Automatically retry failed payments before suspending a tenant.
+
+This applies only to tenants with **auto-renewal and a saved payment method**.
+
+| Field               | Description                            | Default |
+| ------------------- | -------------------------------------- | ------- |
+| **Enable Dunning**  | Enables automatic payment retries.     | —       |
+| **Max Retries**     | Maximum number of payment attempts.    | 3       |
+| **Retry Intervals** | Number of days between retry attempts. | 3, 5, 7 |
+
+For example, with the default settings, payments are retried after **3, 5, and 7 days**. If all attempts fail, the tenant is suspended.
+
+### Notifications
+
+![The Notifications card, with the expiry warning and its reminder schedule](/images/admin/lifecycle-notifications.png)
+
+Configure reminders before a tenant's subscription expires.
+
+| Field                             | Description                                      | Default    |
+| --------------------------------- | ------------------------------------------------ | ---------- |
+| **Subscription Expiring Warning** | Enables expiry reminders.                        | —          |
+| **Warn Days Before Expiry**       | Number of days before expiry to start reminders. | 7          |
+| **Reminder Schedule**             | Days before expiry when emails are sent.         | 7, 5, 3, 1 |
+
+With the default settings, tenants receive reminders **7, 5, 3, and 1 day** before expiry.
+
+<Note>
+  Tenants with an active auto-renewal mandate do not receive these reminders because they receive the pre-debit notification instead.
+</Note>
+
+## Legal
+
+Add links to your **Privacy Policy** and **Terms & Conditions** pages. These links are shown to tenants during registration.
+
+See [Branding](/admin/branding#legal).

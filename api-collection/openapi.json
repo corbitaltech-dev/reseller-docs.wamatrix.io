@@ -1,0 +1,513 @@
+{
+    "openapi": "3.1.0",
+    "info": {
+        "title": "Plan Catalogue API",
+        "version": "1.0.0",
+        "description": "Show your plans and prices on your own website, straight from this platform.\n\nWhen you update a plan here, your website shows the change too. You never have to edit the prices on your site by hand.\n\n<br>\n\n## What you can do\n\nRead your plans and prices. That is all this API does: you cannot change anything with it, and it never returns tenants data.\n\n<br>\n\n## Getting a token\n\nGo to [**Settings → Core Platform → API Keys**](/pa/docs/core-platform#api-keys) and click **Add Token**. Give it the `plans:read` scope.\n\n> [!IMPORTANT]\n> The token is shown only once. Copy it and store it safely — if you lose it, you will have to create a new one.\n\n<br>\n\n## Using it\n\nSend the token with every request:\n\n```\nAuthorization: Bearer YOUR_TOKEN\n```\n"
+    },
+    "servers": [
+        {
+            "url": "https://your-domain.example",
+            "description": "Your workspace domain — see the Base URL on your API Keys tab"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Plans",
+            "description": "The plans you sell to your customers."
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer",
+                "description": "Workspace API token. Create one under **Settings → Core Platform → API Keys** and grant it the `plans:read` scope."
+            }
+        },
+        "schemas": {
+            "Feature": {
+                "type": "object",
+                "properties": {
+                    "key": {
+                        "type": "string",
+                        "examples": ["contacts"]
+                    },
+                    "name": {
+                        "type": "string",
+                        "examples": ["Contacts"]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["boolean", "limit", "quota"]
+                    },
+                    "value": {
+                        "description": "The ceiling for a limit or quota feature. `-1` means unlimited. Null for a boolean feature, which is simply granted.",
+                        "oneOf": [
+                            {
+                                "type": "integer"
+                            },
+                            {
+                                "type": "null"
+                            }
+                        ],
+                        "examples": [10000]
+                    }
+                }
+            },
+            "Plan": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "examples": [3]
+                    },
+                    "name": {
+                        "type": "string",
+                        "examples": ["Professional"]
+                    },
+                    "slug": {
+                        "type": "string",
+                        "examples": ["professional"]
+                    },
+                    "description": {
+                        "type": ["string", "null"],
+                        "examples": [
+                            "For growing teams running automated customer campaigns"
+                        ]
+                    },
+                    "is_public": {
+                        "type": "boolean",
+                        "description": "False for a plan hidden from your public pricing page.",
+                        "examples": [true]
+                    },
+                    "is_free": {
+                        "type": "boolean",
+                        "examples": [false]
+                    },
+                    "trial_days": {
+                        "type": ["integer", "null"],
+                        "description": "Set only on a free plan.",
+                        "examples": [null]
+                    },
+                    "price": {
+                        "type": ["number", "null"],
+                        "examples": [899]
+                    },
+                    "billing_period": {
+                        "type": ["string", "null"],
+                        "enum": [
+                            "monthly",
+                            "quarterly",
+                            "half_yearly",
+                            "yearly",
+                            "lifetime"
+                        ],
+                        "examples": ["monthly"]
+                    },
+                    "registration_url": {
+                        "type": ["string", "null"],
+                        "description": "A ready-to-use sign-up link for this plan. Use it verbatim rather than building `?plan=` yourself. Null for a private plan.",
+                        "examples": ["https://acme.example.com/register?plan=3"]
+                    },
+                    "features": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Feature"
+                        }
+                    }
+                }
+            },
+            "BillingPeriod": {
+                "type": "object",
+                "description": "The period vocabulary, so a client can render \"₹899 / month\" without hardcoding it.",
+                "properties": {
+                    "value": {
+                        "type": "string",
+                        "examples": ["monthly"]
+                    },
+                    "label": {
+                        "type": "string",
+                        "examples": ["Monthly"]
+                    },
+                    "suffix": {
+                        "type": "string",
+                        "examples": ["month"]
+                    },
+                    "is_recurring": {
+                        "type": "boolean",
+                        "examples": [true]
+                    },
+                    "months": {
+                        "type": ["integer", "null"],
+                        "description": "Null for Lifetime — never 0. Branch on `is_recurring` rather than doing period maths on this.",
+                        "examples": [1]
+                    },
+                    "plan_count": {
+                        "type": "integer",
+                        "examples": [2]
+                    }
+                }
+            },
+            "Meta": {
+                "type": "object",
+                "properties": {
+                    "currency": {
+                        "type": ["object", "null"],
+                        "properties": {
+                            "code": {
+                                "type": "string",
+                                "examples": ["INR"]
+                            },
+                            "name": {
+                                "type": "string",
+                                "examples": ["Rupees"]
+                            },
+                            "symbol": {
+                                "type": "string",
+                                "examples": ["₹"]
+                            }
+                        }
+                    },
+                    "billing_periods": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BillingPeriod"
+                        }
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "examples": ["error"]
+                    },
+                    "message": {
+                        "type": "string",
+                        "examples": ["Missing API token."]
+                    },
+                    "error_code": {
+                        "type": "string",
+                        "examples": ["unauthenticated"]
+                    }
+                }
+            }
+        },
+        "responses": {
+            "Unauthorized": {
+                "description": "Missing, invalid, or expired token.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        },
+                        "example": {
+                            "status": "error",
+                            "message": "Missing API token.",
+                            "error_code": "unauthenticated"
+                        }
+                    }
+                }
+            },
+            "Forbidden": {
+                "description": "The token is valid but lacks the `plans:read` scope.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        },
+                        "example": {
+                            "status": "error",
+                            "message": "This token is missing the required scope: plans:read.",
+                            "error_code": "insufficient_scope"
+                        }
+                    }
+                }
+            },
+            "TooManyRequests": {
+                "description": "Rate limit exceeded for this token.",
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Error"
+                        },
+                        "example": {
+                            "status": "error",
+                            "message": "Too many requests.",
+                            "error_code": "rate_limited"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ],
+    "paths": {
+        "/api/v1/plans": {
+            "get": {
+                "tags": ["Plans"],
+                "summary": "List plans",
+                "operationId": "listPlans",
+                "description": "Returns all your plans, grouped by billing period.\n",
+                "parameters": [
+                    {
+                        "name": "billing_period",
+                        "in": "query",
+                        "required": false,
+                        "description": "Show only plans that bill on this period.",
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "monthly",
+                                "quarterly",
+                                "half_yearly",
+                                "yearly",
+                                "lifetime"
+                            ]
+                        }
+                    },
+                    {
+                        "name": "include_private",
+                        "in": "query",
+                        "required": false,
+                        "description": "Set to `true` to also include private plans. By default you only get the plans shown on your pricing page.",
+                        "schema": {
+                            "type": "boolean",
+                            "default": false
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The catalogue, keyed by billing period.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "examples": ["success"]
+                                        },
+                                        "data": {
+                                            "type": "object",
+                                            "additionalProperties": {
+                                                "type": "array",
+                                                "items": {
+                                                    "$ref": "#/components/schemas/Plan"
+                                                }
+                                            }
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/Meta"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": "success",
+                                    "data": {
+                                        "monthly": [
+                                            {
+                                                "id": 3,
+                                                "name": "Professional",
+                                                "slug": "professional",
+                                                "description": "For growing teams running automated customer campaigns",
+                                                "is_public": true,
+                                                "is_free": false,
+                                                "trial_days": null,
+                                                "price": 899,
+                                                "billing_period": "monthly",
+                                                "registration_url": "https://acme.example.com/register?plan=3",
+                                                "features": [
+                                                    {
+                                                        "key": "contacts",
+                                                        "name": "Contacts",
+                                                        "type": "limit",
+                                                        "value": 10000
+                                                    },
+                                                    {
+                                                        "key": "ai_chat_assist",
+                                                        "name": "AI Chat Assistant",
+                                                        "type": "boolean",
+                                                        "value": null
+                                                    }
+                                                ]
+                                            }
+                                        ]
+                                    },
+                                    "meta": {
+                                        "currency": {
+                                            "code": "INR",
+                                            "name": "Rupees",
+                                            "symbol": "₹"
+                                        },
+                                        "billing_periods": [
+                                            {
+                                                "value": "monthly",
+                                                "label": "Monthly",
+                                                "suffix": "month",
+                                                "is_recurring": true,
+                                                "months": 1,
+                                                "plan_count": 1
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "422": {
+                        "description": "Unknown `billing_period`.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                },
+                                "example": {
+                                    "status": "error",
+                                    "message": "Unknown billing_period. Expected one of: monthly, quarterly, half_yearly, yearly, lifetime.",
+                                    "error_code": "invalid_billing_period"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                }
+            }
+        },
+        "/api/v1/plans/{id}": {
+            "get": {
+                "tags": ["Plans"],
+                "summary": "Get a plan",
+                "operationId": "getPlan",
+                "description": "Returns one plan by its id.\n\nThis works for private plans as well, not just the ones on your pricing page.\n",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "description": "The plan's id.",
+                        "schema": {
+                            "type": "string",
+                            "examples": ["3"]
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "The plan.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "status": {
+                                            "type": "string",
+                                            "examples": ["success"]
+                                        },
+                                        "data": {
+                                            "$ref": "#/components/schemas/Plan"
+                                        },
+                                        "meta": {
+                                            "$ref": "#/components/schemas/Meta"
+                                        }
+                                    }
+                                },
+                                "example": {
+                                    "status": "success",
+                                    "data": {
+                                        "id": 3,
+                                        "name": "Professional",
+                                        "slug": "professional",
+                                        "description": "For growing teams running automated customer campaigns",
+                                        "is_public": true,
+                                        "is_free": false,
+                                        "trial_days": null,
+                                        "price": 899,
+                                        "billing_period": "monthly",
+                                        "registration_url": "https://acme.example.com/register?plan=3",
+                                        "features": [
+                                            {
+                                                "key": "contacts",
+                                                "name": "Contacts",
+                                                "type": "limit",
+                                                "value": 10000
+                                            },
+                                            {
+                                                "key": "conversations",
+                                                "name": "Conversations",
+                                                "type": "quota",
+                                                "value": 5000
+                                            },
+                                            {
+                                                "key": "ai_chat_assist",
+                                                "name": "AI Chat Assistant",
+                                                "type": "boolean",
+                                                "value": null
+                                            }
+                                        ]
+                                    },
+                                    "meta": {
+                                        "currency": {
+                                            "code": "INR",
+                                            "name": "Rupees",
+                                            "symbol": "₹"
+                                        },
+                                        "billing_periods": [
+                                            {
+                                                "value": "monthly",
+                                                "label": "Monthly",
+                                                "suffix": "month",
+                                                "is_recurring": true,
+                                                "months": 1,
+                                                "plan_count": 1
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "$ref": "#/components/responses/Unauthorized"
+                    },
+                    "403": {
+                        "$ref": "#/components/responses/Forbidden"
+                    },
+                    "404": {
+                        "description": "No plan with that id.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Error"
+                                },
+                                "example": {
+                                    "status": "error",
+                                    "message": "Plan not found.",
+                                    "error_code": "not_found"
+                                }
+                            }
+                        }
+                    },
+                    "429": {
+                        "$ref": "#/components/responses/TooManyRequests"
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,79 @@
+---
+title: "Seeder library"
+description: "Offer customers ready-made automations and flows they can start from."
+icon: "sprout"
+---
+
+**Setup → Seeder Library** contains ready-made **Automations** and **WhatsApp Flows** that customers can use in their workspace.
+
+When a customer starts a collection, it is **copied** to their account. The copy is independent, so changes to the original do not affect existing customer copies.
+
+<Info>
+  Collections are hidden from customers until **Available to Customers** is enabled.
+</Info>
+
+## Collection sources
+
+The **Source** column shows where a collection comes from:
+
+- **From the platform** — Provided by the platform and updated through syncing.
+- **Your own** — Created or imported by you.
+
+## Collection list
+
+| Column                     | Description                                            |
+| -------------------------- | ------------------------------------------------------ |
+| **Name**                   | Name shown to customers.                               |
+| **Type**                   | **Automation** or **WhatsApp Flow**.                   |
+| **Seeder Key**             | Unique key used when importing or syncing collections. |
+| **Source**                 | Platform-provided or your own.                         |
+| **Available to Customers** | Whether customers can use the collection.              |
+
+You can filter collections by **Type**, **Source**, and availability.
+
+## Add collections
+
+### Sync Seeders
+
+Click **Sync Seeders** to get the latest platform collections.
+
+Syncing:
+
+- Adds new platform collections.
+- Updates existing platform collections.
+- Does not change the **Available to Customers** setting.
+
+<Note>
+  A hidden collection stays hidden after syncing.
+</Note>
+
+### Add Collection
+
+Click **Add Collection** to create your own collection.
+
+Supported types are:
+
+- **Automation**
+- **WhatsApp Flow**
+- **Template**
+
+### Import
+
+Click **Import** to import collections from a `.json` file.
+
+- Maximum file size: **10 MB**
+- The file can contain a single collection or an array of collections.
+- Use a unique **seeder_key** to safely re-import a collection.
+- If the same `seeder_key` already exists, the collection is updated instead of duplicated.
+- The **Available to Customers** setting is not changed during import.
+
+## Edit collections
+
+Editing depends on the collection source:
+
+- **Your own** — You can edit or delete the collection.
+- **From the platform** — You cannot edit the collection because syncing can overwrite changes. You can still enable, disable, or delete it.
+
+<Note>
+  To customize a platform collection, create or import your own version and disable the original collection.
+</Note>

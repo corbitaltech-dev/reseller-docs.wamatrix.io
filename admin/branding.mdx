@@ -1,0 +1,115 @@
+---
+title: "Branding"
+description: "Configure the platform branding, email appearance, and sender identity."
+icon: "palette"
+---
+
+Branding controls the platform logo, colours, email appearance, and sender identity.
+
+Branding has three settings areas:
+
+- **System** — Configure the platform name, general system settings, and logos.
+- **Email Layout** — Configure the appearance and layout of outgoing emails.
+- **Email** — Configure the sender identity and SMTP connection used to send emails.
+- **Legal** — Link to the externally hosted Privacy Policy and Terms & Conditions pages.
+
+These settings are optional and can be configured at any time.
+
+<Note>
+
+  SMTP must be configured for the platform to send standard tenant emails, including registration, welcome, and notification emails.
+</Note>
+
+## System Core Settings
+
+Go to **Settings → System**.
+
+The System page contains the main platform settings and logo configuration:
+
+![The System Core Settings page, with the site name, locale defaults, and the logo and favicon upload fields](/images/admin/system-core-settings.png)
+
+- **Site Name** — The platform name shown throughout the panel. Required.
+- **Site Description** — A short description of the platform.
+- **Timezone** — The default timezone for dates and times.
+- **Date Format** — How dates are displayed.
+- **Time Format** — How times are displayed.
+- **Default Country Code** — The country code applied by default.
+- **Site Logo** — The primary logo. Recommended **200 × 50 px**, maximum **2 MB**.
+- **Dark Logo** — The logo used in dark mode. Recommended **200 × 50 px**, maximum **2 MB**.
+- **Favicon** — The browser tab icon. Recommended **32 × 32 px**, maximum **512 KB**.
+
+<br />
+
+The platform accepts **JPEG, PNG, and WebP** files for logos. **ICO** files are also supported for the Favicon.
+
+An existing file can be selected from the [**Media Library**](/admin/media-library) by clicking **Add Media** instead of uploading a new file.
+
+<Warning>
+  SVG files are not supported for the Site Logo, Dark Logo, or Favicon because these images are rendered directly on the platform's domain.
+</Warning>
+
+## Email Layout
+
+Go to **Settings → Email Layout**.
+
+Email Layout controls the visual appearance applied to outgoing email templates. The settings are divided into three tabs:
+
+![The Email Layout page on its Branding tab, with the live email preview alongside](/images/admin/email-layout.png)
+
+- **Branding** — The logo shown in the email header. This is separate from the Site Logo; if it is left empty, the Site Logo is used instead.
+- **Colours** — The header, content, footer, button, and link colours. Pick each one from the colour picker or enter a hex value.
+- **Footer** — The text at the bottom of every email. Supports the `{date_year}` and `{company_name}` placeholders.
+
+Click **Save Changes** on the final tab to save the Email Layout configuration.
+
+## Sender Identity (SMTP)
+
+Go to **Settings → Email**.
+
+Turn on the **Enable Email** switch to activate email sending.
+
+Enter the required SMTP details:
+
+![The Email Configuration page, with the SMTP connection fields, sender identity, and the Send Test Email box](/images/admin/smtp-settings.png)
+
+- **SMTP Host**
+- **Port**
+- **Username**
+- **Password**
+- **Encryption**
+
+Configure the **Sender Name** and **Sender Email** to determine the sender information displayed to tenants.
+
+<br />
+
+Click **Test** to send a test email and verify that the SMTP configuration is working correctly before relying on it for tenant emails.
+
+<Warning>
+  Email delivery is disabled until SMTP is configured. No emails will be sent without a valid SMTP connection.
+</Warning>
+
+## Legal
+
+Go to **Settings → Legal**.
+
+Legal supplies the **Privacy Policy** and **Terms & Conditions** links shown to tenants. The pages are hosted externally — the workspace administrator publishes them and enters the two URLs here.
+
+![The Legal settings page, with the Privacy Policy and Terms & Conditions link fields](/images/admin/legal-settings.png)
+
+Turn on the switch in the top right of the card, then enter:
+
+- **Privacy Policy Link** — The full URL, including `https://`.
+- **Terms & Conditions Link** — The full URL, including `https://`.
+
+Both are required once the switch is on. Click **Save Changes** to save.
+
+### Where the links appear
+
+On the sign-up page, tenants must tick a box that says _"I agree to the Terms of Service and Privacy Policy."_
+
+![The tenant sign-up page, with Terms of Service and Privacy Policy shown as links beside the agreement checkbox](/images/admin/signup-consent-links.png)
+
+- **Switch on** — the two names are clickable and open your pages.
+- **Switch off** — the same wording shows as plain text, with nothing to click.
+
+Either way, tenants still have to tick the box to sign up.

@@ -1,0 +1,104 @@
+---
+title: "Offline payments"
+description: "Review and approve tenant bank transfer payment requests."
+icon: "banknote"
+---
+
+When a tenant pays by bank transfer instead of an online payment gateway, they can submit a payment request from their billing page.
+
+**Sales → Offline Payments** is where you review these requests.
+
+![The Offline Payments list, with each request's status, amount, and reference](/images/admin/offline-payments-list.png)
+
+<Info>
+  Offline payments are handled directly between you and the tenant. The platform does not verify the bank transfer. The tenant's subscription is updated only after you approve the request.
+</Info>
+
+## Offline payment process
+
+1. tenant transfers the payment to your bank account.
+2. tenant submits a payment request with the payment reference.
+3. The request appears as **Pending**.
+4. Check your bank account and verify the payment.
+5. **Approve** the request to activate the subscription or **Reject** it if the payment cannot be verified.
+
+## Payment request details
+
+| Column        | Description                                              |
+| ------------- | -------------------------------------------------------- |
+| **Tenant**    | tenant who submitted the payment request.                |
+| **Plan**      | Plan the tenant is paying for.                           |
+| **Amount**    | Amount submitted by the tenant.                          |
+| **Status**    | Current request status: Pending, Approved, or Rejected.  |
+| **Reference** | Payment reference provided by the tenant.                |
+| **Reviewed**  | Date and time when the request was approved or rejected. |
+| **Submitted** | Date and time when the request was submitted.            |
+
+## Review a payment request
+
+Click a request to view its details.
+
+![A payment request's review page, with the payment details alongside the approve and reject panels](/images/admin/offline-payment-review.png)
+
+The details page includes:
+
+- **Payment Details** — tenant, plan, billing cycle, payment amount, payment reference, submission date, and payment proof.
+- **Review Actions** — Approve or reject the request while it is pending.
+- **Review Decision** — Shows the review result, reviewer, review date, and notes after the request is reviewed.
+
+### Verify the payment
+
+Before approving a request:
+
+1. Check your bank account to confirm that the payment was received.
+2. Match the **Amount** with the amount received.
+3. Check the **Reference** against your bank statement.
+4. If payment proof is attached, select **View Proof** to check it.
+
+<Note>
+  Payment proof is optional. If the tenant does not upload a file, the payment details will show that no proof was attached.
+</Note>
+
+## Approve a payment request
+
+Select **Approve & Activate Subscription** after confirming the payment.
+
+Approval will:
+
+- Activate or renew the tenant's subscription.
+- Create an invoice and mark it as paid.
+- Send a confirmation email to the tenant.
+
+You can also add an **Admin Note** during approval. Admin notes are for internal use and are not shown to the tenant.
+
+<Warning>
+  **Approval cannot be undone.** Make sure the payment has been received and the amount is correct before approving the request.
+</Warning>
+
+## Reject a payment request
+
+If the payment cannot be verified, select **Reject**.
+
+A rejection reason is required.
+
+<Info>
+  The **rejection reason is shown to the tenant**. Write a clear reason that explains why the payment request was rejected.
+</Info>
+
+For example:
+
+**No payment was received with this reference.**
+
+The tenant receives an email with the rejection reason. Their subscription is not changed, and they can submit a new payment request after correcting the issue.
+
+<Note>
+  Any payment proof uploaded by the tenant is deleted when the request is rejected. Download the proof first if you need to keep a copy.
+</Note>
+
+## Reviewed payment requests
+
+Approved and rejected requests remain in the list as payment history.
+
+- Reviewed requests cannot be edited or deleted.
+- A request can only be reviewed once.
+- An approved or rejected request cannot be reviewed again.

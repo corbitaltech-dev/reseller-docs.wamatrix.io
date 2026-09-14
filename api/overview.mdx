@@ -1,0 +1,35 @@
+---
+title: "Overview"
+description: "Plan Catalogue API"
+icon: "code"
+---
+
+Show your plans and prices on your own website, straight from this platform.
+
+When you update a plan here, your website shows the change too. You never have to edit the prices on your site by hand.
+
+<br />
+
+## What you can do
+
+Read your plans and prices. That is all this API does: you cannot change anything with it, and it never returns tenants data.
+
+<br />
+
+## Getting a token
+
+Go to [**Settings → Core Platform → API Keys**](/admin/core-platform#api-keys) and click **Add Token**. Give it the `plans:read` scope.
+
+<Info>
+  The token is shown only once. Copy it and store it safely — if you lose it, you will have to create a new one.
+</Info>
+
+<br />
+
+## Using it
+
+Send the token with every request:
+
+```
+Authorization: Bearer YOUR_TOKEN
+```

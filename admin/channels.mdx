@@ -1,0 +1,111 @@
+---
+title: "Channels"
+description: "Configure WhatsApp, Messenger, and Shopify connections."
+icon: "message-circle"
+---
+
+**Settings → Channels** contains the app credentials used by your tenants to connect WhatsApp, Messenger, and Shopify.
+
+<Info>
+  Configure these settings **once**. Tenants do not need to enter your app credentials. They only connect their own WhatsApp account, Facebook Page, or Shopify store.
+</Info>
+
+## WhatsApp
+
+Configure your Meta app so tenants can connect their WhatsApp Business Account.
+
+Create the app in the [Meta Developers Console](https://developers.facebook.com/apps).
+
+### Meta App Credentials
+
+![The WhatsApp tab, with the Meta app credentials and Embedded Signup switches](/images/admin/channels-whatsapp-credentials.png)
+
+| Field                                      | Description                                                                 |
+| ------------------------------------------ | --------------------------------------------------------------------------- |
+| **App ID**                                 | Your Meta app ID.                                                           |
+| **App Secret**                             | Your Meta app secret.                                                       |
+| **Embedded Signup Config ID (no catalog)** | Configuration ID from **Meta App Dashboard → Facebook Login for Business**. |
+
+The **API Version** is fixed by the platform and cannot be changed.
+
+### Tenant Connection
+
+**Embedded Signup (no catalog)** allows tenants to connect their WhatsApp Business Account through Meta's onboarding process.
+
+### Webhook Configuration
+
+![The Webhook Configuration card, with the webhook URL and Connect Webhook button](/images/admin/channels-whatsapp-webhook.png)
+
+The page shows the webhook URL and its connection status.
+
+Click **Connect Webhook** to register the webhook with Meta.
+
+<Info>
+  Save the Meta credentials before connecting the webhook.
+</Info>
+
+## Messenger
+
+Configure your Meta app for connecting Facebook Pages.
+
+The same Meta app can be used for WhatsApp and Messenger, or you can use a separate app.
+
+![The Messenger tab, with the Meta app credentials and connection switches](/images/admin/channels-messenger.png)
+
+| Field          | Description                                             |
+| -------------- | ------------------------------------------------------- |
+| **App ID**     | Your Meta app ID.                                       |
+| **App Secret** | Your Meta app secret.                                   |
+| **Config ID**  | Configuration ID with the `pages_messaging` permission. |
+
+### Tenant Connection Options
+
+- **Embedded Signup** — tenants connect their Facebook Page through Facebook Login.
+- **Manual Connect** — tenants enter their Page ID and long-lived Page Access Token.
+
+<Note>
+  If both options are disabled, tenants cannot connect a Facebook Page.
+</Note>
+
+## Shopify
+
+Configure your Shopify app so tenants can connect their own Shopify store.
+
+Create the app in your Shopify Partner Dashboard.
+
+![The Shopify tab, with the URLs to register, API credentials and OAuth scopes](/images/admin/channels-shopify.png)
+
+<Info>
+  Use a **public or unlisted app** so it can be used by multiple tenants. A Shopify custom app is limited to one store.
+</Info>
+
+### Shopify App Settings
+
+| Field                   | Description                               |
+| ----------------------- | ----------------------------------------- |
+| **API Key (Client ID)** | Client ID from your Shopify app.          |
+| **API Secret Key**      | Secret key from your Shopify app.         |
+| **Admin API Version**   | Shopify API version used by the platform. |
+| **OAuth Scopes**        | Permissions requested from each store.    |
+
+### URLs to register
+
+The page provides these URLs with copy buttons:
+
+- **App URL**
+- **Allowed redirection URL**
+- **Webhook endpoint**
+
+Add these URLs to your Shopify app exactly as shown.
+
+<Warning>
+  Make sure the **App URL** is registered correctly. It is used when merchants open your app.
+</Warning>
+
+### Tenant-owned Shopify Apps
+
+**Allow tenants to use their own Shopify app** is disabled by default.
+
+When enabled, tenants can optionally enter their own Shopify app credentials from their workspace settings.
+
+Tenants already connected through your app will continue to work.
