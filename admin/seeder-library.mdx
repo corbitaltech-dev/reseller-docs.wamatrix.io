@@ -1,15 +1,15 @@
 ---
 title: "Seeder library"
-description: "Offer customers ready-made automations and flows they can start from."
+description: "Offer tenants ready-made automations and flows they can start from."
 icon: "sprout"
 ---
 
-**Setup → Seeder Library** contains ready-made **Automations** and **WhatsApp Flows** that customers can use in their workspace.
+**Setup → Seeder Library** contains ready-made **Automations** and **WhatsApp Flows** that tenants can use in their workspace.
 
-When a customer starts a collection, it is **copied** to their account. The copy is independent, so changes to the original do not affect existing customer copies.
+When a tenant starts a collection, it is **copied** to their account. The copy is independent, so changes to the original do not affect existing tenant copies.
 
 <Info>
-  Collections are hidden from customers until **Available to Customers** is enabled.
+  Collections are hidden from tenants until **Available to Customers** is enabled.
 </Info>
 
 ## Collection sources
@@ -21,13 +21,15 @@ The **Source** column shows where a collection comes from:
 
 ## Collection list
 
+![The Seeder Library list, with each collection's type, source and availability switch](/images/admin/seeder-library-list.png)
+
 | Column                     | Description                                            |
 | -------------------------- | ------------------------------------------------------ |
-| **Name**                   | Name shown to customers.                               |
+| **Name**                   | Name shown to tenants.                                 |
 | **Type**                   | **Automation** or **WhatsApp Flow**.                   |
 | **Seeder Key**             | Unique key used when importing or syncing collections. |
 | **Source**                 | Platform-provided or your own.                         |
-| **Available to Customers** | Whether customers can use the collection.              |
+| **Available to Customers** | Whether tenants can use the collection.                |
 
 You can filter collections by **Type**, **Source**, and availability.
 
@@ -51,6 +53,8 @@ Syncing:
 
 Click **Add Collection** to create your own collection.
 
+![The Add Collection panel, with the seeder key, type, flow JSON and availability switch](/images/admin/seeder-add-collection.png)
+
 Supported types are:
 
 - **Automation**
@@ -60,6 +64,8 @@ Supported types are:
 ### Import
 
 Click **Import** to import collections from a `.json` file.
+
+![The Import page, with the upload area and the required and optional fields](/images/admin/seeder-import.png)
 
 - Maximum file size: **10 MB**
 - The file can contain a single collection or an array of collections.

@@ -8,13 +8,15 @@ icon: "lightbulb"
 
 While the [Node Catalog](/admin/ai-node-catalog) explains what each node does, an exemplar shows the AI what a complete flow should look like.
 
-When generating a flow, the AI selects an exemplar that closely matches the customer's request and uses it as a reference.
+When generating a flow, the AI selects an exemplar that closely matches the tenant's request and uses it as a reference.
 
 <Note>
-  An exemplar is a **teaching example, not a template**. The AI creates a new flow based on the example. Customers cannot see or select exemplars.
+  An exemplar is a **teaching example, not a template**. The AI creates a new flow based on the example. Tenants cannot see or select exemplars.
 </Note>
 
 ## Exemplar list
+
+![The AI Flow Exemplars list, with each exemplar's flow type, source and status](/images/admin/ai-exemplars-list.png)
 
 | Column        | Description                                                      |
 | ------------- | ---------------------------------------------------------------- |
@@ -28,6 +30,8 @@ An inactive exemplar remains in the list but is not used by the AI.
 
 ## Add an exemplar
 
+![The Add Exemplar panel, with the flow type, description and graph JSON](/images/admin/ai-add-exemplar.png)
+
 Click **Add Exemplar** and enter the following details:
 
 | Field           | Description                                      |
@@ -40,7 +44,7 @@ Click **Add Exemplar** and enter the following details:
 | **Graph JSON**  | Flow structure containing `nodes` and `edges`.   |
 
 <Info>
-  **Description** is used by the AI to match customer requests with exemplars. Describe the requirement the flow solves, such as "Book and confirm an appointment, then remind the customer the day before."
+  **Description** is used by the AI to match tenant requests with exemplars. Describe the requirement the flow solves, such as "Book and confirm an appointment, then remind the tenant the day before."
 </Info>
 
 <Note>
@@ -52,8 +56,8 @@ Click **Add Exemplar** and enter the following details:
 Create exemplars that:
 
 - Represent flows you would use in production.
-- Cover different customer use cases.
-- Match the types of flows your customers commonly request.
+- Cover different tenant use cases.
+- Match the types of flows your tenants commonly request.
 - Avoid having many similar examples.
 
 A few strong and different exemplars are more useful than many similar ones.

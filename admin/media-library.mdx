@@ -1,13 +1,13 @@
 ---
 title: "Media library"
-description: "Manage your files and monitor customer storage usage."
+description: "Manage your files and monitor tenant storage usage."
 icon: "image"
 ---
 
 **Media Library** contains two sections:
 
 - **My Media** — Manage your own files.
-- **Tenant Media** — View storage usage for all customers.
+- **Tenant Media** — View storage usage for all tenants.
 
 <Info>
   **Tenant Media is available only to the account owner.** It cannot be given to staff through roles.
@@ -17,7 +17,9 @@ icon: "image"
 
 **My Media** is your personal file library. You can store images and documents used in the admin panel, such as email templates and banners.
 
-Customers cannot access your files. Each customer has a separate media library in their workspace.
+![My Media, with the upload controls and the storage meter](/images/admin/media-my-media.png)
+
+Tenants cannot access your files. Each tenant has a separate media library in their workspace.
 
 ### What you can do
 
@@ -27,18 +29,20 @@ Customers cannot access your files. Each customer has a separate media library i
 
 ### Storage usage
 
-The storage card shows the total storage used by your platform and customers.
+The storage card shows the total storage used by your platform and tenants.
 
 The indicator changes to:
 
 - **Amber** when usage is above 75%.
 - **Red** when usage is above 90%.
 
-Use **Tenant Media** to find which customers are using the most storage.
+Use **Tenant Media** to find which tenants are using the most storage.
 
 ## Tenant Media
 
-**Media Library → Tenant Media** shows storage usage for all customers.
+**Media Library → Tenant Media** shows storage usage for all tenants.
+
+![Tenant Media, with the storage summary cards and per-tenant usage](/images/admin/media-tenant-media.png)
 
 The page provides these summary cards:
 
@@ -47,23 +51,23 @@ The page provides these summary cards:
 - **Total Files**
 - **Near Limit**
 
-### Customer list
+### Tenant list
 
 | Column        | Description                                    |
 | ------------- | ---------------------------------------------- |
-| **Tenant**    | Customer name.                                 |
-| **Plan**      | Customer's current plan.                       |
-| **Usage**     | Storage used by the customer.                  |
-| **Files**     | Number of files stored by the customer.        |
+| **Tenant**    | Tenant name.                                   |
+| **Plan**      | Tenant's current plan.                         |
+| **Usage**     | Storage used by the tenant.                    |
+| **Files**     | Number of files stored by the tenant.          |
 | **Last Sync** | Last time the storage information was updated. |
 
 <Note>
   Storage information is updated periodically, not in real time. **Last Sync** shows when the information was last updated.
 </Note>
 
-### View customer files
+### View tenant files
 
-Open a customer to view their files.
+Open a tenant to view their files.
 
 You can:
 
@@ -72,5 +76,5 @@ You can:
 - Delete a file.
 
 <Warning>
-  Deleting a customer's file is permanent. Only delete customer files when necessary or when the customer has requested it.
+  Deleting a tenant's file is permanent. Only delete tenant files when necessary or when the tenant has requested it.
 </Warning>
