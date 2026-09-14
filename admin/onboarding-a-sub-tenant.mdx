@@ -1,16 +1,16 @@
 ---
-title: "Onboarding a tenant"
-description: "Choose how tenants create their accounts. You can create a tenant from the panel or allow them to register themselves."
+title: "Onboarding a Tenant"
+description: "Create tenants from the panel or let them register themselves."
 icon: "user-plus"
 ---
 
 ## Before You Start
 
 <Warning>
-  Set up [**registration, email**](#registration--verification-settings),
+  Set up [**registration and email**](#registration--verification-settings),
   [**bot protection**](#bot-protection), and [**social login**](#social-login)
-  before tenants start registering. Changes to these settings apply only to
-  new registrations and do not affect existing tenants.
+  before tenants start registering. These settings apply only to new
+  registrations and do not affect existing tenants.
 </Warning>
 
 ## Registration & Verification Settings
@@ -21,57 +21,42 @@ Go to **Settings → Tenant Settings**.
 
 ### Allow Tenant Registration
 
-- **Enable Registration** allows tenants to create their own accounts. This
-  setting is **enabled by default**.
+- **Enable Registration** — Lets tenants create their own accounts. Enabled by default.
 
-When **Enable Registration** is turned off, tenants cannot create new
-accounts. The registration page shows **Registration closed** instead of
-the sign-up form.
-
-Tenants who have already registered can continue using their accounts
-normally.
+When disabled, new registrations are closed, but existing tenants can continue using their accounts.
 
 ### Verification and Emails
 
-Each of these is **off by default**.
+These settings are **off by default**:
 
-- **Enable Email Verification** — Sends a verification email after the tenant registers. The email contains a **Verify Email Address** button. The tenant must click the button before signing in. The link is valid for 60 minutes and can be sent again.
-
-* **Enable Registration Success Email** — Sends a short email confirming that the tenant's registration was received. It is sent as soon as the account is created.
-
-* **Enable Send Welcome Mail** — Sends a welcome email when the tenant's account is ready. The email includes their plan and a link to their dashboard. If email verification is enabled, the welcome email is sent after the tenant verifies their email.
+- **Enable Email Verification** — Requires tenants to verify their email before signing in. Verification links are valid for 60 minutes and can be sent again.
+- **Enable Registration Success Email** — Sends a confirmation email after registration.
+- **Enable Send Welcome Mail** — Sends a welcome email with the tenant's plan and dashboard link. If email verification is enabled, it is sent after verification.
 
 <Note>
-  Only tenants who register themselves need to verify their email. [**Tenants
-  added from the panel**](#from-the-panel) and tenants who sign up with
-  Google or Facebook are already verified.
+  Only self-registered tenants need email verification. Tenants added from the panel and those signing in with Google or Facebook are already verified.
 
-  Email verification works only after SMTP is configured. No verification
-  email is sent before SMTP is set up.
+  SMTP must be configured before verification emails can be sent.
 </Note>
 
 ## Tenant Plan Limit Alerts
 
-**Tenant Near Plan Limit** sends an email when a tenant is close to reaching
-a plan limit. It is **off by default**.
+**Tenant Near Plan Limit** sends an email when a tenant reaches the selected usage threshold. It is **off by default**.
 
-The percentage field sets when the email is sent. It is **80%** by default
-and can be set from **50%** to **99%**.
+The default threshold is **80%** and can be set from **50%–99%**.
 
 <Note>
-  **Tenant Near Plan Limit** sends the email to the tenant when they are
-  close to reaching a limit on their plan.
+  This alert is sent to the tenant.
 
-  If the reseller wants to receive an email when their own plan is close to
-  its limit, enable **Plan Limit Almost Reached** under **Settings → Admin
-  Notifications**.
+  To receive alerts for the reseller's own plan, enable **Plan Limit Almost
+  Reached** under **Settings → Admin Notifications**.
 
   These are separate settings.
 </Note>
 
 ## Bot Protection
 
-Go to **Settings → Re-Captcha** to protect login, forgot-password, and tenant registration from bots.
+Go to **Settings → Re-Captcha** to protect login, password recovery, and tenant registration from bots.
 
 ![The Bot Protection page, with the reCAPTCHA and Turnstile provider options and their key fields](/images/admin/bot-protection.png)
 
@@ -80,11 +65,9 @@ The platform supports:
 - **Google reCAPTCHA v3**
 - **Cloudflare Turnstile**
 
-<br />
-
 Only one provider can be active at a time. Bot protection is **off by default**.
 
-The selected provider requires its **Site Key** and **Secret Key**.
+The selected provider requires a **Site Key** and **Secret Key**.
 
 <Warning>
   Incorrect keys can prevent tenants from logging in, not just from
@@ -103,95 +86,55 @@ Both providers are **off by default** and require:
 - **Google** — Client ID and Client Secret
 - **Facebook** — App ID and App Secret
 
-Each provider shows a **redirect URL** to paste into its developer console:
+Each provider shows a **redirect URL** to add to its developer console:
 
 - **Google** — Authorized Redirect URI
 - **Facebook** — Valid OAuth Redirect URI
 
-<br />
-
-A new tenant signing in with Google or Facebook for the first time gets an
-account created automatically.
+A new tenant signing in with Google or Facebook for the first time gets an account created automatically.
 
 <Info>
   Copy the redirect URL exactly as shown, including `https://`. If it does not
   match, social login will not work.
 </Info>
 
-## Adding a tenant
+## Adding a Tenant
 
 ### From the Panel
 
 ![The Add Tenant form, with the tenant, workspace, plan, and password fields](/images/admin/add-tenant-form.png)
 
 1. Go to **Tenants** and click **Add Tenant**.
-2. Fill in:
-    - **Full name** and **Email** — The tenant's name and email address.
-    - **Workspace** — The tenant's business or company name.
-    - **Tenant Name** — Used as the tenant's subdomain. It is filled in
-      automatically from the **Workspace** name using lowercase letters and
-      numbers. It can be changed if needed.
-    - **Phone** — The tenant's phone number. **Country** and **Address** can
-      also be added.
-    - **Plan** — Optional. Leave **Select a plan** if the plan will be
-      assigned later.
-    - **Password** and **Confirm Password** — Set and confirm the tenant's
-      password.
+2. Enter:
+   - **Full name** and **Email** — The tenant's name and email address.
+   - **Workspace** — The tenant's business or company name.
+   - **Tenant Name** — Used as the tenant's subdomain. It is generated from the **Workspace** name using lowercase letters and numbers, and can be changed.
+   - **Phone** — The tenant's phone number. **Country** and **Address** are optional.
+   - **Plan** — Optional. Leave **Select a plan** if the plan will be assigned later.
+   - **Password** and **Confirm Password** — Set and confirm the tenant's password.
 3. Click **Save**.
 
 <Note>
-  If no plan is selected when creating a tenant, the tenant's account is
-  created without a subscription. The tenant can sign in, but all
-  plan-based limits are set to 0, so they cannot use the platform normally.
+  If no plan is selected, the tenant is created without a subscription. The
+  tenant can sign in, but plan-based limits are set to 0, so the platform
+  cannot be used normally.
 
   Assign a plan from the tenant's **Edit** form to give the tenant access to
   the plan's features and limits.
 </Note>
 
-The tenant's password is set directly when the account is created. No password setup email is sent. The reseller must share the login details with the tenant separately.
+The password is set when the account is created. No password setup email is sent. The reseller must share the login details with the tenant separately.
 
 ### Public Registration
 
-When **Enable Registration** is turned on, tenants can create their own accounts and choose a plan during registration. Their workspace is created automatically after registration, so no manual setup is needed from the panel.
-
-<Note>
-  New tenant registrations stop when the reseller reaches the tenant limit
-  on their own plan.
-
-  The tenant sees **"Registration is currently unavailable"** and cannot
-  create an account. No separate notification is sent to the reseller.
-
-  Check the current tenant usage under [**Billing → My
-  Subscription**](/admin/plan-limits-and-customer-access#tenant-usage).
-</Note>
+When **Enable Registration** is enabled, tenants can create their own accounts and choose a plan during registration. Their workspace is created automatically after registration.
 
 ## What the Tenant Sees
 
-After a tenant signs in, they are taken to their workspace dashboard. The
-features and limits available to them depend on the plan assigned to their
-account.
+After signing in, tenants see the features and limits available on their plan.
 
-<br />
+Features not included in the plan appear with a lock icon and an **Upgrade Plan** option.
 
-If a feature is not included in their plan, the feature still appears in
-the sidebar with a lock icon. When the tenant clicks it, a message explains
-that the feature is not available on their current plan and shows an option
-to **Upgrade Plan**.
+To view the tenant's experience, go to **Tenant List** → **Impersonate**. An **You are impersonating this tenant** banner appears while active.
 
-<br />
-
-To check what a tenant sees, open the tenant from **Tenant List** and
-select **Impersonate**. The tenant's workspace opens using their account,
-so the reseller can check the same pages and features available to that
-tenant.
-
-<br />
-
-While impersonating, a **"You are impersonating this tenant"** banner
-appears at the top. The reseller cannot access the admin panel until
-impersonation is stopped.
-
-<br />
-
-Select **Stop Impersonating** in the banner to return to the reseller
-account.
+Select **Stop Impersonating** to return to the reseller account.
