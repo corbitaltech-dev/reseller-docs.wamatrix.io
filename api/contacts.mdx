@@ -1,5 +1,5 @@
 ---
-title: "Contacts API — Manage Workspace Contacts"
+title: "Contacts API — Import and Manage Workspace Contacts"
 sidebarTitle: "Contacts"
 description: "REST API endpoints to list, create, and update contacts in a WaMatrix workspace. Requires a workspace-scoped or reseller-scoped API key."
 ---
@@ -318,5 +318,5 @@ curl -X POST https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/contacts/
 ```
 
 <Note>
-  Imports are processed asynchronously. Use `GET /imports/{import_id}` to poll for the status of your import, including the number of contacts created, updated, skipped, and any row-level errors.
+  Imports are processed asynchronously. The returned `import_id` can be used to track the progress of your import — including the number of contacts created, updated, skipped, and any row-level errors — via the import status endpoint documented in your dashboard's API settings.
 </Note>

@@ -109,6 +109,23 @@ curl -X POST https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/messages 
   }'
 ```
 
+### Request — Send an image message
+
+```bash Send an image message
+curl -X POST https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/messages \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+14155552671",
+    "channel_id": "ch_9f2a1b3c",
+    "type": "image",
+    "image": {
+      "url": "https://cdn.yourstore.com/banners/summer-sale-2024.jpg",
+      "caption": "Our summer sale is live — up to 50% off storewide! 🛍️"
+    }
+  }'
+```
+
 ### Response
 
 ```json
