@@ -1,0 +1,79 @@
+---
+title: "Automate WhatsApp Workflows with Automation Flows"
+sidebarTitle: "Automation Flows"
+description: "Set up trigger-based automation flows to send WhatsApp messages, update contacts, and assign conversations automatically — no manual work required."
+---
+
+Automation flows let your clients trigger actions automatically based on events — a new contact added, a form submitted, a campaign link clicked, or a date condition met. Think of them as the rules engine running behind the scenes: once configured, they handle repetitive tasks without anyone on the team needing to lift a finger.
+
+## Triggers
+
+A flow starts when one of the following trigger conditions is met:
+
+| Trigger | When it fires |
+|---|---|
+| **New Contact Created** | A contact is added — via import, form, or API |
+| **Contact Field Updated** | A specific contact field changes to a defined value |
+| **Campaign Link Clicked** | A recipient clicks a tracked link inside a broadcast campaign |
+| **Incoming Message Received** | A new message arrives on a connected WhatsApp channel |
+| **WhatsApp Flow Submitted** | A customer completes and submits a WhatsApp native Flow form |
+| **Webhook Received** | An external system sends a POST request to the flow's webhook URL |
+| **Date / Time (Scheduled)** | A recurring schedule or a date stored on the contact (e.g. subscription renewal date) |
+| **Conversation Assigned** | A conversation is assigned to a specific agent or team |
+| **Conversation Resolved** | A conversation is marked as resolved |
+
+## Actions
+
+Each flow is made up of one or more actions that run in sequence:
+
+| Action | What it does |
+|---|---|
+| **Send WhatsApp Message** | Send a template message or a free-form message to the contact |
+| **Update Contact Field** | Write a new value to any standard or custom contact field |
+| **Add / Remove Tag** | Add or remove a tag on the contact record |
+| **Assign Conversation** | Route the conversation to a specific agent or team |
+| **Create a Note** | Add an internal note to the conversation timeline |
+| **Call a Webhook** | Send an HTTP POST request to an external URL with contact or event data |
+| **Wait** | Pause the flow for a defined duration before executing the next action |
+
+## Building an Automation
+
+<Steps>
+  <Step title="Open Automation">
+    Go to **Automation → New Flow**.
+  </Step>
+  <Step title="Choose and configure a trigger">
+    Select a trigger type and set the conditions — for example, **Contact Field Updated** where `source` equals `"website"`. Only events matching the conditions will start the flow.
+  </Step>
+  <Step title="Add the first action">
+    Click **Add Action** and select what should happen — such as **Send WhatsApp Message** with an approved template.
+  </Step>
+  <Step title="Chain additional actions">
+    Click the `+` button after each action to add the next step in the sequence. Actions run in the order they appear.
+  </Step>
+  <Step title="Add delays where needed">
+    Insert a **Wait** action between steps to space out communications — for example, wait 24 hours before sending a follow-up message.
+  </Step>
+  <Step title="Activate the flow">
+    Click **Activate Flow**. The flow begins processing new trigger events immediately. Events that occurred before activation are not retroactively processed.
+  </Step>
+</Steps>
+
+## Example — Lead Nurture Sequence
+
+Here's a practical automation your clients can set up in under 10 minutes:
+
+| Step | Type | Detail |
+|---|---|---|
+| 1 | **Trigger** | New Contact Created — where tag = `"lead"` |
+| 2 | **Action** | Send WhatsApp Message — `welcome_lead` template |
+| 3 | **Action** | Wait — 1 day |
+| 4 | **Action** | Send WhatsApp Message — `followup_day1` template |
+| 5 | **Action** | Wait — 2 days |
+| 6 | **Action** | Assign Conversation — Sales team |
+
+The result: every new lead automatically receives a welcome message, a follow-up 24 hours later, and then lands in the sales team's inbox on day three — ready for a live conversation.
+
+<Note>
+  Automation flows respect WhatsApp's **24-hour messaging window**. A free-form message (non-template) can only be sent within 24 hours of the customer's last inbound message. Outside that window, you must use a Meta-approved template message. Plan your nurture sequences accordingly and make sure all outbound-initiated messages use approved templates.
+</Note>

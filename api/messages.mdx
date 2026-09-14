@@ -1,0 +1,147 @@
+---
+title: "Messages API — Send WhatsApp Messages Programmatically"
+sidebarTitle: "Messages"
+description: "Send WhatsApp template and free-form messages via the WaMatrix REST API. Supports text, images, documents, and interactive buttons."
+---
+
+The Messages API lets you send WhatsApp messages directly from your own code — trigger transactional notifications, respond to events, or integrate WhatsApp into your existing workflows.
+
+## Message Types
+
+WaMatrix supports two broad categories of outbound message:
+
+- **Template messages** — Pre-approved message templates submitted to and approved by Meta. Required when sending outside the 24-hour customer service window, or for bulk/broadcast sends. Templates may contain variable placeholders, header media, and call-to-action buttons.
+
+- **Session messages** — Free-form text, images, or documents sent within an active customer service session. A session opens when a customer sends your number a message and remains open for **24 hours** from their last inbound message. After the window closes, only template messages are permitted.
+
+---
+
+## POST /workspaces/{workspace_id}/messages
+
+Send a WhatsApp message to a single recipient. The `type` field controls which message format is used and which additional fields are required.
+
+### Path Parameters
+
+<ParamField path="workspace_id" type="string" required>
+  The unique ID of the workspace sending the message.
+</ParamField>
+
+### Body Parameters
+
+<ParamField body="to" type="string" required>
+  The recipient's phone number in E.164 format (e.g. `+14155552671`).
+</ParamField>
+
+<ParamField body="channel_id" type="string" required>
+  The ID of the WhatsApp channel (connected phone number) to send from (e.g. `ch_9f2a1b3c`). Find channel IDs in the workspace's **Channels** settings.
+</ParamField>
+
+<ParamField body="type" type="string" required>
+  The message format. Accepted values: `template`, `text`, `image`, `document`.
+</ParamField>
+
+<ParamField body="template" type="object">
+  Required when `type` is `template`. Describes the approved template to send.
+
+  | Field | Type | Description |
+  |---|---|---|
+  | `name` | string | The exact name of the approved template (e.g. `order_confirmation_v1`). |
+  | `language` | string | The language code of the template (e.g. `en`, `es`, `pt_BR`). |
+  | `components` | array | An array of component objects supplying variable values, header media, or button parameters. |
+</ParamField>
+
+<ParamField body="text" type="object">
+  Required when `type` is `text`. Contains the message body.
+
+  | Field | Type | Description |
+  |---|---|---|
+  | `body` | string | The plain text message content. Maximum 4096 characters. |
+</ParamField>
+
+<ParamField body="image" type="object">
+  Required when `type` is `image`. Specifies the image to send.
+
+  | Field | Type | Description |
+  |---|---|---|
+  | `url` | string | A publicly accessible URL to the image (JPEG or PNG). |
+  | `caption` | string | Optional caption displayed below the image. |
+</ParamField>
+
+### Request — Send a template message
+
+```bash Send template message
+curl -X POST https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/messages \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+14155552671",
+    "channel_id": "ch_9f2a1b3c",
+    "type": "template",
+    "template": {
+      "name": "order_confirmation_v1",
+      "language": "en",
+      "components": [
+        {
+          "type": "body",
+          "parameters": [
+            { "type": "text", "text": "Jane" },
+            { "type": "text", "text": "#ORD-8821" }
+          ]
+        }
+      ]
+    }
+  }'
+```
+
+### Request — Send a session text message
+
+```bash Send a text message
+curl -X POST https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/messages \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "to": "+14155552671",
+    "channel_id": "ch_9f2a1b3c",
+    "type": "text",
+    "text": {
+      "body": "Hi Jane! Your support ticket #4421 has been resolved. Let us know if you need anything else."
+    }
+  }'
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "id": "msg_8d3f1a2b9c4e",
+    "status": "queued",
+    "to": "+14155552671",
+    "type": "template",
+    "channel_id": "ch_9f2a1b3c",
+    "created_at": "2024-06-10T15:00:00Z"
+  }
+}
+```
+
+---
+
+## Message Status
+
+After a message is created with status `queued`, it progresses through the following lifecycle:
+
+| Status | Description |
+|---|---|
+| `queued` | The message has been accepted by WaMatrix and is waiting to be sent to Meta's WhatsApp API. |
+| `sent` | The message has been handed off to WhatsApp and is on its way to the recipient's device. |
+| `delivered` | WhatsApp confirmed the message was delivered to the recipient's device. |
+| `read` | The recipient has opened and read the message (read receipts must be enabled on their device). |
+| `failed` | Delivery failed. The message object will include an `error` field with a code and description. |
+
+The typical flow is: **queued → sent → delivered → read**.
+
+To receive real-time status updates without polling, configure a **webhook** in your workspace settings. WaMatrix will POST a status update event to your endpoint each time a message's status changes.
+
+<Warning>
+  Free-form messages (`type: "text"`, `"image"`, or `"document"`) can only be sent within the **24-hour customer service window** — that is, within 24 hours of the recipient last sending a message to your number. Outside this window, use a `template` message instead. Attempting to send a session message outside the window will return a `4xx` error.
+</Warning>

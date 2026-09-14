@@ -1,0 +1,64 @@
+---
+title: "Build WhatsApp Chatbots with the Visual Flow Builder"
+sidebarTitle: "Chatbot Builder"
+description: "Create automated WhatsApp conversation flows using the visual chatbot builder — keyword triggers, decision trees, AI responses, and handoffs to live agents."
+---
+
+The chatbot builder lets your clients create automated WhatsApp conversation flows without writing a single line of code. Bots can answer FAQs, qualify leads, collect information, and hand off to a live agent — all inside the WhatsApp thread, delivering a seamless experience for the end customer.
+
+## Bot Flow Concepts
+
+Before building a flow, it helps to understand the core building blocks:
+
+- **Trigger** — What starts the bot. A trigger can be a specific keyword the customer sends (e.g. "hi", "pricing", "support"), any new incoming conversation, or a message received outside of business hours.
+- **Step** — A single action in the flow. Each step does one thing: send a message, ask a question, evaluate a condition and branch, call a webhook, or collect a variable.
+- **Variable** — Data collected during the conversation and stored for later use — for example, the customer's name, email address, or order number. Variables can personalize responses and be saved back to the contact record.
+- **Handoff** — Transfers the active conversation from the bot to a live agent in the Team Inbox, along with all conversation context so the agent can pick up without asking the customer to repeat themselves.
+
+## Creating a Bot Flow
+
+<Steps>
+  <Step title="Open the Chatbots module">
+    Go to **Chatbots → New Flow**.
+  </Step>
+  <Step title="Name and assign the flow">
+    Give the flow a descriptive name and select the WhatsApp channel it applies to. A flow only intercepts conversations on its assigned channel.
+  </Step>
+  <Step title="Set the trigger">
+    Choose **Keyword** and enter one or more trigger words (e.g. "hi", "pricing", "support"), or select **Any New Conversation** to capture every new incoming chat.
+  </Step>
+  <Step title="Build the flow on the visual canvas">
+    Add steps by dragging and dropping blocks onto the canvas:
+    - **Send Message** — send a text, image, video, or document
+    - **Ask Question** — prompt the customer for input and save their response to a variable
+    - **Branch** — split the flow based on a condition (e.g. variable value, contact tag)
+    - **Set Variable** — manually assign a value to a variable
+    - **Assign to Agent** — trigger a handoff to a specific agent or team
+    - **Webhook** — call an external URL with conversation data
+  </Step>
+  <Step title="Connect the blocks">
+    Draw arrows between blocks to define the conversation path. Branch blocks create multiple outgoing paths based on conditions.
+  </Step>
+  <Step title="Test the flow">
+    Click **Test Flow** to simulate the conversation in a preview panel. Walk through each path to verify the logic before going live.
+  </Step>
+  <Step title="Activate the flow">
+    Toggle the flow to **Active**. It will immediately begin intercepting conversations that match the trigger conditions.
+  </Step>
+</Steps>
+
+## AI-Assisted Responses
+
+Flows can include an **AI step** that generates a contextual, natural-language reply using your choice of AI model — ChatGPT, Claude, or Gemini. The AI step can be pointed at a knowledge base (a set of documents or FAQs you upload) or driven by a custom prompt you define.
+
+This lets the bot handle open-ended questions — product details, policy questions, troubleshooting — that are too varied to script manually. When the AI step reaches its confidence threshold or the customer's query falls outside its scope, the flow automatically hands off to a human agent with the full conversation history intact.
+
+## Keyword Triggers
+
+<Note>
+  Keyword triggers are **case-insensitive** and match partial words by default — so a trigger of "price" will fire if the customer types "pricing", "Price list", or "what's the price?". Use **Exact Match** mode if you need the trigger to fire only on a precise word or phrase. Multiple keywords can be assigned to the same flow, so you don't need a separate flow for every variation of a word.
+</Note>
+
+<Tip>
+  Always end every bot flow with either a **human handoff step** or a clear opt-out message such as "Type STOP to unsubscribe." This keeps your client compliant with WhatsApp's messaging guidelines and ensures customers are never left in a dead-end conversation with no way to reach a person.
+</Tip>

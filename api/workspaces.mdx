@@ -1,0 +1,205 @@
+---
+title: "Workspaces API — Create and Manage Client Workspaces"
+sidebarTitle: "Workspaces"
+description: "REST API endpoints to list, create, and manage client workspaces in your WaMatrix Reseller account. Requires a reseller-scoped API key."
+---
+
+The Workspaces API lets you programmatically provision and manage client workspaces in your reseller account. Use it to automate onboarding new clients without logging into the dashboard.
+
+---
+
+## GET /workspaces
+
+List all client workspaces in your reseller account. Supports filtering by status and pagination.
+
+### Query Parameters
+
+<ParamField query="status" type="string">
+  Filter workspaces by their current status. Accepted values: `active`, `trial`, `suspended`, `archived`.
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Page number to retrieve. Defaults to `1`.
+</ParamField>
+
+<ParamField query="per_page" type="integer">
+  Number of results per page. Defaults to `20`. Maximum is `100`.
+</ParamField>
+
+### Request
+
+```bash List workspaces
+curl -X GET "https://api.wamatrix.io/v1/workspaces?status=active&page=1&per_page=20" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json"
+```
+
+### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "ws_01hx3g5r8f0q2k7d",
+      "name": "Acme Corp",
+      "status": "active",
+      "plan_id": "plan_growth_monthly",
+      "created_at": "2024-03-15T10:22:00Z"
+    },
+    {
+      "id": "ws_02jy4h6s9g1r3l8e",
+      "name": "Bright Retail",
+      "status": "trial",
+      "plan_id": null,
+      "created_at": "2024-04-01T08:45:00Z"
+    }
+  ]
+}
+```
+
+---
+
+## POST /workspaces
+
+Create a new client workspace under your reseller account. Optionally assign a plan and send an invitation email to the primary contact.
+
+### Body Parameters
+
+<ParamField body="name" type="string" required>
+  The name of the workspace or client business.
+</ParamField>
+
+<ParamField body="contact_email" type="string" required>
+  The primary contact email address. This person receives the workspace invitation email.
+</ParamField>
+
+<ParamField body="plan_id" type="string">
+  The ID of the plan to assign to this workspace immediately. If omitted, the workspace is created without a plan.
+</ParamField>
+
+<ParamField body="send_invitation" type="boolean">
+  Whether to send an invitation email to `contact_email`. Defaults to `true`.
+</ParamField>
+
+### Request
+
+```bash Create a workspace
+curl -X POST https://api.wamatrix.io/v1/workspaces \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Sunrise Bakery",
+    "contact_email": "owner@sunrisebakery.com",
+    "plan_id": "plan_growth_monthly",
+    "send_invitation": true
+  }'
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "id": "ws_03kz5i7t0h2s4m9f",
+    "name": "Sunrise Bakery",
+    "status": "trial",
+    "plan_id": "plan_growth_monthly",
+    "created_at": "2024-06-10T14:30:00Z"
+  }
+}
+```
+
+---
+
+## GET /workspaces/{workspace_id}
+
+Retrieve a single workspace by its ID, including extended usage statistics.
+
+### Path Parameters
+
+<ParamField path="workspace_id" type="string" required>
+  The unique ID of the workspace to retrieve (e.g. `ws_01hx3g5r8f0q2k7d`).
+</ParamField>
+
+### Request
+
+```bash Get a workspace
+curl -X GET https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json"
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "id": "ws_01hx3g5r8f0q2k7d",
+    "name": "Acme Corp",
+    "status": "active",
+    "plan": {
+      "id": "plan_growth_monthly",
+      "name": "Growth (Monthly)"
+    },
+    "usage": {
+      "contacts_count": 4821,
+      "messages_this_month": 12430
+    },
+    "created_at": "2024-03-15T10:22:00Z"
+  }
+}
+```
+
+---
+
+## PATCH /workspaces/{workspace_id}
+
+Update a workspace's name or status. Only the fields you provide are changed.
+
+### Path Parameters
+
+<ParamField path="workspace_id" type="string" required>
+  The unique ID of the workspace to update.
+</ParamField>
+
+### Body Parameters
+
+<ParamField body="name" type="string">
+  A new display name for the workspace.
+</ParamField>
+
+<ParamField body="status" type="string">
+  Update the workspace status. Accepted values: `active`, `suspended`.
+</ParamField>
+
+### Request
+
+```bash Update a workspace
+curl -X PATCH https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Acme Corporation",
+    "status": "suspended"
+  }'
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "id": "ws_01hx3g5r8f0q2k7d",
+    "name": "Acme Corporation",
+    "status": "suspended",
+    "plan_id": "plan_growth_monthly",
+    "created_at": "2024-03-15T10:22:00Z"
+  }
+}
+```
+
+---
+
+<Note>
+  Workspace deletion is not available via the API. Archive or suspend workspaces instead. For permanent deletion, contact support.
+</Note>

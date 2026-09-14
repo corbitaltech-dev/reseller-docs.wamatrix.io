@@ -1,0 +1,245 @@
+---
+title: "Campaigns API — Create and Manage Broadcast Campaigns"
+sidebarTitle: "Campaigns"
+description: "REST API endpoints to create, schedule, and monitor WhatsApp broadcast campaigns in a WaMatrix workspace."
+---
+
+The Campaigns API lets you programmatically create and launch broadcast campaigns — useful for integrating WaMatrix with your own scheduling system or triggering campaigns from external events.
+
+<Note>
+  Only **Meta-approved** message templates can be used in campaigns. Ensure your template has `status: "approved"` before referencing it in a campaign. See the [Templates API](/api/templates) for details on submitting and checking template status.
+</Note>
+
+---
+
+## GET /workspaces/{workspace_id}/campaigns
+
+List all broadcast campaigns in a workspace, with optional filtering by status and pagination.
+
+### Path Parameters
+
+<ParamField path="workspace_id" type="string" required>
+  The unique ID of the workspace whose campaigns you want to list.
+</ParamField>
+
+### Query Parameters
+
+<ParamField query="status" type="string">
+  Filter campaigns by their current status. Accepted values: `draft`, `scheduled`, `running`, `completed`, `failed`.
+</ParamField>
+
+<ParamField query="page" type="integer">
+  Page number to retrieve. Defaults to `1`.
+</ParamField>
+
+<ParamField query="per_page" type="integer">
+  Number of results per page. Defaults to `20`. Maximum is `100`.
+</ParamField>
+
+### Request
+
+```bash List campaigns
+curl -X GET "https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/campaigns?status=completed&page=1&per_page=20" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json"
+```
+
+### Response
+
+```json
+{
+  "data": [
+    {
+      "id": "cmp_5b1e9f2a3c",
+      "name": "June Summer Sale",
+      "status": "completed",
+      "template_name": "summer_sale_announcement",
+      "scheduled_at": "2024-06-01T09:00:00Z",
+      "stats": {
+        "sent": 3200,
+        "delivered": 3105,
+        "read": 1842,
+        "failed": 95
+      }
+    }
+  ]
+}
+```
+
+---
+
+## POST /workspaces/{workspace_id}/campaigns
+
+Create a new broadcast campaign. If `scheduled_at` is provided the campaign is saved with `status: "scheduled"`. If omitted the campaign is saved as `"draft"` and can be launched manually using the [launch endpoint](#post-workspacesworkspace_idcampaignscampaign_idlaunch).
+
+### Path Parameters
+
+<ParamField path="workspace_id" type="string" required>
+  The unique ID of the workspace to create the campaign in.
+</ParamField>
+
+### Body Parameters
+
+<ParamField body="name" type="string" required>
+  A human-readable name for the campaign (e.g. `"June Summer Sale"`).
+</ParamField>
+
+<ParamField body="channel_id" type="string" required>
+  The ID of the WhatsApp channel (connected number) to send the campaign from.
+</ParamField>
+
+<ParamField body="template_name" type="string" required>
+  The exact name of the approved template to use (e.g. `summer_sale_announcement`). The template must have `status: "approved"`.
+</ParamField>
+
+<ParamField body="template_language" type="string" required>
+  The language code of the template to use (e.g. `en`, `es`, `pt_BR`).
+</ParamField>
+
+<ParamField body="recipients" type="object" required>
+  Defines the audience for the campaign. Provide exactly one of the following:
+
+  | Field | Type | Description |
+  |---|---|---|
+  | `list_id` | string | The ID of a saved static contact list. |
+  | `segment_id` | string | The ID of a dynamic contact segment, evaluated at send time. |
+</ParamField>
+
+<ParamField body="scheduled_at" type="string">
+  An ISO 8601 datetime string for when to send the campaign (e.g. `"2024-07-15T10:00:00Z"`). If omitted, the campaign is saved as a `draft` and must be launched manually.
+</ParamField>
+
+<ParamField body="variable_mapping" type="object">
+  Maps template variable numbers to contact field names, so each message is personalised with the recipient's data. For example, `{"1": "first_name", "2": "order_number"}` replaces `{{1}}` in the template with the contact's `first_name` field.
+</ParamField>
+
+### Request
+
+```bash Create a campaign
+curl -X POST https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/campaigns \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "July Flash Sale",
+    "channel_id": "ch_9f2a1b3c",
+    "template_name": "summer_sale_announcement",
+    "template_language": "en",
+    "recipients": {
+      "segment_id": "seg_opted_in_customers"
+    },
+    "variable_mapping": {
+      "1": "first_name"
+    }
+  }'
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "id": "cmp_7c3f0e5a2d",
+    "name": "July Flash Sale",
+    "status": "draft",
+    "channel_id": "ch_9f2a1b3c",
+    "template_name": "summer_sale_announcement",
+    "template_language": "en",
+    "scheduled_at": null,
+    "created_at": "2024-06-15T11:00:00Z"
+  }
+}
+```
+
+---
+
+## POST /workspaces/{workspace_id}/campaigns/{campaign_id}/launch
+
+Immediately launch a campaign that is in `draft` status. Use this endpoint when you want to send a campaign right now without setting a `scheduled_at` time.
+
+### Path Parameters
+
+<ParamField path="workspace_id" type="string" required>
+  The unique ID of the workspace.
+</ParamField>
+
+<ParamField path="campaign_id" type="string" required>
+  The unique ID of the draft campaign to launch.
+</ParamField>
+
+### Request
+
+```bash Create and immediately launch a campaign
+# Step 1: Create the campaign as a draft
+curl -X POST https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/campaigns \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "July Flash Sale",
+    "channel_id": "ch_9f2a1b3c",
+    "template_name": "summer_sale_announcement",
+    "template_language": "en",
+    "recipients": {
+      "list_id": "lst_vip_customers"
+    },
+    "variable_mapping": {
+      "1": "first_name"
+    }
+  }'
+
+# Step 2: Launch the draft immediately
+curl -X POST https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/campaigns/cmp_7c3f0e5a2d/launch \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json"
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "id": "cmp_7c3f0e5a2d",
+    "name": "July Flash Sale",
+    "status": "running",
+    "launched_at": "2024-06-15T11:05:00Z"
+  }
+}
+```
+
+---
+
+## GET /workspaces/{workspace_id}/campaigns/{campaign_id}/stats
+
+Retrieve real-time delivery and engagement statistics for a campaign.
+
+### Path Parameters
+
+<ParamField path="workspace_id" type="string" required>
+  The unique ID of the workspace.
+</ParamField>
+
+<ParamField path="campaign_id" type="string" required>
+  The unique ID of the campaign.
+</ParamField>
+
+### Request
+
+```bash Get campaign stats
+curl -X GET https://api.wamatrix.io/v1/workspaces/ws_01hx3g5r8f0q2k7d/campaigns/cmp_7c3f0e5a2d/stats \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json"
+```
+
+### Response
+
+```json
+{
+  "data": {
+    "sent": 1500,
+    "delivered": 1423,
+    "read": 892,
+    "failed": 77,
+    "delivery_rate": 0.949,
+    "read_rate": 0.627
+  }
+}
+```

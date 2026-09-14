@@ -1,0 +1,91 @@
+---
+title: "Create and Manage WhatsApp Message Templates"
+sidebarTitle: "Template Management"
+description: "Submit WhatsApp Business message templates for Meta approval, manage variables and media, and track approval status — all from your WaMatrix workspace."
+---
+
+WhatsApp message templates are pre-approved message formats required for sending bulk campaigns and for initiating conversations outside the 24-hour messaging window. You create and submit templates directly inside WaMatrix, and Meta reviews them — typically within 24–48 hours. Once approved, templates are immediately available to use in campaigns and automation flows.
+
+## Template Categories
+
+Meta requires every template to be assigned to one of three categories. Choosing the right category matters — submitting a promotional message under "Utility" is one of the most common rejection reasons.
+
+| Category | Purpose | Examples |
+|---|---|---|
+| **Marketing** | Promotional messages, offers, announcements, re-engagement | Sale announcements, product launches, discount codes, newsletter broadcasts |
+| **Utility** | Transactional updates directly related to a customer action | Order confirmations, shipping updates, appointment reminders, payment receipts |
+| **Authentication** | One-time passcodes for login or verification | OTP codes (not applicable to most marketing use cases) |
+
+## Creating a Template
+
+<Steps>
+  <Step title="Open the Templates module">
+    Go to **Templates → New Template**.
+  </Step>
+  <Step title="Choose a category">
+    Select **Marketing**, **Utility**, or **Authentication** based on the purpose of the message.
+  </Step>
+  <Step title="Enter a template name">
+    Give the template a unique name using only lowercase letters and underscores — for example, `order_confirmation_v1`. The name is **permanent once submitted** and cannot be changed, so choose carefully.
+  </Step>
+  <Step title="Select a language">
+    Templates are language-specific. Select the language this version is written in. To send the same message in multiple languages, create a separate template for each language.
+  </Step>
+  <Step title="Compose the message body">
+    Write the message content. Use `{{1}}`, `{{2}}`, `{{3}}` etc. as placeholders for dynamic variables that will be filled in at send time. Add sample values for each variable — Meta requires them to evaluate the template.
+  </Step>
+  <Step title="Add a header (optional)">
+    Optionally add a header above the message body: a short text line, or a media attachment (image, video, or document). Media headers significantly increase engagement rates on marketing templates.
+  </Step>
+  <Step title="Add a footer and buttons (optional)">
+    Add a footer line (often used for opt-out instructions) and interactive buttons — **Quick Reply** buttons (tap to send a predefined response) or **Call-to-Action** buttons (phone call or URL link).
+  </Step>
+  <Step title="Submit for approval">
+    Click **Submit for Approval**. The template status changes to **Pending** and enters Meta's review queue.
+  </Step>
+</Steps>
+
+## Template Variables
+
+Variables let you personalize a single template for every recipient. Here's an example of a Utility template using three variables:
+
+```
+Hi {{1}}, your order #{{2}} has been confirmed and will be delivered by {{3}}. Reply STOP to opt out.
+```
+
+At send time, variables are filled in — either automatically from mapped contact fields (e.g. `{{1}}` → First Name) or from campaign-level inputs you define when launching the broadcast. The delivered message looks like:
+
+```
+Hi Jane, your order #10482 has been confirmed and will be delivered by Friday, 18 July. Reply STOP to opt out.
+```
+
+## Approval Status
+
+| Status | Meaning |
+|---|---|
+| **Pending** | Template has been submitted and is under review by Meta. No action required — review typically takes 24–48 hours. |
+| **Approved** | Template passed Meta's review and is ready to use in campaigns and automation flows. |
+| **Rejected** | Template was not approved. View the rejection reason in the template detail page, make the necessary edits, and resubmit under a new template name. |
+| **Paused** | Meta has flagged the template due to a quality issue — typically low engagement rates or spam reports from recipients. Paused templates cannot be sent until the quality rating recovers or the template is revised. |
+
+## Common Rejection Reasons
+
+<Accordion title="Template contains URLs not on the allow-list">
+  Meta requires all URLs used in templates to be registered in your Meta Business Manager before they can appear in approved templates. Log in to Meta Business Manager, navigate to **WhatsApp Manager → Message Templates**, and register your domain. Then resubmit the template.
+</Accordion>
+
+<Accordion title="Marketing language in a Utility template">
+  Utility templates must relate directly to a transaction or customer-initiated interaction. If your message contains promotional language (discounts, offers, calls to action encouraging a purchase), it must be submitted as a **Marketing** template instead.
+</Accordion>
+
+<Accordion title="Missing opt-out language">
+  Meta requires Marketing templates to give recipients a way to opt out of future messages. Add a clear opt-out instruction — such as "Reply STOP to unsubscribe" — to the message footer. Utility and Authentication templates are exempt from this requirement.
+</Accordion>
+
+<Accordion title="Variable values not clear">
+  Meta rejects templates where the purpose of a variable is ambiguous — for example, a template where `{{1}}` could contain anything. Always provide concrete sample values when submitting (e.g. `{{1}}` = "Jane", `{{2}}` = "10482"). This helps Meta's reviewers understand the context and intended use of each variable.
+</Accordion>
+
+<Tip>
+  Reusing a rejected template name is not possible — once a name has been used, it is permanently associated with that submission. When resubmitting a rejected template after making edits, create a new template with a slightly different name (e.g. append `_v2` or `_v3`) to avoid conflicts.
+</Tip>

@@ -1,0 +1,52 @@
+---
+title: "Customize Your Reseller Dashboard Branding"
+sidebarTitle: "Branding"
+description: "Upload your logo, set brand colors, and configure the login screen so your white-label WhatsApp CRM looks and feels like your own product."
+---
+
+WaMatrix Reseller lets you fully brand the client-facing dashboard — your logo, colors, product name, and login screen text. Your clients never see WaMatrix anywhere in the interface.
+
+## What You Can Brand
+
+- **Logo** — displayed in the sidebar and on the login screen
+- **Primary brand color** — used for buttons, highlights, and active navigation states
+- **Product name** — shown in the browser tab, email notifications, and the billing portal header
+- **Login screen headline and subheading** — the first thing clients see when they visit your dashboard
+- **Email notification sender name** — the display name on all system emails sent to your clients
+
+## Configuring Your Branding
+
+<Steps>
+  <Step title="Open Branding settings">
+    Go to **Settings → White Label → Branding** in your Reseller Dashboard.
+  </Step>
+  <Step title="Upload your logo">
+    Click **Upload Logo** and select your file. Recommended format: **SVG or PNG** with a transparent background, minimum size **200×60 px**. Your logo will appear in the sidebar navigation and on the login screen.
+  </Step>
+  <Step title="Set your primary color">
+    Enter a hex code directly (e.g. `#1A73E8`) or use the built-in color picker. This color is applied to buttons, links, and active navigation items throughout the dashboard.
+  </Step>
+  <Step title="Set your product name">
+    Type your product or agency name in the **Product Name** field. This value appears in the browser tab title, email subject lines, and the billing portal header seen by your clients.
+  </Step>
+  <Step title="Customize the login screen">
+    Edit the **Login Headline** (e.g. *"Sign in to YourAgency"*) and an optional **subheading** for additional context or a tagline. You can also set a background color or upload a background image for the login page.
+  </Step>
+  <Step title="Save, preview, and publish">
+    Click **Save & Preview** to see your changes applied to a live preview of the client dashboard. When you are satisfied, click **Publish** to push the branding live.
+  </Step>
+</Steps>
+
+## Email Notifications
+
+All system emails sent to your clients — workspace invitations, password resets, and billing notices — use the **product name** and **sender domain** you configure in your branding settings. Your clients see your brand in every notification, not WaMatrix.
+
+To send emails from your own domain (e.g. `notifications@youragency.com`), you must configure a **custom sender domain**. This requires adding SPF and DKIM DNS records at your domain registrar. Refer to your DNS provider's documentation for instructions on adding TXT records, then enter the verified sender domain in **Settings → White Label → Branding → Sender Domain**.
+
+<Note>
+  Branding changes take effect immediately for new sessions. Clients who are already logged in will see the updated branding on their next page load — no action is required on their end.
+</Note>
+
+<Tip>
+  Keep your primary brand color high-contrast against white backgrounds for accessibility. **WCAG AA** compliance requires a minimum contrast ratio of **4.5:1** for normal text. Use a free tool like [WebAIM Contrast Checker](https://webaim.org/resources/contrastchecker/) to verify your chosen color before publishing.
+</Tip>

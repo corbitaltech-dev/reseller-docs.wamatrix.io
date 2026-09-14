@@ -1,0 +1,69 @@
+---
+title: "Manage Client Billing and Subscription Plans"
+sidebarTitle: "Billing & Plans"
+description: "Assign plans to client workspaces, track usage, and manage subscriptions — all from your WaMatrix Reseller dashboard. Your pricing stays private."
+---
+
+From your master dashboard, you control what plan each client workspace is on, monitor usage against plan limits, and manage subscription changes. What you charge your clients is entirely your own business — WaMatrix never sees your pricing.
+
+## Assigning a Plan
+
+<Steps>
+  <Step title="Open the workspace">
+    Open the workspace from **Clients → [Workspace Name]**.
+  </Step>
+  <Step title="Go to the Subscription tab">
+    Click the **Subscription** tab inside the workspace detail page.
+  </Step>
+  <Step title="Assign or change the plan">
+    Click **Assign Plan** if no plan is currently active, or **Change Plan** if you're switching from an existing one.
+  </Step>
+  <Step title="Select the plan">
+    Select the plan from the dropdown. You'll see the limits you configured when creating the plan — contacts, messages, seats, and any other usage caps.
+  </Step>
+  <Step title="Set the billing start date and confirm">
+    Set the billing start date, then click **Confirm** to activate the plan immediately.
+  </Step>
+</Steps>
+
+## Monitoring Usage
+
+Each workspace has a dedicated usage dashboard so you can see exactly where a client stands against their plan limits at any point in the billing cycle:
+
+- **Contacts count** — total contacts currently in the workspace
+- **Messages sent this month** — outbound messages sent vs. the plan's monthly limit
+- **Active chatbot flows** — number of automation flows currently enabled
+- **Team seats used** — active team members vs. the seat limit on the plan
+
+Usage resets monthly on the workspace's billing date. You can also view a high-level usage summary across **all** workspaces directly from the main Clients overview, making it easy to spot clients approaching their limits before they hit them.
+
+## Upgrading or Downgrading Plans
+
+You can change a client's plan at any time from the Subscription tab:
+
+- **Upgrades** take effect immediately. The client gains access to the higher limits and any additional features right away.
+- **Downgrades** take effect at the start of the next billing cycle. The client remains on their current plan until the cycle rolls over.
+- **Over-limit at downgrade time** — if a client's usage already exceeds the new plan's limits when the downgrade is scheduled, they retain full access until the current cycle ends. They will need to reduce usage before the new cycle begins to avoid disruption.
+
+## Suspending and Reactivating
+
+Suspending a workspace immediately prevents the client from accessing their dashboard and stops all outbound and inbound message processing. This is useful when:
+
+- A client misses a payment and you manage billing manually outside of WaMatrix
+- A client requests a temporary pause on their account
+- You need to investigate a compliance or misuse concern
+
+To suspend, go to **Clients → [Workspace Name] → Suspend Workspace**. To restore access, click **Reactivate** — full access is restored instantly.
+
+<Warning>
+  If you suspend a workspace with active automation flows, those flows will stop processing. Reactivating the workspace resumes them.
+</Warning>
+
+## Exporting Client Data
+
+Clients and their data can be exported at any time — no lock-in. To export a workspace's data:
+
+1. Go to **Workspace → Settings → Export Data**
+2. Download the full CSV export, which includes contacts, conversations, and campaign history
+
+If a client leaves and their workspace is deactivated, they have **30 days** to retrieve their data before it is permanently removed. You can initiate the export on their behalf from the same Settings page during this window.

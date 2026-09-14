@@ -1,0 +1,110 @@
+{
+  "projectType": "saas",
+  "projectName": "WaMatrix Reseller",
+  "projectDescription": "A white-label WhatsApp CRM platform that lets agencies and resellers launch their own branded messaging SaaS — with their own domain, plans, and clients — powered by WaMatrix infrastructure.",
+  "theme": "luma",
+  "primaryColor": "#14142c",
+  "lightColor": "#5360e2",
+  "darkColor": "#8cc3ec",
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Reseller Guide",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "applying-for-access"
+            ]
+          },
+          {
+            "group": "White-Label Setup",
+            "pages": [
+              "white-label/custom-domain",
+              "white-label/branding",
+              "white-label/plan-configuration"
+            ]
+          },
+          {
+            "group": "Managing Clients",
+            "pages": [
+              "clients/creating-workspaces",
+              "clients/billing-and-plans",
+              "clients/onboarding-clients"
+            ]
+          },
+          {
+            "group": "Client Features",
+            "pages": [
+              "features/broadcast-campaigns",
+              "features/chatbot-builder",
+              "features/team-inbox",
+              "features/automation-flows",
+              "features/contact-management",
+              "features/template-management"
+            ]
+          },
+          {
+            "group": "Support & FAQ",
+            "pages": [
+              "support/founding-partner-perks",
+              "support/faq",
+              "support/getting-help"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "API Reference",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "api/introduction",
+              "api/authentication"
+            ]
+          },
+          {
+            "group": "Endpoints",
+            "pages": [
+              "api/workspaces",
+              "api/contacts",
+              "api/messages",
+              "api/campaigns",
+              "api/templates"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "White-label custom domain and branding",
+    "Unlimited client sub-workspaces",
+    "Custom plan pricing and limits",
+    "Bulk broadcast campaigns",
+    "WhatsApp chatbot builder",
+    "Team shared inbox",
+    "Automation flows",
+    "Contact management",
+    "Campaign analytics",
+    "Template management",
+    "AI-assisted messaging",
+    "0% Meta message markup",
+    "Founding Partner lifetime price lock",
+    "Direct founder support on WhatsApp"
+  ],
+  "publicApiSurface": [
+    "GET /workspaces — list client sub-workspaces",
+    "POST /workspaces — create a new client workspace",
+    "GET /contacts — list contacts",
+    "POST /contacts — create or import contacts",
+    "POST /messages/send — send a WhatsApp message",
+    "GET /campaigns — list broadcast campaigns",
+    "POST /campaigns — create a broadcast campaign",
+    "GET /templates — list approved message templates",
+    "POST /templates — submit a new template for approval"
+  ]
+}
