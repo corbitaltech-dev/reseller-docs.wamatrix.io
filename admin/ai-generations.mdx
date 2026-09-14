@@ -66,19 +66,3 @@ You can delete a generation from the list.
 <Warning>
   Deleting a generation only removes the generation record. The flow already created for the tenant is not affected.
 </Warning>
-
-## Monitor AI generation
-
-Use the Generations page to monitor quality and token usage.
-
-**If token usage is increasing:**
-
-Check the **Tier** column. A high number of **Best of N** generations means the AI is requiring more attempts. Improving the [Node Catalog](/admin/ai-node-catalog) and [Flow Exemplars](/admin/ai-flow-exemplars) can help reduce retries and token usage.
-
-**If a tenant reports a poor result:**
-
-Find their generation and compare the **Prompt**, **Status**, and generated flow.
-
-**After making AI configuration changes:**
-
-Monitor new generations and check whether more results are **Success** and **Single**.
