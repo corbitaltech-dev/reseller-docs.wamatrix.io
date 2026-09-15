@@ -1,28 +1,54 @@
 ---
 title: "Plans & pricing"
-description: "Create the plans you offer, including their pricing and feature limits."
+description: "Create and manage the plans you sell to your tenants."
 icon: "layers"
 ---
 
-A tenant can be subscribed to **one plan at a time**. Each plan has three parts:
+Plans are the products you sell. Each plan defines three things, and a tenant can be subscribed to one plan at a time.
 
-| Part | Description |
+| Setting | Purpose |
 | --- | --- |
-| **Price** | The amount charged to the tenant. |
+| **Price** | The amount charged, in your [base currency](/pa/currency-setup). |
 | **Billing period** | How often the tenant is charged. |
-| **Feature limits** | Limits for contacts, WhatsApp channels, AI features, and more. |
+| **Feature limits** | What the tenant receives — contacts, channels, conversations, AI usage, and more. |
+
+<Note>
+  Each plan has **one price and one billing period**. If you want to sell the same features monthly and yearly, create two separate plans. Tenants then pick the one they want on your pricing page.
+</Note>
 
 ## Before you start
 
 <Warning>
-  A base currency must be configured before a plan can be created. See [Currency setup](/pa/currency-setup). The **Add Plan** button stays disabled, with a tooltip explaining why, until a currency exists.
+  Set your [base currency](/pa/currency-setup) first. The **Add Plan** button stays switched off until you do, because a plan needs a currency to be priced in.
 </Warning>
 
-<Info>
-  A tenant plan cannot have higher limits than your own plan. If your plan allows 10,000 contacts, a tenant plan can allow up to 10,000 contacts, but not more.
+### You cannot offer more than your own plan allows
 
-  Each field shows the maximum allowed value, such as **Max 10000**. **Unlimited** is available only when your own plan has an unlimited limit.
+Your own WaMatrix plan sets the maximum for everything you sell. If your plan allows 10,000 contacts, a tenant plan can allow up to 10,000 — but never more.
+
+Each field shows its maximum, such as **Max 10000**. The **Unlimited** option is only available if your own plan is unlimited for that feature.
+
+<Info>
+  The maximum is your plan's **full** limit, not the amount left over after your current tenants. The platform only checks what a plan offers, so a single tenant using everything their plan allows could use up your whole limit.
+
+  To offer more, upgrade your own subscription.
 </Info>
+
+## Billing periods
+
+Choose one of these when you create a plan.
+
+| Billing period | How long it lasts | Shown to tenants as |
+| --- | --- | --- |
+| **Monthly** | 1 month | `/ month` |
+| **Quarterly** | 3 months | `/ quarter` |
+| **Half-Yearly** | 6 months | `/ 6 months` |
+| **Yearly** | 12 months | `/ year` |
+| **Lifetime** | Never expires | `one-time` |
+
+<Tip>
+  **Lifetime** plans never expire. The tenant pays once and keeps the plan, so there are no renewals and no payment reminders.
+</Tip>
 
 ## Create a plan
 
@@ -37,38 +63,174 @@ A tenant can be subscribed to **one plan at a time**. Each plan has three parts:
   <Step title="Fill in the plan details">
     On the left side of the form:
 
-    | Field | Description |
-    | ----- | ----------- |
-    | **Plan name** | The name shown to tenants. |
-    | **Description** | A short summary of the plan. |
-    | **Slug** | Auto-generated from the name, and locked once saved. |
-    | **Billing period** | One period only — Monthly, Quarterly, Half-Yearly, Yearly, or Lifetime. |
-    | **Price** | The amount charged for that period. |
-    | **Private** | Hides the plan from the public pricing page. The plan can only be assigned manually to tenants. |
-    | **Free plan** | See [Free plans](#free-plans) below. |
+    | Field | Required | Description |
+    | ----- | -------- | ----------- |
+    | **Plan name** | Yes | The name tenants see. Up to 100 characters. |
+    | **Description** | Yes | A short summary of the plan. Up to 500 characters. |
+    | **Slug** | No | The plan's web address. Use letters, numbers, hyphens and underscores only. Leave it empty to create one from the name. **Cannot be changed after saving.** |
+    | **Private** | No | Hides the plan from your pricing page, so you can give it to tenants yourself. |
+    | **Free plan** | No | Makes this a free trial plan. Changes which pricing fields you fill in — see the next step. |
   </Step>
-  <Step title="Choose the plan features">
-    On the right, in **Plan features**, turn on every feature and limit the plan should include.
+  <Step title="Set the pricing">
+    The **Free plan** switch decides which fields you fill in. Select a tab to see each one.
+
+    <Tabs>
+      <Tab title="Paid plan">
+        Leave **Free plan** off and fill in both fields:
+
+        | Field | Required | Description |
+        | ----- | -------- | ----------- |
+        | **Billing period** | Yes | How often the tenant is charged — see [Billing periods](#billing-periods). |
+        | **Price** | Yes | The amount charged each period, in your [base currency](/pa/currency-setup). |
+
+        <Warning>
+          Leaving the price empty does not make the plan free. Type `0`, or turn on **Free plan** instead.
+        </Warning>
+      </Tab>
+      <Tab title="Free plan">
+        Turn **Free plan** on. The price and billing period fields disappear, and you set this instead:
+
+        | Field | Required | Description |
+        | ----- | -------- | ----------- |
+        | **Trial days** | Yes | How many days the trial lasts, from 1 to 365. |
+
+        Tenants can sign up and use the platform without paying until the trial ends. See [Free plans](#free-plans) for the full rules.
+      </Tab>
+    </Tabs>
+  </Step>
+  <Step title="Choose the features and limits">
+    On the right, in **Plan features**, set what the plan includes. There are two kinds of card:
+
+    | Card type | How to set it |
+    | --- | --- |
+    | **On or off** | A switch. Turn it on to include the feature. |
+    | **Number limit** | Type how much the plan includes. **Type `0` to leave the feature out** — there is no separate off switch. |
+
+    An **Unlimited** switch appears only when your own plan is unlimited for that feature. If your own plan has a fixed number, the switch is hidden, because you cannot offer more than you have.
+
+    A few limits are set for you and cannot be zero — see [What every plan must include](#what-every-plan-must-include).
   </Step>
   <Step title="Save">
-    Click **Save**.
+    Click **Save**. The plan and its features are saved together.
+
+    New plans appear on your pricing page immediately, unless you turned on **Private**.
   </Step>
 </Steps>
 
-## Free plans
+### What every plan must include
 
-When **Free plan** is enabled, the plan does not require a price or billing period. Instead, you set **Trial days** from 1 to 365 days. Tenants can sign up and use the platform without paying.
+Four limits must be higher than zero, because a plan without them cannot be used. They are already filled in for you:
+
+| Feature | Default value |
+| --- | --- |
+| **Channel accounts** | 1 |
+| **Contacts** | 1 |
+| **Conversations** | Unlimited |
+| **Media storage** | 100 MB |
+
+Two more rules are checked when you click Save:
+
+<AccordionGroup>
+  <Accordion title="A plan with channels needs a way to connect them" icon="plug">
+    If the plan includes channel accounts, turn on at least one connect method: **WhatsApp Manual Connect**, **WhatsApp One-Click Connect**, **Messenger Manual Connect**, or **Messenger One-Click Connect**.
+
+    Without one, the tenant opens **Connect Channel** and finds every option locked.
+  </Accordion>
+
+  <Accordion title="Some features need a usage limit as well" icon="gauge">
+    If you turn a feature on but leave its usage limit at zero, the tenant will be blocked the first time they use it. Set both:
+
+    | If you turn on | Also set |
+    | --- | --- |
+    | **REST API Access** | API Calls (Monthly) |
+    | **Live Appointment Forms** | Appointment Bookings (Monthly) |
+    | **AI Chat Assistant** | AI API Calls (Monthly) |
+  </Accordion>
+</AccordionGroup>
 
 <Note>
-  A tenant can use a free plan only if they have never used a paid plan or another free plan before.
+  You can only offer features that your own plan includes. Anything not included in your plan will not appear on the form.
 </Note>
 
-While any tenant is still on the trial, the **Free plan** switch is disabled and the plan cannot be made paid. It unlocks once every trial on that plan has ended.
+## Free plans
 
-## Editing and removing plans
+A free plan lets tenants use the platform for a set number of days without paying. Turn on **Free plan** and set **Trial days** — any number from 1 to 365.
+
+These rules apply to every free plan.
+
+<Note>
+  A tenant can only use a free plan if they have never had a paid plan or another free plan before.
+</Note>
+
+<Warning>
+  You cannot change a free plan to paid while a tenant is still using the trial. The **Free plan** switch becomes available again once all trials on that plan have ended.
+
+  This protects tenants who were promised a free trial from being charged part-way through.
+</Warning>
+
+Trial days work on free plans only. If you set them on a paid plan, you will see an error instead of the value being ignored — so a trial you meant to offer is never lost by mistake.
+
+## Publishing and editing plans
+
+New plans become **public** as soon as you save them, unless you turned on **Private**. You can use **Make private** at any time to remove a plan from your pricing page. Tenants already on that plan are not affected.
 
 | Action | What it does |
 | --- | --- |
-| **Duplicate** | Creates a copy of the plan. The copy starts as private and must be published separately. |
-| **Make private / public** | Changes whether the plan is visible on the storefront. Pricing and features remain unchanged. |
-| **Delete** | Permanently deletes the plan. |
+| **View** | Shows the plan's details, including how many tenants are using it. |
+| **Edit** | Change the price, limits, or features. The **slug cannot be changed**. |
+| **Duplicate** | Makes a copy of the plan with the same price and features. The copy is always **private**, so you can edit it before publishing. |
+| **Make private / public** | Shows or hides the plan on your pricing page. The price and features stay the same. |
+| **Delete** | Removes the plan permanently. See below. |
+
+<Warning>
+  The **slug cannot be changed after you save the plan**. It is the plan's web address, so changing it would break any links you have already shared.
+</Warning>
+
+### Deleting a plan
+
+Deleting is permanent. The platform will **not allow it** if the plan is still used anywhere — by tenants, subscriptions, invoices, or payment requests. If this happens, the error message tells you what is still using the plan.
+
+<Info>
+  This is on purpose. Those records are your billing history, so deleting a plan you have already sold would also delete invoices and approved payments.
+
+  If you no longer want to sell a plan, use **Make private** instead. It is removed from your pricing page, and tenants already on it carry on as normal.
+</Info>
+
+## Show your plans on your own website
+
+You do not have to copy your prices onto your website by hand. The **Plan Catalogue API** lets your site read your plans straight from the platform, so a price you change here updates there too.
+
+| Endpoint | What it returns |
+| --- | --- |
+| `GET /api/v1/plans` | Every plan in your catalogue. |
+| `GET /api/v1/plans/{id}` | A single plan, by its ID. |
+
+The API is **read-only** and never returns tenant data — only your plan catalogue.
+
+<Steps>
+  <Step title="Create an API token">
+    Go to [**Settings → Core Platform → API Keys**](/pa/core-platform#api-keys) and click **Add Token**. Give it the `plans:read` scope.
+
+    <Warning>
+      The token is shown **only once**. Copy it and store it safely.
+    </Warning>
+  </Step>
+  <Step title="Send it with every request">
+    ```bash Authorization header
+    Authorization: Bearer YOUR_TOKEN
+    ```
+  </Step>
+</Steps>
+
+<CardGroup cols={2}>
+  <Card title="API Keys" icon="key" href="/pa/core-platform#api-keys">
+    Create, regenerate, and delete your API tokens.
+  </Card>
+  <Card title="Plan Catalogue API" icon="code" href="/api/overview">
+    Full request and response reference.
+  </Card>
+</CardGroup>
+
+<Card title="Next: onboard a tenant" icon="user-plus" href="/pa/onboarding-a-sub-tenant">
+  Once your plans are published, tenants can sign up, or you can add them yourself.
+</Card>
