@@ -21,7 +21,6 @@ Payment Gateway Settings lets you choose how your tenants can pay for their plan
 | **PayPal** | Instant | Accept online payments through PayPal. |
 | **Tap Payments** | Instant | Accept online payments through Tap Payments. |
 | **Paymob** | Instant | Accept online payments through Paymob. |
-| **Shopify Billing** | — | Add subscription charges to the tenant's Shopify invoice. |
 
 ### Configure a payment gateway
 
@@ -43,13 +42,6 @@ Payment Gateway Settings lets you choose how your tenants can pay for their plan
 <AccordionGroup>
   <Accordion title="Bank Transfer details" icon="landmark">
     Add your payment details such as **bank name, account holder name, account number, IFSC, and UPI ID**. Tenants can use these details to make a payment and submit their payment proof for approval.
-  </Accordion>
-  <Accordion title="Shopify Billing setup" icon="shopping-bag">
-    Connect your Shopify app under **Settings → Integrations → Shopify**. No payment gateway credentials are required in this section.
-
-    <Note>
-      Shopify Billing only becomes available to a tenant once they have connected their own Shopify store. Until then, it does not appear as a payment option at checkout.
-    </Note>
   </Accordion>
 </AccordionGroup>
 
@@ -145,9 +137,6 @@ After adding the tax, make sure [**Tax on Invoices**](#tax-on-invoices) is enabl
     For **Razorpay, PayPal, Tap Payments, and Paymob**, you use your own gateway account and credentials. Tenant payments are processed through your gateway account.
 
     The payment is added to the billing history and linked to the related invoice.
-  </Tab>
-  <Tab title="Shopify Billing">
-    Subscription charges are handled through Shopify, and Shopify manages the related payouts.
   </Tab>
   <Tab title="Bank Transfer">
     Tenants pay you directly using the bank details you provide. You review their payment proof and approve or reject the payment from the platform.
