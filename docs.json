@@ -16,61 +16,61 @@
           {
             "group": "Getting started",
             "pages": [
-              "admin/quick-start",
-              "admin/branding",
-              "admin/currency-setup",
-              "admin/plans-and-pricing",
-              "admin/billing-and-payouts",
-              "admin/onboarding-a-sub-tenant"
+              "pa/quick-start",
+              "pa/branding",
+              "pa/currency-setup",
+              "pa/plans-and-pricing",
+              "pa/billing-and-payouts",
+              "pa/onboarding-a-sub-tenant"
             ],
             "icon": "rocket"
           },
           {
             "group": "Sales",
             "pages": [
-              "admin/subscriptions",
-              "admin/invoices-and-payments",
-              "admin/offline-payments",
-              "admin/coupons",
-              "admin/taxes"
+              "pa/subscriptions",
+              "pa/invoices-and-payments",
+              "pa/offline-payments",
+              "pa/coupons",
+              "pa/taxes"
             ],
             "icon": "shopping-cart"
           },
           {
             "group": "Customers",
             "pages": [
-              "admin/managing-customers",
-              "admin/plan-limits-and-customer-access"
+              "pa/managing-customers",
+              "pa/plan-limits-and-customer-access"
             ],
             "icon": "building-2"
           },
           {
             "group": "Settings",
             "pages": [
-              "admin/core-platform",
-              "admin/infrastructure-and-security",
-              "admin/channels",
-              "admin/tech-provider-approval",
-              "admin/messenger-permissions"
+              "pa/core-platform",
+              "pa/infrastructure-and-security",
+              "pa/channels",
+              "pa/tech-provider-approval",
+              "pa/messenger-permissions"
             ],
             "icon": "settings"
           },
           {
             "group": "Team & audit",
             "pages": [
-              "admin/users-and-roles",
-              "admin/media-library",
-              "admin/seeder-library",
-              "admin/activity-log"
+              "pa/users-and-roles",
+              "pa/media-library",
+              "pa/seeder-library",
+              "pa/activity-log"
             ],
             "icon": "users"
           },
           {
             "group": "AI Flow",
             "pages": [
-              "admin/ai-node-catalog",
-              "admin/ai-flow-exemplars",
-              "admin/ai-generations"
+              "pa/ai-node-catalog",
+              "pa/ai-flow-exemplars",
+              "pa/ai-generations"
             ],
             "icon": "workflow"
           }

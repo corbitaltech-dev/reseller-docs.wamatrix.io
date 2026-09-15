@@ -47,7 +47,7 @@ The platform subscribes to these Page events. You do not select them in the Meta
 | Requirement | Details |
 | ----------- | ------- |
 | **Business-type Meta app** | The same app you use for WhatsApp works. Meta allows both products in one app. |
-| **Verified Business Portfolio** | Business Verification is required for Advanced Access. See [Tech Provider Approval](/admin/tech-provider-approval#complete-tech-provider-onboarding). |
+| **Verified Business Portfolio** | Business Verification is required for Advanced Access. See [Tech Provider Approval](/pa/tech-provider-approval#complete-tech-provider-onboarding). |
 | **A published Facebook Page** | A Page you control, for testing the connection and recording the App Review screencast. |
 | **App settings** | App icon, Privacy Policy URL, and category in **App settings → Basic**. |
 
@@ -65,14 +65,14 @@ The platform subscribes to these Page events. You do not select them in the Meta
     - Under **Use cases**, select **Engage with customers on Messenger from Meta**.
 
     <Frame caption="The Create an app use cases step, with Engage with customers on Messenger selected">
-      <img src="/images/admin/messenger-create-app-use-case.png" alt="The Create an app use cases step, with Engage with customers on Messenger selected" />
+      <img src="/images/pa/messenger-create-app-use-case.png" alt="The Create an app use cases step, with Engage with customers on Messenger selected" />
     </Frame>
 
     - Connect your **Business Portfolio**.
     - Review the **Publishing requirements**. Meta lists Business verification, Access verification, and App Review. This page covers all three.
 
     <Frame caption="The Publishing requirements step, listing Business verification, Access verification and App Review">
-      <img src="/images/admin/messenger-publishing-requirements.png" alt="The Publishing requirements step, listing Business verification, Access verification and App Review" />
+      <img src="/images/pa/messenger-publishing-requirements.png" alt="The Publishing requirements step, listing Business verification, Access verification and App Review" />
     </Frame>
 
     - Click **Go to dashboard**.
@@ -97,7 +97,7 @@ The platform subscribes to these Page events. You do not select them in the Meta
     | **Assets** | Pages. |
     | **Permissions** | The five permissions from [Required permissions](#required-permissions). |
 
-    Save and copy the **Configuration ID**. It goes into [**Settings → Channels → Messenger → Embedded Signup Config ID**](/admin/channels#messenger).
+    Save and copy the **Configuration ID**. It goes into [**Settings → Channels → Messenger → Embedded Signup Config ID**](/pa/channels#messenger).
   </Step>
 
   <Step title="Allow your domain" icon="globe">
@@ -109,14 +109,14 @@ The platform subscribes to these Page events. You do not select them in the Meta
   </Step>
 
   <Step title="Enter credentials and connect the webhook" icon="webhook">
-    In [**Settings → Channels → Messenger**](/admin/channels#messenger):
+    In [**Settings → Channels → Messenger**](/pa/channels#messenger):
 
     1. Enter the **App ID**, **App Secret**, and **Config ID**, then save.
     2. Click **Connect Webhook**. This registers the webhook URL with Meta for Page events and generates the verify token automatically.
     3. Turn on **Embedded Signup**, and **Manual Connect** if you want to allow it.
 
     <Frame caption="The Messenger tab, with the Meta app credentials and connection switches">
-      <img src="/images/admin/channels-messenger.png" alt="The Messenger tab, with the Meta app credentials and connection switches" />
+      <img src="/images/pa/channels-messenger.png" alt="The Messenger tab, with the Meta app credentials and connection switches" />
     </Frame>
   </Step>
 
@@ -167,7 +167,7 @@ The platform subscribes to these Page events. You do not select them in the Meta
 
 Manual Connect does not go through Facebook Login, so it does not use the configuration from **Step 3** above. Tenants supply a **Page ID** and a **long-lived Page Access Token**, generated in their Meta Business Suite under **System Users → Generate Token** with the `pages_messaging` permission scoped to the Page.
 
-Enable it from [**Settings → Channels → Messenger**](/admin/channels#tenant-connection-options) if you want to offer this option alongside Embedded Signup.
+Enable it from [**Settings → Channels → Messenger**](/pa/channels#tenant-connection-options) if you want to offer this option alongside Embedded Signup.
 
 ## Helpful resources
 

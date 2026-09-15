@@ -19,7 +19,7 @@ This matters because a price on its own is just a number. When you type `499` in
 Setting the currency is not a cosmetic preference — it unlocks and defines the rest of the billing setup.
 
 <CardGroup cols={2}>
-  <Card title="It unlocks plan creation" icon="layers" href="/admin/plans-and-pricing">
+  <Card title="It unlocks plan creation" icon="layers" href="/pa/plans-and-pricing">
     Plans cannot be created until a base currency exists. Every plan is automatically tagged with it.
   </Card>
   <Card title="It defines what your prices mean" icon="tag">
@@ -28,7 +28,7 @@ Setting the currency is not a cosmetic preference — it unlocks and defines the
   <Card title="It sets the symbol everywhere" icon="badge-dollar-sign">
     Your symbol is used on the storefront, the admin panel, invoices, PDFs, and billing emails.
   </Card>
-  <Card title="It scopes taxes and coupons" icon="percent" href="/admin/billing-and-payouts#taxes">
+  <Card title="It scopes taxes and coupons" icon="percent" href="/pa/billing-and-payouts#taxes">
     Tax rates and fixed-amount coupons use the same currency as your plans.
   </Card>
 </CardGroup>
@@ -37,13 +37,13 @@ Setting the currency is not a cosmetic preference — it unlocks and defines the
 
 | Area | How the currency is used |
 | ---- | ------------------------ |
-| [**Plans**](/admin/plans-and-pricing) | Every plan is priced in the base currency and tagged with it on save. |
+| [**Plans**](/pa/plans-and-pricing) | Every plan is priced in the base currency and tagged with it on save. |
 | **Public plans page** | Prices are shown to visitors with your symbol. |
-| [**Subscriptions**](/admin/subscriptions) | Recurring charges are raised in the base currency. |
-| [**Invoices**](/admin/invoices-and-payments) | Invoice totals, line items, and generated PDFs use your symbol. |
-| [**Offline payments**](/admin/offline-payments) | Submitted amounts and approval alerts are shown in the base currency. |
-| [**Coupons**](/admin/coupons) | Fixed-amount discounts are deducted in the base currency. |
-| [**Taxes**](/admin/billing-and-payouts#taxes) | Tax rates are tagged with the base currency. |
+| [**Subscriptions**](/pa/subscriptions) | Recurring charges are raised in the base currency. |
+| [**Invoices**](/pa/invoices-and-payments) | Invoice totals, line items, and generated PDFs use your symbol. |
+| [**Offline payments**](/pa/offline-payments) | Submitted amounts and approval alerts are shown in the base currency. |
+| [**Coupons**](/pa/coupons) | Fixed-amount discounts are deducted in the base currency. |
+| [**Taxes**](/pa/billing-and-payouts#taxes) | Tax rates are tagged with the base currency. |
 | **Billing emails** | Amounts in tenant-facing emails are formatted with your symbol. |
 
 <Warning>
@@ -56,9 +56,9 @@ Pick the currency you actually **bank and settle in**, then check it against the
 
 <AccordionGroup>
   <Accordion title="Your payment gateway must accept it" icon="credit-card">
-    Your tenants pay you through the [payment gateways](/admin/billing-and-payouts) you connect. Confirm your gateway and merchant account can settle in your chosen currency before you go live.
+    Your tenants pay you through the [payment gateways](/pa/billing-and-payouts) you connect. Confirm your gateway and merchant account can settle in your chosen currency before you go live.
 
-    If a gateway cannot accept your currency, tenants will not be able to complete an online payment — you would be limited to [offline payments](/admin/offline-payments), which settle in whatever currency you bank in.
+    If a gateway cannot accept your currency, tenants will not be able to complete an online payment — you would be limited to [offline payments](/pa/offline-payments), which settle in whatever currency you bank in.
   </Accordion>
 
   <Accordion title="It should match your plan pricing strategy" icon="layers">
@@ -75,7 +75,7 @@ Pick the currency you actually **bank and settle in**, then check it against the
 Go to **Setup → Currency** in the sidebar. The page shows a **Base Currency** card, plus a setup notice while no currency is configured.
 
 <Frame caption="The Edit Currency panel, showing the Currency Name, ISO Code and Symbol fields">
-  <img src="/images/admin/currency-edit-sheet.png" alt="The Edit Currency panel, showing the Currency Name, ISO Code and Symbol fields" />
+  <img src="/images/pa/currency-edit-sheet.png" alt="The Edit Currency panel, showing the Currency Name, ISO Code and Symbol fields" />
 </Frame>
 
 <Steps>
@@ -117,6 +117,6 @@ Go to **Setup → Currency** in the sidebar. The page shows a **Base Currency** 
 
 Cancelled and expired subscriptions do not lock the currency — nothing further will be charged on them.
 
-<Card title="Next: create your plans" icon="layers" href="/admin/plans-and-pricing">
+<Card title="Next: create your plans" icon="layers" href="/pa/plans-and-pricing">
   With a base currency set, the **Add Plan** button is enabled and every plan you create is priced in it.
 </Card>
