@@ -20,193 +20,249 @@ Once approved, you can:
 
 Make sure you have the following:
 
-| Requirement                   | Details                                                                                                        |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| **Registered business**       | A legally registered business entity in your country.                                                          |
-| **Live domain**               | The domain your platform runs on, with a public **Privacy Policy** page.                                       |
-| **Meta Business Portfolio**   | Also called Business Manager. You need **admin** access to it.                                                 |
-| **Business verification**     | Company documents (registration certificate, utility bill, or similar) for Meta's business verification.       |
-| **Two screen recordings**     | Short videos of sending a message and creating a message template. See [Step 10](#10-record-videos-for-app-review). |
+| Requirement | Details |
+| ----------- | ------- |
+| **Registered business** | A legally registered business entity in your country. |
+| **Live domain** | The domain your platform runs on, with a public **Privacy Policy** page. |
+| **Meta Business Portfolio** | Also called Business Manager. You need **admin** access to it. |
+| **Business verification** | Company documents (registration certificate, utility bill, or similar) for Meta's business verification. |
+| **Two screen recordings** | Short videos of sending a message and creating a message template. See **Step 10**, Record videos for App Review. |
 
 ## Choose how to onboard
 
-Meta offers two ways to become a Tech Provider:
+Meta offers two ways to become a Tech Provider. Both require App Review.
 
-| Option                              | When to choose it                                                                                        |
-| ----------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| **Independent Tech Provider**       | You manage tenants yourself. This is the usual choice for a reseller platform.                            |
-| **Working with a Solution Partner** | You partner with a Meta Solution Partner. You need their **App ID** to create a partner solution.        |
-
-Both options require App Review.
+| Option | When to choose it |
+| --- | --- |
+| **Independent Tech Provider** | You manage tenants yourself. **This is the usual choice for a reseller platform.** |
+| **Working with a Solution Partner** | You partner with a Meta Solution Partner. You need their **App ID** to create a partner solution. |
 
 ## Set up your Meta app
 
-### 1. Create a Business Portfolio
+<Steps>
+  <Step title="Create a Business Portfolio" icon="briefcase">
+    Go to [Meta Business Suite](https://business.facebook.com) and sign in with your Facebook account. This creates a **Business Portfolio**, the container for your WhatsApp assets.
 
-- Go to [Meta Business Suite](https://business.facebook.com) and sign in with your Facebook account.
-- This creates a **Business Portfolio**, the container for your WhatsApp assets.
-- If you already have one, skip this step.
+    If you already have one, skip this step.
+  </Step>
 
-### 2. Register as a Meta developer
+  <Step title="Register as a Meta developer" icon="code">
+    Go to [Meta for Developers](https://developers.facebook.com) and click **Get Started**. Complete the registration — this turns your account into a **Developer Account**.
+  </Step>
 
-- Go to [Meta for Developers](https://developers.facebook.com) and click **Get Started**.
-- Complete the registration. This turns your account into a **Developer Account**.
+  <Step title="Create a Meta app" icon="plus">
+    Go to [Meta Apps](https://developers.facebook.com/apps) and click **Create App**.
 
-### 3. Create a Meta app
+    - Select the **Business** app type.
+    - Choose your **Business Portfolio** when asked which portfolio to connect.
 
-- Go to [Meta Apps](https://developers.facebook.com/apps) and click **Create App**.
-- Select the **Business** app type.
-- Choose your **Business Portfolio** when asked which portfolio to connect.
+    <Frame caption="The Create an app dialog, asking which business portfolio to connect to the app">
+      <img src="/images/admin/tech-provider-create-app-portfolio.png" alt="The Create an app dialog, asking which business portfolio to connect to the app" />
+    </Frame>
 
-![The Create an app dialog, asking which business portfolio to connect to the app](/images/admin/tech-provider-create-app-portfolio.png)
+    - Enter the **app name** and **contact email**, confirm the Business Portfolio, and click **Create app**.
 
-- Enter the **app name** and **contact email**, confirm the Business Portfolio, and click **Create app**.
+    <Frame caption="The Create an app details step, with the app name, contact email and business portfolio fields">
+      <img src="/images/admin/tech-provider-create-app-details.png" alt="The Create an app details step, with the app name, contact email and business portfolio fields" />
+    </Frame>
 
-![The Create an app details step, with the app name, contact email and business portfolio fields](/images/admin/tech-provider-create-app-details.png)
+    <Note>
+      The same app can also be used for [Messenger](/admin/channels#messenger). You do not need a separate app per channel.
+    </Note>
+  </Step>
 
-<Note>
-  The same app can also be used for [Messenger](/admin/channels#messenger). You do not need a separate app per channel.
-</Note>
+  <Step title="Add basic app info" icon="info">
+    In **App Dashboard → App settings → Basic**, add the **App icon**, **Privacy Policy URL**, **Category**, and **Platform** (Website, with your platform URL).
 
-### 4. Add basic app info
+    <Warning>
+      Meta checks these during App Review.
+    </Warning>
+  </Step>
 
-In **App Dashboard → App settings → Basic**, add:
+  <Step title="Add the WhatsApp product" icon="message-circle">
+    In the App Dashboard, open **Add Products**. Find **WhatsApp** and click **Set up**.
 
-- **App icon**
-- **Privacy Policy URL**
-- **Category**
-- **Platform** (Website, with your platform URL)
+    <Frame caption="The Add products to your app screen, with the WhatsApp Set up button">
+      <img src="/images/admin/tech-provider-add-whatsapp-product.png" alt="The Add products to your app screen, with the WhatsApp Set up button" />
+    </Frame>
 
-Meta checks these during App Review.
+    Continue until you reach the **Quickstart** panel.
 
-### 5. Add the WhatsApp product
+    <Frame caption="The WhatsApp Quickstart panel, with the Become a Tech Provider card under Scale your business">
+      <img src="/images/admin/tech-provider-quickstart.png" alt="The WhatsApp Quickstart panel, with the Become a Tech Provider card under Scale your business" />
+    </Frame>
+  </Step>
 
-- In the App Dashboard, open **Add Products**.
-- Find **WhatsApp** and click **Set up**.
+  <Step title="Start Tech Provider onboarding" icon="play">
+    In the Quickstart panel, under **Scale your business**, find **Become a Tech Provider** and click **Start onboarding**.
 
-![The Add products to your app screen, with the WhatsApp Set up button](/images/admin/tech-provider-add-whatsapp-product.png)
+    <Frame caption="The Become a Tech Provider card, with the Start onboarding button">
+      <img src="/images/admin/tech-provider-start-onboarding.png" alt="The Become a Tech Provider card, with the Start onboarding button" />
+    </Frame>
 
-- Continue until you reach the **Quickstart** panel.
+    Choose **Independent Tech Provider** or **Working with a Solution Partner**, accept the **Tech Provider Terms**, and click **Start onboarding**.
 
-![The WhatsApp Quickstart panel, with the Become a Tech Provider card under Scale your business](/images/admin/tech-provider-quickstart.png)
+    <Frame caption="The Onboard as a Tech Provider dialog, with the Independent Tech Provider and Working with a Solution Partner options">
+      <img src="/images/admin/tech-provider-onboarding-type.png" alt="The Onboard as a Tech Provider dialog, with the Independent Tech Provider and Working with a Solution Partner options" />
+    </Frame>
 
-### 6. Start Tech Provider onboarding
-
-- In the Quickstart panel, under **Scale your business**, find **Become a Tech Provider** and click **Start onboarding**.
-
-![The Become a Tech Provider card, with the Start onboarding button](/images/admin/tech-provider-start-onboarding.png)
-
-- Choose **Independent Tech Provider** or **Working with a Solution Partner**.
-- Accept the **Tech Provider Terms** and click **Start onboarding**.
-
-![The Onboard as a Tech Provider dialog, with the Independent Tech Provider and Working with a Solution Partner options](/images/admin/tech-provider-onboarding-type.png)
-
-The **Tech Provider Onboarding** page opens. It has three sections: **Business Verification**, **App Review**, and **Access Verification**. The remaining steps complete each section.
+    The **Tech Provider Onboarding** page opens with three sections: **Business Verification**, **App Review**, and **Access Verification**. The remaining steps complete each one.
+  </Step>
+</Steps>
 
 ## Complete Tech Provider onboarding
 
-### 7. Verify your business
+<Steps>
+  <Step title="Verify your business" icon="badge-check">
+    Under **1. Business Verification**, click **Start verification**.
 
-- Under **1. Business Verification**, click **Start verification**.
+    <Frame caption="The Business Verification section, with the Start verification button">
+      <img src="/images/admin/tech-provider-business-verification.png" alt="The Business Verification section, with the Start verification button" />
+    </Frame>
 
-![The Business Verification section, with the Start verification button](/images/admin/tech-provider-business-verification.png)
+    Submit your business details and legal documents. Verification can take a few days — track the status in your [Business Info settings](https://business.facebook.com/settings/info).
 
-- Submit your business details and legal documents.
-- Verification can take a few days. Track the status in your [Business Info settings](https://business.facebook.com/settings/info).
+    <Note>
+      Only an **admin** of the Business Portfolio can complete business verification.
+    </Note>
+  </Step>
 
-<Note>
-  Only an **admin** of the Business Portfolio can complete business verification.
-</Note>
+  <Step title="Create a partner solution" icon="handshake">
+    <Info>
+      Only needed if you chose **Working with a Solution Partner** in **Step 6**, Start Tech Provider onboarding. Independent Tech Providers skip this step.
+    </Info>
 
-### 8. Create a partner solution
+    Under **2. App Review**, click **Create partner solution**.
 
-Only needed if you chose **Working with a Solution Partner** in [Step 6](#6-start-tech-provider-onboarding). Independent Tech Providers skip this step.
+    <Frame caption="The Create a partner solution card in the App Review section">
+      <img src="/images/admin/tech-provider-partner-solution.png" alt="The Create a partner solution card in the App Review section" />
+    </Frame>
 
-- Under **2. App Review**, click **Create partner solution**.
+    Enter a **solution name** and your partner's **App ID**, then click **Send request**.
 
-![The Create a partner solution card in the App Review section](/images/admin/tech-provider-partner-solution.png)
+    <Frame caption="The Create a partner solution dialog, with the solution name and partner App ID fields">
+      <img src="/images/admin/tech-provider-partner-solution-form.png" alt="The Create a partner solution dialog, with the solution name and partner App ID fields" />
+    </Frame>
 
-- Enter a **solution name** and your partner's **App ID**, then click **Send request**.
+    The solution shows as **Pending** until your partner accepts the request. You can continue with the next steps meanwhile.
+  </Step>
 
-![The Create a partner solution dialog, with the solution name and partner App ID fields](/images/admin/tech-provider-partner-solution-form.png)
+  <Step title="Review app settings" icon="list-checks">
+    Under **2. App Review**, click **Review app settings**.
 
-The solution shows as **Pending** until your partner accepts the request. You can continue with the next steps meanwhile.
+    <Frame caption="The Review your app settings card in the App Review section">
+      <img src="/images/admin/tech-provider-review-app-settings.png" alt="The Review your app settings card in the App Review section" />
+    </Frame>
 
-### 9. Review app settings
+    Confirm the app icon, Privacy Policy URL, and category from **Step 4**, Add basic app info, are in place.
+  </Step>
 
-- Under **2. App Review**, click **Review app settings**.
+  <Step title="Record videos for App Review" icon="video">
+    Meta requires video evidence for the two permissions your app needs.
 
-![The Review your app settings card in the App Review section](/images/admin/tech-provider-review-app-settings.png)
+    <Frame caption="The Record video documentation card, listing the videos required for each permission">
+      <img src="/images/admin/tech-provider-record-videos.png" alt="The Record video documentation card, listing the videos required for each permission" />
+    </Frame>
 
-- Confirm the app icon, Privacy Policy URL, and category from [Step 4](#4-add-basic-app-info) are in place.
+    | Permission | What the video must show |
+    | ---------- | ------------------------ |
+    | `whatsapp_business_messaging` | A message sent from your platform, and the same message arriving in the WhatsApp app (web or mobile). |
+    | `whatsapp_business_management` | A message template being created from your platform. |
 
-### 10. Record videos for App Review
+    Record each video separately as a screen recording. Keep them short and make sure your platform's name and domain are visible.
 
-Meta requires video evidence for the two permissions your app needs:
+    <Tip>
+      For reference, see these [sample videos](https://drive.google.com/drive/folders/1PNfnyoWoBrMVEFygU4TF8XITBIqdtQ3R) that show what Meta expects for each permission.
+    </Tip>
 
-![The Record video documentation card, listing the videos required for each permission](/images/admin/tech-provider-record-videos.png)
+    <Info>
+      Connect a test WhatsApp number to a tenant account first so you can record these flows from the tenant dashboard.
+    </Info>
+  </Step>
 
-| Permission                     | What the video must show                                                                                                 |
-| ------------------------------ | ------------------------------------------------------------------------------------------------------------------------ |
-| `whatsapp_business_messaging`  | A message sent from your platform, and the same message arriving in the WhatsApp app (web or mobile).                    |
-| `whatsapp_business_management` | A message template being created from your platform.                                                                     |
+  <Step title="Submit for App Review" icon="send">
+    In the Quickstart panel, click **Begin App Review**. The request lists `whatsapp_business_messaging` and `whatsapp_business_management` as pending.
 
-Record each video separately as a screen recording. Keep them short and make sure your platform's name and domain are visible.
+    <Frame caption="The App Review Requests page, with a draft request for the two WhatsApp permissions">
+      <img src="/images/admin/tech-provider-app-review-requests.png" alt="The App Review Requests page, with a draft request for the two WhatsApp permissions" />
+    </Frame>
 
-For reference, see these [sample videos](https://drive.google.com/drive/folders/1PNfnyoWoBrMVEFygU4TF8XITBIqdtQ3R) that show what Meta expects for each permission.
+    - For each permission, explain how your platform uses it and attach the matching video from **Step 10**.
+    - In **App verification details**, confirm the **Website** platform and site URL, and describe how a reviewer can test your integration.
 
-<Info>
-  Connect a test WhatsApp number to a tenant account first so you can record these flows from the tenant dashboard.
-</Info>
+    <Frame caption="The App verification details dialog, with the Website platform and the reviewer instructions field">
+      <img src="/images/admin/tech-provider-app-verification-details.png" alt="The App verification details dialog, with the Website platform and the reviewer instructions field" />
+    </Frame>
 
-### 11. Submit for App Review
+    Submit the request. Meta notifies you by email and in **Developer Alerts**.
 
-- In the Quickstart panel, click **Begin App Review**. The request lists `whatsapp_business_messaging` and `whatsapp_business_management` as pending.
+    <Warning>
+      Do not provide your personal Facebook credentials in the reviewer instructions. Keep the explanation short and business-focused, and avoid technical jargon.
+    </Warning>
+  </Step>
 
-![The App Review Requests page, with a draft request for the two WhatsApp permissions](/images/admin/tech-provider-app-review-requests.png)
+  <Step title="Complete access verification" icon="shield-check">
+    Under **3. Access Verification**, click **Start verification**.
 
-- For each permission, explain how your platform uses it and attach the matching video from [Step 10](#10-record-videos-for-app-review).
-- In **App verification details**, confirm the **Website** platform and site URL, and describe how a reviewer can test your integration.
+    <Frame caption="The Access Verification section, with the Start verification button">
+      <img src="/images/admin/tech-provider-access-verification.png" alt="The Access Verification section, with the Start verification button" />
+    </Frame>
 
-![The App verification details dialog, with the Website platform and the reviewer instructions field](/images/admin/tech-provider-app-verification-details.png)
+    Provide the requested business information to confirm you are eligible as a Tech Provider.
+  </Step>
 
-- Submit the request. Meta notifies you by email and in **Developer Alerts**.
+  <Step title="Confirm your status" icon="party-popper">
+    When all three sections are approved, the Tech Provider Onboarding page shows **Congratulations! You are now a Tech Provider**.
 
-<Warning>
-  Do not provide your personal Facebook credentials in the reviewer instructions. Keep the explanation short and business-focused, and avoid technical jargon.
-</Warning>
+    <Frame caption="The Tech Provider Onboarding page, with all verification steps approved">
+      <img src="/images/admin/tech-provider-approved.png" alt="The Tech Provider Onboarding page, with all verification steps approved" />
+    </Frame>
 
-### 12. Complete access verification
-
-- Under **3. Access Verification**, click **Start verification**.
-
-![The Access Verification section, with the Start verification button](/images/admin/tech-provider-access-verification.png)
-
-- Provide the requested business information to confirm you are eligible as a Tech Provider.
-
-### 13. Confirm your status
-
-When all three sections are approved, the Tech Provider Onboarding page shows **Congratulations! You are now a Tech Provider**.
-
-![The Tech Provider Onboarding page, with all verification steps approved](/images/admin/tech-provider-approved.png)
-
-<Info>
-  Review timelines vary. Business verification and App Review can each take from a few days to a few weeks. Start well before your planned launch.
-</Info>
+    <Info>
+      Review timelines vary. Business verification and App Review can each take from a few days to a few weeks. Start well before your planned launch.
+    </Info>
+  </Step>
+</Steps>
 
 ## After approval
 
-Finish the app configuration that Embedded Signup relies on:
+Finish the app configuration that Embedded Signup relies on.
 
-1. In **Facebook Login for Business → Configurations**, create a configuration with the **Embedded Signup** login variation and the `whatsapp_business_management` and `whatsapp_business_messaging` permissions. Do **not** include `catalog_management`.
-2. In **Facebook Login for Business → Settings**, add your platform domain to **Allowed Domains for the JavaScript SDK**. The tenant connection page is served from your domain.
-3. In [**Settings → Channels → WhatsApp**](/admin/channels#meta-app-credentials), enter the **App ID**, **App Secret**, and the **Embedded Signup Config ID (no catalog)**, then save.
-4. Click [**Connect Webhook**](/admin/channels#webhook-configuration) to register the webhook with Meta.
-5. Turn on **Embedded Signup (no catalog)** so tenants can start connecting.
+<Steps>
+  <Step title="Create the Facebook Login configuration">
+    In **Facebook Login for Business → Configurations**, create a configuration with the **Embedded Signup** login variation and the `whatsapp_business_management` and `whatsapp_business_messaging` permissions.
+
+    <Warning>
+      Do **not** include `catalog_management`.
+    </Warning>
+  </Step>
+  <Step title="Allow your domain">
+    In **Facebook Login for Business → Settings**, add your platform domain to **Allowed Domains for the JavaScript SDK**. The tenant connection page is served from your domain.
+  </Step>
+  <Step title="Enter your credentials">
+    In [**Settings → Channels → WhatsApp**](/admin/channels#meta-app-credentials), enter the **App ID**, **App Secret**, and the **Embedded Signup Config ID (no catalog)**, then save.
+  </Step>
+  <Step title="Connect the webhook">
+    Click [**Connect Webhook**](/admin/channels#webhook-configuration) to register the webhook with Meta.
+  </Step>
+  <Step title="Turn on Embedded Signup">
+    Enable **Embedded Signup (no catalog)** so tenants can start connecting.
+  </Step>
+</Steps>
 
 ## Helpful resources
 
-- [Meta: Become a Tech Provider](https://developers.facebook.com/docs/whatsapp/solution-providers/get-started-for-tech-providers)
-- [Meta Business Suite](https://business.facebook.com)
-- [Meta for Developers – WhatsApp](https://developers.facebook.com/docs/whatsapp)
-- [Video walkthrough: becoming a Meta Tech Provider](https://www.youtube.com/watch?v=zfx2fdzl--U)
+<CardGroup cols={2}>
+  <Card title="Become a Tech Provider" icon="book-open" href="https://developers.facebook.com/docs/whatsapp/solution-providers/get-started-for-tech-providers">
+    Meta's official Tech Provider documentation.
+  </Card>
+  <Card title="Meta Business Suite" icon="briefcase" href="https://business.facebook.com">
+    Manage your Business Portfolio and verification.
+  </Card>
+  <Card title="Meta for Developers – WhatsApp" icon="message-circle" href="https://developers.facebook.com/docs/whatsapp">
+    The WhatsApp Business Platform reference.
+  </Card>
+  <Card title="Video walkthrough" icon="video" href="https://www.youtube.com/watch?v=zfx2fdzl--U">
+    Becoming a Meta Tech Provider, start to finish.
+  </Card>
+</CardGroup>

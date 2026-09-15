@@ -4,10 +4,16 @@ description: "Manage your files and monitor tenant storage usage."
 icon: "image"
 ---
 
-**Media Library** contains two sections:
+**Media Library** contains two sections.
 
-- **My Media** — Manage your own files.
-- **Tenant Media** — View storage usage for all tenants.
+<Columns cols={2}>
+  <Card title="My Media" icon="folder" href="#my-media">
+    Manage your own files.
+  </Card>
+  <Card title="Tenant Media" icon="hard-drive" href="#tenant-media">
+    View storage usage for all tenants.
+  </Card>
+</Columns>
 
 <Info>
   **Tenant Media is available only to the account owner.** It cannot be given to staff through roles.
@@ -17,9 +23,13 @@ icon: "image"
 
 **My Media** is your personal file library. You can store images and documents used in the admin panel, such as email templates and banners.
 
-![My Media, with the upload controls and the storage meter](/images/admin/media-my-media.png)
+<Frame caption="My Media, with the upload controls and the storage meter">
+  <img src="/images/admin/media-my-media.png" alt="My Media, with the upload controls and the storage meter" />
+</Frame>
 
-Tenants cannot access your files. Each tenant has a separate media library in their workspace.
+<Note>
+  Tenants cannot access your files. Each tenant has a separate media library in their workspace.
+</Note>
 
 ### What you can do
 
@@ -29,36 +39,33 @@ Tenants cannot access your files. Each tenant has a separate media library in th
 
 ### Storage usage
 
-The storage card shows the total storage used by your platform and tenants.
-
-The indicator changes to:
+The storage card shows the total storage used by your platform and tenants. The indicator changes to:
 
 - **Amber** when usage is above 75%.
 - **Red** when usage is above 90%.
 
-Use **Tenant Media** to find which tenants are using the most storage.
+<Tip>
+  Use **Tenant Media** to find which tenants are using the most storage.
+</Tip>
 
 ## Tenant Media
 
 **Media Library → Tenant Media** shows storage usage for all tenants.
 
-![Tenant Media, with the storage summary cards and per-tenant usage](/images/admin/media-tenant-media.png)
+<Frame caption="Tenant Media, with the storage summary cards and per-tenant usage">
+  <img src="/images/admin/media-tenant-media.png" alt="Tenant Media, with the storage summary cards and per-tenant usage" />
+</Frame>
 
-The page provides these summary cards:
-
-- **Total Tenants**
-- **Storage Used**
-- **Total Files**
-- **Near Limit**
+The page provides summary cards for **Total Tenants**, **Storage Used**, **Total Files**, and **Near Limit**.
 
 ### Tenant list
 
-| Column        | Description                                    |
-| ------------- | ---------------------------------------------- |
-| **Tenant**    | Tenant name.                                   |
-| **Plan**      | Tenant's current plan.                         |
-| **Usage**     | Storage used by the tenant.                    |
-| **Files**     | Number of files stored by the tenant.          |
+| Column | Description |
+| ------ | ----------- |
+| **Tenant** | Tenant name. |
+| **Plan** | Tenant's current plan. |
+| **Usage** | Storage used by the tenant. |
+| **Files** | Number of files stored by the tenant. |
 | **Last Sync** | Last time the storage information was updated. |
 
 <Note>
@@ -67,13 +74,7 @@ The page provides these summary cards:
 
 ### View tenant files
 
-Open a tenant to view their files.
-
-You can:
-
-- Open a file.
-- Copy its URL.
-- Delete a file.
+Open a tenant to view their files. You can open a file, copy its URL, or delete it.
 
 <Warning>
   Deleting a tenant's file is permanent. Only delete tenant files when necessary or when the tenant has requested it.

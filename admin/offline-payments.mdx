@@ -8,7 +8,9 @@ When a tenant pays by bank transfer instead of an online payment gateway, they c
 
 **Sales → Offline Payments** is where you review these requests.
 
-![The Offline Payments list, with each request's status, amount, and reference](/images/admin/offline-payments-list.png)
+<Frame caption="The Offline Payments list, with each request's status, amount, and reference">
+  <img src="/images/admin/offline-payments-list.png" alt="The Offline Payments list, with each request's status, amount, and reference" />
+</Frame>
 
 <Info>
   Offline payments are handled directly between you and the tenant. The platform does not verify the bank transfer. The tenant's subscription is updated only after you approve the request.
@@ -16,44 +18,65 @@ When a tenant pays by bank transfer instead of an online payment gateway, they c
 
 ## Offline payment process
 
-1. Tenant transfers the payment to your bank account.
-2. Tenant submits a payment request with the payment reference.
-3. The request appears as **Pending**.
-4. Check your bank account and verify the payment.
-5. **Approve** the request to activate the subscription or **Reject** it if the payment cannot be verified.
+<Steps>
+  <Step title="Tenant transfers the payment" icon="landmark">
+    The tenant sends the payment to your bank account.
+  </Step>
+  <Step title="Tenant submits a request" icon="send">
+    The tenant submits a payment request with the payment reference. The request appears as **Pending**.
+  </Step>
+  <Step title="You verify the payment" icon="search">
+    Check your bank account and confirm the payment was received.
+  </Step>
+  <Step title="Approve or reject" icon="circle-check">
+    **Approve** the request to activate the subscription, or **Reject** it if the payment cannot be verified.
+  </Step>
+</Steps>
 
 ## Payment request details
 
-| Column        | Description                                              |
-| ------------- | -------------------------------------------------------- |
-| **Tenant**    | Tenant who submitted the payment request.                |
-| **Plan**      | Plan the tenant is paying for.                           |
-| **Amount**    | Amount submitted by the tenant.                          |
-| **Status**    | Current request status: Pending, Approved, or Rejected.  |
-| **Reference** | Payment reference provided by the tenant.                |
-| **Reviewed**  | Date and time when the request was approved or rejected. |
-| **Submitted** | Date and time when the request was submitted.            |
+| Column | Description |
+| ------ | ----------- |
+| **Tenant** | Tenant who submitted the payment request. |
+| **Plan** | Plan the tenant is paying for. |
+| **Amount** | Amount submitted by the tenant. |
+| **Status** | Current request status: Pending, Approved, or Rejected. |
+| **Reference** | Payment reference provided by the tenant. |
+| **Reviewed** | Date and time when the request was approved or rejected. |
+| **Submitted** | Date and time when the request was submitted. |
 
 ## Review a payment request
 
 Click a request to view its details.
 
-![A payment request's review page, with the payment details alongside the approve and reject panels](/images/admin/offline-payment-review.png)
+<Frame caption="A payment request's review page, with the payment details alongside the approve and reject panels">
+  <img src="/images/admin/offline-payment-review.png" alt="A payment request's review page, with the payment details alongside the approve and reject panels" />
+</Frame>
 
-The details page includes:
-
-- **Payment Details** — tenant, plan, billing cycle, payment amount, payment reference, submission date, and payment proof.
-- **Review Actions** — Approve or reject the request while it is pending.
-- **Review Decision** — Shows the review result, reviewer, review date, and notes after the request is reviewed.
+| Section | What it shows |
+| --- | --- |
+| **Payment Details** | Tenant, plan, billing cycle, payment amount, payment reference, submission date, and payment proof. |
+| **Review Actions** | Approve or reject the request while it is pending. |
+| **Review Decision** | The review result, reviewer, review date, and notes after the request is reviewed. |
 
 ### Verify the payment
 
 Before approving a request:
 
-1. Check your bank account to confirm that the payment was received.
-2. Match the **Amount** with the amount received.
-3. Check the **Reference** against your bank statement.
-4. If payment proof is attached, select **View Proof** to check it.
+<Steps>
+  <Step title="Confirm the payment arrived">
+    Check your bank account to confirm that the payment was received.
+  </Step>
+  <Step title="Match the amount">
+    Compare the **Amount** with the amount received.
+  </Step>
+  <Step title="Check the reference">
+    Match the **Reference** against your bank statement.
+  </Step>
+  <Step title="Check the proof">
+    If payment proof is attached, select **View Proof** to check it.
+  </Step>
+</Steps>
 
 <Note>
   Payment proof is optional. If the tenant does not upload a file, the payment details will show that no proof was attached.
@@ -61,9 +84,7 @@ Before approving a request:
 
 ## Approve a payment request
 
-Select **Approve & Activate Subscription** after confirming the payment.
-
-Approval will:
+Select **Approve & Activate Subscription** after confirming the payment. Approval will:
 
 - Activate or renew the tenant's subscription.
 - Create an invoice and mark it as paid.
@@ -77,23 +98,17 @@ You can also add an **Admin Note** during approval. Admin notes are for internal
 
 ## Reject a payment request
 
-If the payment cannot be verified, select **Reject**.
-
-A rejection reason is required.
+If the payment cannot be verified, select **Reject**. A rejection reason is required.
 
 <Info>
-  The **rejection reason is shown to the tenant**. Write a clear reason that explains why the payment request was rejected.
+  The **rejection reason is shown to the tenant**. Write a clear reason that explains why the payment request was rejected — for example, *"No payment was received with this reference."*
 </Info>
-
-For example:
-
-**No payment was received with this reference.**
 
 The tenant receives an email with the rejection reason. Their subscription is not changed, and they can submit a new payment request after correcting the issue.
 
-<Note>
+<Warning>
   Any payment proof uploaded by the tenant is deleted when the request is rejected. Download the proof first if you need to keep a copy.
-</Note>
+</Warning>
 
 ## Reviewed payment requests
 

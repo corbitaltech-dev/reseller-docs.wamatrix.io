@@ -8,22 +8,40 @@ Show your plans and prices on your own website, straight from this platform.
 
 When you update a plan here, your website shows the change too. You never have to edit the prices on your site by hand.
 
-## What you can do
-
-Read your plans and prices. That is all this API does: you cannot change anything with it, and it never returns tenants data.
+| Guarantee | Description |
+| --- | --- |
+| **Read-only** | You can read your plans and prices. That is all this API does — you cannot change anything with it. |
+| **No tenant data** | The API never returns tenant data. Only your public plan catalogue. |
 
 ## Getting a token
 
-Go to [**Settings → Core Platform → API Keys**](/admin/core-platform#api-keys) and click **Add Token**. Give it the `plans:read` scope.
-
-<Info>
-  The token is shown only once. Copy it and store it safely — if you lose it, you will have to create a new one.
-</Info>
+<Steps>
+  <Step title="Open API Keys">
+    Go to [**Settings → Core Platform → API Keys**](/admin/core-platform#api-keys).
+  </Step>
+  <Step title="Add a token">
+    Click **Add Token** and give it the `plans:read` scope.
+  </Step>
+  <Step title="Copy and store it">
+    <Warning>
+      The token is shown only once. Copy it and store it safely — if you lose it, you will have to create a new one.
+    </Warning>
+  </Step>
+</Steps>
 
 ## Using it
 
 Send the token with every request:
 
-```
+```bash Authorization header
 Authorization: Bearer YOUR_TOKEN
 ```
+
+## Endpoints
+
+| Endpoint | Description |
+| --- | --- |
+| **List plans** | `GET /api/v1/plans` — every plan in your catalogue. |
+| **Get a plan** | `GET /api/v1/plans/{id}` — a single plan by its ID. |
+
+Open **Plans** in the sidebar for the full request and response reference.

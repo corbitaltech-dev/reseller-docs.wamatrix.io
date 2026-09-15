@@ -6,37 +6,34 @@ icon: "shield-check"
 
 **Settings → Infrastructure & Security** contains settings for platform login and connected services.
 
-## reCAPTCHA
-
-Protect login, forgot-password, and tenant registration from bots using:
-
-- **Google reCAPTCHA v3**
-- **Cloudflare Turnstile**
-
-See [Onboarding a tenant](/admin/onboarding-a-sub-tenant#bot-protection).
-
-## Social Login
-
-Allow tenants and staff to sign in using:
-
-- **Google**
-- **Facebook**
-
-See [Onboarding a tenant](/admin/onboarding-a-sub-tenant#social-login).
+<CardGroup cols={2}>
+  <Card title="reCAPTCHA" icon="shield" href="/admin/onboarding-a-sub-tenant#bot-protection">
+    Protect login, forgot-password, and tenant registration from bots using **Google reCAPTCHA v3** or **Cloudflare Turnstile**.
+  </Card>
+  <Card title="Social Login" icon="key-round" href="/admin/onboarding-a-sub-tenant#social-login">
+    Allow tenants and staff to sign in using **Google** or **Facebook**.
+  </Card>
+</CardGroup>
 
 ## Google Accounts
 
 Allow tenants to connect their Google account for automation features such as **Google Sheets** and **Google Calendar**.
 
-Google Accounts uses a **separate Google app** from Social Login. Each has its own credentials.
+<Warning>
+  Google Accounts uses a **separate Google app** from Social Login. Each has its own credentials.
+</Warning>
 
-![The Google Accounts tab, with the client credentials and the redirect URI to register](/images/admin/google-accounts.png)
+<Frame caption="The Google Accounts tab, with the client credentials and the redirect URI to register">
+  <img src="/images/admin/google-accounts.png" alt="The Google Accounts tab, with the client credentials and the redirect URI to register" />
+</Frame>
 
 ### Required settings
 
-- **Client ID** — From your Google Cloud project.
-- **Client Secret** — From your Google Cloud project.
-- **Authorized Redirect URI** — The redirect URL shown on this page.
+| Field | Where it comes from |
+| ----- | ------------------- |
+| **Client ID** | Your Google Cloud project. |
+| **Client Secret** | Your Google Cloud project. |
+| **Authorized Redirect URI** | The redirect URL shown on this page. |
 
 <Info>
   Copy the **Authorized Redirect URI** exactly as shown and add it to your Google Cloud project. An incorrect URI can cause a `redirect_uri_mismatch` error when tenants connect their Google account.

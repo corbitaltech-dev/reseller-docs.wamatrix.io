@@ -6,18 +6,22 @@ icon: "users"
 
 **Setup → User** and **Setup → Role** allow you to manage your staff and their access to the admin panel.
 
-These users are your **staff members**, not tenants or tenant staff.
+<Note>
+  These users are your **staff members**, not tenants or tenant staff.
+</Note>
 
 ## Access types
 
-Administrators can access the panel in two ways:
+Administrators can access the panel in two ways.
 
-- **Role** — A set of specific permissions.
-- **Administrator Access** — Full access to all areas of the platform.
+| Access type | Description |
+| --- | --- |
+| **Role** | A set of specific permissions, limited to the areas you choose. |
+| **Administrator Access** | Full, unrestricted access to all areas of the platform. |
 
-<Info>
+<Warning>
   Give **Administrator Access** only to trusted users. It provides unrestricted access and cannot be limited by a role.
-</Info>
+</Warning>
 
 ## Roles
 
@@ -27,11 +31,11 @@ Administrators can access the panel in two ways:
 
 Click **Add Role** and enter a **Role Name**, then select the required permissions.
 
-![The Add Role panel, with the permission checkboxes for each area](/images/admin/add-role.png)
+<Frame caption="The Add Role panel, with the permission checkboxes for each area">
+  <img src="/images/admin/add-role.png" alt="The Add Role panel, with the permission checkboxes for each area" />
+</Frame>
 
-Permissions are available for areas such as:
-
-**Plans, Coupons, Taxes, Transactions, Activity Log, Notifications, Tenants, Tenant Billing, Currency, My Billing, Email Templates, Seeder Library, Settings, Users, and Roles.**
+Permissions are available for areas such as **Plans, Coupons, Taxes, Transactions, Activity Log, Notifications, Tenants, Tenant Billing, Currency, My Billing, Email Templates, Seeder Library, Settings, Users, and Roles**.
 
 Most areas include permissions such as **View, Create, Edit, and Delete**.
 
@@ -41,9 +45,7 @@ Most areas include permissions such as **View, Create, Edit, and Delete**.
 
 ### Delete a role
 
-A role assigned to a user cannot be deleted.
-
-Move the users to another role first, then delete the unused role.
+A role assigned to a user cannot be deleted. Move the users to another role first, then delete the unused role.
 
 ## Users
 
@@ -51,42 +53,40 @@ Move the users to another role first, then delete the unused role.
 
 ### Add a user
 
-Click **Add User** and enter the following details:
+Click **Add User** and enter the following details.
 
-![The Add User panel, with the User Details tab and the Role tab beside it](/images/admin/add-user.png)
+<Frame caption="The Add User panel, with the User Details tab and the Role tab beside it">
+  <img src="/images/admin/add-user.png" alt="The Add User panel, with the User Details tab and the Role tab beside it" />
+</Frame>
 
-| Field                    | Description                        |
-| ------------------------ | ---------------------------------- |
-| **Name**                 | User's name.                       |
-| **Email**                | Email address used to sign in.     |
-| **Phone**                | Optional phone number.             |
-| **Password**             | Password for the account.          |
+| Field | Description |
+| ----- | ----------- |
+| **Name** | User's name. |
+| **Email** | Email address used to sign in. |
+| **Phone** | Optional phone number. |
+| **Password** | Password for the account. |
 | **Administrator Access** | Gives full access to the platform. |
-| **Role**                 | Role assigned to the user.         |
+| **Role** | Role assigned to the user. |
 
 ### Edit a user
 
-You can edit a user's profile and access settings based on your permissions.
-
-The following rules apply:
+You can edit a user's profile and access settings based on your permissions. The following rules apply:
 
 - You cannot change your own access settings.
 - The **account owner** cannot be edited from this page. Update the owner's details from **Profile**.
 - Only a full-access administrator can manage users with **Administrator Access**.
 
 <Info>
-  You need full access to give someone full access.
-
-  A staff member with a role cannot give it to anyone, including their own account.
+  You need full access to give someone full access. A staff member with a role cannot give it to anyone, including their own account.
 </Info>
 
 ### Remove a user
 
-You can remove staff users from the platform.
-
-The following users cannot be removed:
+You can remove staff users from the platform. These users cannot be removed:
 
 - **Account owner**
 - **Your own account**
 
-You can also disable a user without removing them by turning off their **Active** status.
+<Tip>
+  You can also disable a user without removing them by turning off their **Active** status.
+</Tip>

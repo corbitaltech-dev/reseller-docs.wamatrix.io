@@ -4,40 +4,49 @@ description: "Create discount codes tenants can use when they pay."
 icon: "ticket-percent"
 ---
 
-Coupons are discount codes that tenants can enter at checkout. You can manage coupons from **Setup → Coupons**.
+Coupons are discount codes that tenants can enter at checkout. Manage them from **Setup → Coupons**.
 
 <Info>
-  A coupon applies to **particular payment only**. The tenant's next renewal is charged at the normal price.
+  A coupon applies to a **particular payment only**. The tenant's next renewal is charged at the normal price.
 </Info>
 
 ## Create a coupon
 
 Click **Add Coupon** to create a new coupon.
 
-![The coupon form, with the code and discount, eligibility rules, and schedule and limits](/images/admin/coupon-form.png)
+<Frame caption="The coupon form, with the code and discount, eligibility rules, and schedule and limits">
+  <img src="/images/admin/coupon-form.png" alt="The coupon form, with the code and discount, eligibility rules, and schedule and limits" />
+</Frame>
 
 ### Coupon details
 
-| Field           | Description                                                                     |
-| --------------- | ------------------------------------------------------------------------------- |
-| **Code**        | Code the tenant enters at checkout. Click **Generate** to create a random code. |
-| **Type**        | Choose **Percentage** or **Fixed amount**.                                      |
-| **Description** | Internal note about the coupon. Tenants cannot see it.                          |
+| Field | Description |
+| ----- | ----------- |
+| **Code** | Code the tenant enters at checkout. Click **Generate** to create a random code. |
+| **Type** | Choose **Percentage** or **Fixed amount**. |
+| **Description** | Internal note about the coupon. Tenants cannot see it. |
 
-Coupon codes are stored in uppercase, so `save20` and `SAVE20` are treated as the same code.
+<Tip>
+  Coupon codes are stored in uppercase, so `save20` and `SAVE20` are treated as the same code.
+</Tip>
 
 ### Discount
 
 The fields depend on the selected **Type**.
 
-**Percentage:**
-
-- **Discount Percentage** — Discount from 1% to 100%.
-- **Max discount** — Optional maximum discount amount.
-
-**Fixed amount:**
-
-- **Discount amount** — Fixed discount amount in the platform's currency.
+<Tabs>
+  <Tab title="Percentage">
+    | Field | Description |
+    | ----- | ----------- |
+    | **Discount Percentage** | Discount from 1% to 100%. |
+    | **Max discount** | Optional maximum discount amount. |
+  </Tab>
+  <Tab title="Fixed amount">
+    | Field | Description |
+    | ----- | ----------- |
+    | **Discount amount** | Fixed discount amount in the platform's currency. |
+  </Tab>
+</Tabs>
 
 <Note>
   Coupon amounts use the platform's base currency configured under [Currency setup](/admin/currency-setup).
@@ -45,47 +54,38 @@ The fields depend on the selected **Type**.
 
 ### Usage and validity
 
-| Field                  | Description                                                                 |
-| ---------------------- | --------------------------------------------------------------------------- |
-| **Applicable plans**   | Restrict the coupon to selected plans. Leave empty for all plans.           |
-| **Billing cycles**     | Restrict the coupon to selected billing cycles. Leave empty for all cycles. |
-| **Min order**          | Minimum order amount required to use the coupon.                            |
-| **First payment only** | Allow the coupon only for tenants making their first payment.               |
-| **Valid from**         | Date when the coupon becomes active.                                        |
-| **Expires at**         | Date when the coupon expires.                                               |
-| **Global usage limit** | Maximum number of times the coupon can be used by all tenants.              |
-| **Per-tenant limit**   | Maximum number of times one tenant can use the coupon.                      |
+| Field | Description |
+| ----- | ----------- |
+| **Applicable plans** | Restrict the coupon to selected plans. Leave empty for all plans. |
+| **Billing cycles** | Restrict the coupon to selected billing cycles. Leave empty for all cycles. |
+| **Min order** | Minimum order amount required to use the coupon. |
+| **First payment only** | Allow the coupon only for tenants making their first payment. |
+| **Valid from** | Date when the coupon becomes active. |
+| **Expires at** | Date when the coupon expires. |
+| **Global usage limit** | Maximum number of times the coupon can be used by all tenants. |
+| **Per-tenant limit** | Maximum number of times one tenant can use the coupon. |
 
 Leaving a limit empty means there is no limit.
 
-<Note>
+<Tip>
   Enable **First payment only** if the coupon is intended for new tenants.
-</Note>
+</Tip>
 
 ## Manage coupons
 
-![The Coupons list, with each code's type, value, usage, expiry, and status switch](/images/admin/coupons-list.png)
+<Frame caption="The Coupons list, with each code's type, value, usage, expiry, and status switch">
+  <img src="/images/admin/coupons-list.png" alt="The Coupons list, with each code's type, value, usage, expiry, and status switch" />
+</Frame>
 
-The coupon list shows:
-
-- **Code**
-- **Type**
-- **Value**
-- **Used**
-- **Expires**
-- **Status**
-
-You can filter coupons by **Status**, **Type**, and **Expired**.
+The coupon list shows the **Code**, **Type**, **Value**, **Used**, **Expires**, and **Status** of each coupon. You can filter coupons by **Status**, **Type**, and **Expired**.
 
 The **Status** switch allows you to disable a coupon without deleting it.
 
-Each coupon has these actions:
-
-- **Edit** — Change the coupon details.
-- **Usage** — View tenants who used the coupon.
-- **Delete** — Delete the coupon.
-
-The **Usage** section shows the tenant, discount, status, and date of each use.
+| Action | What it does |
+| --- | --- |
+| **Edit** | Change the coupon details. |
+| **Usage** | View the tenant, discount, status, and date of each use. |
+| **Delete** | Delete the coupon. |
 
 <Warning>
   Deleting a coupon does not remove discounts from existing invoices. To stop a coupon from being used, disable its **Status** instead.
@@ -99,6 +99,4 @@ Tenants enter the coupon code at checkout when they:
 - Renew a subscription
 - Upgrade a subscription
 
-Coupons can be used with both online payments and bank transfers.
-
-The discount is applied before tax is calculated.
+Coupons can be used with both online payments and bank transfers. The discount is applied before tax is calculated.

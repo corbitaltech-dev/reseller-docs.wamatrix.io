@@ -4,28 +4,24 @@ description: "Understand how plans control tenant features and usage limits."
 icon: "gauge"
 ---
 
-A tenant's plan controls the features they can use and the limits for each feature.
+A tenant's plan controls the features they can use and the limits for each feature. For example, a plan can set limits for contacts, campaigns, channels, and AI requests.
 
-For example, a plan can set limits for contacts, campaigns, channels, and AI requests.
+## When a feature is not included
 
-## When a Feature Is Not Included
+If a feature is not included in the tenant's plan, it appears in one of two ways.
 
-If a feature is not included in the tenant's plan, it appears in one of two ways:
-
-- **Hidden** — The feature does not appear in the tenant's navigation.
-- **Locked** — The feature appears with a lock icon. Selecting it shows an upgrade option.
-
-A feature is locked when a higher plan provides access to it. If no available plan provides the feature, it is hidden.
+| Appearance | When it happens |
+| --- | --- |
+| **Hidden** | The feature does not appear in the tenant's navigation. This happens when **no** available plan provides the feature. |
+| **Locked** | The feature appears with a lock icon. Selecting it shows an upgrade option. This happens when a **higher plan** provides access to it. |
 
 <Note>
   The reseller only decides whether a feature is included in a plan. The platform automatically decides whether the feature is hidden or locked.
 </Note>
 
-## When a Tenant Reaches a Limit
+## When a tenant reaches a limit
 
-A tenant cannot exceed the limit set by their plan.
-
-Depending on the feature, the tenant may see:
+A tenant cannot exceed the limit set by their plan. Depending on the feature, the tenant may see:
 
 - An error when trying to use the feature.
 - A message explaining the limit before starting an action.
@@ -36,30 +32,25 @@ Depending on the feature, the tenant may see:
   A downgrade does not take effect immediately. The tenant keeps their current plan and access until their next renewal, and can cancel the downgrade before then.
 </Warning>
 
-## Tenant Usage
+## Tenant usage
 
-Tenants can view their usage from **My Subscription**.
+Tenants can view their usage from **My Subscription**. The **What's included** section shows the features included in the plan, along with current usage and the allowed limit.
 
-The **What's included** section shows the features included in the plan, along with current usage and the allowed limit.
-
-For example:
-
-- **500 / 1,000 Contacts**
-- **Unlimited Channels**
+| Example | What it means |
+| --- | --- |
+| **500 / 1,000 Contacts** | A metered feature, showing usage against its limit. |
+| **Unlimited Channels** | A feature with no limit on the tenant's plan. |
 
 A progress bar and status label show how close the tenant is to each limit.
 
-## Creating a Plan
+## Creating a plan
 
-When creating a plan, the reseller chooses:
+When creating a plan, the reseller chooses which features to include and the limit for each feature. The platform automatically handles locked features and usage warnings — these behaviors cannot be changed when creating a plan.
 
-- Which features to include.
-- The limit for each feature.
-
-The platform automatically handles locked features and usage warnings.
-
-These behaviors cannot be changed when creating a plan.
-
-<Note>
+<Info>
   A feature can only be added to a tenant plan if the reseller's own plan includes that feature. If the reseller does not have access to a feature, it cannot be offered to tenants.
-</Note>
+</Info>
+
+<Card title="Create your plans" icon="layers" href="/admin/plans-and-pricing" horizontal>
+  Set the features and limits for each plan you offer.
+</Card>

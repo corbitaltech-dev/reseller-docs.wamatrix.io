@@ -6,7 +6,7 @@ icon: "lightbulb"
 
 **AI Flow → Flow Exemplars** contains example flows that help the AI generate better automations.
 
-While the [Node Catalog](/admin/ai-node-catalog) explains what each node does, an exemplar shows the AI what a complete flow should look like.
+While the [Node Catalog](/admin/ai-node-catalog) explains what each **individual node** does, an exemplar shows what a **complete flow** should look like.
 
 When generating a flow, the AI selects an exemplar that closely matches the tenant's request and uses it as a reference.
 
@@ -16,32 +16,38 @@ When generating a flow, the AI selects an exemplar that closely matches the tena
 
 ## Exemplar list
 
-![The AI Flow Exemplars list, with each exemplar's flow type, source and status](/images/admin/ai-exemplars-list.png)
+<Frame caption="The AI Flow Exemplars list, with each exemplar's flow type, source and status">
+  <img src="/images/admin/ai-exemplars-list.png" alt="The AI Flow Exemplars list, with each exemplar's flow type, source and status" />
+</Frame>
 
-| Column        | Description                                                      |
-| ------------- | ---------------------------------------------------------------- |
-| **Name**      | Name of the exemplar.                                            |
-| **Flow Type** | Type of flow it demonstrates.                                    |
-| **Source**    | Whether it was added manually or created from a real generation. |
-| **Nodes**     | Number of nodes in the flow.                                     |
-| **Status**    | Whether the AI can use the exemplar.                             |
+| Column | Description |
+| ------ | ----------- |
+| **Name** | Name of the exemplar. |
+| **Flow Type** | Type of flow it demonstrates. |
+| **Source** | Whether it was added manually or created from a real generation. |
+| **Nodes** | Number of nodes in the flow. |
+| **Status** | Whether the AI can use the exemplar. |
 
-An inactive exemplar remains in the list but is not used by the AI.
+<Tip>
+  An inactive exemplar remains in the list but is not used by the AI.
+</Tip>
 
 ## Add an exemplar
 
-![The Add Exemplar panel, with the flow type, description and graph JSON](/images/admin/ai-add-exemplar.png)
+Click **Add Exemplar** and enter the following details.
 
-Click **Add Exemplar** and enter the following details:
+<Frame caption="The Add Exemplar panel, with the flow type, description and graph JSON">
+  <img src="/images/admin/ai-add-exemplar.png" alt="The Add Exemplar panel, with the flow type, description and graph JSON" />
+</Frame>
 
-| Field           | Description                                      |
-| --------------- | ------------------------------------------------ |
-| **Name**        | Name of the exemplar, such as `Lead capture`.    |
-| **Slug**        | Unique identifier, such as `lead-capture`.       |
-| **Flow Type**   | Type of flow the example demonstrates.           |
+| Field | Description |
+| ----- | ----------- |
+| **Name** | Name of the exemplar, such as `Lead capture`. |
+| **Slug** | Unique identifier, such as `lead-capture`. |
+| **Flow Type** | Type of flow the example demonstrates. |
 | **Description** | Requirement or use case that the flow addresses. |
-| **Sort Order**  | Position of the exemplar in the list.            |
-| **Graph JSON**  | Flow structure containing `nodes` and `edges`.   |
+| **Sort Order** | Position of the exemplar in the list. |
+| **Graph JSON** | Flow structure containing `nodes` and `edges`. |
 
 <Info>
   **Description** is used by the AI to match tenant requests with exemplars. Describe the requirement the flow solves, such as "Book and confirm an appointment, then remind the tenant the day before."
@@ -53,11 +59,9 @@ Click **Add Exemplar** and enter the following details:
 
 ## Best practices
 
-Create exemplars that:
-
-- Represent flows you would use in production.
-- Cover different tenant use cases.
-- Match the types of flows your tenants commonly request.
-- Avoid having many similar examples.
-
-A few strong and different exemplars are more useful than many similar ones.
+| Practice | Why |
+| --- | --- |
+| **Use production-quality flows** | Create exemplars you would actually use in production. |
+| **Cover different use cases** | Match the types of flows your tenants commonly request. |
+| **Avoid near-duplicates** | Do not add many similar examples. |
+| **Fewer, stronger examples** | A few strong and different exemplars are more useful than many similar ones. |

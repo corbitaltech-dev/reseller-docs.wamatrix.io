@@ -4,32 +4,79 @@ description: "Set up your platform, configure the required settings, and onboard
 icon: "rocket"
 ---
 
-## 1. Set Up Your White-Label Brand
+<Steps>
+  <Step title="Set up your white-label brand" icon="palette">
+    Make the platform look like yours before anyone sees it.
 
-- In [**System Settings**](/admin/branding#system-core-settings), configure your **company name, logo, favicon, and other branding options**.
-- Configure [**Email**](/admin/branding#sender-identity-smtp) and [**Email Layout**](/admin/branding#email-layout) to customize your tenant emails.
-- Under [**Legal**](/admin/branding#legal), add links to your **Terms and Privacy Policy** pages. These links are displayed during **tenant registration**.
+    <CardGroup cols={3}>
+      <Card title="Branding" icon="image" href="/admin/branding#system-core-settings">
+        Company name, logo, favicon, and other branding options.
+      </Card>
+      <Card title="Email" icon="mail" href="/admin/branding#sender-identity-smtp">
+        Sender identity and SMTP, plus the [email layout](/admin/branding#email-layout) used for tenant emails.
+      </Card>
+      <Card title="Legal" icon="scale" href="/admin/branding#legal">
+        Terms and Privacy Policy links, shown during tenant registration.
+      </Card>
+    </CardGroup>
+  </Step>
 
-## 2. Set Up Your Currency
+  <Step title="Set up your currency" icon="coins">
+    Open [**Setup → Currency**](/admin/currency-setup#set-the-base-currency) and enter the **Currency Name**, **ISO Code**, and **Symbol**.
 
-- Open [**Setup → Currency**](/admin/currency-setup#set-the-base-currency) and enter the **Currency Name, ISO Code, and Symbol**.
-- Make sure you enter correct currency details before creating plans. The [**ISO Code cannot be changed after an active subscription**](/admin/currency-setup#what-becomes-fixed-once-tenants-exist).
+    <Warning>
+      Enter the correct currency details before creating plans. The [**ISO Code cannot be changed once a tenant has an active subscription**](/admin/currency-setup#what-you-can-and-cannot-change-later).
+    </Warning>
+  </Step>
 
-## 3. Create Your Plans
+  <Step title="Create your plans" icon="layers">
+    Open [**Plans**](/admin/plans-and-pricing#create-a-plan) and create the plans you want to offer.
 
-- Open [**Plans**](/admin/plans-and-pricing#create-a-plan) and create the plans you want to offer to your tenants.
-- Set the [**plan name, price, billing period, features, and limits**](/admin/plans-and-pricing#before-you-start) for each plan.
+    Set the [**plan name, price, billing period, features, and limits**](/admin/plans-and-pricing#before-you-start) for each one.
+  </Step>
 
-## 4. Set Up Billing & Payments
+  <Step title="Set up billing and payments" icon="wallet">
+    <CardGroup cols={2}>
+      <Card title="Payment gateways" icon="credit-card" href="/admin/billing-and-payouts#payment-gateway-settings">
+        Add credentials for the gateways you want to enable for tenants.
+      </Card>
+      <Card title="Company information" icon="building" href="/admin/billing-and-payouts#company-information">
+        The company details shown on invoices.
+      </Card>
+      <Card title="Invoice settings" icon="receipt" href="/admin/billing-and-payouts#invoice-settings">
+        Invoice prefix, starting number, footer notes, and whether tax applies.
+      </Card>
+      <Card title="Taxes" icon="percent" href="/admin/billing-and-payouts#taxes">
+        Tax name, rate, type, currency, and description — if tax is enabled.
+      </Card>
+    </CardGroup>
+  </Step>
 
-- In [**Payment Gateway Settings**](/admin/billing-and-payouts#payment-gateway-settings), add the required details for the **payment gateways** you want to enable for your tenants.
-- Under [**System Settings → Company Information**](/admin/billing-and-payouts#company-information), add your **company details** that will be displayed on invoices.
-- In [**Invoice Settings**](/admin/billing-and-payouts#invoice-settings), set the **invoice prefix, starting invoice number, and footer notes**, and choose whether **tax should be applied to invoices**.
-- If tax is enabled, configure the required **tax name, rate, type, currency, and description** under [**Taxes**](/admin/billing-and-payouts#taxes).
+  <Step title="Onboard your first tenant" icon="user-plus">
+    <CardGroup cols={2}>
+      <Card title="Tenant settings" icon="settings" href="/admin/onboarding-a-sub-tenant#registration-verification-settings">
+        Registration, email verification, welcome emails, and registration success emails.
+      </Card>
+      <Card title="Bot protection" icon="shield" href="/admin/onboarding-a-sub-tenant#bot-protection">
+        Google reCAPTCHA or Cloudflare Turnstile on the registration form.
+      </Card>
+      <Card title="Social login" icon="key-round" href="/admin/onboarding-a-sub-tenant#social-login">
+        Let tenants register or sign in with Google or Facebook.
+      </Card>
+      <Card title="Create a tenant" icon="user-plus" href="/admin/onboarding-a-sub-tenant#adding-a-tenant">
+        Open **Tenants**, create your first tenant account, then assign a plan.
+      </Card>
+    </CardGroup>
+  </Step>
+</Steps>
 
-## 5. Onboard Your First Tenant
+## What's next
 
-- In [**Tenant Settings**](/admin/onboarding-a-sub-tenant#registration-verification-settings), configure **tenant registration, email verification, welcome emails, and registration success emails**.
-- Under [**reCAPTCHA Settings**](/admin/onboarding-a-sub-tenant#bot-protection), configure **Google reCAPTCHA or Cloudflare Turnstile** to protect the tenant registration form.
-- In [**Social Login**](/admin/onboarding-a-sub-tenant#social-login), configure **Google or Facebook login** if you want to allow tenants to register or log in with their social accounts.
-- Open [**Tenants**](/admin/onboarding-a-sub-tenant#create-a-tenant) and create your first tenant account, then assign a **plan**.
+<Columns cols={2}>
+  <Card title="Connect WhatsApp" icon="message-circle" href="/admin/channels#whatsapp">
+    Configure your Meta app so tenants can connect their WhatsApp Business Account.
+  </Card>
+  <Card title="Manage tenants" icon="building-2" href="/admin/managing-customers">
+    Find, view, impersonate, and manage tenant workspaces.
+  </Card>
+</Columns>

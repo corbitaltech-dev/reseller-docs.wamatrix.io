@@ -4,10 +4,16 @@ description: "View tenant invoices and payment attempts, including failed paymen
 icon: "receipt"
 ---
 
-**Sales** has two separate pages for invoices and payments:
+**Sales** has two separate pages for invoices and payments.
 
-- **Invoices** — Shows the bills created for tenants.
-- **Payments** — Shows all payment attempts, including successful, pending, failed, and refunded payments.
+<Columns cols={2}>
+  <Card title="Invoices" icon="receipt" href="#invoices">
+    The bills created for tenants.
+  </Card>
+  <Card title="Payments" icon="credit-card" href="#payments">
+    All payment attempts — successful, pending, failed, and refunded.
+  </Card>
+</Columns>
 
 <Info>
   A failed payment does not create an invoice. If a tenant says their payment failed, check **Sales → Payments** to see the payment status.
@@ -17,59 +23,62 @@ icon: "receipt"
 
 **Sales → Invoices** shows all invoices created for tenants.
 
-![The Invoices list, with each invoice's status, amount, and payment method](/images/admin/invoices-list.png)
+<Frame caption="The Invoices list, with each invoice's status, amount, and payment method">
+  <img src="/images/admin/invoices-list.png" alt="The Invoices list, with each invoice's status, amount, and payment method" />
+</Frame>
 
 ### Invoice details
 
-| Column       | Description                                  |
-| ------------ | -------------------------------------------- |
-| **Invoice**  | Invoice number                               |
-| **Tenant**   | Tenant the invoice belongs to                |
-| **Status**   | Current invoice status, such as Open or Paid |
-| **Amount**   | Total invoice amount                         |
-| **Paid Via** | Payment method used                          |
-| **Issued**   | Date the invoice was created                 |
+| Column | Description |
+| ------ | ----------- |
+| **Invoice** | Invoice number |
+| **Tenant** | Tenant the invoice belongs to |
+| **Status** | Current invoice status, such as Open or Paid |
+| **Amount** | Total invoice amount |
+| **Paid Via** | Payment method used |
+| **Issued** | Date the invoice was created |
 
 ### View an invoice
 
-![An invoice's detail page, with its details, the tenant, the pricing breakdown, and line items](/images/admin/invoice-detail.png)
+<Frame caption="An invoice's detail page, with its details, the tenant, the pricing breakdown, and line items">
+  <img src="/images/admin/invoice-detail.png" alt="An invoice's detail page, with its details, the tenant, the pricing breakdown, and line items" />
+</Frame>
 
 Open the row menu to access the following options:
 
-- **View Details** — View the invoice details in the panel.
-- **View PDF** — Open the invoice PDF in a new tab.
-- **Download PDF** — Download the invoice PDF.
+| Option | What it does |
+| --- | --- |
+| **View Details** | View the invoice details in the panel. |
+| **View PDF** | Open the invoice PDF in a new tab. |
+| **Download PDF** | Download the invoice PDF. |
 
-The invoice details page includes:
-
-- **Invoice Details**
-- **tenant**
-- **Billing Details**
-- **Line Items**
+The invoice details page includes **Invoice Details**, **Tenant**, **Billing Details**, and **Line Items**.
 
 ## Payments
 
 **Sales → Payments** shows all payment attempts made by tenants.
 
-![The Payments list, showing captured and failed attempts with their reference and method](/images/admin/payments-list.png)
+<Frame caption="The Payments list, showing captured and failed attempts with their reference and method">
+  <img src="/images/admin/payments-list.png" alt="The Payments list, showing captured and failed attempts with their reference and method" />
+</Frame>
 
 ### Payment details
 
-| Column        | Description                                   |
-| ------------- | --------------------------------------------- |
-| **Tenant**    | Tenant who made the payment attempt           |
-| **Status**    | Current payment status                        |
-| **Amount**    | Amount of the payment attempt                 |
-| **Paid Via**  | Payment gateway or payment method used        |
-| **Method**    | Payment method, such as card or bank transfer |
-| **Reference** | Payment reference provided by the gateway     |
-| **Attempted** | Date and time of the payment attempt          |
+| Column | Description |
+| ------ | ----------- |
+| **Tenant** | Tenant who made the payment attempt |
+| **Status** | Current payment status |
+| **Amount** | Amount of the payment attempt |
+| **Paid Via** | Payment gateway or payment method used |
+| **Method** | Payment method, such as card or bank transfer |
+| **Reference** | Payment reference provided by the gateway |
+| **Attempted** | Date and time of the payment attempt |
 
 ### Payment status
 
-| Status       | Description                                            |
-| ------------ | ------------------------------------------------------ |
-| **Captured** | Payment was successfully received.                     |
-| **Pending**  | Payment was started but has not been completed.        |
-| **Failed**   | Payment was not completed and no payment was received. |
+| Status | Description |
+| ------ | ----------- |
+| **Captured** | Payment was successfully received. |
+| **Pending** | Payment was started but has not been completed. |
+| **Failed** | Payment was not completed and no payment was received. |
 | **Refunded** | Payment was received and later refunded to the tenant. |

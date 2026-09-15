@@ -4,108 +4,136 @@ description: "Configure the platform branding, email appearance, and sender iden
 icon: "palette"
 ---
 
-Branding controls the platform logo, colours, email appearance, and sender identity.
+Branding lets you configure the platform logo, colours, email appearance, sender identity, and legal links. These settings are optional and can be configured at any time.
 
-Branding has three settings areas:
-
-- **System** — Configure the platform name, general system settings, and logos.
-- **Email Layout** — Configure the appearance and layout of outgoing emails.
-- **Email** — Configure the sender identity and SMTP connection used to send emails.
-- **Legal** — Link to the externally hosted Privacy Policy and Terms & Conditions pages.
-
-These settings are optional and can be configured at any time.
+<CardGroup cols={2}>
+  <Card title="System" icon="settings" href="#system-core-settings">
+    Configure the platform name, general settings, logos, and favicon.
+  </Card>
+  <Card title="Email Layout" icon="layout-template" href="#email-layout">
+    Configure the appearance of outgoing emails.
+  </Card>
+  <Card title="Email" icon="mail" href="#sender-identity-smtp">
+    Configure the sender identity and SMTP connection.
+  </Card>
+  <Card title="Legal" icon="scale" href="#legal">
+    Add your Privacy Policy and Terms & Conditions links.
+  </Card>
+</CardGroup>
 
 <Note>
-
-  SMTP must be configured for the platform to send standard tenant emails, including registration, welcome, and notification emails.
+  SMTP must be configured before the platform can send tenant emails, including registration, welcome, and notification emails.
 </Note>
 
 ## System Core Settings
 
-Go to **Settings → System**.
+Go to **Settings → System** to configure the main platform settings and logos.
 
-The System page contains the main platform settings and logo configuration:
+<Frame caption="The System Core Settings page, with the site name, locale defaults, and the logo and favicon upload fields">
+  <img src="/images/admin/system-core-settings.png" alt="The System Core Settings page, with the site name, locale defaults, and the logo and favicon upload fields" />
+</Frame>
 
-![The System Core Settings page, with the site name, locale defaults, and the logo and favicon upload fields](/images/admin/system-core-settings.png)
+<Tabs>
+  <Tab title="Platform details">
+    | Field | Description |
+    | ----- | ----------- |
+    | **Site Name** | Platform name shown throughout the panel. |
+    | **Site Description** | Short description of the platform. |
+    | **Timezone** | Default timezone for dates and times. |
+    | **Date Format** | Format used to display dates. |
+    | **Time Format** | Format used to display times. |
+    | **Default Country Code** | Country code used by default. |
+  </Tab>
+  <Tab title="Logos & favicon">
+    | Field | Recommended size | Maximum |
+    | ----- | ---------------- | ------- |
+    | **Site Logo** | 200 × 50 px | 2 MB |
+    | **Dark Logo** | 200 × 50 px | 2 MB |
+    | **Favicon** | 32 × 32 px | 512 KB |
 
-- **Site Name** — The platform name shown throughout the panel. Required.
-- **Site Description** — A short description of the platform.
-- **Timezone** — The default timezone for dates and times.
-- **Date Format** — How dates are displayed.
-- **Time Format** — How times are displayed.
-- **Default Country Code** — The country code applied by default.
-- **Site Logo** — The primary logo. Recommended **200 × 50 px**, maximum **2 MB**.
-- **Dark Logo** — The logo used in dark mode. Recommended **200 × 50 px**, maximum **2 MB**.
-- **Favicon** — The browser tab icon. Recommended **32 × 32 px**, maximum **512 KB**.
+    The **Dark Logo** is used in dark mode. The **Favicon** is shown in the browser tab.
 
-The platform accepts **JPEG, PNG, and WebP** files for logos. **ICO** files are also supported for the Favicon.
+    Supported formats are **JPEG, PNG, and WebP** for logos. **ICO** is also supported for the Favicon.
 
-An existing file can be selected from the [**Media Library**](/admin/media-library) by clicking **Add Media** instead of uploading a new file.
+    You can select an existing file from the [**Media Library**](/admin/media-library) by clicking **Add Media**.
+  </Tab>
+</Tabs>
 
 <Warning>
-  SVG files are not supported for the Site Logo, Dark Logo, or Favicon because these images are rendered directly on the platform's domain.
+  SVG files are not supported for the Site Logo, Dark Logo, or Favicon.
 </Warning>
 
 ## Email Layout
 
-Go to **Settings → Email Layout**.
+Go to **Settings → Email Layout** to configure the appearance of outgoing emails.
 
-Email Layout controls the visual appearance applied to outgoing email templates. The settings are divided into three tabs:
+<Frame caption="The Email Layout page on its Branding tab, with the live email preview alongside">
+  <img src="/images/admin/email-layout.png" alt="The Email Layout page on its Branding tab, with the live email preview alongside" />
+</Frame>
 
-![The Email Layout page on its Branding tab, with the live email preview alongside](/images/admin/email-layout.png)
+The settings are divided into three tabs:
 
-- **Branding** — The logo shown in the email header. This is separate from the Site Logo; if it is left empty, the Site Logo is used instead.
-- **Colours** — The header, content, footer, button, and link colours. Pick each one from the colour picker or enter a hex value.
-- **Footer** — The text at the bottom of every email. Supports the `{date_year}` and `{company_name}` placeholders.
+<Tabs>
+  <Tab title="Branding">
+    Configure the logo shown in the email header. If no logo is selected, the **Site Logo** is used.
+  </Tab>
+  <Tab title="Colours">
+    Configure the header, content, footer, button, and link colours. Select a colour from the colour picker or enter a hex value.
+  </Tab>
+  <Tab title="Footer">
+    Configure the text shown at the bottom of every email. You can use the `{date_year}` and `{company_name}` placeholders.
+  </Tab>
+</Tabs>
 
-Click **Save Changes** on the final tab to save the Email Layout configuration.
+Click **Save Changes** on the final tab to save the Email Layout settings.
 
 ## Sender Identity (SMTP)
 
-Go to **Settings → Email**.
+Go to **Settings → Email** and enable the **Enable Email** switch to activate email sending.
 
-Turn on the **Enable Email** switch to activate email sending.
+<Frame caption="The Email Configuration page, with the SMTP connection fields, sender identity, and the Send Test Email box">
+  <img src="/images/admin/smtp-settings.png" alt="The Email Configuration page, with the SMTP connection fields, sender identity, and the Send Test Email box" />
+</Frame>
 
-Enter the required SMTP details:
-
-![The Email Configuration page, with the SMTP connection fields, sender identity, and the Send Test Email box](/images/admin/smtp-settings.png)
-
-- **SMTP Host**
-- **Port**
-- **Username**
-- **Password**
-- **Encryption**
-
-Configure the **Sender Name** and **Sender Email** to determine the sender information displayed to tenants.
-
-Click **Test** to send a test email and verify that the SMTP configuration is working correctly before relying on it for tenant emails.
+<Steps>
+  <Step title="Enter the SMTP details">
+    Enter the **SMTP Host**, **Port**, **Username**, **Password**, and **Encryption**.
+  </Step>
+  <Step title="Set the sender identity">
+    Configure the **Sender Name** and **Sender Email** shown to tenants.
+  </Step>
+  <Step title="Send a test email">
+    Click **Test** to check that the SMTP settings are working.
+  </Step>
+</Steps>
 
 <Warning>
-  Email delivery is disabled until SMTP is configured. No emails will be sent without a valid SMTP connection.
+  Email delivery is disabled until a valid SMTP connection is configured.
 </Warning>
 
 ## Legal
 
-Go to **Settings → Legal**.
+Go to **Settings → Legal** to add the **Privacy Policy** and **Terms & Conditions** links shown during tenant registration.
 
-Legal supplies the **Privacy Policy** and **Terms & Conditions** links shown to tenants. The pages are hosted externally — the workspace administrator publishes them and enters the two URLs here.
+<Frame caption="The Legal settings page, with the Privacy Policy and Terms & Conditions link fields">
+  <img src="/images/admin/legal-settings.png" alt="The Legal settings page, with the Privacy Policy and Terms & Conditions link fields" />
+</Frame>
 
-![The Legal settings page, with the Privacy Policy and Terms & Conditions link fields](/images/admin/legal-settings.png)
+Turn on the switch at the top of the card, then enter:
 
-Turn on the switch in the top right of the card, then enter:
+- **Privacy Policy Link** — Full URL, including `https://`.
+- **Terms & Conditions Link** — Full URL, including `https://`.
 
-- **Privacy Policy Link** — The full URL, including `https://`.
-- **Terms & Conditions Link** — The full URL, including `https://`.
-
-Both are required once the switch is on. Click **Save Changes** to save.
+Both links are required when the setting is enabled. Click **Save Changes** to save.
 
 ### Where the links appear
 
-On the sign-up page, tenants must tick a box that says _"I agree to the Terms of Service and Privacy Policy."_
+The links are shown on the tenant sign-up page next to the agreement checkbox.
 
-![The tenant sign-up page, with Terms of Service and Privacy Policy shown as links beside the agreement checkbox](/images/admin/signup-consent-links.png)
+The checkbox says _"I agree to the Terms of Service and Privacy Policy."_
 
-- **Switch on** — the two names are clickable and open your pages.
-- **Switch off** — the same wording shows as plain text, with nothing to click.
+<Frame caption="The tenant sign-up page, with Terms of Service and Privacy Policy shown as links beside the agreement checkbox">
+  <img src="/images/admin/signup-consent-links.png" alt="The tenant sign-up page, with Terms of Service and Privacy Policy shown as links beside the agreement checkbox" />
+</Frame>
 
-Either way, tenants still have to tick the box to sign up.
+Tenants must accept the checkbox to complete registration.

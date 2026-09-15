@@ -10,25 +10,29 @@ You can review what the tenant requested, the generated flow, generation status,
 
 ## Generation list
 
-![The AI Generations log, with the prompt, status, tier and tokens for each generation](/images/admin/ai-generations.png)
+<Frame caption="The AI Generations log, with the prompt, status, tier and tokens for each generation">
+  <img src="/images/admin/ai-generations.png" alt="The AI Generations log, with the prompt, status, tier and tokens for each generation" />
+</Frame>
 
-| Column        | Description                                                    |
-| ------------- | -------------------------------------------------------------- |
-| **Prompt**    | Request submitted by the tenant.                               |
-| **Customer**  | Tenant who requested the flow. Empty for internal generations. |
-| **Type**      | Type of flow requested.                                        |
-| **Status**    | Result of the generation.                                      |
-| **Tier**      | Generation method used by the AI.                              |
-| **Tokens**    | Tokens used during generation.                                 |
-| **Generated** | Date and time of the generation.                               |
+| Column | Description |
+| ------ | ----------- |
+| **Prompt** | Request submitted by the tenant. |
+| **Customer** | Tenant who requested the flow. Empty for internal generations. |
+| **Type** | Type of flow requested. |
+| **Status** | Result of the generation. |
+| **Tier** | Generation method used by the AI. |
+| **Tokens** | Tokens used during generation. |
+| **Generated** | Date and time of the generation. |
 
-You can filter generations by **Status** and **Type**.
+<Tip>
+  You can filter generations by **Status** and **Type**.
+</Tip>
 
 ## Generation status
 
-| Status          | Description                                                                                      |
-| --------------- | ------------------------------------------------------------------------------------------------ |
-| **Success**     | The generated flow passed the quality check.                                                     |
+| Status | Meaning |
+| --- | --- |
+| **Success** | The generated flow passed the quality check. |
 | **Low quality** | A flow was generated but did not meet the quality threshold. The tenant still received the flow. |
 
 <Info>
@@ -41,28 +45,24 @@ You can filter generations by **Status** and **Type**.
 
 ## Generation tiers
 
-The tier shows how the AI generated the flow:
+The tier shows how the AI generated the flow.
 
-| Tier          | Description                                                     |
-| ------------- | --------------------------------------------------------------- |
-| **Single**    | The flow was generated once and passed the quality check.       |
-| **Repaired**  | The first attempt was close to acceptable and was corrected.    |
+| Tier | Description |
+| ---- | ----------- |
+| **Single** | The flow was generated once and passed the quality check. |
+| **Repaired** | The first attempt was close to acceptable and was corrected. |
 | **Best of N** | Multiple flows were generated and the best result was selected. |
 
-<Note>
+<Warning>
   Higher tiers use more tokens. **Best of N** can use several times more tokens than a **Single** generation.
-</Note>
+</Warning>
 
 ## View a generation
 
-Click a generation to view:
-
-- The full **Prompt** submitted to the AI.
-- The generated **Flow**.
-- Generation details and token usage.
+Click a generation to view the full **Prompt** submitted to the AI, the generated **Flow**, and the generation details and token usage.
 
 You can delete a generation from the list.
 
-<Warning>
+<Note>
   Deleting a generation only removes the generation record. The flow already created for the tenant is not affected.
-</Warning>
+</Note>

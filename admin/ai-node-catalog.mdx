@@ -14,27 +14,31 @@ You can enable or disable nodes and update their **Purpose** to help the AI use 
 
 ## Node list
 
-![The AI Node Catalog, with each node's type, category, branching and enabled state](/images/admin/ai-node-catalog.png)
+<Frame caption="The AI Node Catalog, with each node's type, category, branching and enabled state">
+  <img src="/images/admin/ai-node-catalog.png" alt="The AI Node Catalog, with each node's type, category, branching and enabled state" />
+</Frame>
 
-| Column        | Description                                      |
-| ------------- | ------------------------------------------------ |
-| **Node Type** | Internal name of the node.                       |
-| **Label**     | Display name of the node.                        |
-| **Category**  | Category the node belongs to.                    |
+| Column | Description |
+| ------ | ----------- |
+| **Node Type** | Internal name of the node. |
+| **Label** | Display name of the node. |
+| **Category** | Category the node belongs to. |
 | **Branching** | Whether the node can create multiple flow paths. |
-| **Enabled**   | Whether the AI can use the node.                 |
+| **Enabled** | Whether the AI can use the node. |
 
 ## Configure a node
 
-![The Edit Node panel, with the editable purpose and the read-only code-derived fields](/images/admin/ai-node-edit.png)
-
 Open a node to view its details.
 
-You can edit the following field:
+<Frame caption="The Edit Node panel, with the editable purpose and the read-only code-derived fields">
+  <img src="/images/admin/ai-node-edit.png" alt="The Edit Node panel, with the editable purpose and the read-only code-derived fields" />
+</Frame>
 
-**Purpose** — Describe what the node does and when the AI should use it.
+**Purpose** is the only editable field. Describe what the node does and when the AI should use it.
 
-The **Purpose** is included in every AI flow generation request. A clear description helps the AI select and use the node correctly.
+<Tip>
+  The **Purpose** is included in every AI flow generation request. A clear description helps the AI select and use the node correctly.
+</Tip>
 
 <Info>
   **Node Type, Label, Category, and Branching** are read-only. These values are controlled by the platform and updated automatically.
@@ -44,8 +48,10 @@ The **Purpose** is included in every AI flow generation request. A clear descrip
 
 Use the **Enabled** switch to control whether the AI can use a node.
 
-- **Enabled** — The AI can use the node in generated flows.
-- **Disabled** — The node is excluded from AI generation.
+| Setting | Effect |
+| --- | --- |
+| **Enabled** | The AI can use the node in generated flows. |
+| **Disabled** | The node is excluded from AI generation. |
 
 Disabling a node does not remove it from the manual automation builder.
 

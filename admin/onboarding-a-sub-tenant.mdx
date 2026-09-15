@@ -4,34 +4,33 @@ description: "Create tenants from the panel or let them register themselves."
 icon: "user-plus"
 ---
 
-## Before You Start
-
 <Warning>
-  Set up [**registration and email**](#registration--verification-settings),
-  [**bot protection**](#bot-protection), and [**social login**](#social-login)
-  before tenants start registering. These settings apply only to new
-  registrations and do not affect existing tenants.
+  Set up [**registration and email**](#registration-verification-settings), [**bot protection**](#bot-protection), and [**social login**](#social-login) before tenants start registering. These settings apply only to new registrations and do not affect existing tenants.
 </Warning>
 
 ## Registration & Verification Settings
 
 Go to **Settings → Tenant Settings**.
 
-![The Tenant Settings page, with the registration toggles and the tenant plan limit alert](/images/admin/tenant-settings.png)
+<Frame caption="The Tenant Settings page, with the registration toggles and the tenant plan limit alert">
+  <img src="/images/admin/tenant-settings.png" alt="The Tenant Settings page, with the registration toggles and the tenant plan limit alert" />
+</Frame>
 
-### Allow Tenant Registration
+### Allow tenant registration
 
-- **Enable Registration** — Lets tenants create their own accounts. Enabled by default.
+**Enable Registration** lets tenants create their own accounts. It is **enabled by default**.
 
 When disabled, new registrations are closed, but existing tenants can continue using their accounts.
 
-### Verification and Emails
+### Verification and emails
 
 These settings are **off by default**:
 
-- **Enable Email Verification** — Requires tenants to verify their email before signing in. Verification links are valid for 60 minutes and can be sent again.
-- **Enable Registration Success Email** — Sends a confirmation email after registration.
-- **Enable Send Welcome Mail** — Sends a welcome email with the tenant's plan and dashboard link. If email verification is enabled, it is sent after verification.
+| Setting | What it does |
+| ------- | ------------ |
+| **Enable Email Verification** | Requires tenants to verify their email before signing in. Verification links are valid for 60 minutes and can be sent again. |
+| **Enable Registration Success Email** | Sends a confirmation email after registration. |
+| **Enable Send Welcome Mail** | Sends a welcome email with the tenant's plan and dashboard link. If email verification is enabled, it is sent after verification. |
 
 <Note>
   Only self-registered tenants need email verification. Tenants added from the panel and those signing in with Google or Facebook are already verified.
@@ -48,93 +47,97 @@ The default threshold is **80%** and can be set from **50%–99%**.
 <Note>
   This alert is sent to the tenant.
 
-  To receive alerts for the reseller's own plan, enable **Plan Limit Almost
-  Reached** under **Settings → Admin Notifications**.
-
-  These are separate settings.
+  To receive alerts for the reseller's own plan, enable **Plan Limit Almost Reached** under **Settings → Admin Notifications**. These are separate settings.
 </Note>
 
 ## Bot Protection
 
 Go to **Settings → Re-Captcha** to protect login, password recovery, and tenant registration from bots.
 
-![The Bot Protection page, with the reCAPTCHA and Turnstile provider options and their key fields](/images/admin/bot-protection.png)
+<Frame caption="The Bot Protection page, with the reCAPTCHA and Turnstile provider options and their key fields">
+  <img src="/images/admin/bot-protection.png" alt="The Bot Protection page, with the reCAPTCHA and Turnstile provider options and their key fields" />
+</Frame>
 
-The platform supports:
-
-- **Google reCAPTCHA v3**
-- **Cloudflare Turnstile**
+| Provider | Required keys |
+| --- | --- |
+| **Google reCAPTCHA v3** | Requires a **Site Key** and **Secret Key** from Google. |
+| **Cloudflare Turnstile** | Requires a **Site Key** and **Secret Key** from Cloudflare. |
 
 Only one provider can be active at a time. Bot protection is **off by default**.
 
-The selected provider requires a **Site Key** and **Secret Key**.
-
 <Warning>
-  Incorrect keys can prevent tenants from logging in, not just from
-  registering. Make sure the keys match the selected provider before enabling
-  bot protection.
+  Incorrect keys can prevent tenants from logging in, not just from registering. Make sure the keys match the selected provider before enabling bot protection.
 </Warning>
 
 ## Social Login
 
-Go to **Settings → Social Auth** to let tenants and reseller staff sign in with **Google** or **Facebook**.
+Go to **Settings → Social Auth** to let tenants and reseller staff sign in with **Google** or **Facebook**. Both providers are **off by default**.
 
-![The Social Login Settings page, with the Google and Facebook credential and redirect URI fields](/images/admin/social-login.png)
+<Frame caption="The Social Login Settings page, with the Google and Facebook credential and redirect URI fields">
+  <img src="/images/admin/social-login.png" alt="The Social Login Settings page, with the Google and Facebook credential and redirect URI fields" />
+</Frame>
 
-Both providers are **off by default** and require:
+<Tabs>
+  <Tab title="Google">
+    **Required credentials:** Client ID and Client Secret.
 
-- **Google** — Client ID and Client Secret
-- **Facebook** — App ID and App Secret
+    Add the redirect URL shown on this page to your Google developer console as the **Authorized Redirect URI**.
+  </Tab>
+  <Tab title="Facebook">
+    **Required credentials:** App ID and App Secret.
 
-Each provider shows a **redirect URL** to add to its developer console:
-
-- **Google** — Authorized Redirect URI
-- **Facebook** — Valid OAuth Redirect URI
+    Add the redirect URL shown on this page to your Facebook developer console as the **Valid OAuth Redirect URI**.
+  </Tab>
+</Tabs>
 
 A new tenant signing in with Google or Facebook for the first time gets an account created automatically.
 
 <Info>
-  Copy the redirect URL exactly as shown, including `https://`. If it does not
-  match, social login will not work.
+  Copy the redirect URL exactly as shown, including `https://`. If it does not match, social login will not work.
 </Info>
 
 ## Adding a Tenant
 
-### From the Panel
+<Tabs>
+  <Tab title="From the panel">
+    <Frame caption="The Add Tenant form, with the tenant, workspace, plan, and password fields">
+      <img src="/images/admin/add-tenant-form.png" alt="The Add Tenant form, with the tenant, workspace, plan, and password fields" />
+    </Frame>
 
-![The Add Tenant form, with the tenant, workspace, plan, and password fields](/images/admin/add-tenant-form.png)
+    <Steps>
+      <Step title="Open the Add Tenant form">
+        Go to **Tenants** and click **Add Tenant**.
+      </Step>
+      <Step title="Enter the tenant details">
+        | Field | Description |
+        | ----- | ----------- |
+        | **Full name** and **Email** | The tenant's name and email address. |
+        | **Workspace** | The tenant's business or company name. |
+        | **Tenant Name** | Used as the tenant's subdomain. Generated from the **Workspace** name using lowercase letters and numbers, and can be changed. |
+        | **Phone** | The tenant's phone number. **Country** and **Address** are optional. |
+        | **Plan** | Optional. Leave **Select a plan** if the plan will be assigned later. |
+        | **Password** and **Confirm Password** | Set and confirm the tenant's password. |
+      </Step>
+      <Step title="Save">
+        Click **Save**.
+      </Step>
+    </Steps>
 
-1. Go to **Tenants** and click **Add Tenant**.
-2. Enter:
-   - **Full name** and **Email** — The tenant's name and email address.
-   - **Workspace** — The tenant's business or company name.
-   - **Tenant Name** — Used as the tenant's subdomain. It is generated from the **Workspace** name using lowercase letters and numbers, and can be changed.
-   - **Phone** — The tenant's phone number. **Country** and **Address** are optional.
-   - **Plan** — Optional. Leave **Select a plan** if the plan will be assigned later.
-   - **Password** and **Confirm Password** — Set and confirm the tenant's password.
-3. Click **Save**.
+    <Info>
+      You must share the login details with the tenant separately.
+    </Info>
+  </Tab>
+  <Tab title="Public registration">
+    When **Enable Registration** is enabled, tenants can create their own accounts and choose a plan during registration.
 
-<Note>
-  If no plan is selected, the tenant is created without a subscription. The
-  tenant can sign in, but plan-based limits are set to 0, so the platform
-  cannot be used normally.
+    Their workspace is created automatically after registration.
+  </Tab>
+</Tabs>
 
-  Assign a plan from the tenant's **Edit** form to give the tenant access to
-  the plan's features and limits.
-</Note>
+## What the tenant sees
 
-The password is set when the account is created. No password setup email is sent. The reseller must share the login details with the tenant separately.
+After signing in, tenants see the features and limits available on their plan. Features not included in the plan appear with a lock icon and an **Upgrade Plan** option.
 
-### Public Registration
-
-When **Enable Registration** is enabled, tenants can create their own accounts and choose a plan during registration. Their workspace is created automatically after registration.
-
-## What the Tenant Sees
-
-After signing in, tenants see the features and limits available on their plan.
-
-Features not included in the plan appear with a lock icon and an **Upgrade Plan** option.
-
-To view the tenant's experience, go to **Tenant List** → **Impersonate**. An **You are impersonating this tenant** banner appears while active.
-
-Select **Stop Impersonating** to return to the reseller account.
+<Tip>
+  To view the tenant's experience, go to **Tenant List → Impersonate**. A **You are impersonating this tenant** banner appears while active. Select **Stop Impersonating** to return to the reseller account.
+</Tip>

@@ -14,72 +14,78 @@ When a tenant starts a collection, it is **copied** to their account. The copy i
 
 ## Collection sources
 
-The **Source** column shows where a collection comes from:
+The **Source** column shows where a collection comes from.
 
-- **From the platform** — Provided by the platform and updated through syncing.
-- **Your own** — Created or imported by you.
+| Source | Description |
+| --- | --- |
+| **From the platform** | Provided by the platform and updated through syncing. |
+| **Your own** | Created or imported by you. |
 
 ## Collection list
 
-![The Seeder Library list, with each collection's type, source and availability switch](/images/admin/seeder-library-list.png)
+<Frame caption="The Seeder Library list, with each collection's type, source and availability switch">
+  <img src="/images/admin/seeder-library-list.png" alt="The Seeder Library list, with each collection's type, source and availability switch" />
+</Frame>
 
-| Column                     | Description                                            |
-| -------------------------- | ------------------------------------------------------ |
-| **Name**                   | Name shown to tenants.                                 |
-| **Type**                   | **Automation** or **WhatsApp Flow**.                   |
-| **Seeder Key**             | Unique key used when importing or syncing collections. |
-| **Source**                 | Platform-provided or your own.                         |
-| **Available to Customers** | Whether tenants can use the collection.                |
+| Column | Description |
+| ------ | ----------- |
+| **Name** | Name shown to tenants. |
+| **Type** | **Automation** or **WhatsApp Flow**. |
+| **Seeder Key** | Unique key used when importing or syncing collections. |
+| **Source** | Platform-provided or your own. |
+| **Available to Customers** | Whether tenants can use the collection. |
 
-You can filter collections by **Type**, **Source**, and availability.
+<Tip>
+  You can filter collections by **Type**, **Source**, and availability.
+</Tip>
 
 ## Add collections
 
-### Sync Seeders
+<Tabs>
+  <Tab title="Sync Seeders">
+    Click **Sync Seeders** to get the latest platform collections. Syncing:
 
-Click **Sync Seeders** to get the latest platform collections.
+    - Adds new platform collections.
+    - Updates existing platform collections.
+    - Does not change the **Available to Customers** setting.
 
-Syncing:
+    <Note>
+      A hidden collection stays hidden after syncing.
+    </Note>
+  </Tab>
+  <Tab title="Add Collection">
+    Click **Add Collection** to create your own collection.
 
-- Adds new platform collections.
-- Updates existing platform collections.
-- Does not change the **Available to Customers** setting.
+    <Frame caption="The Add Collection panel, with the seeder key, type, flow JSON and availability switch">
+      <img src="/images/admin/seeder-add-collection.png" alt="The Add Collection panel, with the seeder key, type, flow JSON and availability switch" />
+    </Frame>
 
-<Note>
-  A hidden collection stays hidden after syncing.
-</Note>
+    Supported types are **Automation**, **WhatsApp Flow**, and **Template**.
+  </Tab>
+  <Tab title="Import">
+    Click **Import** to import collections from a `.json` file.
 
-### Add Collection
+    <Frame caption="The Import page, with the upload area and the required and optional fields">
+      <img src="/images/admin/seeder-import.png" alt="The Import page, with the upload area and the required and optional fields" />
+    </Frame>
 
-Click **Add Collection** to create your own collection.
-
-![The Add Collection panel, with the seeder key, type, flow JSON and availability switch](/images/admin/seeder-add-collection.png)
-
-Supported types are:
-
-- **Automation**
-- **WhatsApp Flow**
-- **Template**
-
-### Import
-
-Click **Import** to import collections from a `.json` file.
-
-![The Import page, with the upload area and the required and optional fields](/images/admin/seeder-import.png)
-
-- Maximum file size: **10 MB**
-- The file can contain a single collection or an array of collections.
-- Use a unique **seeder_key** to safely re-import a collection.
-- If the same `seeder_key` already exists, the collection is updated instead of duplicated.
-- The **Available to Customers** setting is not changed during import.
+    - Maximum file size: **10 MB**
+    - The file can contain a single collection or an array of collections.
+    - Use a unique **seeder_key** to safely re-import a collection.
+    - If the same `seeder_key` already exists, the collection is updated instead of duplicated.
+    - The **Available to Customers** setting is not changed during import.
+  </Tab>
+</Tabs>
 
 ## Edit collections
 
-Editing depends on the collection source:
+Editing depends on the collection source.
 
-- **Your own** — You can edit or delete the collection.
-- **From the platform** — You cannot edit the collection because syncing can overwrite changes. You can still enable, disable, or delete it.
+| Source | What you can do |
+| --- | --- |
+| **Your own** | You can edit or delete the collection. |
+| **From the platform** | You cannot edit it, because syncing can overwrite changes. You can still enable, disable, or delete it. |
 
-<Note>
+<Tip>
   To customize a platform collection, create or import your own version and disable the original collection.
-</Note>
+</Tip>
