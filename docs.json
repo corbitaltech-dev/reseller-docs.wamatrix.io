@@ -49,7 +49,9 @@
             "pages": [
               "admin/core-platform",
               "admin/infrastructure-and-security",
-              "admin/channels"
+              "admin/channels",
+              "admin/tech-provider-approval",
+              "admin/messenger-permissions"
             ],
             "icon": "settings"
           },
