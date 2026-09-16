@@ -1,11 +1,15 @@
 ---
 title: "Onboarding a Tenant"
-description: "Create tenants from the panel or let them register themselves."
+description: "Set up how tenants join your platform, and onboard your first tenant."
 icon: "user-plus"
 ---
 
+A tenant can join your platform in two ways. They sign up on your registration page, or you create their account from the panel.
+
+You control both. Set everything up here before your first tenant arrives.
+
 <Warning>
-  Set up [**registration and email**](#registration-verification-settings), [**bot protection**](#bot-protection), and [**social login**](#social-login) before tenants start registering. These settings apply only to new registrations and do not affect existing tenants.
+  Set up [**registration and email**](#registration-verification-settings), [**bot protection**](#bot-protection), and [**social login**](#social-login) before tenants start registering. These settings apply to new registrations only and do not affect existing tenants.
 </Warning>
 
 ## Registration & Verification Settings
@@ -18,9 +22,10 @@ Go to **Settings → Tenant Settings**.
 
 ### Allow tenant registration
 
-**Enable Registration** lets tenants create their own accounts. It is **enabled by default**.
+**Enable Registration** lets anyone create their own account on your signup page. It is **on by default**.
 
-When disabled, new registrations are closed, but existing tenants can continue using their accounts.
+Using this setting, you can close your registration page. Nobody new can sign up.
+Your existing tenants are not affected. You can also still [add tenants yourself from the panel](#adding-a-tenant).
 
 ### Verification and emails
 
@@ -33,26 +38,28 @@ These settings are **off by default**:
 | **Enable Send Welcome Mail** | Sends a welcome email with the tenant's plan and dashboard link. If email verification is enabled, it is sent after verification. |
 
 <Note>
-  Only self-registered tenants need email verification. Tenants added from the panel and those signing in with Google or Facebook are already verified.
+  Only tenants who register through your signup page need email verification. Tenants you [add from the panel](#adding-a-tenant), and anyone signing in with Google or Facebook, are already verified.
 
-  SMTP must be configured before verification emails can be sent.
+  Set up [**SMTP**](/pa/branding#sender-identity-smtp) before you turn this on.
 </Note>
 
-## Tenant Plan Limit Alerts
+## Customer Plan Limit Alerts
 
-**Tenant Near Plan Limit** sends an email when a tenant reaches the selected usage threshold. It is **off by default**.
+**Customer Near Plan Limit** warns a tenant by email when they are close to using up a limit on their plan. It is **off by default**.
 
-The default threshold is **80%** and can be set from **50%–99%**.
+The email goes out at **80%** of the limit by default. You can change this to any value from **50%** to **99%**.
 
 <Note>
-  This alert is sent to the tenant.
+  This email goes to the tenant, not to you. It is about the plan you sold them.
 
-  To receive alerts for the reseller's own plan, enable **Plan Limit Almost Reached** under **Settings → Admin Notifications**. These are separate settings.
+  For an alert about your **own** WaMatrix.io plan, turn on **Plan Limit Almost Reached** under [**Settings → Notification**](/pa/core-platform#notification).
 </Note>
 
 ## Bot Protection
 
-Go to **Settings → Re-Captcha** to protect login, password recovery, and tenant registration from bots.
+Bot protection stops fake signups. It adds a check to your login, password recovery, and registration pages.
+
+Go to **Settings → Infrastructure & Security → Re-Captcha** to turn it on.
 
 <Frame caption="The Bot Protection page, with the reCAPTCHA and Turnstile provider options and their key fields">
   <img src="/images/pa/bot-protection.png" alt="The Bot Protection page, with the reCAPTCHA and Turnstile provider options and their key fields" />
@@ -63,15 +70,17 @@ Go to **Settings → Re-Captcha** to protect login, password recovery, and tenan
 | **Google reCAPTCHA v3** | Requires a **Site Key** and **Secret Key** from Google. |
 | **Cloudflare Turnstile** | Requires a **Site Key** and **Secret Key** from Cloudflare. |
 
-Only one provider can be active at a time. Bot protection is **off by default**.
+You can use only one provider at a time, and bot protection is **off by default**.
 
 <Warning>
-  Incorrect keys can prevent tenants from logging in, not just from registering. Make sure the keys match the selected provider before enabling bot protection.
+  Wrong keys block tenants from logging in, not just from registering. Check that your keys match the provider you picked before you turn this on.
 </Warning>
 
 ## Social Login
 
-Go to **Settings → Social Auth** to let tenants and reseller staff sign in with **Google** or **Facebook**. Both providers are **off by default**.
+Social login lets tenants sign in with **Google** or **Facebook**, so they do not need another password. Both are **off by default**.
+
+Go to **Settings → Infrastructure & Security → Social Login** to turn them on.
 
 <Frame caption="The Social Login Settings page, with the Google and Facebook credential and redirect URI fields">
   <img src="/images/pa/social-login.png" alt="The Social Login Settings page, with the Google and Facebook credential and redirect URI fields" />
@@ -98,6 +107,8 @@ A new tenant signing in with Google or Facebook for the first time gets an accou
 
 ## Adding a Tenant
 
+There are two ways in. You can create the account yourself from the panel, which is useful for a tenant you sold to directly, or let them register on your signup page.
+
 <Tabs>
   <Tab title="From the panel">
     <Frame caption="The Add Tenant form, with the tenant, workspace, plan, and password fields">
@@ -113,7 +124,7 @@ A new tenant signing in with Google or Facebook for the first time gets an accou
         | ----- | ----------- |
         | **Full name** and **Email** | The tenant's name and email address. |
         | **Workspace** | The tenant's business or company name. |
-        | **Tenant Name** | Used as the tenant's subdomain. Generated from the **Workspace** name using lowercase letters and numbers, and can be changed. |
+        | **Tenant Name** | Becomes the tenant's subdomain, so it must be different from every other tenant. Filled in from the **Workspace** name, and you can edit it. Lowercase letters and numbers only, with no spaces or hyphens. |
         | **Phone** | The tenant's phone number. **Country** and **Address** are optional. |
         | **Plan** | Optional. Leave **Select a plan** if the plan will be assigned later. |
         | **Password** and **Confirm Password** | Set and confirm the tenant's password. |
@@ -124,7 +135,7 @@ A new tenant signing in with Google or Facebook for the first time gets an accou
     </Steps>
 
     <Info>
-      You must share the login details with the tenant separately.
+      The platform does not email these details to the tenant. Send their email address and password to them yourself.
     </Info>
   </Tab>
   <Tab title="Public registration">
@@ -136,8 +147,30 @@ A new tenant signing in with Google or Facebook for the first time gets an accou
 
 ## What the tenant sees
 
-After signing in, tenants see the features and limits available on their plan. Features not included in the plan appear with a lock icon and an **Upgrade Plan** option.
+A new tenant picks a plan and pays. What happens next depends on the payment method.
+
+<Steps>
+  <Step title="They pay online" icon="credit-card">
+    The plan starts straight away. The tenant is redirected to their dashboard and can start using the features their plan includes.
+  </Step>
+  <Step title="Or they pay by bank transfer" icon="landmark">
+    They see a **Pending Approval** screen until you check the payment. Once you approve it under [**Offline payments**](/pa/offline-payments), the plan starts and their dashboard opens.
+  </Step>
+</Steps>
+
+To see what their plan includes, a tenant opens **My Subscription**. That page lists their features and shows how much of each limit they have used.
 
 <Tip>
-  To view the tenant's experience, go to **Tenant List → Impersonate**. A **You are impersonating this tenant** banner appears while active. Select **Stop Impersonating** to return to the reseller account.
+  Want to see what they see? Go to **Tenant List → Impersonate** to open their account as they would. A **You are impersonating this tenant** banner shows while you are in, and **Stop Impersonating** takes you back.
 </Tip>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Managing tenants" icon="building-2" href="/pa/managing-customers">
+    Find, view, suspend, or impersonate the tenants on your platform.
+  </Card>
+  <Card title="Plan limits & tenant access" icon="gauge" href="/pa/plan-limits-and-customer-access">
+    Control what each plan unlocks once a tenant is in.
+  </Card>
+</CardGroup>
