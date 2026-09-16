@@ -1,14 +1,14 @@
 ---
 title: "Subscriptions"
-description: "View tenant subscriptions, plans, billing status, and renewal dates."
+description: "Monitor tenant plans, subscription status, billing, and renewals in one place."
 icon: "repeat"
 ---
 
-**Sales → Subscriptions** shows all tenant subscriptions. Each subscription appears as a separate row.
+Every tenant on a paid or trial plan has a subscription. Use this page to check which plan a tenant is on, whether their billing is up to date, and when they renew.
 
-A subscription is created when you assign a plan to a tenant or when a tenant purchases a plan.
+A subscription starts one of three ways: a tenant checks out through a live payment gateway, you approve their bank transfer under [**Offline Payments**](/pa/offline-payments), or they are picked up automatically when a free or trial plan is assigned during [onboarding](/pa/onboarding-a-sub-tenant). Picking a paid plan during onboarding only records the choice — the subscription itself only starts once payment settles.
 
-## Subscription details
+## What you see on the screen
 
 <Frame caption="The Subscriptions list, with each tenant's plan, status, billing cycle, and payment method">
   <img src="/images/pa/subscriptions-list.png" alt="The Subscriptions list, with each tenant's plan, status, billing cycle, and payment method" />
@@ -16,27 +16,56 @@ A subscription is created when you assign a plan to a tenant or when a tenant pu
 
 | Column | Description |
 | ------ | ----------- |
-| **Tenant** | Name of the tenant. Click the name to view subscription details. |
+| **Tenant** | Name of the tenant. Click the name to view their subscription details. |
 | **Plan** | Plan currently assigned to the tenant. |
 | **Status** | Current subscription status. |
 | **Cycle** | Billing period, such as monthly or yearly. |
-| **Paid Via** | Payment method used for the subscription. |
+| **Paid Via** | How the tenant paid. See [Payment methods](#payment-methods) below. |
 | **Renews** | Date when the current billing period ends. |
 | **Started** | Date when the subscription started. |
 
-<Tip>
-  Click a column heading to sort the list.
-</Tip>
+### Filter the list
+
+Use the filter panel to narrow down a long list of tenants:
+
+- **Status** — Trial, Active, or Expired. Billing Only and Suspended are not offered as filter choices yet, even though both appear in the **Status** column. See [Common questions](#common-questions) below.
+- **Plan** — show only tenants on one plan.
+- **Created From** / **Created To** — a date range for when the subscription started.
+- **Expiring Soon** — tenants renewing within 7, 14, or 30 days.
+- **Billing Period** — monthly, yearly, and so on.
+- **Paid Via** — filter by payment method, including methods you have never actually been paid with yet.
+- **Trial Active** — only tenants currently on a trial.
+- **Expiring This Week** — a quick toggle for this week's renewals.
+- **New This Month** — tenants who started this month.
+
+## Payment methods
+
+The **Paid Via** column and filter show how the tenant is paying:
+
+| Value | It means |
+| --- | --- |
+| **Razorpay**, **PayPal**, **Tap Payments**, **Paymob** | The tenant paid through a live gateway you configured under [Payment Gateway Settings](/pa/billing-and-payouts#payment-gateway-settings). They checked out directly — you never see or touch the card details. |
+| **Bank Transfer** | The tenant paid you directly and you approved their payment request under [Offline Payments](/pa/offline-payments). |
+| **Trial** | A free or trial plan, with no payment involved. |
+
+<Note>
+  A row can briefly show no payment method at all. This happens right after a tenant picks a paid plan during onboarding but before they finish paying — the pick is recorded, but the subscription itself has not started yet.
+</Note>
 
 ## Subscription status
 
 | Status | Description |
 | ------ | ----------- |
-| **Trial** | Tenant is using the plan during the trial period. |
+| **Trial** | Tenant is using a free plan's trial period. Trials do not go through grace or billing-only — a lapsed trial expires directly, with no extra days added. |
 | **Active** | Subscription is active and the tenant has access to the plan. |
 | **Billing Only** | Payment is overdue. The tenant can sign in and make the payment, but other features are unavailable. |
-| **Suspended** | Payment has failed after the allowed attempts and tenant access is stopped. |
+| **Suspended** | Automatic payment retries (dunning) have failed after the allowed attempts, and access is stopped. This is different from manually suspending a tenant — see the note below. |
 | **Expired** | The subscription period has ended and the plan was not renewed. |
+| **Cancelled** | Not a separate status shown in this column. A cancelled subscription keeps its current status (usually **Active**) until the period ends, then becomes **Expired**. See the note below. |
+
+<Warning>
+  **Suspended here is not the same as manually suspending a tenant.** This page's **Suspended** status is set automatically, only when repeated payment retries fail on a tenant with auto-renewal switched on. Manually suspending a tenant from [**Managing tenants → Suspend, deactivate, and reactivate**](/pa/managing-customers#suspend-deactivate-and-reactivate) is a separate action on the tenant's account. A manual suspension does not change anything on this page — this **Status** column can still say **Active** while the tenant is locked out. To check a manual suspension, look at the tenant's own status on the [tenant list](/pa/managing-customers), not here.
+</Warning>
 
 ### Subscription status flow
 
@@ -44,24 +73,26 @@ The status changes automatically based on the subscription and payment status.
 
 <Steps>
   <Step title="Grace period" icon="clock">
-    When the subscription period ends, the tenant enters the **grace period** and keeps full access.
+    When the subscription period ends, the tenant enters the **grace period** and keeps full access while payment is pending.
   </Step>
   <Step title="Billing Only" icon="credit-card">
-    After the grace period ends, the status changes to **Billing Only**. The tenant can sign in and complete the pending payment.
+    After the grace period ends, the status changes to **Billing Only**. The tenant can sign in and complete the pending payment, but other features are unavailable.
   </Step>
-  <Step title="Expired" icon="circle-x">
-    If the billing period ends without payment, the subscription becomes **Expired**.
+  <Step title="Suspended or Expired" icon="circle-x">
+    From **Billing Only**, the subscription goes one of two ways:
+    - If automatic payment retries keep failing, the status changes to **Suspended** and access is stopped completely — the tenant can no longer sign in.
+    - If the billing-only period ends with no payment at all, the subscription becomes **Expired**.
   </Step>
 </Steps>
 
 <Info>
-  Tenants with **Billing Only** status can still sign in and complete their payment. Their full access is restored after the payment is successful.
+  Tenants with **Billing Only** status can still sign in and complete their payment. Their full access is restored after the payment is successful. Tenants with **Suspended** status cannot sign in — the subscription must be manually reactivated or a new plan assigned.
 </Info>
 
 You can configure the grace period and billing-only period under [**Settings → Subscription Lifecycle**](/pa/core-platform#grace-period-suspension).
 
 <Note>
-  If a tenant cancels their subscription, it remains **Active** until the current subscription period ends. Cancellation does not stop access immediately.
+  If a tenant cancels their subscription, the **Status** column does not change — it stays whatever it was (usually **Active**) until the current subscription period ends, then becomes **Expired**. Cancellation does not stop access immediately, and there is no separate "Cancelled" badge in the list. A tenant cancels from their own billing page, not from this admin panel. To confirm whether a tenant has cancelled, check the **Timeline** on their subscription details page.
 </Note>
 
 ## View subscription details
@@ -75,14 +106,77 @@ Click a tenant's name to open the subscription details page.
 | Section | What it shows |
 | --- | --- |
 | **Plan** | Plan name, price, and billing period. |
-| **Timeline** | Subscription events such as activation, renewal, plan changes, payment issues, cancellation, and expiration. |
+| **Timeline** | The dates on record for this subscription. See the table below. |
 | **Features** | Features and limits available with the tenant's plan. |
 | **Invoices** | Invoices related to the subscription, which can be opened and downloaded as PDF. |
+
+### Timeline events
+
+The **Timeline** only shows events that actually happened on this subscription — a fresh trial, for example, shows only **Started**.
+
+| Event | It means |
+| --- | --- |
+| **Started** | The subscription was first created. |
+| **Current period start** | The date the current billing period began. |
+| **Current period end** | The date the current billing period ends, or ended. |
+| **Grace period ends** | The last day of full access after the period ended. |
+| **Suspended until** | Set only while the subscription is in the automatic **Suspended** state. |
+| **Canceled** | The date the tenant cancelled. Access continues until the period ends. |
+| **Ends** | The date access actually stops for a cancelled subscription — the same date as **Current period end** at the time of cancelling. |
 
 ## Manage subscriptions
 
 The Subscriptions page is mainly used to view subscription information. You cannot change the plan or renewal date from this page. The only row action is **Delete**.
 
+<Note>
+  **Delete** only appears for reseller staff with the **Delete Subscriptions** permission. If a team member doesn't see it, check their role under [Users & roles](/pa/users-and-roles).
+</Note>
+
 <Warning>
   **Delete permanently removes the subscription.** This action cannot be undone. Use it only when a subscription was created by mistake. Do not use Delete to cancel a tenant's subscription.
 </Warning>
+
+### Upgrades and downgrades
+
+Tenants change their own plan from their billing page. You cannot start an upgrade or downgrade for them from this admin panel, but the result shows up here:
+
+- **Upgrading** takes effect right away. If the tenant had time left on their old plan, that time is turned into a proration credit and shown as a line item on their next invoice.
+- **Downgrading** never takes effect mid-cycle. The tenant keeps their current plan until the billing period ends — the downgrade only applies at the next renewal.
+
+Both show up as a **Plan upgraded** or **Plan downgraded** event on the tenant's Timeline.
+
+## How it connects
+
+- [**Offline Payments**](/pa/offline-payments) — where you approve or reject a tenant's bank transfer, which is what actually activates or renews a **Bank Transfer** subscription.
+- [**Plans & pricing**](/pa/plans-and-pricing) — where you set up the plans, prices, and trial days that show up on this page.
+- [**Settings → Subscription Lifecycle**](/pa/core-platform#grace-period-suspension) — where grace period, billing-only days, and dunning retries are configured.
+- [**Settings → Subscription Lifecycle → Deletion Scheduling**](/pa/core-platform#deletion-scheduling) — see [Common questions](#common-questions) below for why this matters after a subscription is Suspended.
+- [**Managing tenants**](/pa/managing-customers#suspend-deactivate-and-reactivate) — where you manually suspend, deactivate, or delete a tenant, separately from anything on this page.
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Why does a cancelled subscription still show Active?" icon="circle-help">
+    Cancelling only stops renewal. The tenant already paid for the current period, so they keep access, and the **Status** column keeps showing **Active** (or whatever it already was) until that period ends. It then becomes **Expired**. Check the **Timeline** on the tenant's subscription detail page to see the actual cancellation date.
+  </Accordion>
+  <Accordion title="Can I upgrade or downgrade a tenant's plan from here?" icon="circle-help">
+    No. A tenant changes their own plan from their billing page. This page only shows the result, as a **Plan upgraded** or **Plan downgraded** event on their Timeline.
+  </Accordion>
+  <Accordion title="Why can't I filter by Suspended or Billing Only status?" icon="circle-help">
+    The **Status** filter currently only offers Trial, Active, and Expired, even though **Billing Only** and **Suspended** both appear as real values in the **Status** column. To find suspended or billing-only tenants today, sort by **Renews** or check tenants flagged by dunning payment-failure alerts.
+  </Accordion>
+  <Accordion title="What happens after a subscription is Suspended?" icon="circle-help">
+    If nothing changes, the tenant's account moves toward deletion. Suspension through failed payment retries automatically schedules the tenant for deletion after the delay set in [**Deletion Scheduling**](/pa/core-platform#deletion-scheduling) — 14 days by default — unless you have already scheduled a deletion for them yourself. Reactivate the subscription or assign a new plan before that date if you want to keep the tenant.
+  </Accordion>
+</AccordionGroup>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Invoices & payments" icon="receipt" href="/pa/invoices-and-payments">
+    See every invoice raised for a tenant and its payment history.
+  </Card>
+  <Card title="Offline payments" icon="banknote" href="/pa/offline-payments">
+    Review and approve bank transfer requests that turn into subscriptions here.
+  </Card>
+</CardGroup>
