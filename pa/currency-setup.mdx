@@ -6,15 +6,11 @@ icon: "coins"
 
 Your platform collects payment in **one** currency. Every plan you price, every invoice you issue, and every payment your tenants make uses it.
 
-A price on its own is just a number. When you type `499` into a plan, your base currency is what decides whether that means 499 rupees or 499 dollars, and it puts the right symbol (`₹499`) next to it everywhere your tenants see it.
-
-<Note>
-  This is separate from the currency you pay **WaMatrix.io** in for your own reseller plan. This setting only controls how you bill **your** tenants.
-</Note>
+When you type `499` into a plan price, your base currency is what decides whether that means 499 rupees or 499 dollars. It also puts the right symbol next to it, so your tenants see `₹499` wherever the price appears.
 
 ## Why the base currency matters
 
-Setting the currency is not a cosmetic preference. It unlocks and defines the rest of your billing setup.
+This is not just about which symbol your tenants see. Nothing else in billing works until it is set.
 
 <CardGroup cols={2}>
   <Card title="It unlocks plan creation" icon="layers" href="/pa/plans-and-pricing">
@@ -24,7 +20,7 @@ Setting the currency is not a cosmetic preference. It unlocks and defines the re
     A price of `499` is meaningless on its own. The base currency is what makes it ₹499 rather than $499.
   </Card>
   <Card title="It sets the symbol everywhere" icon="badge-dollar-sign">
-    Your symbol is used on the storefront, the admin panel, invoices, PDFs, and billing emails.
+    Your symbol is used on your pricing page, in the panel, on invoices and PDFs, and in billing emails.
   </Card>
   <Card title="It scopes taxes and coupons" icon="percent" href="/pa/billing-and-payouts#taxes">
     Tax rates and fixed-amount coupons use the same currency as your plans.
@@ -36,8 +32,8 @@ Setting the currency is not a cosmetic preference. It unlocks and defines the re
 | Area | How the currency is used |
 | ---- | ------------------------ |
 | [**Plans**](/pa/plans-and-pricing) | Every plan is priced in the base currency and tagged with it on save. |
-| **Public plans page** | Prices are shown to visitors with your symbol. |
-| [**Subscriptions**](/pa/subscriptions) | Recurring charges are raised in the base currency. |
+| **Your pricing page** | Plan prices are shown to visitors with your symbol. |
+| [**Subscriptions**](/pa/subscriptions) | Every renewal charges the tenant in your base currency. |
 | [**Invoices**](/pa/invoices-and-payments) | Invoice totals, line items, and generated PDFs use your symbol. |
 | [**Offline payments**](/pa/offline-payments) | Submitted amounts and approval alerts are shown in the base currency. |
 | [**Coupons**](/pa/coupons) | Fixed-amount discounts are deducted in the base currency. |
@@ -45,14 +41,12 @@ Setting the currency is not a cosmetic preference. It unlocks and defines the re
 | **Billing emails** | Amounts in tenant-facing emails are formatted with your symbol. |
 
 <Warning>
-  The platform never converts between currencies. A price of `499` is charged as 499 units of your base currency to every tenant, wherever they are.
-
-  To sell at a different price in another region, create a separate plan at that price. The currency setting does not do this for you.
+  The platform never converts between currencies. If your base currency is USD and your plan costs `49`, a tenant in India pays $49. They do not see a price in rupees.
 </Warning>
 
 ## Before you choose
 
-Pick the currency you actually **bank and settle in**. Then check it against the three things below.
+Pick the currency you actually **bank and settle in**. Then check it against the points below.
 
 <AccordionGroup>
   <Accordion title="Your payment gateway must accept it" icon="credit-card">
@@ -65,25 +59,26 @@ Pick the currency you actually **bank and settle in**. Then check it against the
     Your base currency is your pricing currency for every market you sell into. Choose the one most of your tenants will pay in.
   </Accordion>
 
-  <Accordion title="The ISO code locks once you sell" icon="lock">
-    Change it as often as you like while setting up. Once a tenant holds a paid subscription, it is locked for good. See [what you can and cannot change later](#what-you-can-and-cannot-change-later).
+  <Accordion title="You cannot change the ISO code later" icon="lock">
+    The **ISO Code** is the three-letter code for your currency, such as `INR` or `USD`. It is the part that says what your prices actually mean.
+
+    You can change it freely while you are setting up. But the moment your first tenant starts paying, it is locked, and you cannot switch from `INR` to `USD` afterwards.
+
+    The **Currency Name** and **Symbol** stay editable. See [what you can and cannot change later](#what-you-can-and-cannot-change-later).
   </Accordion>
 </AccordionGroup>
 
 ## Set the base currency
 
-Go to **Setup → Currency** in the sidebar. You will see a **Base Currency** card, and a setup notice while no currency is set.
+Open **Currency** in the sidebar. The page shows a **Base Currency** card with an **Add Currency** button, which disappears once a currency is saved.
 
 <Frame caption="The Edit Currency panel, showing the Currency Name, ISO Code and Symbol fields">
   <img src="/images/pa/currency-edit-sheet.png" alt="The Edit Currency panel, showing the Currency Name, ISO Code and Symbol fields" />
 </Frame>
 
 <Steps>
-  <Step title="Open Currency">
-    Go to **Currency** in the sidebar.
-  </Step>
   <Step title="Click Add Currency">
-    This opens the currency panel. The button is only shown while no base currency exists — one base currency per platform.
+    This opens the currency form.
   </Step>
   <Step title="Fill in the fields">
     | Field | Required | Description |
@@ -93,20 +88,18 @@ Go to **Setup → Currency** in the sidebar. You will see a **Base Currency** ca
     | **Symbol** | Yes | The symbol printed next to every amount, for example `₹`. Up to 10 characters. |
   </Step>
   <Step title="Save">
-    Click **Save**. The currency appears in the **Base Currency** card and the **Add Plan** button becomes available.
+    Click **Save**. Your currency now shows in the **Base Currency** card. After this, you can create your plans.
   </Step>
 </Steps>
 
 <Tip>
-  Enter the symbol exactly as you want it to appear on invoices and on your public plans page — for example `$`, `₹`, `€`, or a prefixed form like `A$`. This is the symbol tenants see.
+  Enter the symbol exactly as you want it to appear on invoices and on your pricing page, such as `$`, `₹`, `€`, or `A$`. This is what your tenants see.
 </Tip>
 
 ## What you can and cannot change later
 
 <Warning>
   Once any tenant has an **active**, **past-due**, or **billing-only** subscription, the **ISO Code is locked**. You cannot change INR to USD.
-
-  The panel blocks this, it does not just advise against it. Changing the code would keep every saved number the same while changing what it means: a ₹4,999 plan would become a $4,999 plan.
 </Warning>
 
 | Field | Before you have subscriptions | After a subscription is active |
@@ -114,8 +107,6 @@ Go to **Setup → Currency** in the sidebar. You will see a **Base Currency** ca
 | **Currency Name** | Editable | Editable |
 | **Symbol** | Editable | Editable |
 | **ISO Code** | Editable | **Locked** |
-
-Cancelled and expired subscriptions do not lock the currency, because nothing further will be charged on them.
 
 ## What's next
 
