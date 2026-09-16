@@ -1,63 +1,104 @@
 ---
 title: "Offline payments"
-description: "Review and approve tenant bank transfer payment requests."
+description: "Review and approve the bank transfer requests submitted by your tenants."
 icon: "banknote"
 ---
 
-When a tenant pays by bank transfer instead of an online payment gateway, they can submit a payment request from their billing page.
 
-**Sales → Offline Payments** is where you review these requests.
+When you turn on [**Bank Transfer**](/pa/billing-and-payouts#payment-gateway-settings), tenants can pay directly into your bank account and submit their payment details. You then check your bank account and approve the payment manually.
+
+
+<Info>
+Offline payments are handled directly between you and the tenant. You are responsible for checking that the payment was received and approving the request. The payment remains pending until you approve it.
+</Info>
+
+## What you see on the screen
+
+Click **Sales → Offline Payments** in the sidebar menu to open this page.
 
 <Frame caption="The Offline Payments list, with each request's status, amount, and reference">
   <img src="/images/pa/offline-payments-list.png" alt="The Offline Payments list, with each request's status, amount, and reference" />
 </Frame>
-
-<Info>
-  Offline payments are handled directly between you and the tenant. The platform does not verify the bank transfer. The tenant's subscription is updated only after you approve the request.
-</Info>
-
-## Offline payment process
-
-<Steps>
-  <Step title="Tenant transfers the payment" icon="landmark">
-    The tenant sends the payment to your bank account.
-  </Step>
-  <Step title="Tenant submits a request" icon="send">
-    The tenant submits a payment request with the payment reference. The request appears as **Pending**.
-  </Step>
-  <Step title="You verify the payment" icon="search">
-    Check your bank account and confirm the payment was received.
-  </Step>
-  <Step title="Approve or reject" icon="circle-check">
-    **Approve** the request to activate the subscription, or **Reject** it if the payment cannot be verified.
-  </Step>
-</Steps>
-
-## Payment request details
 
 | Column | Description |
 | ------ | ----------- |
 | **Tenant** | Tenant who submitted the payment request. |
 | **Plan** | Plan the tenant is paying for. |
 | **Amount** | Amount submitted by the tenant. |
-| **Status** | Current request status: Pending, Approved, or Rejected. |
+| **Status** | Current request status. See [Payment request status](#payment-request-status) below. |
 | **Reference** | Payment reference provided by the tenant. |
 | **Reviewed** | Date and time when the request was approved or rejected. |
 | **Submitted** | Date and time when the request was submitted. |
 
+
+
+## Before you start
+
+<Warning>
+Before tenants can submit bank transfer requests, you must:
+
+- Enable **Bank Transfer**.
+- Add your bank details under [**Settings → Payment Settings → Offline Payment**](/pa/billing-and-payouts#offline-payment-settings).
+- Set the **Activation SLA**, which defines how many business days you have to review and approve a request.
+
+</Warning>
+
+## The request lifecycle
+
+<Steps>
+  <Step title="Tenant makes the payment" icon="landmark">
+    The tenant sends the payment to your bank account using the bank details you provided under **Offline Payment Settings**.
+  </Step>
+
+  <Step title="Tenant submits a request" icon="send">
+    The tenant submits a payment request with the payment reference and, optionally, a proof file. The request appears here with a **Pending** status.
+  </Step>
+
+  <Step title="You verify the payment" icon="search">
+    Check your bank account to confirm that the payment was received, the amount is correct, and the payment reference matches.
+  </Step>
+
+  <Step title="Approve or reject" icon="circle-check">
+    **Approve** the request if the payment is confirmed. **Reject** it if you cannot verify the payment.
+  </Step>
+</Steps>
+
+<Tip>
+  You get an email as soon as a tenant submits a new offline payment request
+</Tip>
+
 ## Review a payment request
 
-Click a request to view its details.
+Click a request's row, then **Review**, to open its detail page.
 
 <Frame caption="A payment request's review page, with the payment details alongside the approve and reject panels">
   <img src="/images/pa/offline-payment-review.png" alt="A payment request's review page, with the payment details alongside the approve and reject panels" />
 </Frame>
 
-| Section | What it shows |
+Every request is tagged **New Signup** or **Upgrade** at the top of the page:
+
+| Tag | It means |
 | --- | --- |
-| **Payment Details** | Tenant, plan, billing cycle, payment amount, payment reference, submission date, and payment proof. |
-| **Review Actions** | Approve or reject the request while it is pending. |
-| **Review Decision** | The review result, reviewer, review date, and notes after the request is reviewed. |
+| **New Signup** | The tenant is paying for a plan for the first time, or renewing a plan they already had. |
+| **Upgrade** | The tenant already has an active or trial subscription, and is paying to move onto a different plan by bank transfer. |
+
+### Payment Details
+
+| Field | Description |
+| --- | --- |
+| **Tenant** | Who submitted the request. Click the name to open their tenant page. |
+| **Plan** | Plan the tenant is paying for. |
+| **Billing Cycle** | Monthly, yearly, and so on. |
+| **Amount** | Amount entered by the tenant in the payment request. |
+| **Breakdown** | Only shown when a discount, tax, or proration credit applies: **Subtotal**, **Discount** (with the coupon code), **Proration Credit** (upgrade requests only), **Tax**, and **Total**. |
+| **Payment Reference** | The reference the tenant typed in, for you to match against your bank statement. |
+| **Submitted** | When the tenant sent the request. |
+| **Payment Proof** | A **View proof** button, if the tenant attached a file. Proof is optional — if none was attached, this says so instead. |
+| **Tenant Notes** | Only shown if the tenant left a note when they submitted the request. |
+
+<Warning>
+  The **Amount** and all figures in the **Breakdown** are saved when the tenant submits the request and cannot be edited afterward. If the tenant entered the wrong amount, you must either **approve** the request as submitted or **reject** it and ask the tenant to submit a new request with the correct amount.
+</Warning>
 
 ### Verify the payment
 
@@ -68,52 +109,67 @@ Before approving a request:
     Check your bank account to confirm that the payment was received.
   </Step>
   <Step title="Match the amount">
-    Compare the **Amount** with the amount received.
+    Compare the **Amount** with the amount you actually received.
   </Step>
   <Step title="Check the reference">
-    Match the **Reference** against your bank statement.
+    Match the **Payment Reference** against your bank statement.
   </Step>
   <Step title="Check the proof">
-    If payment proof is attached, select **View Proof** to check it.
+    If payment proof is attached, select **View proof** to check it.
   </Step>
 </Steps>
 
-<Note>
-  Payment proof is optional. If the tenant does not upload a file, the payment details will show that no proof was attached.
-</Note>
-
 ## Approve a payment request
 
-Select **Approve & Activate Subscription** after confirming the payment. Approval will:
+Select **Approve & Activate Subscription** after confirming the payment. You can add an optional **Admin Notes** first — this is for your own records only, and the tenant never sees it.
 
-- Activate or renew the tenant's subscription.
-- Create an invoice and mark it as paid.
-- Send a confirmation email to the tenant.
+Approving:
 
-You can also add an **Admin Note** during approval. Admin notes are for internal use and are not shown to the tenant.
+- **Gives the tenant access.** What exactly happens depends on the request:
+  - **New Signup, no existing subscription** → the tenant's plan is **activated** from today.
+  - **New signup with the same active plan → Renewal** → If the tenant renews early, the new period starts after the current period ends. The tenant does not lose any days they have already paid for.
+  - **Upgrade** → The tenant switches to the new plan immediately. Any unused time from the old plan is converted into a **Proration Credit** and shown as a line on the new invoice.
+- **Creates the invoice.** When you approve a Bank Transfer payment, the system creates the invoice. A **Resulting Invoice** card then appears on this page with a **View invoice** button that takes you directly to the invoice.
+- **Sends the tenant an email** telling them their plan is active.
 
 <Warning>
-  **Approval cannot be undone.** Make sure the payment has been received and the amount is correct before approving the request.
+  **Approval cannot be undone.** Before clicking **Yes, Activate**, check the tenant's access end date and the payment amount shown in the confirmation dialog.
 </Warning>
 
 ## Reject a payment request
+If the payment cannot be verified, select **Reject**. You must enter a **Rejection Reason** before rejecting the request. This reason is shown to the tenant.
 
-If the payment cannot be verified, select **Reject**. A rejection reason is required.
 
 <Info>
-  The **rejection reason is shown to the tenant**. Write a clear reason that explains why the payment request was rejected — for example, *"No payment was received with this reference."*
+  Write a clear, plain reason — for example, *"No payment was received with this reference."* The tenant reads this exact text.
 </Info>
 
-The tenant receives an email with the rejection reason. Their subscription is not changed, and they can submit a new payment request after correcting the issue.
+Rejecting:
 
-<Warning>
-  Any payment proof uploaded by the tenant is deleted when the request is rejected. Download the proof first if you need to keep a copy.
-</Warning>
+- Sends the tenant an email with your reason.
+- Does not change their subscription. They can submit a new request after fixing the issue.
+- Deletes any payment proof the tenant uploaded. Download it first if you need to keep a copy — you cannot get it back after rejecting.
 
-## Reviewed payment requests
+## Payment request status
 
-Approved and rejected requests remain in the list as payment history.
+| Status | It means |
+| --- | --- |
+| **Pending** | Submitted by the tenant, waiting for you to review it. |
+| **Approved** | You approved it. The tenant has access, and an invoice exists. |
+| **Rejected** | You rejected it. No invoice was created — it appears as a **Failed** attempt in [Payments](/pa/payments) instead. |
 
-- Reviewed requests cannot be edited or deleted.
-- A request can only be reviewed once.
-- An approved or rejected request cannot be reviewed again.
+<Note>
+  A payment request can only be reviewed once. After you **Approve** or **Reject** a request, you cannot change the decision or review it again. The request remains in the list as a permanent record and cannot be edited or deleted.
+</Note>
+
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Invoices" icon="receipt" href="/pa/invoices">
+    See every invoice an approved request creates, and download it as a PDF.
+  </Card>
+  <Card title="Subscriptions" icon="repeat" href="/pa/subscriptions">
+    See the subscription an approved request activates, renews, or changes.
+  </Card>
+</CardGroup>

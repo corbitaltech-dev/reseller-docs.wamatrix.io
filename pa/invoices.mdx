@@ -112,25 +112,6 @@ Every invoice number uses the prefix and starting number you set under [**Settin
  Changing the invoice prefix only affects new invoices. Existing invoice numbers remain unchanged.
 </Note>
 
-## How it connects
-
-- [**Payments**](/pa/payments) — every payment attempt behind these invoices, including the ones that failed and never became one.
-- [**Offline payments**](/pa/offline-payments) — approving a tenant's bank transfer request is what actually creates their invoice and marks it **Paid**. From an approved request's own page, select **View invoice** to jump straight to it.
-- [**Subscriptions**](/pa/subscriptions) — a tenant's own subscription detail page shows the same invoices, already filtered to that one tenant, under its **Invoices** section.
-- [**Coupons**](/pa/coupons) — a coupon used at checkout is what produces the **Discount** row on an invoice.
-- [**Taxes**](/pa/billing-and-payouts#taxes) — the tax rates you configure here are what produce the **Tax** row on an invoice, once **Tax on Invoices** is turned on.
-- [**Settings → System → Invoice**](/pa/billing-and-payouts#invoice-settings) — where you set the invoice prefix, starting number, and footer notes.
-
-## Common questions
-
-<AccordionGroup>
-  <Accordion title="A tenant says they paid, but I don't see an invoice. Where do I look?" icon="circle-help">
-    Check [**Payments**](/pa/payments), not this page. An invoice is only created once a payment actually settles. If the tenant's card was declined or their bank transfer was rejected, the attempt shows up as **Failed** in Payments — but it never becomes an invoice.
-  </Accordion>
-  <Accordion title="Can I delete or void an invoice?" icon="circle-help">
-    No. An invoice cannot be deleted or voided from the panel. It stays on file as your record of what a tenant was charged, even after their subscription ends.
-  </Accordion>
-</AccordionGroup>
 
 ## What's next
 

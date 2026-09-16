@@ -167,30 +167,6 @@ Tenants change their own plan from their billing page. You cannot start an upgra
 
 Both show up as a **Plan upgraded** or **Plan downgraded** event on the tenant's Timeline.
 
-## How it connects
-
-- [**Offline Payments**](/pa/offline-payments) — where you approve or reject a tenant's bank transfer, which is what actually activates or renews a **Bank Transfer** subscription.
-- [**Plans & pricing**](/pa/plans-and-pricing) — where you set up the plans, prices, and trial days that show up on this page.
-- [**Settings → Subscription Lifecycle**](/pa/core-platform#grace-period-suspension) — where grace period, billing-only days, and dunning retries are configured.
-- [**Settings → Subscription Lifecycle → Deletion Scheduling**](/pa/core-platform#deletion-scheduling) — see [Common questions](#common-questions) below for why this matters after a subscription is Suspended.
-- [**Managing tenants**](/pa/managing-customers#suspend-deactivate-and-reactivate) — where you manually suspend, deactivate, or delete a tenant, separately from anything on this page.
-
-## Common questions
-
-<AccordionGroup>
-  <Accordion title="Why does a cancelled subscription still show Active?" icon="circle-help">
-    Cancelling only stops renewal. The tenant already paid for the current period, so they keep access, and the **Status** column keeps showing **Active** (or whatever it already was) until that period ends. It then becomes **Expired**. Check the **Timeline** on the tenant's subscription detail page to see the actual cancellation date.
-  </Accordion>
-  <Accordion title="Can I upgrade or downgrade a tenant's plan from here?" icon="circle-help">
-    No. A tenant changes their own plan from their billing page. This page only shows the result, as a **Plan upgraded** or **Plan downgraded** event on their Timeline.
-  </Accordion>
-  <Accordion title="Why can't I filter by Suspended or Billing Only status?" icon="circle-help">
-    The **Status** filter currently only offers Trial, Active, and Expired, even though **Billing Only** and **Suspended** both appear as real values in the **Status** column. To find suspended or billing-only tenants today, sort by **Renews** or check tenants flagged by dunning payment-failure alerts.
-  </Accordion>
-  <Accordion title="What happens after a subscription is Suspended?" icon="circle-help">
-    If nothing changes, the tenant's account moves toward deletion. Suspension through failed payment retries automatically schedules the tenant for deletion after the delay set in [**Deletion Scheduling**](/pa/core-platform#deletion-scheduling) — 14 days by default — unless you have already scheduled a deletion for them yourself. Reactivate the subscription or assign a new plan before that date if you want to keep the tenant.
-  </Accordion>
-</AccordionGroup>
 
 ## What's next
 
