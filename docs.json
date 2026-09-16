@@ -38,7 +38,7 @@
             "icon": "shopping-cart"
           },
           {
-            "group": "Customers",
+            "group": "Tenants",
             "pages": [
               "pa/managing-customers",
               "pa/plan-limits-and-customer-access"

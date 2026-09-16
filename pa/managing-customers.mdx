@@ -4,15 +4,15 @@ description: "Find, view, manage, and remove tenant workspaces."
 icon: "building-2"
 ---
 
-The **Tenant List**, under **Tenant** in the sidebar, is where tenant workspaces are managed after onboarding. From this page, you can find tenants, view their details, change their plan, access their workspace, change their status, and delete them.
+After a tenant is onboarded, you can manage their workspace from the **Tenant List**. You can view tenant details, check their workspace, update their status, and delete their account.
+
+## What you see on the screen
+
+Go to **Tenant → Tenant List** from the sidebar.
 
 <Note>
   To create a tenant workspace, see [Onboarding a tenant](/pa/onboarding-a-sub-tenant).
 </Note>
-
-## Find a tenant
-
-The **Tenant List** shows all tenant workspaces and their current status.
 
 <Frame caption="The Tenant List, with the status summary cards above it and the account counter beside Add Tenant">
   <img src="/images/pa/tenant-list.png" alt="The Tenant List, with the status summary cards above it and the account counter beside Add Tenant" />
@@ -20,7 +20,7 @@ The **Tenant List** shows all tenant workspaces and their current status.
 
 ### Tenant summary
 
-Five cards at the top show the number of tenants in each status:
+The cards at the top show the number of tenants in each status:
 
 | Card | What it shows |
 | ---- | ------------- |
@@ -31,33 +31,21 @@ Five cards at the top show the number of tenants in each status:
 | **Pending Payment** | Tenants waiting for an offline payment request to be approved. |
 
 <Tip>
-  Next to **Add Tenant**, the **Tenants** counter shows how many tenant accounts are in use compared with the account limit, such as **5 / 6**.
+  The **Tenants** counter next to **Add Tenant** shows the number of tenant accounts in use and the account limit, such as **5 / 6**.
 </Tip>
 
 ### Tenant list
 
-<Tabs>
-  <Tab title="List controls">
-    | Control | What it does |
-    | ------- | ------------ |
-    | **Filters** | Filter tenants by **Status** or **Plan**. |
-    | **Columns** | Choose which columns are shown. |
-    | **Default** | Restore the default columns. |
-    | **Search** | Search by company name, subdomain, or owner email. |
-    | **Show entries** | Choose how many tenants to show per page. |
-  </Tab>
-  <Tab title="Row columns">
-    | Column | What it shows |
-    | ------ | ------------- |
-    | **Workspace** | Tenant's workspace or business name. |
-    | **Plan** | Tenant's current plan. |
-    | **Email** | Workspace owner's email address. |
-    | **Phone** | Workspace owner's phone number. |
-    | **Status** | Tenant's current status. |
-    | **Sub. Ends** | End date of the current subscription period. |
-    | **Actions** | Available actions for the tenant. |
-  </Tab>
-</Tabs>
+
+| Column | What it shows |
+| --- | --- |
+| **Workspace** | Tenant's workspace or business name. |
+| **Plan** | Tenant's current plan. |
+| **Email** | Workspace owner's email address. |
+| **Phone** | Workspace owner's phone number. |
+| **Status** | Tenant's current status. |
+| **Sub. Ends** | End date of the current subscription period. |
+| **Actions** | Actions available for the tenant. |
 
 ### Tenant actions
 
@@ -66,7 +54,7 @@ Open the **Actions** menu at the end of a tenant row.
 | Action | What it does |
 | --- | --- |
 | **View** | Opens the [tenant's detail page](#tenant-detail-page). |
-| **Edit** | Changes the tenant's details or plan. |
+| **Edit** | Changes the tenant's details. |
 | **Impersonate** | Opens the [tenant's workspace](#impersonating-a-tenant) as the workspace owner. |
 | **Delete** | Opens the [tenant deletion dialog](#delete-a-tenant). |
 
@@ -88,20 +76,16 @@ Click **View** to open the tenant's detail page.
     Shows the tenant's plan, plan description, billing cycle, and subscription start and end dates.
   </Accordion>
   <Accordion title="Recent Activity" icon="history">
-    Shows the tenant's latest activity. Use **All**, **Impersonated**, or **Updated** to filter the activity list.
+    Shows the tenant's recent activity. Use **All**, **Impersonated**, or **Updated** to filter the list.
   </Accordion>
   <Accordion title="Recent Invoices" icon="receipt">
-    Shows the tenant's latest successful invoices, each with its status, date, amount, and download option. Select **Payment History** to view the full payment history, including failed payment attempts.
+    Shows the tenant's recent successful invoices with their status, date, amount, and download option. Select **Payment History** to view the full payment history, including failed payment attempts.
   </Accordion>
 </AccordionGroup>
 
-<Note>
-  Change the tenant's plan from **Edit** on the detail page.
-</Note>
-
 ## Impersonating a tenant
 
-Click **Impersonate** to open the tenant's workspace as the workspace owner. This is useful for checking the tenant's view or troubleshooting issues.
+Click **Impersonate** to open the tenant's workspace as the workspace owner. This can be used to check the tenant's account or troubleshoot an issue.
 
 An amber banner shows **You are impersonating this tenant** while impersonation is active.
 
@@ -110,21 +94,21 @@ An amber banner shows **You are impersonating this tenant** while impersonation 
 </Frame>
 
 <Tip>
-  Select **Stop Impersonating** in the banner to return to the reseller account. The Tenant List opens automatically. No separate login is required.
+  Click **Stop Impersonating** in the banner to return to your reseller account.
 </Tip>
 
 ## Suspend, deactivate, and reactivate
 
-Change tenant access from the tenant's detail page.
+You can change tenant access from the tenant's detail page.
 
 | Action | What it does |
 | --- | --- |
-| **Suspend** | Temporarily blocks tenant access. The tenant's plan and billing remain unchanged. |
+| **Suspend** | Temporarily blocks tenant access. The plan and billing remain unchanged. |
 | **Deactivate** | Blocks tenant access and changes the status to **Inactive**. |
 | **Activate** | Restores access for a suspended or inactive tenant. The plan remains unchanged. |
 
 <Info>
-  Tenants with **Pending Payment** status cannot be suspended or deactivated. The offline payment request must be reviewed under **Offline Payments** before the tenant can be activated.
+  Tenants with **Pending Payment** status cannot be suspended or deactivated. Review the offline payment request under **Offline Payments** first.
 </Info>
 
 ## Delete a tenant
@@ -135,19 +119,42 @@ Click **Delete** from the tenant's row to open the deletion dialog.
   Deletion is permanent and cannot be undone. It removes the tenant's users, contacts, chat history, campaigns, connected channels, media, and billing history. Connected WhatsApp channels are also disconnected.
 </Warning>
 
-If the tenant has a subscription end date, these options are available:
+If the tenant has a active subscription, you can choose:
 
 | Option | What happens |
 | --- | --- |
-| **Delete after subscription ends** | The tenant keeps full access until the current subscription ends. The tenant and all related data are deleted when the subscription ends. |
+| **Delete after subscription ends** | The tenant keeps access until the subscription ends. The tenant and all related data are then deleted. |
 | **Instant delete** | Deletes the tenant and all related data immediately. |
 
 <Note>
-  If the tenant has no subscription end date, only **Instant delete** is available.
+  If the tenant has no subscription, only **Instant delete** is available.
 </Note>
 
 ### Scheduled deletions
 
-A scheduled deletion can be cancelled before the subscription ends. Select **Cancel scheduled deletion** from the tenant's row. While deletion is scheduled, the tenant keeps full access and no data is deleted.
+You can cancel a scheduled deletion before the subscription ends by selecting **Cancel scheduled deletion** from the tenant's row.
 
-The tenant receives email reminders **7 days and 1 day** before the subscription ends. **Instant delete** does not send a reminder, because the tenant is deleted immediately.
+While deletion is scheduled:
+
+- The tenant keeps full access.
+- No data is deleted.
+- The tenant receives email reminders **7 days and 1 day** before the subscription ends.
+
+**Instant delete** does not send reminders because the tenant is deleted immediately.
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Subscriptions" icon="repeat" href="/pa/subscriptions">
+    View tenant subscriptions, plans, and renewal dates.
+  </Card>
+  <Card title="Plan limits & tenant access" icon="gauge" href="/pa/plan-limits-and-customer-access">
+    Understand what tenants can access based on their plan.
+  </Card>
+  <Card title="Offline payments" icon="banknote" href="/pa/offline-payments">
+    Review and approve customer bank transfer requests.
+  </Card>
+  <Card title="Plans & pricing" icon="layers" href="/pa/plans-and-pricing">
+    Manage the plans and prices available to tenants.
+  </Card>
+</CardGroup>
