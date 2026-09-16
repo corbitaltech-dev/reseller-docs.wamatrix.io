@@ -7,8 +7,14 @@
     },
     "servers": [
         {
-            "url": "https://your-domain.example",
-            "description": "Your workspace domain — see the Base URL on your API Keys tab"
+            "url": "{host}",
+            "description": "Your workspace Base URL — copy it from Settings → Core Platform → API Keys",
+            "variables": {
+                "host": {
+                    "default": "https://your-domain.example",
+                    "description": "Paste the Base URL from your API Keys tab, including https://"
+                }
+            }
         }
     ],
     "tags": [
