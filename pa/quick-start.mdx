@@ -1,70 +1,87 @@
 ---
 title: "Quick start"
-description: "Set up your platform, configure the required settings, and onboard your first tenant in five steps."
+description: "Set up your platform and sign up your first tenant, in five steps."
 icon: "rocket"
 ---
 
+You have a reseller panel and nothing in it yet. Before anyone can sign up and pay you, five things need to be ready: your brand, your currency, your plans, your payment setup, and your signup settings.
+
+## The five steps
+
 <Steps>
   <Step title="Set up your white-label brand" icon="palette">
-    Make the platform look like yours before anyone sees it.
+    Put your own name, logo, and email address on the panel. Do this first, because tenants see it the moment they land on your signup page.
 
     <CardGroup cols={3}>
       <Card title="Branding" icon="image" href="/pa/branding#system-core-settings">
-        Company name, logo, favicon, and other branding options.
+        Company name, logo, and favicon.
       </Card>
       <Card title="Email" icon="mail" href="/pa/branding#sender-identity-smtp">
-        Sender identity and SMTP, plus the [email layout](/pa/branding#email-layout) used for tenant emails.
+        The address your tenant emails are sent from, and [how those emails look](/pa/branding#email-layout).
       </Card>
       <Card title="Legal" icon="scale" href="/pa/branding#legal">
-        Terms and Privacy Policy links, shown during tenant registration.
+        Your Terms and Privacy Policy links, shown when a tenant signs up.
       </Card>
     </CardGroup>
   </Step>
 
-  <Step title="Set up your currency" icon="coins">
+  <Step title="Set your currency" icon="coins">
+    Your platform collects payment in **one** currency only. Every tenant pays in it, wherever they are, and every plan and invoice uses it.
+
     Open [**Setup → Currency**](/pa/currency-setup#set-the-base-currency) and enter the **Currency Name**, **ISO Code**, and **Symbol**.
 
     <Warning>
-      Enter the correct currency details before creating plans. The [**ISO Code cannot be changed once a tenant has an active subscription**](/pa/currency-setup#what-you-can-and-cannot-change-later).
+      Double-check the **ISO Code** before you save. Once a tenant has a paid subscription, it [locks](/pa/currency-setup#what-you-can-and-cannot-change-later). You cannot switch from INR to USD later.
     </Warning>
   </Step>
 
   <Step title="Create your plans" icon="layers">
-    Open [**Plans**](/pa/plans-and-pricing#create-a-plan) and create the plans you want to offer.
+    A plan is what a tenant subscribes to. It decides the amount they pay for the plan, and what they get in that plan:
 
-    Set the [**plan name, price, billing period, features, and limits**](/pa/plans-and-pricing#before-you-start) for each one.
+    - **Features** — which features are turned on for them.
+    - **Limits** — how much they can use, such as how many contacts, channels, and conversations.
+
+    Open [**Plans**](/pa/plans-and-pricing#create-a-plan) and set the [**name, price, billing period, features, and limits**](/pa/plans-and-pricing#before-you-start) for each one.
+
+    <Note>
+      Your own WaMatrix.io plan sets the maximum. If your plan allows 10,000 contacts, a tenant plan can allow up to 10,000, but never more. [To offer more, upgrade your own subscription](/pa/plans-and-pricing#you-cannot-offer-more-than-your-own-plan-allows).
+    </Note>
   </Step>
 
-  <Step title="Set up billing and payments" icon="wallet">
+  <Step title="Set up billing" icon="wallet">
+    A tenant cannot subscribe until you turn on at least one payment method. The money goes straight to your own bank or gateway account, not to WaMatrix.io.
+
     <CardGroup cols={2}>
       <Card title="Payment gateways" icon="credit-card" href="/pa/billing-and-payouts#payment-gateway-settings">
-        Add credentials for the gateways you want to enable for tenants.
+        Turn on the ways tenants can pay you, online or by bank transfer.
       </Card>
       <Card title="Company information" icon="building" href="/pa/billing-and-payouts#company-information">
-        The company details shown on invoices.
+        Your business name and address, printed on every invoice.
       </Card>
       <Card title="Invoice settings" icon="receipt" href="/pa/billing-and-payouts#invoice-settings">
-        Invoice prefix, starting number, footer notes, and whether tax applies.
+        Invoice prefix, starting number, and footer notes.
       </Card>
       <Card title="Taxes" icon="percent" href="/pa/billing-and-payouts#taxes">
-        Tax name, rate, type, currency, and description — if tax is enabled.
+        Add a tax rate, if you charge tax.
       </Card>
     </CardGroup>
   </Step>
 
-  <Step title="Onboard your first tenant" icon="user-plus">
+  <Step title="Open signups and add your first tenant" icon="user-plus">
+    This is the last step. Set up the registration page your tenants will land on, add bot protection to stop fake signups, turn on Google or Facebook login if you want it, then add your first tenant and give them a plan.
+
     <CardGroup cols={2}>
-      <Card title="Tenant settings" icon="settings" href="/pa/onboarding-a-sub-tenant#registration-verification-settings">
-        Registration, email verification, welcome emails, and registration success emails.
+      <Card title="Registration settings" icon="settings" href="/pa/onboarding-a-sub-tenant#registration-verification-settings">
+        Turn signups on or off, and set the emails a new tenant receives.
       </Card>
       <Card title="Bot protection" icon="shield" href="/pa/onboarding-a-sub-tenant#bot-protection">
-        Google reCAPTCHA or Cloudflare Turnstile on the registration form.
+        Stop fake signups with Google reCAPTCHA or Cloudflare Turnstile.
       </Card>
       <Card title="Social login" icon="key-round" href="/pa/onboarding-a-sub-tenant#social-login">
-        Let tenants register or sign in with Google or Facebook.
+        Let tenants sign in with Google or Facebook.
       </Card>
       <Card title="Create a tenant" icon="user-plus" href="/pa/onboarding-a-sub-tenant#adding-a-tenant">
-        Open **Tenants**, create your first tenant account, then assign a plan.
+        Open **Tenants**, add an account, and give it a plan.
       </Card>
     </CardGroup>
   </Step>
@@ -72,11 +89,11 @@ icon: "rocket"
 
 ## What's next
 
-<Columns cols={2}>
+<CardGroup cols={2}>
   <Card title="Connect WhatsApp" icon="message-circle" href="/pa/channels#whatsapp">
-    Configure your Meta app so tenants can connect their WhatsApp Business Account.
+    Set up your Meta app so tenants can connect their own WhatsApp number.
   </Card>
   <Card title="Manage tenants" icon="building-2" href="/pa/managing-customers">
-    Find, view, impersonate, and manage tenant workspaces.
+    Find, view, and manage tenants, or sign in as one to see what they see.
   </Card>
-</Columns>
+</CardGroup>
