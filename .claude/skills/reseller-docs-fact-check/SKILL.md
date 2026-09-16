@@ -65,11 +65,26 @@ A gotcha file is a warning that the obvious reading of the UI is wrong — read 
 
 If a page doesn't map cleanly, check `resources/js/pages/admin/` directly — new screens get added; this table can go stale.
 
+## The sidebar path — one authoritative file, not the Vue component
+
+Every `pa/` page must open its "What you see on the screen" section by saying exactly where to click in the sidebar (`wamatrix-reseller-docs` §4). **The single source of truth for this is `config/sidebarmenu.php`**, not `resources/js/components/AppResellerAdminSidebar.vue` (which only renders whatever the config provides, with no labels of its own). It's resolved into the page as `sidebarMenu` via `app/Services/Navigation/SidebarMenuResolver.php`.
+
+Confirmed structure (re-verify before trusting if it's been a while):
+
+- **`main` array** — the collapsible sidebar groups shown directly: `Dashboard` (flat) · `Tenant → Tenant List` · `Plan → Plan List` · `Sales → Subscriptions / Invoices / Payments / Offline Payments` · `AI Flow → Node Catalog / Flow Exemplars / Generations` · `Settings → System Settings / Payment Settings` · `Media Library → My Media / Tenant Media` (owner-only).
+- **`setup` array** — flat items with **no parent group**, shown in a separate "Setup" slide-out panel opened from a button at the foot of the sidebar: `User`, `Role`, `Currency`, `Coupons`, `Taxes`, `Email Templates`, `Seeder Library`, `Activity Log`.
+
+Write the path to match which array the item is actually in — **"Sales → Subscriptions"** for a `main`-array child, but **"Setup → Currency"** (no invented parent) for a `setup`-array item. Getting this backwards (inventing a group for a flat Setup item, or flattening a real nested one) is a factual error, not a style choice.
+
+**Known gap:** `pa/channels.mdx`, `pa/tech-provider-approval.mdx`, and `pa/messenger-permissions.mdx` reference sidebar items with no match anywhere in `config/sidebarmenu.php` as of the last check. Don't assume these pages' sidebar claims (if any) are correct — verify them explicitly before repeating a path from an existing page, since existing pages are not evidence (see "Known traps" below). If a screen genuinely has no sidebar entry, it may be nested inside `System Settings` or reached another way — confirm before writing any path, and flag rather than guess if it can't be found.
+
+Also note the reseller's *own* whatsmark.io subscription/invoices are deliberately **absent from this sidebar** — those live in the user menu and are read-only (a reseller buys/renews on whatsmark.io itself, not from inside their own panel). Never confuse this with the `Sales → Subscriptions` item, which is the reseller's **customers'** (tenants') billing data.
+
 ## What must be verified before it ships
 
 - **Every UI label** — button text, menu item, page name, tab, field label, including field **placeholder/max-value text** like "Max 10000" (`plans-and-pricing.mdx` leans on these).
 - **Every status/tier value** — `Active`, `PENDING`, `APPROVED`, `Lifetime`, `Unlimited`. Case matters.
-- **Every navigation path** — the sidebar path a reseller actually clicks through.
+- **Every navigation path** — the exact sidebar path a reseller actually clicks through, verified against `config/sidebarmenu.php` (see above), stated as the very first sentence of "What you see on the screen."
 - **Every plan/feature gate** — is this screen or option really available, or gated behind an add-on / higher reseller tier?
 - **Every "you cannot exceed your own plan" mechanic** — these are load-bearing claims (`plans-and-pricing.mdx`'s whole "before you start" section); verify against `FeatureService`/`features/` rather than assuming the pattern holds identically everywhere.
 

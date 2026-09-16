@@ -11,6 +11,17 @@ A mechanical pass over the rules in `wamatrix-reseller-docs` §1, §2, §3, §5.
 
 ---
 
+## §0 — Missing sidebar path
+
+Every `pa/*.mdx` page must open its "What you see on the screen" section with the real sidebar path (`wamatrix-reseller-docs` §4, `reseller-docs-fact-check`'s sidebar section). This was found missing across **every** existing `pa/` page before the rule was added — treat it as a real, currently-outstanding finding, not a hypothetical one:
+
+```bash
+# pages with a "What you see on the screen" heading that's missing a sidebar click-path in the next line or two
+grep -rLE "sidebar (menu|panel)|Setup panel" pa/*.mdx
+```
+
+For each hit, this is a **fact-check + fix** item, not pure mechanical — the real path must come from `config/sidebarmenu.php` (see `reseller-docs-fact-check`), so route to that skill before writing the path in rather than guessing from the page's own nav-group placement in `docs.json` (the docs site's grouping and the app's own sidebar grouping don't always match one-to-one).
+
 ## §1 — Bare "WaMatrix" instead of "WaMatrix.io"
 
 ```bash

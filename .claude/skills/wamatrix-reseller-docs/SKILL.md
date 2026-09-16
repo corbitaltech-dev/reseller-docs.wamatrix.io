@@ -101,12 +101,14 @@ The opening paragraph (before any heading) never starts with "Welcome to" or a f
 
 On this site, the "everyday problem" is a reseller's operational one, not an end-customer one — e.g. for a reseller feature: *"Every tenant needs a price and a limit before they can subscribe. Instead of negotiating each one by hand, you set them once here and every tenant who signs up gets the same terms."* Concrete, situational, no throat-clearing.
 
-### "What you see on the screen" — describe the list/table view field by field
+### "What you see on the screen" — say where to click, then describe the list/table field by field
 
-Immediately after the hook, for any page backed by a list or table screen, add a short section (titled to match, e.g. "What you see on the screen") that walks the **columns or fields visible on the main screen**, one bullet per field, each field name in **bold**:
+Immediately after the hook, for any page backed by a list or table screen, add a short section (titled to match, e.g. "What you see on the screen"). **Its first sentence always says exactly where in the panel's own sidebar to click to reach this screen** — the same way `managing-contacts.mdx` opens its steps with "Click **Contacts** in the Sidebar menu." Then walk the **columns or fields visible on the main screen**, one bullet per field, each field name in **bold**:
 
 ```mdx
 ## What you see on the screen
+
+Click **Contacts** in the Sidebar menu to open this page.
 
 The page lists the replies you can use — the ones your team shares, plus any you have kept to yourself:
 
@@ -115,7 +117,11 @@ The page lists the replies you can use — the ones your team shares, plus any y
 - **Body** — the first part of the reply text.
 ```
 
-This is the single highest-value section for an admin screen — it lets the reader recognise the screen before they touch anything. On this site, apply it to every `pa/` page that documents a list screen (plans, coupons, sub-tenants, invoices) exactly the same way `canned-replies.mdx` does for its list.
+**Never guess the sidebar path or invent a menu label.** Verify the real path via `reseller-docs-fact-check` against `config/sidebarmenu.php` in the product source (`/home/corbital/laravel/whatsmarkio_reseller`) — this is the single authoritative file for every sidebar label and its parent group, not the Vue sidebar component itself (which only renders whatever this config provides). Confirmed structure as of the last check: a `main` array (collapsible sidebar groups — `Dashboard`, `Tenant → Tenant List`, `Plan → Plan List`, `Sales → Subscriptions/Invoices/Payments/Offline Payments`, `AI Flow → ...`, `Settings → System Settings/Payment Settings`, `Media Library → My Media/Tenant Media`) and a flat `setup` array shown in a separate "Setup" slide-out panel with **no parent grouping** (`User`, `Role`, `Currency`, `Coupons`, `Taxes`, `Email Templates`, `Seeder Library`, `Activity Log`). Write the path as **Sales → Subscriptions** for a `main`-array item, or just **Setup → Currency** (no group) for a `setup`-array item — match the real structure, don't invent a parent group for a flat Setup item or vice versa.
+
+If a `pa/` page's screen has no match anywhere in `config/sidebarmenu.php` (this has already happened — `pa/channels.mdx`, `pa/tech-provider-approval.mdx`, and `pa/messenger-permissions.mdx` reference sidebar items that don't exist in the current config), **do not invent a path** — flag it as unverified and route to `reseller-docs-fact-check` to find where the screen actually lives (it may be nested inside an existing group like System Settings) before publishing a sidebar-path claim.
+
+This is the single highest-value opening line for an admin screen — it lets the reader physically find the screen before anything else is explained. On this site, apply it to every `pa/` page that documents a screen, exactly the same way `managing-contacts.mdx` and `canned-replies.mdx` do.
 
 ### Creating/configuring something — steps, with the form's fields explained right after
 

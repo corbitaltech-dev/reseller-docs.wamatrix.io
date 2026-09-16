@@ -16,6 +16,8 @@ Read `wamatrix-reseller-docs` first — it's the rulebook you're checking agains
 
 Then check structure by hand against `wamatrix-reseller-docs` §4: does the page follow the house operator-manual pattern where it applies? Not every page needs every section — flag a *missing* section only when the page's own content implies it should be there (e.g. a multi-field settings screen with no reference table, or a plan-gated feature mentioned with no gate marked).
 
+**Always check that "What you see on the screen" opens with the real sidebar path** (e.g. "Click **Sales → Subscriptions** in the sidebar menu"), verified against `config/sidebarmenu.php` per `reseller-docs-fact-check`. A page missing this opening line, or stating a path that doesn't match that config, is a blocking finding — this was a real, site-wide gap found across every existing `pa/` page before it was added to the rulebook, so check every changed or reviewed page for it explicitly rather than assuming it's already there.
+
 ## Scope
 
 - **Default scope is the changed files** — `git diff --name-only` against the target branch, or the specific file(s) the user names. Don't sweep the whole site uninvited; that's `reseller-docs-audit`'s job, run by `reseller-docs-manager`.
