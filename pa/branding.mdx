@@ -1,12 +1,10 @@
 ---
 title: "Branding"
-description: "Put your own name, logo, colours, and email address on the platform."
+description: "Set your logo, colours, sender email, and legal links."
 icon: "palette"
 ---
 
-Your tenants never see the WaMatrix.io name. They see yours. Branding is where you set the logo, the colours, the email address your messages come from, and the legal links on your signup page.
-
-Most of this can wait. One part cannot: until you set up **SMTP**, the platform cannot send any email to your tenants — not the registration email, not the welcome email, not a password reset.
+White-label branding makes the platform look and feel like your product. Your tenants see your name on the panel, your logo in their emails, and your legal links when they sign up.
 
 <CardGroup cols={2}>
   <Card title="System" icon="settings" href="#system-core-settings">
@@ -25,7 +23,7 @@ Most of this can wait. One part cannot: until you set up **SMTP**, the platform 
 
 ## System Core Settings
 
-Go to **Settings → System**. This sets your platform name and the logos shown across the panel.
+Go to **System Settings → System**. This sets your platform name and the logos shown across the panel.
 
 <Frame caption="The System Core Settings page, with the site name, locale defaults, and the logo and favicon upload fields">
   <img src="/images/pa/system-core-settings.png" alt="The System Core Settings page, with the site name, locale defaults, and the logo and favicon upload fields" />
@@ -37,10 +35,14 @@ Go to **Settings → System**. This sets your platform name and the logos shown 
     | ----- | ----------- |
     | **Site Name** | Your platform name. Shown across the panel, and used in emails if you do not upload a header logo. |
     | **Site Description** | A short description of your platform. |
-    | **Timezone** | The default timezone for dates and times. |
-    | **Date Format** | How dates are shown. |
-    | **Time Format** | How times are shown. |
-    | **Default Country Code** | The country code used by default. |
+    | **Timezone** | The timezone used across your panel, and the default for new tenants. |
+    | **Date Format** | How dates are written across the panel, such as `2026-09-16` or `16/09/2026`. |
+    | **Time Format** | 12-hour or 24-hour clock. |
+    | **Default Country Code** | The country code filled in by default on phone number fields. |
+
+    <Note>
+      **Timezone**, **Date Format**, and **Time Format** set the default for your tenants. Each tenant can change them for their own workspace.
+    </Note>
   </Tab>
   <Tab title="Logos & favicon">
     | Field | Recommended size | Maximum |
@@ -51,15 +53,10 @@ Go to **Settings → System**. This sets your platform name and the logos shown 
 
     The **Dark Logo** is used in dark mode. Upload both. One does not fall back to the other, so if you skip the dark logo, no logo shows in dark mode at all.
 
-    Logos must be **JPEG, PNG, or WebP**. The favicon must be **PNG**.
+    Logos must be **JPEG, PNG, or WebP**. The favicon must be **PNG**. SVG files are not accepted for the Site Logo, Dark Logo, or Favicon.
 
-    To reuse a file you uploaded before, click **Add Media** and pick it from the [**Media Library**](/pa/media-library).
   </Tab>
 </Tabs>
-
-<Warning>
-  SVG files are not accepted for any of the three.
-</Warning>
 
 ## Email Layout
 
@@ -77,7 +74,10 @@ Go to **Settings → Email Layout**. This controls how every email to your tenan
     Set the header, content, footer, button, and link colours. Pick a colour, or type a hex value such as `#1A73E8`.
   </Tab>
   <Tab title="Footer">
-    Set the text at the bottom of every email. Two placeholders fill themselves in: `{date_year}` becomes the current year, and `{company_name}` becomes your company name from [Billing & payouts](/pa/billing-and-payouts#company-information), or your **Site Name** if you have not set one.
+    Set the text at the bottom of every email. Two placeholders fill themselves in:
+
+    - `{date_year}` — the current year.
+    - `{company_name}` — your company name from [Billing & payouts](/pa/billing-and-payouts#company-information). If you have not set one, your **Site Name** is used.
   </Tab>
 </Tabs>
 
@@ -87,21 +87,26 @@ Click **Save Changes** on the last tab to save all three.
 
 Go to **Settings → Email**. SMTP is the connection the platform uses to send email. Until it works, your tenants receive nothing.
 
-You need SMTP details from your email provider — Gmail, your hosting company, or a service like Amazon SES or Mailgun.
+Your email provider gives you these details. That could be your hosting company, your Google Workspace account, or a sending service you signed up for.
 
 <Frame caption="The Email Configuration page, with the SMTP connection fields, sender identity, and the Send Test Email box">
   <img src="/images/pa/smtp-settings.png" alt="The Email Configuration page, with the SMTP connection fields, sender identity, and the Send Test Email box" />
 </Frame>
 
 <Steps>
+  <Step title="Turn on Enable Email">
+    Use the switch at the top of the card. The fields below are only required once this is on.
+  </Step>
   <Step title="Enter the SMTP details">
-    Enter the **SMTP Host**, **Port**, **Username**, **Password**, and **Encryption**. Your email provider gives you all five.
+    Enter the **SMTP Host**, **SMTP Port**, **SMTP Username**, **SMTP Password**, and **SMTP Encryption**. Encryption is **TLS**, **SSL**, or **None** — your provider tells you which, and TLS on port 587 is the most common.
+
+    **SMTP Protocol** has one option, **SMTP**. Leave it as it is.
   </Step>
   <Step title="Set who the email comes from">
     Enter the **Sender Name** and **Sender Email**. This is what a tenant sees in their inbox, so use your business name and your own address.
   </Step>
   <Step title="Send a test email">
-    Use **Send Test Email**. If it arrives, your setup works. If it does not, check the host, port, and password before saving.
+    Enter an address in the **Send Test Email** box and send. If it arrives, your setup works. If it does not, check the host, port, encryption, and password.
   </Step>
 </Steps>
 
