@@ -4,7 +4,7 @@ description: "Create and manage the plans you sell to your tenants."
 icon: "layers"
 ---
 
-Plans define what you offer to tenants. Each plan sets the features, limits, and pricing they receive, and a tenant can have one plan at a time.
+A plan is what a tenant subscribes to. It sets the price they pay, the features they get, and how much they can use. A tenant can be on one plan at a time.
 
 ## Before you start
 
@@ -18,7 +18,7 @@ Plans define what you offer to tenants. Each plan sets the features, limits, and
 
 ### You cannot offer more than your own plan allows
 
-Your own WaMatrix plan sets the maximum for everything you sell. If your plan allows 10,000 contacts, a tenant plan can allow up to 10,000 — but never more.
+Your own WaMatrix.io plan sets the maximum for everything you sell. If your plan allows 10,000 contacts, a tenant plan can allow up to 10,000, but never more.
 
 Each field shows its maximum, such as **Max 10000**. The **Unlimited** option is only available if your own plan is unlimited for that feature.
 
@@ -63,7 +63,7 @@ Choose one of these when you create a plan.
     | **Description** | Yes | A short summary of the plan. Up to 500 characters. |
     | **Slug** | No | The plan's web address. Use letters, numbers, hyphens and underscores only. Leave it empty to create one from the name. **Cannot be changed after saving.** |
     | **Private** | No | Hides the plan from your pricing page, so you can give it to tenants yourself. |
-    | **Free plan** | No | Makes this a free trial plan. Changes which pricing fields you fill in — see the next step. |
+    | **Free plan** | No | Makes this a free trial plan. Changes which pricing fields you fill in. See the next step. |
   </Step>
   <Step title="Set the pricing">
     The **Free plan** switch decides which fields you fill in. Select a tab to see each one.
@@ -74,7 +74,7 @@ Choose one of these when you create a plan.
 
         | Field | Required | Description |
         | ----- | -------- | ----------- |
-        | **Billing period** | Yes | How often the tenant is charged — see [Billing periods](#billing-periods). |
+        | **Billing period** | Yes | How often the tenant is charged. See [Billing periods](#billing-periods). |
         | **Price** | Yes | The amount charged each period, in your [base currency](/pa/currency-setup). |
 
         <Warning>
@@ -98,11 +98,11 @@ Choose one of these when you create a plan.
     | Card type | How to set it |
     | --- | --- |
     | **On or off** | A switch. Turn it on to include the feature. |
-    | **Number limit** | Type how much the plan includes. **Type `0` to leave the feature out** — there is no separate off switch. |
+    | **Number limit** | Type how much the plan includes. **Type `0` to leave the feature out.** There is no separate off switch. |
 
     An **Unlimited** switch appears only when your own plan is unlimited for that feature. If your own plan has a fixed number, the switch is hidden, because you cannot offer more than you have.
 
-    A few limits are set for you and cannot be zero — see [What every plan must include](#what-every-plan-must-include).
+    A few limits are set for you and cannot be zero. See [What every plan must include](#what-every-plan-must-include).
   </Step>
   <Step title="Save">
     Click **Save**. The plan and its features are saved together.
@@ -148,7 +148,7 @@ Two more rules are checked when you click Save:
 
 ## Free plans
 
-A free plan lets tenants use the platform for a set number of days without paying. Turn on **Free plan** and set **Trial days** — any number from 1 to 365.
+A free plan lets tenants use the platform for a set number of days without paying. Turn on **Free plan** and set **Trial days** to any number from 1 to 365.
 
 These rules apply to every free plan.
 
@@ -162,7 +162,7 @@ These rules apply to every free plan.
   This protects tenants who were promised a free trial from being charged part-way through.
 </Warning>
 
-Trial days work on free plans only. If you set them on a paid plan, you will see an error instead of the value being ignored — so a trial you meant to offer is never lost by mistake.
+Trial days work on free plans only. If you set them on a paid plan, you see an error rather than the value being ignored, so a trial you meant to offer is never lost by mistake.
 
 ## Publishing and editing plans
 
@@ -182,7 +182,7 @@ New plans become **public** as soon as you save them, unless you turned on **Pri
 
 ### Deleting a plan
 
-Deleting is permanent. The platform will **not allow it** if the plan is still used anywhere — by tenants, subscriptions, invoices, or payment requests. If this happens, the error message tells you what is still using the plan.
+Deleting is permanent. The platform will **not allow it** if the plan is still used anywhere: by tenants, subscriptions, invoices, or payment requests. If this happens, the error message tells you what is still using the plan.
 
 <Info>
   This is on purpose. Those records are your billing history, so deleting a plan you have already sold would also delete invoices and approved payments.
@@ -199,7 +199,7 @@ You do not have to copy your prices onto your website by hand. The **Plan Catalo
 | `GET /api/v1/plans` | Every plan in your catalogue. |
 | `GET /api/v1/plans/{id}` | A single plan, by its ID. |
 
-The API is **read-only** and never returns tenant data — only your plan catalogue.
+The API is **read-only** and never returns tenant data. It returns only your plan catalogue.
 
 <Steps>
   <Step title="Create an API token">
@@ -225,6 +225,13 @@ The API is **read-only** and never returns tenant data — only your plan catalo
   </Card>
 </CardGroup>
 
-<Card title="Next: onboard a tenant" icon="user-plus" href="/pa/onboarding-a-sub-tenant">
-  Once your plans are published, tenants can sign up, or you can add them yourself.
-</Card>
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Onboarding a tenant" icon="user-plus" href="/pa/onboarding-a-sub-tenant">
+    Open signups so tenants can pick a plan, or add them yourself.
+  </Card>
+  <Card title="Coupons" icon="ticket-percent" href="/pa/coupons">
+    Create discount codes tenants can use at checkout.
+  </Card>
+</CardGroup>
