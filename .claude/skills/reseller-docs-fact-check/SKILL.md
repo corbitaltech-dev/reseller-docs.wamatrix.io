@@ -46,7 +46,8 @@ A gotcha file is a warning that the obvious reading of the UI is wrong — read 
 | `pa/billing-and-payouts.mdx` | `settings/payment/` |
 | `pa/onboarding-a-sub-tenant.mdx` | `sub-tenants/` |
 | `pa/subscriptions.mdx` | `sub-tenant-billing/subscriptions/` |
-| `pa/invoices-and-payments.mdx` | `sub-tenant-billing/invoices/` |
+| `pa/invoices.mdx` | `sub-tenant-billing/invoices/` (also `sub-tenant-billing/Invoices.vue`) |
+| `pa/payments.mdx` | `sub-tenant-billing/Payments.vue` |
 | `pa/offline-payments.mdx` | `sub-tenant-billing/offline-payments/` |
 | `pa/coupons.mdx` | `coupons/` |
 | `pa/taxes.mdx` | `taxes/` |

@@ -29,7 +29,8 @@
             "group": "Sales",
             "pages": [
               "pa/subscriptions",
-              "pa/invoices-and-payments",
+              "pa/invoices",
+              "pa/payments",
               "pa/offline-payments",
               "pa/coupons",
               "pa/taxes"

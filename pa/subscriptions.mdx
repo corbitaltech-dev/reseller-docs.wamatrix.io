@@ -53,6 +53,7 @@ The **Paid Via** column and filter show how the tenant is paying:
 | Value | It means |
 | --- | --- |
 | **Razorpay**, **PayPal**, **Tap Payments**, **Paymob** | The tenant paid through a live gateway you configured under [Payment Gateway Settings](/pa/billing-and-payouts#payment-gateway-settings). They checked out directly — you never see or touch the card details. |
+| **Shopify Billing** | The tenant paid through their own Shopify store, on the same bill they already get from Shopify. This only appears for a tenant who connected a Shopify store, and it works a little differently: you cannot offer a coupon on a Shopify Billing plan, and an upgrade does not raise a new invoice here — Shopify charges the price difference itself and keeps the tenant's existing billing date. |
 | **Bank Transfer** | The tenant paid you directly and you approved their payment request under [Offline Payments](/pa/offline-payments). |
 | **Trial** | A free or trial plan, with no payment involved. |
 
@@ -194,8 +195,11 @@ Both show up as a **Plan upgraded** or **Plan downgraded** event on the tenant's
 ## What's next
 
 <CardGroup cols={2}>
-  <Card title="Invoices & payments" icon="receipt" href="/pa/invoices-and-payments">
-    See every invoice raised for a tenant and its payment history.
+  <Card title="Invoices" icon="receipt" href="/pa/invoices">
+    See every invoice raised for a tenant and download it as a PDF.
+  </Card>
+  <Card title="Payments" icon="credit-card" href="/pa/payments">
+    See every payment attempt, including the ones that failed.
   </Card>
   <Card title="Offline payments" icon="banknote" href="/pa/offline-payments">
     Review and approve bank transfer requests that turn into subscriptions here.

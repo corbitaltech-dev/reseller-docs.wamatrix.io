@@ -1,0 +1,144 @@
+---
+title: "Invoices"
+description: "See every bill you have raised for a tenant, and open or download it as a PDF."
+icon: "receipt"
+---
+
+Each successful payment generates an invoice. The invoice provides a record of what the tenant was charged and what they paid.
+
+<Info>
+  A failed payment never creates an invoice. If a tenant says their payment failed, check [**Payments**](/pa/payments), not this page.
+</Info>
+
+## What you see on the screen
+
+Click **Sales → Invoices** in the sidebar menu to open this page.
+
+<Frame caption="The Invoices list, with each invoice's status, amount, and payment method">
+  <img src="/images/pa/invoices-list.png" alt="The Invoices list, with each invoice's status, amount, and payment method" />
+</Frame>
+
+| Column | Description |
+| ------ | ----------- |
+| **Invoice** | The invoice number. See [Invoice numbering](#invoice-numbering) below. |
+| **Tenant** | Tenant the invoice belongs to. |
+| **Status** | Always **Paid**. See [Invoice status](#invoice-status) below for why. |
+| **Amount** | Total invoice amount. |
+| **Paid Via** | How the tenant paid. See [Payment methods](/pa/subscriptions#payment-methods) for what each value means. |
+| **Issued** | Date the invoice was created. |
+
+### Filter the list
+
+Use the filter panel to narrow down a long list of invoices:
+
+- **Tenant** — show only one tenant's invoices.
+- **Status** — show only invoices with a given status.
+- **Paid Via** — filter by payment method.
+- **From** / **To** — a date range for when the invoice was issued.
+
+## Invoice status
+
+Every invoice shown here has a **Paid** status. An invoice is created only after a payment is successfully completed. There are no **Draft** or **Unpaid** invoices waiting in the background.
+
+An invoice is created only when a payment is confirmed as received.
+
+- **Pending payment** — Not confirmed yet, so no invoice is created.
+- **Captured or approved payment** — Confirmed, so an invoice is created.
+- **Failed payment** — Never completed, so no invoice is created.
+
+<Note>
+ An invoice cannot be deleted. It is a permanent record of a payment received from a tenant, so it remains available even if the tenant's subscription is later cancelled or deleted.
+</Note>
+
+## View an invoice
+
+Click an invoice's **Invoice** number to open it.
+
+<Frame caption="An invoice's detail page, with its details, the customer, the pricing breakdown, and line items">
+  <img src="/images/pa/invoice-detail.png" alt="An invoice's detail page, with its details, the customer, the pricing breakdown, and line items" />
+</Frame>
+
+Open the row menu on the list to access these actions instead, without opening the full page:
+
+| Option | What it does |
+| --- | --- |
+| **View details** | Open the invoice's detail page in the panel. |
+| **View PDF** | Open the invoice PDF in a new browser tab. |
+| **Download PDF** | Download the invoice PDF to your computer. |
+
+<Tip>
+Simply click **View** or **Download** on any invoice (including past ones). The PDF generates automatically for you.
+</Tip>
+
+The invoice detail page has four sections: **Invoice Details**, **Customer**, **Line Items**, and **Billing Details**.
+
+### Invoice Details
+
+- **Invoice Number** — see [Invoice numbering](#invoice-numbering) below.
+- **Status** — Always **Paid**. See [Invoice status](#invoice-status) above for why.
+- **Payment Method** and **Gateway** — how and through what the tenant paid, shown once the invoice is settled.
+- **Billing Reason** — why this invoice was raised, such as **New Subscription**, **Recurring Payment**, **Plan Change**, or **Offline Payment Approved**.
+- **Billing Cycle** — monthly, yearly, and so on.
+- **Paid At** — when the payment settled.
+- **Payment Reference** — the tenant's bank reference, for a Bank Transfer invoice.
+
+### Customer
+
+Includes tenant details (name, workspace, email, and plan) and a full pricing breakdown.
+
+| Row | When it appears |
+| --- | ----------- |
+| **Plan**| The charge itself. Most invoices show only **Plan**. |
+| **Subtotal** | The charge lines added together, before any credit, discount, or tax. |
+| **Proration Credit** | Only on an upgrade invoice. The unused time left on the tenant's old plan, credited against the new one. |
+| **Discount** | Only when a coupon was used. Named after the coupon, for example *"Coupon-10%"*. See [Coupons](/pa/coupons). |
+| **Tax** | Only when tax applies. Named after the tax rate, for example *"GST 18%"*. See [Taxes](/pa/billing-and-payouts#taxes). |
+| **Total** | What the tenant actually owed. |
+| **Amount Paid** | What was actually received, once the invoice is settled. |
+
+### Line Items
+
+The same charge lines as the Pricing Breakdown, but row by row with quantity and unit price — useful when a plan invoice has more than one line.
+
+### Billing Details
+
+The **From** (your own company details) and **Bill To** (the tenant's billing details) blocks printed on the invoice, including each side's **Tax** number if one is set.
+
+## Invoice numbering
+
+Every invoice number uses the prefix and starting number you set under [**Settings → System → Invoice**](/pa/billing-and-payouts#invoice-settings). Numbering runs continuously — it does not restart every month or every year.
+
+<Note>
+ Changing the invoice prefix only affects new invoices. Existing invoice numbers remain unchanged.
+</Note>
+
+## How it connects
+
+- [**Payments**](/pa/payments) — every payment attempt behind these invoices, including the ones that failed and never became one.
+- [**Offline payments**](/pa/offline-payments) — approving a tenant's bank transfer request is what actually creates their invoice and marks it **Paid**. From an approved request's own page, select **View invoice** to jump straight to it.
+- [**Subscriptions**](/pa/subscriptions) — a tenant's own subscription detail page shows the same invoices, already filtered to that one tenant, under its **Invoices** section.
+- [**Coupons**](/pa/coupons) — a coupon used at checkout is what produces the **Discount** row on an invoice.
+- [**Taxes**](/pa/billing-and-payouts#taxes) — the tax rates you configure here are what produce the **Tax** row on an invoice, once **Tax on Invoices** is turned on.
+- [**Settings → System → Invoice**](/pa/billing-and-payouts#invoice-settings) — where you set the invoice prefix, starting number, and footer notes.
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="A tenant says they paid, but I don't see an invoice. Where do I look?" icon="circle-help">
+    Check [**Payments**](/pa/payments), not this page. An invoice is only created once a payment actually settles. If the tenant's card was declined or their bank transfer was rejected, the attempt shows up as **Failed** in Payments — but it never becomes an invoice.
+  </Accordion>
+  <Accordion title="Can I delete or void an invoice?" icon="circle-help">
+    No. An invoice cannot be deleted or voided from the panel. It stays on file as your record of what a tenant was charged, even after their subscription ends.
+  </Accordion>
+</AccordionGroup>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Payments" icon="credit-card" href="/pa/payments">
+    See every payment attempt, including the ones that failed.
+  </Card>
+  <Card title="Coupons" icon="ticket-percent" href="/pa/coupons">
+    Set up the discount codes that show up as a Discount line on an invoice.
+  </Card>
+</CardGroup>

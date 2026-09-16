@@ -1,0 +1,79 @@
+---
+title: "Payments"
+description: "See every payment attempt a tenant has made, including the ones that failed."
+icon: "credit-card"
+---
+
+When a tenant says "I paid and nothing happened", you need to see what actually went wrong. This page is the log of every payment attempt — a payment attempt is one try a tenant made to pay you, whether it worked or not. A declined card or a rejected bank transfer never becomes an [invoice](/pa/invoices), so this is the only place it shows up at all.
+
+## What you see on the screen
+
+Click **Sales → Payments** in the sidebar menu to open this page.
+
+<Frame caption="The Payments list, showing captured and failed attempts with their reference and method">
+  <img src="/images/pa/payments-list.png" alt="The Payments list, showing captured and failed attempts with their reference and method" />
+</Frame>
+
+| Column | Description |
+| ------ | ----------- |
+| **Tenant** | Tenant who made the payment attempt. |
+| **Status** | Current payment status. See [Payment status](#payment-status) below. |
+| **Amount** | Amount of the payment attempt. |
+| **Paid Via** | Payment gateway or method used. See [Payment methods](/pa/subscriptions#payment-methods) for what each value means. |
+| **Method** | The exact way the tenant paid within that gateway, such as **Card**, **UPI**, or **Bank Transfer**. This comes straight from the gateway, so the values you see depend on what your tenants actually use. |
+| **Reference** | The gateway's own reference for the attempt, or the tenant's bank reference for a bank transfer. |
+| **Attempted** | Date and time of the payment attempt. |
+
+<Note>
+  When an attempt fails, the reason is shown right under its **Reference** — for example, *"Your card was declined"*. There is no separate column for it, so look under the reference when you need to explain a failure to a tenant.
+</Note>
+
+### Filter the list
+
+Use the filter panel to narrow down a long list of payment attempts:
+
+- **Tenant** — show only one tenant's attempts.
+- **Status** — show only attempts with a given status.
+- **Paid Via** — filter by payment method.
+- **From** / **To** — a date range for when the attempt was made.
+
+<Note>
+  There is no page to open for a single payment attempt. Everything you need, including the failure reason, is already on the row.
+</Note>
+
+## Payment status
+
+| Status | It means |
+| ------ | ----------- |
+| **Captured** | The payment went through. This is the only status that grants or extends a tenant's access. |
+| **Pending** | The payment has started but has not settled yet — for example, a bank transfer the tenant has submitted but you have not approved. |
+| **Failed** | The attempt did not go through. No money was received, and no invoice was created. |
+| **Refunded** | The payment was received and later refunded to the tenant. |
+
+## How it connects
+
+- [**Invoices**](/pa/invoices) — every **Captured** payment here is linked to one. A **Pending**, **Failed**, or standalone **Refunded** row can exist with no invoice at all, because nothing was actually settled against one.
+- [**Offline payments**](/pa/offline-payments) — approving a tenant's bank transfer request settles it here as **Captured**. Rejecting a request instead adds a **Failed** row — a rejection is a failed payment too.
+- [**Subscriptions**](/pa/subscriptions) — see [Payment methods](/pa/subscriptions#payment-methods) for what each gateway value in **Paid Via** means.
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="A tenant says they paid, but I don't see an invoice. Where do I look?" icon="circle-help">
+    Check this page. An invoice is only created once a payment actually settles. If the tenant's card was declined or their bank transfer was rejected, the attempt shows up here as **Failed**, with the reason underneath its reference — but it never becomes an invoice.
+  </Accordion>
+  <Accordion title="Why does a row here have no invoice attached?" icon="circle-help">
+    Only a **Captured** payment is linked to an invoice. A **Pending**, **Failed**, or standalone **Refunded** row can exist with no invoice at all, because nothing was actually settled against one.
+  </Accordion>
+</AccordionGroup>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Invoices" icon="receipt" href="/pa/invoices">
+    See the bills raised from your tenants' settled payments.
+  </Card>
+  <Card title="Offline payments" icon="banknote" href="/pa/offline-payments">
+    Review and approve the bank transfer requests that show up here once settled.
+  </Card>
+</CardGroup>
