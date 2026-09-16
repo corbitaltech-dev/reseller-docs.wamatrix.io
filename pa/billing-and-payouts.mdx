@@ -1,72 +1,84 @@
 ---
 title: "Billing & payouts"
-description: "Configure payment gateways, invoices, company details, and taxes for your tenants."
+description: "Set up payment methods, invoices, and tax for your tenants."
 icon: "wallet"
 ---
 
-Set up how your tenants pay for your plans and how their invoices are created. Configure payment gateways, add your company details, customize invoices, and manage taxes from this section.
+A tenant cannot buy a plan until you turn on a payment method. Set that up here, along with the business details on your invoices and any tax you charge.
+
+The money goes straight to you. Online payments arrive in your own gateway account, and bank transfers in your own bank account.
 
 ## Payment Gateway Settings
 
-Payment Gateway Settings lets you choose how your tenants can pay for their plans.
+Payment Gateway Settings is where you choose the payment methods your tenants can use to pay for their plans.
 
 <Frame caption="Payment Gateway Settings page showing the available payment methods">
   <img src="/images/pa/payment-gateways.png" alt="Payment Gateway Settings page showing the available payment methods" />
 </Frame>
 
-| Payment method | Type | Description |
+| Payment method | Type | How it works |
 | --- | --- | --- |
-| **Bank Transfer** | Manual | Tenants pay directly to your bank account and submit payment proof for approval. |
-| **Razorpay** | Instant | Accept online payments through Razorpay. |
-| **PayPal** | Instant | Accept online payments through PayPal. |
-| **Tap Payments** | Instant | Accept online payments through Tap Payments. |
-| **Paymob** | Instant | Accept online payments through Paymob. |
+| **Bank Transfer** | Manual | The tenant transfers to your bank account and uploads proof. You approve it before their plan starts. |
+| **Razorpay** | Instant | Card, UPI, netbanking, or wallet. |
+| **PayPal** | Instant | The tenant pays with their PayPal balance or card. |
+| **Tap Payments** | Instant | Card payments. |
+| **Paymob** | Instant | Card and wallet payments. |
+
+<Tip>
+  Turning on **Bank Transfer** alongside an online gateway is a safe starting point. A tenant who cannot pay online still has a way through.
+</Tip>
 
 ### Configure a payment gateway
 
 <Steps>
-  <Step title="Open Payment Gateway Settings">
-    Select the payment gateway you want to use.
+  <Step title="Pick the gateway">
+    In **Payment Gateway Settings**, select the one you want to use.
   </Step>
-  <Step title="Enter the credentials">
-    Add the required credentials and configuration details.
+  <Step title="Enter your credentials">
+    Use the keys from your own account with that provider. This is what makes the money arrive with you.
   </Step>
   <Step title="Enable and save">
-    Enable the payment gateway and save the changes.
+    Turn the gateway on and save. It now appears to tenants at checkout.
   </Step>
   <Step title="Test the connection">
-    Use **Test Connection**, when available, to check the configuration.
+    Click **Test Connection**. It is better to find a wrong key now than when a tenant is trying to pay.
   </Step>
 </Steps>
 
-<AccordionGroup>
-  <Accordion title="Bank Transfer details" icon="landmark">
-    Add your payment details such as **bank name, account holder name, account number, IFSC, and UPI ID**. Tenants can use these details to make a payment and submit their payment proof for approval.
-  </Accordion>
-</AccordionGroup>
+### Offline Payment Settings
+
+If you turn on **Bank Transfer**, your tenants need to know where to pay the money. Open **Settings → Payment Settings → Offline Payment** and fill in your bank details.
+
+Your tenants see these details and pay into this account, so check every digit before you save. A wrong account number is a payment that never arrives.
+
+<Frame caption="The Offline Payment Settings page, with the Bank & UPI Details card on the left and the Activation SLA set to 2 business days">
+  <img src="/images/pa/offline-payment-settings.png" alt="The Offline Payment Settings page, with the Bank & UPI Details card on the left and the Activation SLA set to 2 business days" />
+</Frame>
+
+| Field | Description |
+| ----- | ----------- |
+| **Bank Name** | The bank holding your account. |
+| **Account Holder Name** | The name on the account. |
+| **Account Number** | Your account number. |
+| **IFSC Code** | The branch code for the transfer. |
+| **UPI ID** | Your UPI address, if you accept UPI. |
+| **Activation SLA (Business Days)** | How many working days you need to check a payment and activate the plan. Enter 1 to 30. Tenants are shown this number, so promise only what you can deliver. |
+
+The tenant transfers the money, uploads their proof, and the request waits for you under [**Offline payments**](/pa/offline-payments).
 
 ## Company Information
 
-Company Information contains the business details used on tenant invoices.
+Your business details appear on every invoice your tenants receive. Add them before you issue your first one.
 
 <Frame caption="The Company Information settings page, with the business identity fields used on invoices">
   <img src="/images/pa/company-information.png" alt="The Company Information settings page, with the business identity fields used on invoices" />
 </Frame>
 
-- **Company Name**
-- **Company Email**
-- **WhatsApp Number**
-- **GST Number**
-- **Country**
-- **State / Province**
-- **ZIP / Postal Code**
-- **Company Address**
-
-These details are added to invoices generated by the platform.
+Fill in **Company Name**, **Company Email**, **WhatsApp Number**, **GST Number**, **Country**, **State / Province**, **ZIP / Postal Code**, and **Company Address**, then click **Save Changes**.
 
 ## Invoice Settings
 
-Invoice Settings controls the default information used when generating invoices.
+Invoice Settings controls how your invoices are numbered, the notes shown at the bottom, and whether tax is added.
 
 <Frame caption="The Invoice Details settings page, with the invoice prefix, next invoice number, footer notes, and the tax toggle">
   <img src="/images/pa/invoice-settings.png" alt="The Invoice Details settings page, with the invoice prefix, next invoice number, footer notes, and the tax toggle" />
@@ -74,35 +86,27 @@ Invoice Settings controls the default information used when generating invoices.
 
 ### Invoice Prefix
 
-Set the prefix that should be added to every invoice number.
-
-For example, if the prefix is set to `INV-`, the invoice number will start with `0001`, giving `INV-0001`.
+Set the prefix added to every invoice number. With a prefix of `INV-`, your invoices read `INV-0001`, `INV-0002`, and so on.
 
 <Note>
-  Changing the prefix affects **future invoices only**.
+  Changing the prefix affects **future invoices only**. Invoices you have already issued keep their original numbers.
 </Note>
+
+### Next Invoice Number
+
+The number your next invoice will use. It goes up by one automatically after that. Set it to `1` to start from the beginning.
 
 ### Footer Notes
 
-Add notes that should appear at the bottom of every invoice. You can use this for:
+Text added to the bottom of every invoice. Most resellers use it for payment instructions, bank details, a thank-you line, or anything their accountant needs.
 
-- Bank details
-- Payment instructions
-- Thank-you messages
-- Legal information
-- Other billing notes
+### Enable Tax on Invoices
 
-### Tax on Invoices
-
-Enable **Tax on Invoices** when you want tax to be added to tenant invoices. When this option is enabled, the tax configured under [**Taxes**](#taxes) can be applied to invoices.
-
-<Info>
-  A tax is applied only when **Tax on Invoices** is enabled **and** the tax is active.
-</Info>
+Turn this on before you add a tax. While it is off, no tax is added to any invoice, even if you have already created one.
 
 ## Taxes
 
-Use the **Taxes** section to add the tax rates that can be applied to tenant invoices.
+Add the tax rates that apply to your tenant invoices.
 
 ### Add a tax
 
@@ -112,18 +116,16 @@ Use the **Taxes** section to add the tax rates that can be applied to tenant inv
 
 | Field | Description |
 | ----- | ----------- |
-| **Name** | Name of the tax. |
-| **Rate** | Tax percentage. |
-| **Type** | Select the tax type. |
-| **Currency** | Select the currency for the tax. |
-| **Description** | Add an optional description. |
+| **Name** | What the tenant sees on the invoice, such as GST or VAT. Up to 255 characters. |
+| **Rate** | The percentage to add, from 0 to 100. |
+| **Type** | **Percentage** is the only option. |
+| **Currency** | Your base currency. Set one in [Currency setup](/pa/currency-setup) first, or this list is empty. |
+| **Description** | Optional note for your own reference. Up to 500 characters. |
 
-After adding the tax, make sure [**Tax on Invoices**](#tax-on-invoices) is enabled in [**Invoice Settings**](#invoice-settings) if you want the tax to be included in invoices.
+Once saved, make sure [**Enable Tax on Invoices**](#enable-tax-on-invoices) is on, or the rate is never applied.
 
 <Note>
-  Tax is calculated when an invoice is created. The tax amount on that invoice does not change later.
-
-  If the tax rate is changed, the new rate applies only to future invoices. Existing invoices keep the original tax rate.
+  If you change a tax rate, it affects new invoices only. Invoices already issued keep their original rate.
 </Note>
 
 ## How payments are settled
@@ -134,28 +136,27 @@ After adding the tax, make sure [**Tax on Invoices**](#tax-on-invoices) is enabl
 
 <Tabs>
   <Tab title="Online gateways">
-    For **Razorpay, PayPal, Tap Payments, and Paymob**, you use your own gateway account and credentials. Tenant payments are processed through your gateway account.
+    **Razorpay**, **PayPal**, **Tap Payments**, and **Paymob** all run on credentials from your own account, so the money is transferred into your gateway account.
 
-    The payment is added to the billing history and linked to the related invoice.
   </Tab>
   <Tab title="Bank Transfer">
-    Tenants pay you directly using the bank details you provide. You review their payment proof and approve or reject the payment from the platform.
+    Tenants pay you directly using the bank details you provide, so the money arrives in your bank account. You then check their proof and approve or reject the request under [**Offline payments**](/pa/offline-payments).
   </Tab>
 </Tabs>
 
 ## Review billing records
 
-Once tenants start buying plans, their billing activity appears under **Sales**. Each area has its own page.
+Once tenants start buying plans, everything they pay shows up under **Sales** in the sidebar.
 
 <CardGroup cols={2}>
   <Card title="Subscriptions" icon="repeat" href="/pa/subscriptions">
-    Each tenant's current plan and subscription status.
+    Who is on which plan, and whether it is still active.
   </Card>
   <Card title="Invoices & payments" icon="receipt" href="/pa/invoices-and-payments">
-    Invoices issued to tenants and their payment history, including failed payments.
+    Every invoice you have issued, and whether it was paid.
   </Card>
   <Card title="Offline payments" icon="banknote" href="/pa/offline-payments">
-    Payment requests from tenants who paid by bank transfer. Approve or reject each request.
+    Bank transfers waiting for you to approve or reject.
   </Card>
   <Card title="Coupons" icon="ticket-percent" href="/pa/coupons">
     Discount codes tenants can use when paying for a plan.
