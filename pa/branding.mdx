@@ -23,7 +23,7 @@ White-label branding makes the platform look and feel like your product. Your te
 
 ## System Core Settings
 
-Go to **System Settings → System**. This sets your platform name and the logos shown across the panel.
+Go to **Settings → System**. This sets your platform name and the logos shown across the panel.
 
 <Frame caption="The System Core Settings page, with the site name, locale defaults, and the logo and favicon upload fields">
   <img src="/images/pa/system-core-settings.png" alt="The System Core Settings page, with the site name, locale defaults, and the logo and favicon upload fields" />
@@ -33,7 +33,7 @@ Go to **System Settings → System**. This sets your platform name and the logos
   <Tab title="Platform details">
     | Field | Description |
     | ----- | ----------- |
-    | **Site Name** | Your platform name. Shown across the panel, and used in emails if you do not upload a header logo. |
+    | **Site Name** | Your platform name. Shown across the panel. |
     | **Site Description** | A short description of your platform. |
     | **Timezone** | The timezone used across your panel, and the default for new tenants. |
     | **Date Format** | How dates are written across the panel, such as `2026-09-16` or `16/09/2026`. |
@@ -51,7 +51,7 @@ Go to **System Settings → System**. This sets your platform name and the logos
     | **Dark Logo** | 200 × 50 px | 2 MB |
     | **Favicon** | 32 × 32 px | 512 KB |
 
-    The **Dark Logo** is used in dark mode. Upload both. One does not fall back to the other, so if you skip the dark logo, no logo shows in dark mode at all.
+    Upload both logos. The **Site Logo** is used in light mode and the **Dark Logo** in dark mode.
 
     Logos must be **JPEG, PNG, or WebP**. The favicon must be **PNG**. SVG files are not accepted for the Site Logo, Dark Logo, or Favicon.
 
@@ -85,9 +85,9 @@ Click **Save Changes** on the last tab to save all three.
 
 ## Sender Identity (SMTP)
 
-Go to **Settings → Email**. SMTP is the connection the platform uses to send email. Until it works, your tenants receive nothing.
+Go to **Settings → Email**. SMTP is the connection the platform uses to send email. Until it is set up, no email reaches your tenants.
 
-Your email provider gives you these details. That could be your hosting company, your Google Workspace account, or a sending service you signed up for.
+Get the SMTP details from your email provider before you start.
 
 <Frame caption="The Email Configuration page, with the SMTP connection fields, sender identity, and the Send Test Email box">
   <img src="/images/pa/smtp-settings.png" alt="The Email Configuration page, with the SMTP connection fields, sender identity, and the Send Test Email box" />
@@ -98,7 +98,9 @@ Your email provider gives you these details. That could be your hosting company,
     Use the switch at the top of the card. The fields below are only required once this is on.
   </Step>
   <Step title="Enter the SMTP details">
-    Enter the **SMTP Host**, **SMTP Port**, **SMTP Username**, **SMTP Password**, and **SMTP Encryption**. Encryption is **TLS**, **SSL**, or **None** — your provider tells you which, and TLS on port 587 is the most common.
+    Enter the **SMTP Host**, **SMTP Port**, **SMTP Username**, and **SMTP Password** exactly as your provider gives them.
+
+    For **SMTP Encryption**, choose **TLS**, **SSL**, or **None**.
 
     **SMTP Protocol** has one option, **SMTP**. Leave it as it is.
   </Step>
@@ -109,10 +111,6 @@ Your email provider gives you these details. That could be your hosting company,
     Enter an address in the **Send Test Email** box and send. If it arrives, your setup works. If it does not, check the host, port, encryption, and password.
   </Step>
 </Steps>
-
-<Warning>
-  No email is sent until SMTP works. Set this up before you open signups, or a new tenant will never get their registration email.
-</Warning>
 
 ## Legal
 
