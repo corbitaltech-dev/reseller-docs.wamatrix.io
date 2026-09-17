@@ -1,6 +1,6 @@
 ---
 name: reseller-docs-consistency-lint
-description: Site-wide sweep for brand, terminology, formatting, and gating-language drift on reseller-docs.WaMatrix.io — bare "WaMatrix" outside keywords/site name, reseller vs. tenant/sub-tenant swaps, unmarked plan/add-on-gated features, thin or missing image alt text, Lucide icon typos, and Title Case vs sentence case drift. Activate for a pre-launch sweep, a scheduled reseller-docs-manager run, or "lint this page/section for brand and formatting issues".
+description: Site-wide sweep for brand, terminology, formatting, and gating-language drift on reseller-docs.WaMatrix.io — bare "WaMatrix" outside keywords/site name, reseller vs. tenant/sub-tenant swaps, unmarked plan/add-on-gated features, thin or missing image alt text, Lucide icon typos, unescaped dollar amounts that silently break into LaTeX math mode, and Title Case vs sentence case drift. Activate for a pre-launch sweep, a scheduled reseller-docs-manager run, or "lint this page/section for brand and formatting issues".
 ---
 
 # Consistency lint: brand, terminology, formatting
@@ -62,6 +62,17 @@ grep -n '"icon"' docs.json | grep -E 'bolt|comments|bullhorn|robot|cart-shopping
 ```
 
 Full known-bad → correct table is in `wamatrix-reseller-docs` §5. After any fix, load the page in `mint dev` and look — a correct-looking name can still be wrong if it's not real Lucide.
+
+## §4a — Unescaped `$` amounts that trigger LaTeX math mode
+
+This site talks about prices and discounts constantly, so this trap recurs. Mintlify's Markdown renderer treats a bare `$` as a LaTeX math delimiter — **two `$amount` occurrences on the same line** (most often in one table cell or one sentence) get swallowed into a single math expression between them, rendering as garbled italics instead of two plain dollar amounts. One lone `$amount` per line is safe; it's the *pair* that breaks.
+
+```bash
+# find lines with two or more unescaped $<number> occurrences — the real risk pattern
+grep -rnE '\$[0-9]+.*\$[0-9]+' --include="*.mdx" . | grep -v '\\\$'
+```
+
+Fix: escape every dollar sign in the amount as `\$20`, not `$20` — this applies even to a single `$amount` on a line that might later gain a second one nearby. Verify visually in `mint dev` after fixing; like a bad Lucide icon, this fails silently in a table cell and is easy to miss on a source read.
 
 ## §5 — Screenshot convention and alt/caption text
 
