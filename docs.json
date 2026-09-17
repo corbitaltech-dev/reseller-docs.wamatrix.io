@@ -26,6 +26,14 @@
             "icon": "rocket"
           },
           {
+            "group": "Tenants",
+            "pages": [
+              "pa/managing-customers",
+              "pa/plan-limits-and-customer-access"
+            ],
+            "icon": "building-2"
+          },
+          {
             "group": "Sales",
             "pages": [
               "pa/subscriptions",
@@ -36,14 +44,6 @@
               "pa/taxes"
             ],
             "icon": "shopping-cart"
-          },
-          {
-            "group": "Tenants",
-            "pages": [
-              "pa/managing-customers",
-              "pa/plan-limits-and-customer-access"
-            ],
-            "icon": "building-2"
           },
           {
             "group": "Settings",
