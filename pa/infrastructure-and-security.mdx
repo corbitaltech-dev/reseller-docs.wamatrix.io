@@ -4,23 +4,25 @@ description: "Configure bot protection, social login, and Google account connect
 icon: "shield-check"
 ---
 
-**Settings → Infrastructure & Security** contains settings for platform login and connected services.
+**Infrastructure & Security**  contains settings for platform security, login, and connected services. Configure bot protection, social login, and Google account connections from here.
+
+## What you see on the screen
 
 <CardGroup cols={2}>
   <Card title="reCAPTCHA" icon="shield" href="/pa/onboarding-a-sub-tenant#bot-protection">
     Protect login, forgot-password, and tenant registration from bots using **Google reCAPTCHA v3** or **Cloudflare Turnstile**.
   </Card>
   <Card title="Social Login" icon="key-round" href="/pa/onboarding-a-sub-tenant#social-login">
-    Allow tenants and staff to sign in using **Google** or **Facebook**.
+    Allow tenants and staff to sign in with **Google** or **Facebook**.
   </Card>
 </CardGroup>
 
 ## Google Accounts
 
-Allow tenants to connect their Google account for automation features such as **Google Sheets** and **Google Calendar**.
+Allow tenants to connect their Google account for features such as **Google Sheets** and **Google Calendar**.
 
 <Warning>
-  Google Accounts uses a **separate Google app** from Social Login. Each has its own credentials.
+  Google Accounts uses a **separate Google app** from Social Login. Both require different credentials.
 </Warning>
 
 <Frame caption="The Google Accounts tab, with the client credentials and the redirect URI to register">
@@ -36,5 +38,5 @@ Allow tenants to connect their Google account for automation features such as **
 | **Authorized Redirect URI** | The redirect URL shown on this page. |
 
 <Info>
-  Copy the **Authorized Redirect URI** exactly as shown and add it to your Google Cloud project. An incorrect URI can cause a `redirect_uri_mismatch` error when tenants connect their Google account.
+  Copy the **Authorized Redirect URI** exactly as shown and add it to your Google Cloud project. An incorrect URI can cause a `redirect_uri_mismatch` error when a tenant connects their Google account.
 </Info>

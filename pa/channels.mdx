@@ -1,131 +1,221 @@
 ---
 title: "Channels"
-description: "Configure WhatsApp, Messenger, and Shopify connections."
+description: "Set up the Meta and Shopify apps your tenants connect through."
 icon: "message-circle"
 ---
 
-**Settings → Channels** contains the app credentials used by your tenants to connect WhatsApp, Messenger, and Shopify.
+Your tenants can connect their own **WhatsApp number, Facebook Page, and Shopify store** using the apps you configure here.
+
+Add your Meta or Shopify app credentials once to connect the platform with these services. Tenants can then connect their own accounts, pages, or stores without accessing the Meta or Shopify developer accounts.
+
+## What you see on the screen
+
+Go to **Settings → System Settings** and click **Channels** at the top of the page.
+
+You can configure three channels:
+
+- **WhatsApp** — Lets tenants connect their WhatsApp Business Account.
+- **Messenger** — Lets tenants connect their Facebook Page.
+- **Shopify** — Lets tenants connect their Shopify store.
 
 <Info>
-  Configure these settings **once**. Tenants do not need to enter your app credentials — they only connect their own WhatsApp account, Facebook Page, or Shopify store.
+  You configure these settings **once**. Tenants only connect their own account, Page, or store.
 </Info>
 
-<Columns cols={3}>
-  <Card title="WhatsApp" icon="message-circle" href="#whatsapp">
-    Your Meta app, so tenants can connect their WhatsApp Business Account.
-  </Card>
-  <Card title="Messenger" icon="facebook" href="#messenger">
-    Your Meta app, for connecting Facebook Pages.
-  </Card>
-  <Card title="Shopify" icon="shopping-bag" href="#shopify">
-    Your Shopify app, so tenants can connect their own store.
-  </Card>
-</Columns>
+## Before you start
+
+<Warning>
+  Create and configure your Meta or Shopify app first. Then enter its credentials in the platform.
+</Warning>
+
+- For **WhatsApp**, your Meta app must be approved as a **Tech Provider** before tenants outside your team can connect.
+- For **Messenger**, your Meta app needs **Advanced Access** to the required Page permissions.
+- For **Shopify**, use a **public or unlisted** app. A custom app works with only one store.
 
 ## WhatsApp
 
-Configure your Meta app so tenants can connect their WhatsApp Business Account. Create the app in the [Meta Developers Console](https://developers.facebook.com/apps).
-
-<Note>
-  Your Meta app must be approved as a **Tech Provider** before tenants can connect through Embedded Signup. See [Tech Provider Approval](/pa/tech-provider-approval) for the step-by-step process.
-</Note>
+Create your app in the [Meta Developers Console](https://developers.facebook.com/apps), then enter its details here.
 
 ### Meta App Credentials
 
-<Frame caption="The WhatsApp tab, with the Meta app credentials and Embedded Signup switches">
-  <img src="/images/pa/channels-whatsapp-credentials.png" alt="The WhatsApp tab, with the Meta app credentials and Embedded Signup switches" />
+<Frame caption="The WhatsApp tab, showing App ID, App Secret, both Embedded Signup Config ID fields, the read-only API Version v23.0, and the two Embedded Signup switches">
+  <img src="/images/pa/channels-whatsapp-credentials.png" alt="The WhatsApp tab, showing App ID, App Secret, both Embedded Signup Config ID fields, the read-only API Version v23.0, and the two Embedded Signup switches" />
 </Frame>
 
-| Field | Description |
-| ----- | ----------- |
+| Field | What it is |
+| ----- | ---------- |
 | **App ID** | Your Meta app ID. |
-| **App Secret** | Your Meta app secret. |
-| **Embedded Signup Config ID (no catalog)** | Configuration ID from **Meta App Dashboard → Facebook Login for Business**. |
+| **App Secret** | Your Meta app secret. It is hidden after saving. |
+| **Embedded Signup Config ID (no catalog)** | Configuration from **Meta App Dashboard → Facebook Login for Business** without `catalog_management`. |
+| **Embedded Signup Config ID (with catalog)** | Configuration that includes `catalog_management`. This option is **Coming Soon**. |
+| **API Version** | The Meta Graph API version used by the platform. This is read-only. |
+
+The following switches control how tenants connect:
+
+| Switch | What it does |
+| ------ | ------------ |
+| **Embedded Signup (no catalog)** | Lets tenants connect WhatsApp through Meta's onboarding process. |
+| **Embedded Signup with Catalog** | **Coming Soon** and currently disabled. |
 
 <Note>
-  The **API Version** is fixed by the platform and cannot be changed.
+  Catalog options are **Coming Soon**. You do not need to configure them now.
 </Note>
-
-### Tenant Connection
-
-**Embedded Signup (no catalog)** allows tenants to connect their WhatsApp Business Account through Meta's onboarding process.
 
 ### Webhook Configuration
 
-<Frame caption="The Webhook Configuration card, with the webhook URL and Connect Webhook button">
-  <img src="/images/pa/channels-whatsapp-webhook.png" alt="The Webhook Configuration card, with the webhook URL and Connect Webhook button" />
+A webhook is the URL Meta uses to send messages and other WhatsApp events to the platform.
+
+<Frame caption="The WhatsApp Webhook Configuration card showing the Not Connected badge, the read-only webhook URL with a copy button, and the greyed-out Connect Webhook button">
+  <img src="/images/pa/channels-whatsapp-webhook.png" alt="The WhatsApp Webhook Configuration card showing the Not Connected badge, the read-only webhook URL with a copy button, and the greyed-out Connect Webhook button" />
 </Frame>
 
-The page shows the webhook URL and its connection status. Click **Connect Webhook** to register the webhook with Meta.
+The card shows either **Connected** or **Not Connected**.
+
+<Steps>
+  <Step title="Save your credentials">
+    Enter the **App ID** and **App Secret**, then click **Save Changes**.
+  </Step>
+  <Step title="Connect the webhook">
+    Click **Connect Webhook**. The platform registers the webhook with Meta.
+  </Step>
+  <Step title="Check the status">
+    The status changes to **Connected**. If there is a problem, an error message is shown.
+  </Step>
+</Steps>
+
+To stop receiving WhatsApp events, click **Disconnect Webhook**.
 
 <Warning>
-  Save the Meta credentials before connecting the webhook.
+  Disconnecting the webhook stops incoming WhatsApp messages for **all tenants** on your platform.
 </Warning>
 
 ## Messenger
 
-Configure your Meta app for connecting Facebook Pages. The same Meta app can be used for WhatsApp and Messenger, or you can use a separate app.
+Configure your Meta app to allow tenants to connect their Facebook Pages. You can use the same Meta app as WhatsApp or create a separate app.
 
-<Note>
-  The app needs Advanced Access to the Messenger Page permissions before tenants outside your team can connect a Page. See [Messenger Permissions](/pa/messenger-permissions) for the required permissions, the Facebook Login configuration, and App Review.
-</Note>
-
-<Frame caption="The Messenger tab, with the Meta app credentials and connection switches">
-  <img src="/images/pa/channels-messenger.png" alt="The Messenger tab, with the Meta app credentials and connection switches" />
+<Frame caption="The Messenger tab, showing App ID, App Secret, Embedded Signup Config ID, the read-only API Version, and the Embedded Signup and Manual Connect switches">
+  <img src="/images/pa/channels-messenger.png" alt="The Messenger tab, showing App ID, App Secret, Embedded Signup Config ID, the read-only API Version, and the Embedded Signup and Manual Connect switches" />
 </Frame>
 
-| Field | Description |
-| ----- | ----------- |
+### Meta App Credentials
+
+| Field | What it is |
+| ----- | ---------- |
 | **App ID** | Your Meta app ID. |
-| **App Secret** | Your Meta app secret. |
-| **Config ID** | Configuration ID with the `pages_messaging` permission. |
+| **App Secret** | Your Meta app secret. It is hidden after saving. |
+| **Embedded Signup Config ID** | Configuration from **Meta App Dashboard → Facebook Login for Business** with the required Page permissions. |
+| **API Version** | The Meta Graph API version used by the platform. This is read-only. |
+
+<Note>
+  Your Meta app needs **Advanced Access** to the required Page permissions before tenants outside your team can connect a Page.
+</Note>
 
 ### Tenant Connection Options
 
-| Option | How tenants connect |
-| --- | --- |
-| **Embedded Signup** | Tenants connect their Facebook Page through Facebook Login. |
+You can enable either or both connection methods.
+
+| Switch | How tenants connect |
+| ------ | ------------------- |
+| **Embedded Signup** | Tenants connect their Facebook Page through Meta's signup process. |
 | **Manual Connect** | Tenants enter their Page ID and long-lived Page Access Token. |
 
 <Warning>
   If both options are disabled, tenants cannot connect a Facebook Page.
 </Warning>
 
+### Webhook Configuration
+
+Messenger has a separate webhook for messages, postbacks, deliveries, and reads.
+
+<Steps>
+  <Step title="Save your credentials">
+    Enter the **App ID** and **App Secret**, then click **Save Changes**.
+  </Step>
+  <Step title="Connect the webhook">
+    Click **Connect Webhook**. The platform registers the webhook with Meta.
+  </Step>
+</Steps>
+
+<Warning>
+  Disconnecting the Messenger webhook stops incoming Messenger messages for **all tenants**.
+</Warning>
+
 ## Shopify
 
-Configure your Shopify app so tenants can connect their own Shopify store. Create the app in your Shopify Partner Dashboard.
+Create your Shopify app in the **Shopify Partner Dashboard**, then configure it here so tenants can connect their stores.
 
-<Frame caption="The Shopify tab, with the URLs to register, API credentials and OAuth scopes">
-  <img src="/images/pa/channels-shopify.png" alt="The Shopify tab, with the URLs to register, API credentials and OAuth scopes" />
+<Frame caption="The Shopify tab, showing the three URLs to register with copy buttons, API Key, API Secret Key, Admin API Version 2026-07, the OAuth Scopes picker, and the customers' own app switch turned on">
+  <img src="/images/pa/channels-shopify.png" alt="The Shopify tab, showing the three URLs to register with copy buttons, API Key, API Secret Key, Admin API Version 2026-07, the OAuth Scopes picker, and the customers' own app switch turned on" />
 </Frame>
 
 <Info>
-  Use a **public or unlisted app** so it can be used by multiple tenants. A Shopify custom app is limited to one store.
+  Your Shopify app must be **public or unlisted**. A custom app can only be used with one store.
 </Info>
-
-### Shopify App Settings
-
-| Field | Description |
-| ----- | ----------- |
-| **API Key (Client ID)** | Client ID from your Shopify app. |
-| **API Secret Key** | Secret key from your Shopify app. |
-| **Admin API Version** | Shopify API version used by the platform. |
-| **OAuth Scopes** | Permissions requested from each store. |
 
 ### URLs to register
 
-The page provides these URLs with copy buttons. Add them to your Shopify app exactly as shown.
+Add these URLs to your Shopify app exactly as shown on the page:
 
-- **App URL**
-- **Allowed redirection URL**
-- **Webhook endpoint**
+- **Allowed redirection URL** — Shopify sends the merchant back here after app approval.
+- **App URL** — Opens your app from the Shopify admin.
+- **Webhook endpoint** — Shopify sends store events here.
 
 <Warning>
-  Make sure the **App URL** is registered correctly. It is used when merchants open your app.
+  These URLs must match exactly. An incorrect **Allowed redirection URL** prevents tenants from connecting their store.
 </Warning>
 
-### Tenant-owned Shopify Apps
+### Shopify App Settings
 
-**Allow tenants to use their own Shopify app** is disabled by default.
+| Field | What it is |
+| ----- | ---------- |
+| **API Key (Client ID)** | The API key from your Shopify app. |
+| **API Secret Key (Client Secret)** | The secret key from your Shopify app. Hidden after saving. |
+| **Admin API Version** | The Shopify API version used by the platform. |
+| **OAuth Scopes** | The permissions tenants approve when connecting their store. |
 
-When enabled, tenants can optionally enter their own Shopify app credentials from their workspace settings. Tenants already connected through your app will continue to work.
+<Warning>
+  **OAuth Scopes** must include `read_orders`, `read_checkouts`, and `read_customers` at minimum. They must match the scopes configured in your Shopify app.
+</Warning>
+
+### Letting tenants use their own Shopify app
+
+**Allow customers to use their own Shopify app** is off by default. Tenants normally connect through your app.
+
+When enabled, tenants can optionally enter their own Shopify app credentials in their workspace. Existing connections continue to work.
+
+## Common questions
+
+<AccordionGroup>
+  <Accordion title="Can I use one Meta app for both WhatsApp and Messenger?" icon="layers">
+    Yes. You can use the same **App ID** and **App Secret** for both. The Config IDs are different because each channel needs different permissions.
+  </Accordion>
+
+  <Accordion title="Why is the Connect Webhook button greyed out?" icon="circle-off">
+    You need to save your **App ID** and **App Secret** first. Click **Save Changes**, then the button becomes available.
+  </Accordion>
+
+  <Accordion title="Why can't I change the API Version?" icon="lock">
+    The Meta Graph API version is managed by the platform and is read-only.
+  </Accordion>
+
+  <Accordion title="Do I have to set up all three channels?" icon="list-checks">
+    No. Set up only the channels you want to offer to your tenants.
+  </Accordion>
+</AccordionGroup>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Tech Provider approval" icon="badge-check" href="/pa/tech-provider-approval">
+    Get your Meta app approved so tenants can connect WhatsApp.
+  </Card>
+  <Card title="Messenger permissions" icon="shield-check" href="/pa/messenger-permissions">
+    Get Advanced Access to the Page permissions required by Messenger.
+  </Card>
+  <Card title="Onboarding a tenant" icon="user-plus" href="/pa/onboarding-a-sub-tenant">
+    Add your first tenant and help them connect their account.
+  </Card>
+  <Card title="Plan limits" icon="sliders-horizontal" href="/pa/plan-limits-and-customer-access">
+    Set how many channels each plan allows.
+  </Card>
+</CardGroup>
