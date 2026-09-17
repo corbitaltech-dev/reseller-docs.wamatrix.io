@@ -1,81 +1,106 @@
 ---
 title: "Media library"
-description: "Manage your files and monitor tenant storage usage."
+description: "Store your own files, and track how much storage your tenants use."
 icon: "image"
 ---
 
-**Media Library** contains two sections.
+Your logo, your email banners, the images in your templates. Upload each file once, then reuse it anywhere in the panel.
 
-<Columns cols={2}>
+Media Library has two parts. One holds your own files, and the other shows what your tenants are storing.
+
+<CardGroup cols={2}>
   <Card title="My Media" icon="folder" href="#my-media">
-    Manage your own files.
+    Your own files, and the storage they use.
   </Card>
   <Card title="Tenant Media" icon="hard-drive" href="#tenant-media">
-    View storage usage for all tenants.
+    How much storage each tenant is using.
   </Card>
-</Columns>
-
-<Info>
-  **Tenant Media is available only to the account owner.** It cannot be given to staff through roles.
-</Info>
+</CardGroup>
 
 ## My Media
 
-**My Media** is your personal file library. You can store images and documents used in the admin panel, such as email templates and banners.
+Click **Media Library → My Media** in the sidebar. Your tenants never see these files. Each of them has a separate library inside their own workspace.
 
 <Frame caption="My Media, with the upload controls and the storage meter">
   <img src="/images/pa/media-my-media.png" alt="My Media, with the upload controls and the storage meter" />
 </Frame>
 
+### Uploading files
+
+Click **Upload**, then drag your files in or pick them from your computer.
+
+Use **Add Folder** to group files, so a long library stays easy to search.
+
+| File type | Accepted formats | Largest file |
+| --- | --- | --- |
+| **Images** | JPG, PNG, GIF, WEBP | 5 MB |
+| **Video** | MP4, 3GP | 16 MB |
+| **Audio** | MP3, OGG, AAC, M4A, AMR, OPUS | 16 MB |
+| **Documents** | PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, ZIP | 100 MB |
+
 <Note>
-  Tenants cannot access your files. Each tenant has a separate media library in their workspace.
+  These formats and sizes come from WhatsApp, not from WaMatrix.io. A file that is too big here would not send anyway. Meta lists them all under [supported media types](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/media).
 </Note>
 
-### What you can do
+### Working with a file
 
-- **Upload** files and organize them into folders.
-- **Delete** single or multiple files.
-- **Copy file URL** to use a file elsewhere in the platform.
+Click a file to see its details on the right, including its size, folder, and when it was uploaded.
 
-### Storage usage
+<Frame caption="A file selected in My Media, with the Details panel open on the right showing its size, upload date, folder, and the Copy URL, Open file and Delete buttons">
+  <img src="/images/pa/media-file-details.png" alt="A file selected in My Media, with the Details panel open on the right showing its size, upload date, folder, and the Copy URL, Open file and Delete buttons" />
+</Frame>
 
-The storage card shows the total storage used by your platform and tenants. The indicator changes to:
+Three buttons sit at the bottom of that panel:
 
-- **Amber** when usage is above 75%.
-- **Red** when usage is above 90%.
+- **Copy URL** — copies a link to the file, so you can paste it into an email template or anywhere else in the panel.
+- **Open file** — opens it in a new tab.
+- **Delete** — removes it.
 
-<Tip>
-  Use **Tenant Media** to find which tenants are using the most storage.
-</Tip>
+Select more than one file and a bar appears, with **Move** and **Delete** for the whole selection.
 
 ## Tenant Media
 
-**Media Library → Tenant Media** shows storage usage for all tenants.
+Click **Media Library → Tenant Media** in the sidebar. This shows what every tenant is storing, so you can track their usage and spot anyone close to their plan limit.
 
 <Frame caption="Tenant Media, with the storage summary cards and per-tenant usage">
   <img src="/images/pa/media-tenant-media.png" alt="Tenant Media, with the storage summary cards and per-tenant usage" />
 </Frame>
 
-The page provides summary cards for **Total Tenants**, **Storage Used**, **Total Files**, and **Near Limit**.
+Four cards summarise the whole platform: **Total Tenants**, **Storage Used**, **Total Files**, and **Near Limit**.
 
-### Tenant list
+### What you see on the screen
 
 | Column | Description |
 | ------ | ----------- |
-| **Tenant** | Tenant name. |
-| **Plan** | Tenant's current plan. |
-| **Usage** | Storage used by the tenant. |
-| **Files** | Number of files stored by the tenant. |
-| **Last Sync** | Last time the storage information was updated. |
+| **Tenant** | The tenant's name. |
+| **Plan** | The plan they are on. |
+| **Usage** | Storage they have used. |
+| **Files** | How many files they have stored. |
+| **Last Sync** | When these numbers were last worked out. |
 
-<Note>
-  Storage information is updated periodically, not in real time. **Last Sync** shows when the information was last updated.
-</Note>
+### Open a tenant's files
 
-### View tenant files
+Click a tenant to browse everything they have stored. Their name and plan sit at the top, so you always know whose files you are looking at.
 
-Open a tenant to view their files. You can open a file, copy its URL, or delete it.
+<Frame caption="One tenant's files, with the folder and type filters, a search box, and each file's name and size">
+  <img src="/images/pa/media-tenant-files.png" alt="One tenant's files, with the folder and type filters, a search box, and each file's name and size" />
+</Frame>
+
+Filter by folder or file type, or search by name.
+
+Click a file and you get the same **Copy URL**, **Open file**, and **Delete** buttons, this time acting on the tenant's file.
 
 <Warning>
-  Deleting a tenant's file is permanent. Only delete tenant files when necessary or when the tenant has requested it.
+  These are your tenant's files, not yours. Deleting one removes it from their workspace and cannot be undone, so do it only when they have asked you to.
 </Warning>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Seeder library" icon="sprout" href="/pa/seeder-library">
+    Give tenants ready-made automations and flows to start from.
+  </Card>
+  <Card title="Activity log" icon="history" href="/pa/activity-log">
+    See who did what across your platform, including file deletions.
+  </Card>
+</CardGroup>

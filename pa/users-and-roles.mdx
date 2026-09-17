@@ -1,92 +1,80 @@
 ---
 title: "Users & roles"
-description: "Add administrators and control their access to the admin panel."
+description: "Manage your staff accounts and their permissions."
 icon: "users"
 ---
 
-**Setup → User** and **Setup → Role** allow you to manage your staff and their access to the admin panel.
+Anyone helping you manage the platform should have their own login, so you don't have to share your credentials.
 
-<Note>
-  These users are your **staff members**, not tenants or tenant staff.
-</Note>
-
-## Access types
-
-Administrators can access the panel in two ways.
-
-| Access type | Description |
-| --- | --- |
-| **Role** | A set of specific permissions, limited to the areas you choose. |
-| **Administrator Access** | Full, unrestricted access to all areas of the platform. |
-
-<Warning>
-  Give **Administrator Access** only to trusted users. It provides unrestricted access and cannot be limited by a role.
-</Warning>
+You do this in two steps. First build a **role**, then add the person under **Users** and give them that role.
 
 ## Roles
 
-**Setup → Role** shows all available roles and the number of users assigned to each role.
+Click **Setup → Role** in the sidebar. A role is a group of permissions, like view tenants but not billing. You build it once and give it to as many staff as you want.
 
 ### Create a role
 
-Click **Add Role** and enter a **Role Name**, then select the required permissions.
+Click **Add Role**, give it a **Role Name**, then tick the permissions that role should have.
 
 <Frame caption="The Add Role panel, with the permission checkboxes for each area">
   <img src="/images/pa/add-role.png" alt="The Add Role panel, with the permission checkboxes for each area" />
 </Frame>
 
-Permissions are available for areas such as **Plans, Coupons, Taxes, Transactions, Activity Log, Notifications, Tenants, Tenant Billing, Currency, My Billing, Email Templates, Seeder Library, Settings, Users, and Roles**.
+You can set permissions for **Plans**, **Coupons**, **Taxes**, **Transactions**, **Activity Log**, **Notifications**, **Tenants**, **Tenant Billing**, **Currency**, **My Billing**, **Email Templates**, **Media Library**, **Seeder Library**, **Settings**, **Users**, and **Roles**.
 
-Most areas include permissions such as **View, Create, Edit, and Delete**.
+Most areas offer **View**, **Create**, **Edit**, and **Delete**.
 
-<Note>
-  Selecting **Create, Edit, or Delete** automatically gives the user **View** access to that area.
-</Note>
-
-### Delete a role
-
-A role assigned to a user cannot be deleted. Move the users to another role first, then delete the unused role.
+<Warning>
+  You cannot delete a role while someone is using it. Move those staff to another role first, then delete it.
+</Warning>
 
 ## Users
 
-**Setup → User** shows all administrators with their name, phone, email, status, and added date.
+A user is one person on your team with their own email and password to sign in. Each one carries a role, which decides what they can open.
+
+Click **Setup → User** in the sidebar to see everyone you have added. The list shows each person's name, phone, email, status, and the date they joined.
 
 ### Add a user
 
-Click **Add User** and enter the following details.
+Click **Add User**. The form has two tabs: **User Details** and **Role**.
 
 <Frame caption="The Add User panel, with the User Details tab and the Role tab beside it">
   <img src="/images/pa/add-user.png" alt="The Add User panel, with the User Details tab and the Role tab beside it" />
 </Frame>
 
+On **User Details**, enter who the person is and the credentials they sign in with.
+
 | Field | Description |
 | ----- | ----------- |
-| **Name** | User's name. |
-| **Email** | Email address used to sign in. |
-| **Phone** | Optional phone number. |
-| **Password** | Password for the account. |
-| **Administrator Access** | Gives full access to the platform. |
-| **Role** | Role assigned to the user. |
+| **Name** | The person's name. |
+| **Email** | The address they sign in with. It cannot already be in use, by your staff or by any tenant. |
+| **Phone** | Their phone number. Required, and it must be different from your other staff. |
+| **Password** | The password for their account. You set it here and pass it to them yourself. |
+
+On **Role**, decide what they can do. Pick one of these two:
+
+| Access type | What they get |
+| --- | --- |
+| **Role** | Only the permissions in the role you give them. Roles are set up under [Roles](#roles) above. |
+| **Administrator Access** | Every permission in the panel, the same as your own access. No role needed. |
+
+<Warning>
+  **Administrator Access** cannot be limited by a role. Anyone who has it can open your billing, your tenants, and your other staff accounts, so give it only to a business partner or someone you trust with your own login.
+</Warning>
 
 ### Edit a user
 
-You can edit a user's profile and access settings based on your permissions. The following rules apply:
+Open any staff member to change their name, email, phone, or role.
 
-- You cannot change your own access settings.
-- The **account owner** cannot be edited from this page. Update the owner's details from **Profile**.
-- Only a full-access administrator can manage users with **Administrator Access**.
+Two rows are locked: **your own account** and **the account owner**. Both are changed from **Profile** instead.
 
-<Info>
-  You need full access to give someone full access. A staff member with a role cannot give it to anyone, including their own account.
-</Info>
+## What's next
 
-### Remove a user
-
-You can remove staff users from the platform. These users cannot be removed:
-
-- **Account owner**
-- **Your own account**
-
-<Tip>
-  You can also disable a user without removing them by turning off their **Active** status.
-</Tip>
+<CardGroup cols={2}>
+  <Card title="Media library" icon="image" href="/pa/media-library">
+    The files your staff share, and what your tenants are storing.
+  </Card>
+  <Card title="Activity log" icon="history" href="/pa/activity-log">
+    See what each staff member has been doing in the panel.
+  </Card>
+</CardGroup>
