@@ -102,31 +102,13 @@ Text added to the bottom of every invoice. Most resellers use it for payment ins
 
 ### Enable Tax on Invoices
 
-Turn this on before you add a tax. While it is off, no tax is added to any invoice, even if you have already created one.
+The master switch for tax. Turn this on to charge the tax rates you've set up under [**Taxes**](/pa/taxes). This only affects invoices made after you change it — it never adds or removes tax on an invoice you already issued.
 
 ## Taxes
 
-Add the tax rates that apply to your tenant invoices.
-
-### Add a tax
-
-<Frame caption="The Add Tax panel, with the name, rate, type, currency, and description fields">
-  <img src="/images/pa/add-tax.png" alt="The Add Tax panel, with the name, rate, type, currency, and description fields" />
-</Frame>
-
-| Field | Description |
-| ----- | ----------- |
-| **Name** | What the tenant sees on the invoice, such as GST or VAT. Up to 255 characters. |
-| **Rate** | The percentage to add, from 0 to 100. |
-| **Type** | **Percentage** is the only option. |
-| **Currency** | Your base currency. Set one in [Currency setup](/pa/currency-setup) first, or this list is empty. |
-| **Description** | Optional note for your own reference. Up to 500 characters. |
-
-Once saved, make sure [**Enable Tax on Invoices**](#enable-tax-on-invoices) is on, or the rate is never applied.
-
-<Note>
-  If you change a tax rate, it affects new invoices only. Invoices already issued keep their original rate.
-</Note>
+<Card title="Set up your tax rates" icon="percent" href="/pa/taxes" horizontal>
+  Add the tax rates charged on tenant invoices, such as GST or VAT, including how more than one tax can stack and how tax is worked out after a coupon or proration credit.
+</Card>
 
 ## How payments are settled
 

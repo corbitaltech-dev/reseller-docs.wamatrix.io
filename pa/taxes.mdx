@@ -1,9 +1,134 @@
 ---
 title: "Taxes"
-description: "Configure the taxes applied to tenant invoices."
+description: "Add the tax rates charged on your tenant invoices, such as GST or VAT."
 icon: "percent"
 ---
 
-<Card title="Taxes are documented in Billing & payouts" icon="percent" href="/pa/billing-and-payouts#taxes" horizontal>
-  Add tax rates, set the name, rate, type, and currency, and control whether tax is applied to tenant invoices.
-</Card>
+Automatically add GST, VAT, or other taxes to tenant invoices. Instead of adding the tax manually to each invoice, set up the tax rate once, and WaMatrix.io applies it automatically.
+
+## What you see on the screen
+
+Click **Setup → Taxes** in the sidebar menu to open this page.
+
+The list shows every tax rate you've created:
+
+- **Name** — what the tenant sees on the invoice, such as GST or VAT. Click it to edit the tax.
+- **Rate** — the percentage charged, for example `18.00`.
+- **Type** — always **Percentage**. See [Percentage is the only type](#percentage-is-the-only-type) below.
+- **Currency** — the currency this rate applies to.
+- **Active** — a switch that turns the tax active or inactive, without deleting it.
+
+<Note>
+  An info banner at the top of this page reminds you that a tax rate only charges tenants once tax is set to **Active**. See [Tax on invoices](#tax-on-invoices) below.
+</Note>
+
+## Before you start
+
+<Warning>
+  You cannot add a tax until you set your reseller's base currency under [**Currency setup**](/pa/currency-setup). The **Add Tax** button and form stay disabled, with a message telling you to set your base currency first — a tax needs a currency to know which invoices it applies to.
+</Warning>
+
+## Adding a tax
+
+Click **Add Tax** to create a new tax rate.
+
+<Frame caption="The Add Tax panel, with the name, rate, type, currency, and description fields">
+  <img src="/images/pa/add-tax.png" alt="The Add Tax panel, with the name, rate, type, currency, and description fields" />
+</Frame>
+
+| Field | Description |
+| ----- | ----------- |
+| **Name** | What the tenant sees on the invoice, such as `GST` or `VAT`. Up to 255 characters. |
+| **Rate** | The percentage to charge, from 0 to 100. You can use two decimal places, for example `18.50`. |
+| **Type** | **Percentage** is the only option. See [below](#percentage-is-the-only-type). |
+| **Currency** | Your reseller's base currency. Set one in [Currency setup](/pa/currency-setup) first, or this list is empty. |
+| **Description** | An optional note for your own reference. Tenants never see it. Up to 500 characters. |
+
+### Percentage is the only type
+
+The **Type** field only offers **Percentage**. There is no fixed-amount tax (a flat charge like "$5 tax" instead of a rate) on this screen — every tax you add is a percentage of the invoice.
+
+<Note>
+  Once saved, make sure [tax is set to **Active**](#tax-on-invoices), or the rate is never charged.
+</Note>
+
+## You can add more than one tax
+
+You can add multiple tax rates. For example, if you charge both a state tax and a national tax, add each tax separately using the same currency, then enable both.
+
+Every **active** tax rate in an invoice's currency is charged on that invoice, all at once:
+
+- On most invoices, each tax you've added shows as its own line, for example one line for `GST (18.00%)` and another for `CESS (2.00%)`.
+- On some invoices — such as a bank transfer request a tenant submits for approval — multiple taxes are combined into a single line, with the names joined by `+`, for example `GST (18.00%) + CESS (2.00%)`.
+
+<Note>
+  A tax's name on the invoice always shows the rate next to it in brackets, like `GST (18.00%)`. It never shows as plain text like "GST 18%".
+</Note>
+
+There is no way to say "only charge this tax, not that one" for a particular tenant or plan. A tax rate applies the same way to every tenant invoice in that currency, once it is active.
+
+## How tax is calculated
+
+Tax is never charged on the full invoice amount straight away. It is worked out in this order:
+
+1. Start with the invoice **subtotal** (the plan price).
+2. Subtract any [coupon discount](/pa/coupons) the tenant used.
+3. On an upgrade invoice, subtract any [proration credit](/pa/subscriptions#upgrades-and-downgrades) for time left on the tenant's old plan.
+4. Charge each active tax rate as a percentage of what is left.
+
+<Warning>
+  Tax is calculated after discounts and proration credits are applied. This means the tax amount is based on the final amount the tenant pays, not the original plan price.
+
+  For example, if a large proration credit reduces the upgrade amount, the Tax amount is reduced as well. See [Invoices](/pa/invoices#customer) for how this appears in the pricing breakdown.
+</Warning>
+
+## Tax on invoices
+
+You can control whether tax is added to new invoices from [**Billing & payouts → Invoice Settings**](/pa/billing-and-payouts#invoice-settings).
+
+- **Active** — tax is added to new invoices using your active tax rates.
+- **Inactive** — tax is not added to new invoices. Your tax rates remain saved and can be used again when you activate tax.
+
+<Note>
+  This setting controls tax for invoices. The tax rates you configure on this page determine how much tax is charged.
+</Note>
+
+## Editing and deleting a tax
+
+| Action | What it does |
+| --- | --- |
+| **Edit** | Change the tax's name, rate, type, currency, or description. |
+| **Active switch** | Turn the tax on or off without deleting it. |
+| **Delete** | Remove the tax from your list. |
+
+<Warning>
+  Changing a tax's rate, or deleting it, only affects invoices made **after** the change. Invoices already issued keep the exact tax they were charged at the time — editing or deleting a tax rate never rewrites a tenant's past invoice.
+</Warning>
+
+<Note>
+  A deleted tax can still be looked up by any old invoice that used it — deleting only stops it from being charged on **new** invoices. This is different from coupon codes, which cannot be reused once deleted; a tax's old invoice history is simply kept as a record.
+</Note>
+
+### Bank transfer invoices freeze slightly earlier
+
+A tenant paying by [bank transfer](/pa/offline-payments) sees the tax amount worked out when they **submit** their payment proof, not when you approve it. If you rename a tax or change its rate between the tenant's submission and your approval:
+
+- The **amount** charged never changes — it stays exactly what the tenant was quoted at submission.
+- The **name** printed on the final invoice is looked up fresh at approval, so it can read slightly differently from what the tenant originally saw, even though the amount is the same.
+
+
+## This does not affect your own WaMatrix.io subscription
+
+Taxes you add here apply only to invoices you send to your own tenants. They have nothing to do with what you pay WaMatrix.io for your own reseller subscription — that is billed on whatsmark.io itself, not from inside this panel.
+
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Coupons" icon="ticket-percent" href="/pa/coupons">
+    Set up discount codes — tax is charged after a coupon's discount is taken off.
+  </Card>
+  <Card title="Invoices" icon="receipt" href="/pa/invoices">
+    See how the Tax row shows up on a tenant's invoice.
+  </Card>
+</CardGroup>
