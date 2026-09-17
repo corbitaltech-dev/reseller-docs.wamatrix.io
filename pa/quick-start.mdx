@@ -1,10 +1,24 @@
 ---
 title: "Quick start"
-description: "Set up your platform and sign up your first tenant, in five steps."
+description: "Set up your platform and onboard your first tenant in five steps."
 icon: "rocket"
 ---
 
-You have a reseller panel and nothing set up in it yet. Before you can onboard a tenant and they can pay for a plan, five things need to be ready.
+Your reseller panel is ready, but a few basic settings need to be configured before you can onboard your first tenant.
+
+Follow these **five steps** to complete the setup and get your panel ready to use.
+
+## What you'll have at the end
+
+- **Your brand on the panel** — your name, [logo](/pa/branding#system-core-settings), and sender email.
+- **One currency** — used for every plan, invoice, and payment.
+- **Plans to sell** — your prices, and the limits each plan gives a tenant.
+- **A way for tenants to pay you** — at least one payment method enabled.
+- **Registration open** — and your first tenant on a plan.
+
+<Note>
+  Two steps depend on others, so keep to this order. Your **currency** must exist before you can create a plan — the **Add Plan** button stays disabled until it does. And at least one **payment method** must be enabled before anyone can subscribe.
+</Note>
 
 ## The five steps
 
@@ -26,7 +40,7 @@ You have a reseller panel and nothing set up in it yet. Before you can onboard a
   </Step>
 
   <Step title="Set your currency" icon="coins">
-    Your platform collects payment in **one** currency only. Every tenant pays in it, wherever they are, and every plan and invoice uses it.
+    Your platform uses **one** currency. Every tenant pays in it, wherever they are.
 
     Open [**Setup → Currency**](/pa/currency-setup#set-the-base-currency) and enter the **Currency Name**, **ISO Code**, and **Symbol**.
 
@@ -36,7 +50,7 @@ You have a reseller panel and nothing set up in it yet. Before you can onboard a
   </Step>
 
   <Step title="Create your plans" icon="layers">
-    A plan is what a tenant subscribes to. It decides the amount they pay for the plan, and what they get in that plan:
+    A plan is what a tenant subscribes to. It sets the price they pay, and what they get for it:
 
     - **Features** — which features are turned on for them.
     - **Limits** — how much they can use, such as how many contacts, channels, and conversations.
@@ -49,7 +63,7 @@ You have a reseller panel and nothing set up in it yet. Before you can onboard a
   </Step>
 
   <Step title="Set up billing" icon="wallet">
-    A tenant cannot subscribe until you turn on at least one payment method. The money goes straight to your own bank or gateway account, not to WaMatrix.io.
+    Turn on at least one payment method, and add the business details that appear on your invoices.
 
     <CardGroup cols={2}>
       <Card title="Payment gateways" icon="credit-card" href="/pa/billing-and-payouts#payment-gateway-settings">
@@ -58,17 +72,17 @@ You have a reseller panel and nothing set up in it yet. Before you can onboard a
       <Card title="Company information" icon="building" href="/pa/billing-and-payouts#company-information">
         Your business name and address, printed on every invoice.
       </Card>
-      <Card title="Invoice settings" icon="receipt" href="/pa/billing-and-payouts#invoice-settings">
-        Invoice prefix, starting number, and footer notes.
-      </Card>
       <Card title="Taxes" icon="percent" href="/pa/taxes">
         Add a tax rate, if you charge tax.
+      </Card>
+      <Card title="Invoice settings" icon="receipt" href="/pa/billing-and-payouts#invoice-settings">
+        Invoice prefix, starting number, and footer notes.
       </Card>
     </CardGroup>
   </Step>
 
   <Step title="Open signups and add your first tenant" icon="user-plus">
-    This is the last step. Set up the registration page your tenants will land on, add bot protection to stop fake signups, turn on Google or Facebook login if you want it, then add your first tenant and give them a plan.
+    Open registration so tenants can sign up, then add your first tenant yourself.
 
     <CardGroup cols={2}>
       <Card title="Registration settings" icon="settings" href="/pa/onboarding-a-sub-tenant#registration-verification-settings">
