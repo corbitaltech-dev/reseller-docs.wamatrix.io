@@ -1,25 +1,12 @@
 ---
 title: "Seeder library"
-description: "Offer tenants ready-made automations and flows they can start from."
+description: "Ready-made automations and flows your tenants can use in one click."
 icon: "sprout"
 ---
 
-**Setup → Seeder Library** contains ready-made **Automations** and **WhatsApp Flows** that tenants can use in their workspace.
+A new tenant starts with an empty workspace. Stock this library with ready-made **Automations** and **WhatsApp Flows**, and they have something to use from day one.
 
-When a tenant starts a collection, it is **copied** to their account. The copy is independent, so changes to the original do not affect existing tenant copies.
-
-<Info>
-  Collections are hidden from tenants until **Available to Customers** is enabled.
-</Info>
-
-## Collection sources
-
-The **Source** column shows where a collection comes from.
-
-| Source | Description |
-| --- | --- |
-| **From the platform** | Provided by the platform and updated through syncing. |
-| **Your own** | Created or imported by you. |
+Click **Setup → Seeder Library** in the sidebar to see what you are offering them.
 
 ## Collection list
 
@@ -29,63 +16,85 @@ The **Source** column shows where a collection comes from.
 
 | Column | Description |
 | ------ | ----------- |
-| **Name** | Name shown to tenants. |
-| **Type** | **Automation** or **WhatsApp Flow**. |
-| **Seeder Key** | Unique key used when importing or syncing collections. |
-| **Source** | Platform-provided or your own. |
-| **Available to Customers** | Whether tenants can use the collection. |
+| **Name** | What tenants see in their workspace. |
+| **Type** | **Automation**, **WhatsApp Flow**, or **Template**. |
+| **Seeder Key** | The collection's own id. Importing the same key again updates that collection instead of making a second one. |
+| **Source** | **Platform** if it came with WaMatrix.io, or **Own** if you built or imported it. This decides what you can edit. |
+| **Available to Customers** | Whether tenants can see and use it. |
 
-<Tip>
-  You can filter collections by **Type**, **Source**, and availability.
-</Tip>
+<Info>
+  Every collection starts hidden. Nothing reaches your tenants until you turn on **Available to Customers**, so you can set one up and publish it when you are ready.
+</Info>
+
 
 ## Add collections
 
 <Tabs>
   <Tab title="Sync Seeders">
-    Click **Sync Seeders** to get the latest platform collections. Syncing:
-
-    - Adds new platform collections.
-    - Updates existing platform collections.
-    - Does not change the **Available to Customers** setting.
+    Click **Sync Seeders** to pull the newest platform collections into your library. New ones are added, and ones you already have are updated.
 
     <Note>
-      A hidden collection stays hidden after syncing.
+      Syncing never changes **Available to Customers**. Anything you hid stays hidden.
     </Note>
   </Tab>
   <Tab title="Add Collection">
-    Click **Add Collection** to create your own collection.
+    Click **Add Collection** to build one yourself.
 
     <Frame caption="The Add Collection panel, with the seeder key, type, flow JSON and availability switch">
       <img src="/images/pa/seeder-add-collection.png" alt="The Add Collection panel, with the seeder key, type, flow JSON and availability switch" />
     </Frame>
 
-    Supported types are **Automation**, **WhatsApp Flow**, and **Template**.
+    | Field | What to enter |
+    | ----- | ------------- |
+    | **Name** | What tenants see. Up to 255 characters. |
+    | **Seeder Key** | The collection's own id, used when you import or sync later. Lowercase letters, numbers and underscores only, such as `welcome_flow`. Each key can be used once. |
+    | **Type** | **Automation**, **WhatsApp Flow**, or **Template**. |
+    | **Description** | Optional. Up to 2000 characters. |
+    | **Flow JSON** | The collection itself, pasted in as JSON. |
+    | **Sort Order** | Where it sits in the list. Lower numbers come first. |
+    | **Available to Customers** | Leave it off until the collection is ready. |
+
+    <Note>
+      Use this form to build one collection at a time. If you already have a `.json` file of collections, go to **Import** instead.
+    </Note>
   </Tab>
   <Tab title="Import">
-    Click **Import** to import collections from a `.json` file.
+    Click **Import** to upload a `.json` file. Use this when you already have collections prepared and want them all in at once, rather than building each one by hand.
 
     <Frame caption="The Import page, with the upload area and the required and optional fields">
       <img src="/images/pa/seeder-import.png" alt="The Import page, with the upload area and the required and optional fields" />
     </Frame>
 
-    - Maximum file size: **10 MB**
-    - The file can contain a single collection or an array of collections.
-    - Use a unique **seeder_key** to safely re-import a collection.
-    - If the same `seeder_key` already exists, the collection is updated instead of duplicated.
-    - The **Available to Customers** setting is not changed during import.
+    Your file can hold one collection or many, up to **10 MB**.
+
+    Every collection needs a `seeder_key`. The platform uses that key to tell collections apart:
+
+    - **A new key** adds a new collection. It starts hidden, so turn on **Available to Customers** when you want tenants to see it.
+    - **A key that already exists** updates that collection instead of creating a second one. Only the contents change. Whatever you set for **Available to Customers** stays as it is.
+
+    <Warning>
+      One bad collection rejects the whole file. Fix it and upload again.
+    </Warning>
   </Tab>
 </Tabs>
 
 ## Edit collections
 
-Editing depends on the collection source.
+What you can change depends on the **Source** column.
 
 | Source | What you can do |
 | --- | --- |
-| **Your own** | You can edit or delete the collection. |
-| **From the platform** | You cannot edit it, because syncing can overwrite changes. You can still enable, disable, or delete it. |
+| **Own** | Everything. Edit it, reorder it, turn it on or off, delete it. |
+| **Platform** | Turn it on or off, reorder it, or delete it. You cannot edit the name, description or contents. |
 
-<Tip>
-  To customize a platform collection, create or import your own version and disable the original collection.
-</Tip>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Activity log" icon="history" href="/pa/activity-log">
+    See who changed what across your platform.
+  </Card>
+  <Card title="Node Catalog" icon="boxes" href="/pa/ai-node-catalog">
+    The building blocks behind the automations you offer.
+  </Card>
+</CardGroup>
