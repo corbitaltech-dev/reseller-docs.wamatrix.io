@@ -1,18 +1,22 @@
 ---
 title: "Flow Exemplars"
-description: "Provide example flows the AI can use when generating new flows."
+description: "Show the AI what a good flow looks like, so it builds better ones."
 icon: "lightbulb"
 ---
 
-**AI Flow → Flow Exemplars** contains example flows that help the AI generate better automations.
+Ask someone to build something and they do better work if you show them a good example first. The AI is the same. An exemplar is a finished flow you save here as a reference.
 
-While the [Node Catalog](/pa/ai-node-catalog) explains what each **individual node** does, an exemplar shows what a **complete flow** should look like.
+Click **AI Flow → Flow Exemplars** in the sidebar.
 
-When generating a flow, the AI selects an exemplar that closely matches the tenant's request and uses it as a reference.
+When a tenant asks the AI for an automation, it finds the exemplar closest to what they asked for and works from it. It writes a new flow rather than copying yours, so the result fits their request.
 
 <Note>
-  An exemplar is a **teaching example, not a template**. The AI creates a new flow based on the example. Tenants cannot see or select exemplars.
+  Tenants never see or choose exemplars. This all happens behind the scenes.
 </Note>
+
+<Info>
+  Your exemplars are your own. A generation uses the platform's built-in library plus anything you add here, and no other reseller sees your rows.
+</Info>
 
 ## Exemplar list
 
@@ -22,14 +26,14 @@ When generating a flow, the AI selects an exemplar that closely matches the tena
 
 | Column | Description |
 | ------ | ----------- |
-| **Name** | Name of the exemplar. |
-| **Flow Type** | Type of flow it demonstrates. |
-| **Source** | Whether it was added manually or created from a real generation. |
-| **Nodes** | Number of nodes in the flow. |
-| **Status** | Whether the AI can use the exemplar. |
+| **Name** | What you called it. |
+| **Flow Type** | The kind of flow it demonstrates. |
+| **Source** | **platform** if it came built in, or your own if you added it. A successful tenant generation can also become one automatically. |
+| **Nodes** | How many steps the flow has. |
+| **Status** | Whether the AI may use it. |
 
 <Tip>
-  An inactive exemplar remains in the list but is not used by the AI.
+  Switch one off and it stays in the list but drops out of generation. Useful when an exemplar is producing flows you do not like.
 </Tip>
 
 ## Add an exemplar
@@ -42,12 +46,13 @@ Click **Add Exemplar** and enter the following details.
 
 | Field | Description |
 | ----- | ----------- |
-| **Name** | Name of the exemplar, such as `Lead capture`. |
-| **Slug** | Unique identifier, such as `lead-capture`. |
-| **Flow Type** | Type of flow the example demonstrates. |
-| **Description** | Requirement or use case that the flow addresses. |
-| **Sort Order** | Position of the exemplar in the list. |
-| **Graph JSON** | Flow structure containing `nodes` and `edges`. |
+| **Name** | What you call it, such as `Lead capture`. Up to 255 characters. |
+| **Slug** | Its id. Lowercase letters, numbers, hyphens and underscores, and different from your other exemplars. |
+| **Flow Type** | One of **lead capture**, **info bot**, **booking**, **support**, **FAQ**, or **other**. |
+| **Description** | The problem this flow solves. Required, up to 2000 characters. |
+| **Keywords** | Optional words that help the AI match a request to this exemplar. Up to 60 characters each. |
+| **Sort Order** | Where it sits in the list. Lower numbers come first. |
+| **Graph JSON** | The flow itself. Needs a `nodes` array with at least one node, and an `edges` array. |
 
 <Info>
   **Description** is used by the AI to match tenant requests with exemplars. Describe the requirement the flow solves, such as "Book and confirm an appointment, then remind the tenant the day before."
@@ -59,12 +64,12 @@ Click **Add Exemplar** and enter the following details.
 
 ## Best practices
 
-| Practice | Why |
-| --- | --- |
-| **Use production-quality flows** | Create exemplars you would actually use in production. |
-| **Cover different use cases** | Match the types of flows your tenants commonly request. |
-| **Avoid near-duplicates** | Do not add many similar examples. |
-| **Fewer, stronger examples** | A few strong and different exemplars are more useful than many similar ones. |
+The AI copies the standard you set, so a sloppy exemplar teaches sloppy flows.
+
+- **Add flows you would happily hand a customer.** Whatever you save is the bar the AI aims for.
+- **Cover the requests you actually get.** One exemplar per common job beats ten variations of the same one.
+- **Keep them different from each other.** Two near-identical exemplars compete for the same requests and neither adds anything.
+- **A few strong ones beat many weak ones.**
 
 ## What's next
 

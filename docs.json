@@ -69,7 +69,6 @@
           {
             "group": "AI Flow",
             "pages": [
-              "pa/ai-node-catalog",
               "pa/ai-flow-exemplars",
               "pa/ai-generations"
             ],
