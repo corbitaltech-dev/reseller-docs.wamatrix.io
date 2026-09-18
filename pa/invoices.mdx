@@ -24,7 +24,7 @@ Click **Sales → Invoices** in the sidebar menu to open this page.
 | **Tenant** | Tenant the invoice belongs to. |
 | **Status** | Always **Paid**. See [Invoice status](#invoice-status) below for why. |
 | **Amount** | Total invoice amount. |
-| **Paid Via** | How the tenant paid. See [Payment methods](/pa/subscriptions#payment-methods) for what each value means. |
+| **Paid Via** | How the tenant paid. See [Payment methods](#payment-methods) below for what each value means. |
 | **Issued** | Date the invoice was created. |
 
 ### Filter the list
@@ -33,8 +33,19 @@ Use the filter panel to narrow down a long list of invoices:
 
 - **Tenant** — show only one tenant's invoices.
 - **Status** — show only invoices with a given status.
-- **Paid Via** — filter by payment method.
+- **Paid Via** — Razorpay, PayPal, Tap Payments, Paymob, Shopify Billing, Bank Transfer, or Trial.
 - **From** / **To** — a date range for when the invoice was issued.
+
+## Payment methods
+
+The **Paid Via** column and filter show how the tenant paid:
+
+| Value | It means |
+| --- | --- |
+| **Razorpay**, **PayPal**, **Tap Payments**, **Paymob** | The tenant paid through a live gateway you set up under [Payment Gateway Settings](/pa/billing-and-payouts#payment-gateway-settings). They checked out directly — you never see or touch the card details. |
+| **Shopify Billing** | The tenant paid through their own Shopify store, on the same bill they already get from Shopify. This only appears for a tenant who connected a Shopify store. |
+| **Bank Transfer** | The tenant paid you directly and you approved their payment request under [Offline Payments](/pa/offline-payments). |
+| **Trial** | A free or trial plan, with no payment involved. |
 
 ## Invoice status
 
@@ -78,7 +89,7 @@ The invoice detail page has four sections: **Invoice Details**, **Customer**, **
 - **Status** — Always **Paid**. See [Invoice status](#invoice-status) above for why.
 - **Payment Method** and **Gateway** — how and through what the tenant paid, shown once the invoice is settled.
 - **Billing Reason** — why this invoice was raised, such as **New Subscription**, **Recurring Payment**, **Plan Change**, or **Offline Payment Approved**.
-- **Billing Cycle** — monthly, yearly, and so on.
+- **Billing Cycle** — Monthly, Quarterly, Half-Yearly, Yearly, or Lifetime.
 - **Paid At** — when the payment settled.
 - **Payment Reference** — the tenant's bank reference, for a Bank Transfer invoice.
 
