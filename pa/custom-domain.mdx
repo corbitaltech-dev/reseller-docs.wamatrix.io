@@ -6,9 +6,9 @@ icon: "globe"
 
 ## What you need
 
-- **A subdomain**, such as `app.youragency.com`. Your main domain, `youragency.com`, cannot be used for this setup because it does not support the required CNAME record.
-- **Access to your DNS provider** — Cloudflare, GoDaddy, Route 53, or wherever your domain is managed.
-- **One CNAME record.** That is all you add. No TXT record, no email to confirm.
+- **A subdomain**, such as `app.yourcompany.com`. Your main domain, `yourcompany.com`, cannot be used for this setup because it does not support the required CNAME record.
+- **Access to your DNS provider** — Cloudflare, GoDaddy, Route 53, or where your domain is managed.
+- **One CNAME record.** You only need to add one record. No TXT record, no email to confirm.
 
 ## Where to find it
 
@@ -26,9 +26,9 @@ Type the domain you want to use, such as `app.yourcompany.com`, then click **Con
 
 | Rule | What happens if you break it |
 | --- | --- |
-| Type the domain only | `https://` or a trailing `/path` is rejected. Enter `app.yourcompany.com`, nothing more. |
-| Not a WaMatrix.io address | The platform's own domain and anything under it are blocked. |
-| Not already taken | If another workspace is already using the domain, it is refused. |
+| Enter the domain only | Don't include `https://` or a path. Enter only `app.yourcompany.com`. |
+| Not a WaMatrix.io address | You cannot use the platform's own domain or a subdomain under it. |
+| Not already taken | If another workspace is already using the domain, you cannot add it. |
 
 The domain is saved and marked **Not verified**. A **DNS Setup Instructions** card opens below it, showing the exact CNAME record to create.
 
@@ -36,9 +36,9 @@ The domain is saved and marked **Not verified**. A **DNS Setup Instructions** ca
   <img src="/images/pa/custom-domain-dns.png" alt="app.acmecorp.com marked Not verified with a Verify button, above DNS Setup Instructions showing the CNAME record with its Value / Target of cname.partners.wmio.test" />
 </Frame>
 
-## Point your DNS at us
+## Add the CNAME record
 
-Open your DNS provider and create a **CNAME** record using the three values shown on screen:
+Open your DNS provider and add a **CNAME** record using the values shown on the screen:
 
 | Field | Value |
 | --- | --- |
@@ -58,11 +58,11 @@ The finished record in Cloudflare:
 
 ## Verify it
 
-Once the record is saved, leave the page open. It checks every minute on its own, so there is nothing to click. Most domains are ready in one to five minutes.
+Once you save the record, keep the page open. We automatically check your domain every minute, so you don't need to verify it manually. Most domains are ready in one to five minutes.
 
-The badge beside your domain shows where you are:
+The status beside your domain shows where your setup has reached:
 
-| Badge | Meaning |
+| Status | Meaning |
 | --- | --- |
 | **Not verified** | Waiting for your DNS record. |
 | **Pending** | Record found. The SSL certificate is being issued — nothing for you to do. |
@@ -80,7 +80,7 @@ The page stops checking after five minutes and shows **Automatic checks paused**
 Use the delete icon beside the domain, confirm, then connect the new one.
 
 <Warning>
-  Your panel goes offline while you do this. You and your tenants cannot open it until the new domain is verified.
+  Your current panel address will stop working while you switch domains. You and your tenants cannot open it until the new domain is verified.
 
   Your billing pages on **app.wamatrix.io** keep working, so you can still sign in there and manage your account.
 
