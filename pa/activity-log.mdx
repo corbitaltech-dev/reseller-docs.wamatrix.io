@@ -1,12 +1,12 @@
 ---
 title: "Activity log"
-description: "Review actions performed across the platform."
+description: "A record of every action taken by your staff and your tenants."
 icon: "scroll-text"
 ---
 
-**Setup → Activity Log** records actions performed on your platform, including **who** performed the action, **what** they changed, and **when**.
+A coupon is deleted, a tax rate changes, someone regenerates an API token. The activity log keeps a record of these changes, so you are never guessing about what happened.
 
-The log can help you track changes made by staff and tenants.
+Click **Setup → Activity Log** in the sidebar to open it.
 
 ## Activity details
 
@@ -16,35 +16,27 @@ The log can help you track changes made by staff and tenants.
 
 | Column | Description |
 | ------ | ----------- |
-| **Description** | What happened. |
-| **Event** | Type of action, such as created, updated, or deleted. |
-| **Performed By** | User who performed the action. |
-| **Subject** | Item affected, such as a plan or tenant. |
-| **When** | Date and time of the action. |
-
-<Tip>
-  You can search by **Description** or **Event**, and filter by **Event**.
-</Tip>
+| **Description** | What happened, in plain words. |
+| **Event** | The kind of action: created, updated, deleted, and so on. |
+| **Performed By** | Who did it. |
+| **Subject** | The thing that was changed, such as **Tax** or **Tenant**. |
+| **When** | How long ago it happened. |
 
 <Note>
-  The log includes actions from both your admin panel and tenant workspaces. If an entry shows an unfamiliar user, it may have been created by a tenant's staff member.
+  You will see two kinds of people here: your own staff, and your tenants' staff working inside their own workspaces. Both are logged together.
 </Note>
 
 ## Delete activity logs
 
-You can delete logs in three ways.
+Nothing is removed automatically, so the log keeps growing until you clear it. Three ways to do that:
 
-- **Single entry** — Delete one entry from its row.
-- **Multiple entries** — Select entries and click **Delete**.
-- **All entries** — Click **Clear all logs**.
+- Delete a single entry from its own row.
+- Select several entries and click **Delete**.
+- Remove the whole history with **Clear all logs**.
 
 <Warning>
-  Deleted logs cannot be restored. **Clear all logs** permanently removes the complete activity history.
+  Deleting cannot be undone, and **Clear all logs** removes everything at once.
 </Warning>
-
-<Info>
-  Give the **Delete** permission only to trusted staff members. Staff with this permission can remove activity records. See [Users & roles](/pa/users-and-roles).
-</Info>
 
 ## What's next
 
