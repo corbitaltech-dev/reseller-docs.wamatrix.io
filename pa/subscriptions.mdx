@@ -6,13 +6,15 @@ icon: "repeat"
 
 Every tenant on a paid or trial plan has a subscription. Use this page to see which plan a tenant is on, check their billing status, and track when their subscription renews.
 
-A subscription starts in one of three ways:
+When a subscription starts depends on whether the plan costs anything:
 
-- **Live payment gateway:** The tenant completes checkout through a live payment gateway.
-- **Offline payment:** You approve the tenant's bank transfer under [**Offline Payments**](/pa/offline-payments).
-- **Free or trial plan:** A free or trial plan is assigned during [onboarding](/pa/onboarding-a-sub-tenant).
+| Plan | When the subscription starts |
+| ---- | ---------------------------- |
+| **Free or trial** | Straight away, when the plan is assigned during [onboarding](/pa/onboarding-a-sub-tenant). There is nothing to pay. |
+| **Paid — offline payment** | After you approve the tenant's bank transfer under [**Offline Payments**](/pa/offline-payments). |
+| **Paid — payment gateway** | After the tenant completes checkout through a live payment gateway. |
 
-If a tenant selects a paid plan during onboarding, no subscription is created at that point. The plan is saved as their selected plan, and **the subscription starts after the payment is successfully completed**.
+For a paid plan, the subscription starts **only after the first payment is successfully completed**. Until then the tenant shows a **Pending Payment** status. The plan is recorded against them, but no billing period has started and nothing renews.
 
 ## What you see on the screen
 
@@ -27,8 +29,8 @@ Click **Sales → Subscriptions** in the sidebar menu to open this page.
 | **Tenant** | Name of the tenant. Click the name to view their subscription details. |
 | **Plan** | Plan currently assigned to the tenant. |
 | **Status** | Current subscription status. |
-| **Cycle** | Billing period, such as monthly or yearly. |
-| **Paid Via** | How the tenant paid. See [Payment methods](#payment-methods) below. |
+| **Cycle** | How often the plan is billed. See [Billing Period](#filter-the-list) below for the full list. |
+| **Paid Via** | How the tenant paid, such as a payment gateway, bank transfer, or a free trial. |
 | **Renews** | Date when the current billing period ends. |
 | **Started** | Date when the subscription started. |
 
@@ -40,31 +42,17 @@ Use the filter panel to narrow down a long list of tenants:
 - **Plan** — show only tenants on one plan.
 - **Created From** / **Created To** — a date range for when the subscription started.
 - **Expiring Soon** — tenants renewing within 7, 14, or 30 days.
-- **Billing Period** — monthly, yearly, and so on.
+- **Billing Period** — Monthly, Quarterly, Half-Yearly, Yearly, or Lifetime.
 - **Paid Via** — filter by payment method, including methods you have never actually been paid with yet.
 - **Trial Active** — only tenants currently on a trial.
 - **Expiring This Week** — a quick toggle for this week's renewals.
 - **New This Month** — tenants who started this month.
 
-## Payment methods
-
-The **Paid Via** column and filter show how the tenant is paying:
-
-| Value | It means |
-| --- | --- |
-| **Razorpay**, **PayPal**, **Tap Payments**, **Paymob** | The tenant paid through a live gateway you configured under [Payment Gateway Settings](/pa/billing-and-payouts#payment-gateway-settings). They checked out directly — you never see or touch the card details. |
-| **Shopify Billing** | The tenant paid through their own Shopify store, on the same bill they already get from Shopify. This only appears for a tenant who connected a Shopify store, and it works a little differently: you cannot offer a coupon on a Shopify Billing plan, and an upgrade does not raise a new invoice here — Shopify charges the price difference itself and keeps the tenant's existing billing date. |
-| **Bank Transfer** | The tenant paid you directly and you approved their payment request under [Offline Payments](/pa/offline-payments). |
-| **Trial** | A free or trial plan, with no payment involved. |
-
-<Note>
-A row may briefly show no payment method. This happens when a tenant selects a paid plan during onboarding but has not completed the payment yet. The plan is saved, but the subscription has not started.
-</Note>
-
 ## Subscription status
 
 | Status | Description |
 | ------ | ----------- |
+| **Pending Payment** | The tenant chose a paid plan but has not paid yet. They can sign in, but only to complete the payment. The subscription starts once the first payment succeeds. |
 | **Trial** | Tenant is using a plan during its trial period. If the trial ends without a paid subscription, it expires directly without entering the grace or billing-only period. |
 | **Active** | Subscription is active and the tenant has full access to the features included in their plan. |
 | **Billing Only** | Payment is overdue. The tenant can still sign in and complete the payment, but cannot use the platform's other features until payment is successful. |
@@ -72,16 +60,14 @@ A row may briefly show no payment method. This happens when a tenant selects a p
 | **Expired** | The subscription has ended because it was not renewed. The tenant no longer has access to the plan. |
 
 <Warning>
-  **There are two different kinds of "suspended."** This page's **Suspended** status is one of them — it only happens automatically, when payment retries fail.
+  **"Suspended" means two different things.**
 
-  You can also suspend a tenant yourself, from [**Managing tenants → Suspend, deactivate, and reactivate**](/pa/managing-customers#suspend-deactivate-and-reactivate). That is a different action, done on purpose by you.
+  The **Suspended** status on this page happens on its own, when payment retries fail. You can also suspend a tenant yourself, from [Managing tenants](/pa/managing-customers#suspend-deactivate-and-reactivate).
 
-  These two do not affect each other. If you suspend a tenant yourself, this page's **Status** column does not change — it can still say **Active** even though the tenant is locked out.
-
-  To check if a tenant was suspended by you, look at the [tenant list](/pa/managing-customers), not this page.
+  One does not change the other. If you suspend a tenant yourself, this page can still say **Active**, even though that tenant is locked out. To check that, look at the [tenant list](/pa/managing-customers) instead.
 </Warning>
 
-### Subscription status flow
+### Subscription flow
 
 The status changes automatically based on the subscription and payment status.
 
