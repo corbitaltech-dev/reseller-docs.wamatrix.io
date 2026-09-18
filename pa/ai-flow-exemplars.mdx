@@ -26,9 +26,9 @@ When a tenant asks the AI for an automation, it finds the exemplar closest to wh
 
 | Column | Description |
 | ------ | ----------- |
-| **Name** | What you called it. |
-| **Flow Type** | The kind of flow it demonstrates. |
-| **Source** | **platform** if it came built in, or your own if you added it. A successful tenant generation can also become one automatically. |
+| **Name** | What you called it. Ones that start with **Auto:** were added by the platform, not by you. |
+| **Flow Type** | Which job it is an example of: **lead capture**, **info bot**, **booking**, **support**, **FAQ**, or **other**. |
+| **Source** | **platform** if it shipped with WaMatrix.io, **seed** if you added it, **promoted** if the AI kept it from a tenant's generation. |
 | **Nodes** | How many steps the flow has. |
 | **Status** | Whether the AI may use it. |
 
@@ -44,32 +44,22 @@ Click **Add Exemplar** and enter the following details.
   <img src="/images/pa/ai-add-exemplar.png" alt="The Add Exemplar panel, with the flow type, description and graph JSON" />
 </Frame>
 
-| Field | Description |
-| ----- | ----------- |
-| **Name** | What you call it, such as `Lead capture`. Up to 255 characters. |
-| **Slug** | Its id. Lowercase letters, numbers, hyphens and underscores, and different from your other exemplars. |
-| **Flow Type** | One of **lead capture**, **info bot**, **booking**, **support**, **FAQ**, or **other**. |
-| **Description** | The problem this flow solves. Required, up to 2000 characters. |
-| **Keywords** | Optional words that help the AI match a request to this exemplar. Up to 60 characters each. |
-| **Sort Order** | Where it sits in the list. Lower numbers come first. |
-| **Graph JSON** | The flow itself. Needs a `nodes` array with at least one node, and an `edges` array. |
+| Field | Required | What to enter |
+| ----- | -------- | ------------- |
+| **Name** | Yes | A name you will recognise later, such as `Lead capture`. Up to 255 characters. |
+| **Slug** | Yes | Its id, such as `lead-capture`. Lowercase letters, numbers, hyphens and underscores only, and different from your other exemplars. |
+| **Flow Type** | Yes | The job this flow is an example of. |
+| **Description** | Yes | The problem the flow solves, written the way a tenant would ask for it. Up to 2000 characters. |
+| **Graph JSON** | Yes | The flow itself, with a `nodes` list and an `edges` list. |
+| **Sort Order** | No | Where it sits in the list. Lower numbers come first. |
 
 <Info>
   **Description** is used by the AI to match tenant requests with exemplars. Describe the requirement the flow solves, such as "Book and confirm an appointment, then remind the tenant the day before."
 </Info>
 
 <Note>
-  **Graph JSON** must contain both `nodes` and `edges` arrays and pass validation. The easiest way to create valid JSON is to build the flow in the automation builder and copy its structure.
+  Do not write **Graph JSON** by hand. Build the flow in the automation builder, then copy its structure here. Every node needs a `type`, or the AI learns nothing from it.
 </Note>
-
-## Best practices
-
-The AI copies the standard you set, so a sloppy exemplar teaches sloppy flows.
-
-- **Add flows you would happily hand a customer.** Whatever you save is the bar the AI aims for.
-- **Cover the requests you actually get.** One exemplar per common job beats ten variations of the same one.
-- **Keep them different from each other.** Two near-identical exemplars compete for the same requests and neither adds anything.
-- **A few strong ones beat many weak ones.**
 
 ## What's next
 

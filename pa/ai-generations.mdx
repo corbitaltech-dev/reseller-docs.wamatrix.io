@@ -1,14 +1,12 @@
 ---
 title: "Generations"
-description: "Every flow the AI has built for your tenants, and what it cost."
+description: "A record of every flow your tenants built with AI."
 icon: "sparkles"
 ---
 
 Every time a tenant asks the AI to build an automation, it is recorded here. You see what they asked for, what came out, and how many tokens it used.
 
 Click **AI Flow → Generations** in the sidebar.
-
-This is a record, not a setting. Nothing here changes how the AI behaves.
 
 ## Generation list
 
@@ -18,53 +16,46 @@ This is a record, not a setting. Nothing here changes how the AI behaves.
 
 | Column | Description |
 | ------ | ----------- |
-| **Prompt** | What the tenant typed. |
-| **Customer** | Which tenant asked. Empty when the generation was internal. |
-| **Type** | The kind of flow they wanted. |
+| **Prompt** | What the tenant asked the AI to build. |
+| **Customer** | Who asked. **Own workspace** means you, not a tenant. |
+| **Type** | The kind of flow, such as **booking** or **support**. |
 | **Status** | How it turned out. |
-| **Tier** | How hard the AI had to work. See [Generation tiers](#generation-tiers). |
-| **Tokens** | What it cost in tokens. |
-| **Generated** | When it happened. |
-
-<Tip>
-  You can filter generations by **Status** and **Type**.
-</Tip>
-
-## Generation status
-
-| Status | Meaning |
-| --- | --- |
-| **Success** | The flow passed the quality check. |
-| **Low quality** | The flow scored below the quality bar. The tenant still got it. |
-
-<Info>
-  **Low quality** does not mean the tenant got nothing. They received a flow; it just scored poorly. A run of these is worth looking at, because it usually means your [exemplars](/pa/ai-flow-exemplars) do not cover what your tenants are asking for.
-</Info>
-
-<Note>
-  The **Status** filter also offers **Failed** and **Pending**. Those normally return nothing, because a generation is only recorded once it finishes.
-</Note>
+| **Tier** | How many tries it took. |
+| **Tokens** | What it used. |
+| **Generated** | When it ran. |
 
 ## Generation tiers
 
-The tier tells you how much work the flow took.
+Every flow is checked for quality as soon as it is built. The tier tells you how many attempts that check cost you.
 
 | Tier | What happened |
 | ---- | ----------- |
-| **Single** | Built once, passed. The cheapest outcome. |
-| **Repaired** | The first attempt was nearly right, so the AI fixed it. |
-| **Best of N** | The AI built several and kept the best one. |
+| **Single** | Built once and passed. The cheapest outcome, and what you want to see most. |
+| **Repaired** | It nearly passed, so the AI fixed the specific problems and checked again. |
+| **Best of N** | It fell well short, so the AI built several more and kept the best one. |
 
 <Warning>
-  Higher tiers cost more. **Best of N** can use several times the tokens of a **Single** generation, so a lot of them in this column is worth investigating.
+  More tries means more tokens. A **Best of N** generation is the most expensive kind, so watch the **Tokens** column when you see one.
 </Warning>
 
 ## View a generation
 
-Click a generation to read the full **Prompt** the tenant sent, see the **Flow** that came out, and check the token usage.
+Open the actions menu on a row and choose **View Details**. The panel shows what was asked, how the AI scored it, and the flow it produced.
 
-You can also delete a generation from the list.
+| | What it tells you |
+| --- | --- |
+| **Status** | Whether it passed. |
+| **Tier reached** | How many tries it took. |
+| **Logic score** | The mark the quality check gave it, out of 100. |
+| **Provider / model** | Which AI model built it. |
+| **Tokens used** | What this one generation cost. |
+
+Below that you get the tenant's **Prompt** in full, and the **Final flow** as JSON with its node and edge count.
+
+### Delete a generation
+
+The same menu has **Delete**.
 
 <Note>
-  Deleting only removes this record. The flow itself stays in the tenant's workspace and keeps working.
+  Deleting removes this record only. The flow itself stays in the tenant's workspace and keeps working.
 </Note>
