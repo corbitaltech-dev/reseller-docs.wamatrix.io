@@ -1,0 +1,99 @@
+---
+title: "Custom domain"
+description: "Use your own domain for your reseller panel instead of the default WaMatrix.io address, so your customers access the platform through your brand."
+icon: "globe"
+---
+
+## What you need
+
+- **A subdomain**, like `app.youragency.com`. Your main domain on its own, `youragency.com`, will not work — the CNAME record this setup needs cannot be added at the top level of a domain.
+- **Access to your DNS provider** — Cloudflare, GoDaddy, Route 53, or wherever your domain is managed.
+- **One CNAME record.** That is all you add. No TXT record, no email to confirm.
+
+## Where to find it
+
+Once you have paid for your Reseller plan, go to [**app.wamatrix.io**](https://app.wamatrix.io). Enter your email on the **Find your workspace** screen and click **Continue**, then sign in with your password.
+
+In your workspace, open **Settings → Custom Domain**.
+
+## Connect your domain
+
+<Frame caption="The Custom Domain tab, with the empty Domain name field and the Connect Domain button">
+  <img src="/images/pa/custom-domain-empty.png" alt="The Custom Domain tab, with the empty Domain name field and the Connect Domain button" />
+</Frame>
+
+Type the domain you want to use, such as `app.yourcompany.com`, then click **Connect Domain**.
+
+| Rule | What happens if you break it |
+| --- | --- |
+| Type the domain only | `https://` or a trailing `/path` is rejected. Enter `app.yourcompany.com`, nothing more. |
+| Not a WaMatrix.io address | The platform's own domain and anything under it are blocked. |
+| Not already taken | If another workspace is already using the domain, it is refused. |
+
+The domain is saved and marked **Not verified**. A **DNS Setup Instructions** card opens below it, showing the exact CNAME record to create.
+
+<Frame caption="The domain marked Not verified, with the three DNS Setup Instructions steps and the CNAME target underneath">
+  <img src="/images/pa/custom-domain-dns.png" alt="app.acmecorp.com marked Not verified with a Verify button, above DNS Setup Instructions showing the CNAME record with its Value / Target of cname.partners.wmio.test" />
+</Frame>
+
+## Point your DNS at us
+
+Open your DNS provider and create a **CNAME** record using the three values shown on screen:
+
+| Field | Value |
+| --- | --- |
+| Type | `CNAME` |
+| Name / Host | Your subdomain, such as `app` |
+| Value / Target | Use the **Copy** button next to it — the target is specific to your workspace. |
+
+The finished record in Cloudflare:
+
+<Frame caption="A finished CNAME record in Cloudflare: Name app, Target cname.partners.wamatrix.io, Proxy status DNS only">
+  <img src="/images/pa/custom-domain-cloudflare-record.png" alt="Cloudflare's Add record dialog with Type CNAME, Name app, Target cname.partners.wamatrix.io, and the Proxy status toggle switched off showing DNS only" />
+</Frame>
+
+<Warning>
+  Leave **Proxy status** off, as shown above. If you turn it on, the SSL certificate can never be issued and the domain will never verify.
+</Warning>
+
+## Verify it
+
+Once the record is saved, leave the page open. It checks every minute on its own, so there is nothing to click. Most domains are ready in one to five minutes.
+
+The badge beside your domain shows where you are:
+
+| Badge | Meaning |
+| --- | --- |
+| **Not verified** | Waiting for your DNS record. |
+| **Pending** | Record found. The SSL certificate is being issued — nothing for you to do. |
+| **Failed** | Something is wrong. The line underneath says what. |
+| **Verified** | Done. Your panel is live on your own address. |
+
+The page stops checking after five minutes and shows **Automatic checks paused**. Click **Verify** whenever you want to check again.
+
+<Frame caption="The Custom Domain tab after verification, with the domain marked Verified and Primary, and a delete icon beside it">
+  <img src="/images/pa/custom-domain-verified.png" alt="The Custom Domain tab after verification, with the domain marked Verified and Primary, and a delete icon beside it" />
+</Frame>
+
+## Change to a different domain
+
+Use the delete icon beside the domain, confirm, then connect the new one.
+
+<Warning>
+  Your panel goes offline while you do this. You and your tenants cannot open it until the new domain is verified.
+
+  Your billing pages on **app.wamatrix.io** keep working, so you can still sign in there and manage your account.
+
+  To keep the gap short, add the new domain's CNAME record at your DNS provider **before** you remove the old one.
+</Warning>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Branding" icon="palette" href="/pa/branding">
+    Your logo, colours and sender address, so the panel matches the domain.
+  </Card>
+  <Card title="Currency setup" icon="coins" href="/pa/currency-setup">
+    Set the one currency your platform collects payment in.
+  </Card>
+</CardGroup>

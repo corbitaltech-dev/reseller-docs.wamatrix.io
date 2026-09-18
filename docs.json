@@ -26,6 +26,13 @@
             "icon": "rocket"
           },
           {
+            "group": "Configure your domain",
+            "pages": [
+              "pa/custom-domain"
+            ],
+            "icon": "globe"
+          },
+          {
             "group": "Tenants",
             "pages": [
               "pa/managing-customers",
