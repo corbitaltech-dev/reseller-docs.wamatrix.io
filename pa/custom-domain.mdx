@@ -1,6 +1,6 @@
 ---
 title: "Custom domain"
-description: "Use your own domain for your reseller panel instead of the default WaMatrix.io address, so your customers access the platform through your brand."
+description: "Use your own domain for your reseller workspace instead of the default WaMatrix.io domain, so your customers access the platform through your brand."
 icon: "globe"
 ---
 
@@ -27,7 +27,7 @@ Type the domain you want to use, such as `app.yourcompany.com`, then click **Con
 | Rule | What happens if you break it |
 | --- | --- |
 | Enter the domain only | Don't include `https://` or a path. Enter only `app.yourcompany.com`. |
-| Not a WaMatrix.io address | You cannot use the platform's own domain or a subdomain under it. |
+| Not a WaMatrix.io domain | You cannot use the platform's own domain or a subdomain under it. |
 
 The domain is saved and marked **Not verified**. A **DNS Setup Instructions** card opens below it, showing the exact CNAME record to create.
 
@@ -66,7 +66,7 @@ The status beside your domain shows where your setup has reached:
 | **Not verified** | Waiting for your DNS record. |
 | **Pending** | Record found. The SSL certificate is being issued — nothing for you to do. |
 | **Failed** | Something is wrong. The line underneath says what. |
-| **Verified** | Done. Your panel is live on your own address. |
+| **Verified** | Done. Your reseller workspace is live on your own domain. |
 
 The page stops checking after five minutes and shows **Automatic checks paused**. Click **Verify** whenever you want to check again.
 
@@ -76,17 +76,49 @@ The page stops checking after five minutes and shows **Automatic checks paused**
 
 ## Change to a different domain
 
-Use the delete icon beside the domain, confirm, then connect the new one.
-
-<Warning>
-  **If you delete your custom domain, your reseller workspace stops working.** You and your tenants cannot open it until the new domain is verified.
-</Warning>
+To move your reseller workspace to a new domain, use the **Change** button beside your current domain.
 
 <Tip>
-  **Add the new CNAME record first.** Add the new domain's CNAME record at your DNS provider **before** you delete the old domain.
-
-  You can still log in at **app.wamatrix.io** to see your plan, billing, and invoices.
+  **Add the new CNAME record first.** Add the new domain's CNAME record at your DNS provider **before** you change the domain. Then the new domain can verify quickly, and your reseller workspace stops working for less time.
 </Tip>
+
+<Steps>
+  <Step title="Click Change">
+    Click **Change** next to your domain. You see your current domain and what stops working when you change it. Read this list before you go on.
+
+    <Frame caption="Change custom domain, with the current domain app.acmecorp.com, the list of what will stop working, the New domain name field, and the I understand tick box">
+      <img src="/images/pa/custom-domain-change.png" width="420" style={{ margin: '0 auto' }} alt="Change custom domain, with the current domain app.acmecorp.com, the list of what will stop working, the New domain name field, and the I understand tick box" />
+    </Frame>
+  </Step>
+  <Step title="Enter the new domain">
+    Type the new domain in **New domain name**, such as `app.yournewbrand.com`. Don't include `https://`. It must be different from the domain you have now.
+  </Step>
+  <Step title="Confirm">
+    Tick the box that starts **I understand changing this domain**, then click **Change domain**. The button stays off until you tick the box.
+  </Step>
+  <Step title="Verify the new domain">
+    The new domain is saved and marked **Not verified**. Add its CNAME record if you haven't yet, and wait for it to [verify](#verify-it).
+  </Step>
+</Steps>
+
+<Warning>
+  **Your old domain stops working the moment you click Change domain.** Your reseller workspace and every tenant workspace on it stop working until the new domain is verified.
+
+  Nothing moves to the new domain automatically. After it verifies, update every place that still uses the old domain: your WhatsApp, Messenger, and Instagram webhooks (where Meta sends your messages), your payment gateways, your store connections, and any links you have shared.
+</Warning>
+
+You can still log in at **app.wamatrix.io** to see your plan, billing, and invoices while the new domain is being verified.
+
+### Remove the domain
+
+- Click the delete icon next to your domain. This removes it without adding a new one.
+- You see the same list and the same tick box as when you change a domain.
+- Your reseller workspace stops working until you connect and verify a new domain.
+- If you want to move to a new domain, use **Change** instead.
+
+<Frame caption="Remove custom domain, with the current domain app.acmecorp.com, the list of what will stop working, and the I understand tick box">
+  <img src="/images/pa/custom-domain-remove.png" width="420" style={{ margin: '0 auto' }} alt="Remove custom domain, with the current domain app.acmecorp.com, the list of what will stop working, and the I understand tick box" />
+</Frame>
 
 ## What's next
 
