@@ -14,6 +14,15 @@
         "tab": "Docs",
         "pages": [
           {
+            "group": "Your reseller account",
+            "pages": [
+              "pa/create-your-reseller-account",
+              "pa/custom-domain",
+              "pa/log-in"
+            ],
+            "icon": "user"
+          },
+          {
             "group": "Getting started",
             "pages": [
               "pa/quick-start",
@@ -24,13 +33,6 @@
               "pa/onboarding-a-sub-tenant"
             ],
             "icon": "rocket"
-          },
-          {
-            "group": "Configure your domain",
-            "pages": [
-              "pa/custom-domain"
-            ],
-            "icon": "globe"
           },
           {
             "group": "Tenants",
@@ -100,6 +102,9 @@
       }
     ]
   },
+  "redirects": [
+    { "source": "/", "destination": "/pa/quick-start" }
+  ],
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
