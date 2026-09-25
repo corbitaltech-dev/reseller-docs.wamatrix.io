@@ -40,44 +40,84 @@ The other four tabs — **AI**, **API Keys**, **Notification**, and **Subscripti
 
 ## AI
 
-The **AI** tab lets you choose how AI features use an AI provider. You can use the AI token included with your plan or your own API key.
+Your tenants use AI to write better chat replies, build automations faster, and answer customer questions automatically.
 
-<Frame caption="The AI settings tab, with the billing choice and the current provider, model and usage">
-  <img src="/images/pa/ai-settings.png" alt="The AI settings tab, with the billing choice and the current provider, model and usage" />
+Using this setting, you choose how this AI runs: with the AI included in your WaMatrix plan, or with your own API key from an AI provider like OpenAI or Google Gemini. Your choice applies to every AI feature.
+
+<Frame caption="The AI tab with My own API key selected">
+  <img src="/images/pa/ai-configuration.png" alt="The AI tab with My own API key selected, showing this month's usage and the AI provider cards" />
 </Frame>
 
-### Choose AI billing
+### Choose your AI option
 
 <Tabs>
   <Tab title="Platform tokens">
-    Uses the AI token included with your plan. AI usage counts toward your monthly limit.
-
-    The page shows the current provider, model, and remaining token.
+    Use the AI that comes with your WaMatrix plan. You don't need to set anything up.
   </Tab>
   <Tab title="My own API key">
-    Uses your own AI provider account. The provider charges you directly, and WaMatrix.io AI usage limits do not apply.
+    Use your own account with an AI provider, like OpenAI or Google Gemini. The AI provider bills you directly.
 
-    <Frame caption="The AI tab with My own API key selected, showing the provider key fields">
-      <img src="/images/pa/ai-own-key.png" alt="The AI tab with My own API key selected, showing the provider key fields" />
-    </Frame>
+    <Steps>
+      <Step title="Pick your AI provider">
+        Click **OpenAI**, **Google Gemini**, **Anthropic** or **Groq**.
+      </Step>
+      <Step title="Paste your API key">
+        An API key is a password from your AI provider's account. Paste it in the box. Click **Test** to check it works.
+      </Step>
+      <Step title="Pick a model and save">
+        Choose a **Model**, then click **Save Changes**.
+      </Step>
+    </Steps>
 
-    | Field | Description |
-    | ----- | ----------- |
-    | **API key** | The API key from your AI provider. It is encrypted when saved and is not shown again in full. |
-    | **Provider to use** | OpenAI, Google Gemini, Anthropic, or Groq. |
-    | **Model** | The AI model to use from the selected provider. |
-
-    <Info>
-      When you use your own API key, WaMatrix.io does not limit your AI usage. You can set your own AI limits for the plans you offer tenants.
-    </Info>
+    <Note>
+      To use your own API key, your WaMatrix plan must include **Bring Your Own AI Key**. If it doesn't, the card shows an **Upgrade** badge. Click the card to upgrade your plan.
+    </Note>
   </Tab>
 </Tabs>
 
+### Your AI limits
+
+Your plan comes with two AI limits. They stay the same whether you use **Platform tokens** or **My own API key**.
+
+| Limit | What it counts |
+| ----- | -------------- |
+| **AI Usage Tokens** | AI tokens used. Counts only on **Platform tokens**. |
+| **AI API Calls** | AI API requests used. Counts on both **Platform tokens** and **My own API key**. |
+
+<Warning>
+  When **AI API Calls** runs out, all AI stops until next month — on **Platform tokens** and on **My own API key**.
+</Warning>
+
+To see how much you have used, check **Usage this month** on the AI tab. It shows the AI tokens and AI API requests used so far this month, against each limit.
+
 ### AI assistants and knowledge bases
 
-<Note>
-  **AI assistants and their knowledge bases always use platform tokens**, even when your own API key is configured. Their usage counts toward your AI token.
-</Note>
+An AI assistant answers questions from a **knowledge base** — the documents and websites your tenant added to it. Each knowledge base is saved in the AI provider account that was active when it was created.
+
+So if you switch between **Platform tokens** and **My own API key**, or change AI provider, your AI assistants stop answering. Click **Re-index** to move them to the new account.
+
+<Warning>
+  **Re-index every time you switch your AI option or AI provider.** If you don't, your tenants' AI assistants stop replying to their customers.
+</Warning>
+
+<Steps>
+  <Step title="Save first">
+    Save your new choice. **Re-index** stays off until you save.
+  </Step>
+  <Step title="Click Re-index">
+    This moves all AI assistants, for all your tenants.
+  </Step>
+  <Step title="Wait a few minutes">
+    The page updates by itself. When you see **Up to date**, you are done.
+  </Step>
+</Steps>
+
+| You see | What it means |
+| ------- | ------------- |
+| **Up to date** | All AI assistants are working. |
+| **2 waiting** | Two AI assistants need a re-index. Click **Re-index**. |
+| **Re-indexing** | The move is running. Please wait. |
+| **Not supported** | Anthropic and Groq can't run AI assistants. Use OpenAI or Google Gemini. |
 
 ### Website reading
 
