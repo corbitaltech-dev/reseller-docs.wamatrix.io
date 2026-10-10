@@ -12,7 +12,7 @@ Tenants connect a Facebook Page through **Embedded Signup** (Facebook Login) or 
 
 ## Required permissions
 
-The platform requests these permissions when a tenant connects a Page. Include all five in your Facebook Login configuration.
+The platform requests these permissions when a tenant connects a Page. Include all seven in your Facebook Login configuration.
 
 | Permission | What the platform uses it for | Access level |
 | ---------- | ----------------------------- | ------------ |
@@ -20,6 +20,8 @@ The platform requests these permissions when a tenant connects a Page. Include a
 | `pages_messaging` | Sends and receives messages in the Page's Messenger conversations. | App Review |
 | `pages_manage_metadata` | Subscribes the Page to your webhook so events reach the platform. | App Review |
 | `pages_read_engagement` | Reads the Page profile (name, category) shown in the tenant's channel list. | App Review |
+| `pages_read_user_content` | Reads comments on the Page's posts, so Reply Bots can answer them. | App Review |
+| `pages_manage_engagement` | Replies to comments on the Page's posts. | App Review |
 | `business_management` | Lets tenants connect Pages that are owned by a Business Portfolio. | App Review and Business Verification |
 
 <Warning>
@@ -30,7 +32,7 @@ The platform requests these permissions when a tenant connects a Page. Include a
 
 The platform subscribes to these Page events. You do not select them in the Meta dashboard — **Connect Webhook** registers them at the app level, and each Page is subscribed when a tenant connects.
 
-<Accordion title="The seven Page events the platform subscribes to" icon="webhook">
+<Accordion title="The eight Page events the platform subscribes to" icon="webhook">
   | Event | Sent when |
   | ----- | --------- |
   | `messages` | A customer sends a message to the Page. |
@@ -40,6 +42,7 @@ The platform subscribes to these Page events. You do not select them in the Meta
   | `message_echoes` | The Page sends a message, including messages sent outside the platform. |
   | `messaging_handovers` | The conversation is handed over between apps (Handover Protocol). |
   | `messaging_referrals` | A customer starts a conversation from an m.me link or a click-to-Messenger ad. |
+  | `feed` | Someone comments on the Page's posts, or the Page adds a new post. Reply Bots use it. |
 </Accordion>
 
 ## Before you start
@@ -95,9 +98,9 @@ The platform subscribes to these Page events. You do not select them in the Meta
     | **Login variation** | General. |
     | **Token type** | **User access token** — the platform lists the tenant's Pages with this token. |
     | **Assets** | Pages. |
-    | **Permissions** | The five permissions from [Required permissions](#required-permissions). |
+    | **Permissions** | The seven permissions from [Required permissions](#required-permissions). |
 
-    Save and copy the **Configuration ID**. It goes into [**Settings → Channels → Messenger → Embedded Signup Config ID**](/pa/channels#messenger).
+    Save and copy the **Configuration ID**. In the platform, go to [**Settings → Channels → Messenger**](/pa/channels#messenger) and paste it in the **Embedded Signup Config ID** field.
   </Step>
 
   <Step title="Allow your domain" icon="globe">
@@ -140,7 +143,7 @@ The platform subscribes to these Page events. You do not select them in the Meta
     In the App Dashboard, go to **App Review → Permissions and Features**.
   </Step>
   <Step title="Request Advanced Access">
-    Request **Advanced Access** for `pages_messaging`, `pages_manage_metadata`, `pages_read_engagement`, and `business_management`.
+    Request **Advanced Access** for `pages_messaging`, `pages_manage_metadata`, `pages_read_engagement`, `pages_read_user_content`, `pages_manage_engagement`, and `business_management`.
   </Step>
   <Step title="Describe each permission and attach the video">
     For each permission, describe in one or two sentences how tenants use it on your platform, and upload the screencast.

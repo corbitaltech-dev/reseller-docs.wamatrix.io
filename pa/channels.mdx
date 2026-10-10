@@ -4,7 +4,7 @@ description: "Set up the Meta and Shopify apps your tenants connect through."
 icon: "message-circle"
 ---
 
-Your tenants can connect their own **WhatsApp number, Facebook Page, and Shopify store** using the apps you configure here.
+Your tenants can connect their own **WhatsApp number, Facebook Page, Instagram account, and Shopify store** using the apps you configure here.
 
 Add your Meta or Shopify app credentials once to connect the platform with these services. Tenants can then connect their own accounts, pages, or stores without accessing the Meta or Shopify developer accounts.
 
@@ -12,10 +12,11 @@ Add your Meta or Shopify app credentials once to connect the platform with these
 
 Go to **Settings → System Settings** and click **Channels** at the top of the page.
 
-You can configure three channels:
+You can configure four channels:
 
 - **WhatsApp** — Lets tenants connect their WhatsApp Business Account.
 - **Messenger** — Lets tenants connect their Facebook Page.
+- **Instagram** — Lets tenants connect their Instagram professional account.
 - **Shopify** — Lets tenants connect their Shopify store.
 
 <Info>
@@ -30,6 +31,7 @@ You can configure three channels:
 
 - For **WhatsApp**, your Meta app must be approved as a **Tech Provider** before tenants outside your team can connect.
 - For **Messenger**, your Meta app needs **Advanced Access** to the required Page permissions.
+- For **Instagram**, your Meta app needs **Advanced Access** to the Instagram permissions. See [Instagram Permissions](/pa/instagram-permissions).
 - For **Shopify**, use a **public or unlisted** app. A custom app works with only one store.
 
 ## WhatsApp
@@ -140,6 +142,89 @@ Messenger has a separate webhook for messages, postbacks, deliveries, and reads.
   Disconnecting the Messenger webhook stops incoming Messenger messages for **all tenants**.
 </Warning>
 
+## Instagram
+
+Let tenants connect their Instagram professional account (a Business or Creator account). There are two ways to connect. Turn on one or both.
+
+| Connect method | Use it for |
+| -------------- | ---------- |
+| **Connect via Facebook Page** | Instagram accounts linked to a Facebook Page. |
+| **Connect via Instagram Login** | Instagram accounts with no Facebook Page. |
+
+<Warning>
+  If both switches are off, tenants cannot connect an Instagram account. The tenant's plan must also include the connect method. See [Plans and pricing](/pa/plans-and-pricing#what-every-plan-must-include).
+</Warning>
+
+### Meta App Credentials
+
+<Frame caption="The Instagram tab, showing App ID, App Secret, the read-only API Version v23.0, and the Connect via Facebook Page card with its Config ID and OAuth Redirect URI">
+  <img src="/images/pa/channels-instagram.png" alt="The Instagram tab, showing App ID, App Secret, the read-only API Version v23.0, and the Connect via Facebook Page card with its Config ID and OAuth Redirect URI" />
+</Frame>
+
+You need these for both connect methods. Find them in the [Meta Developers Console](https://developers.facebook.com/apps) under **App settings → Basic**. You can use the same app as WhatsApp and Messenger.
+
+| Field | What it is |
+| ----- | ---------- |
+| **App ID** | Your Meta app ID. |
+| **App Secret** | Your Meta app secret. It is hidden after saving. |
+| **API Version** | The Meta Graph API version the platform uses. This is read-only. |
+
+### Connect via Facebook Page
+
+| Field | What it is |
+| ----- | ---------- |
+| **Facebook Login for Business Config ID** | Optional. The configuration you create in your Meta app. See [Instagram Permissions](/pa/instagram-permissions#set-up-your-meta-app). |
+| **OAuth Redirect URI** | The address Meta sends the tenant back to after they log in. Copy it and paste it in your Meta app under **Facebook Login for Business → Settings → Valid OAuth Redirect URIs**. |
+
+### Connect via Instagram Login
+
+<Frame caption="The Connect via Instagram Login card switched on, with Instagram App ID, Instagram App Secret and OAuth Redirect URI, and the Webhook Configuration card with Callback URL, Verify Token and the Rotate button">
+  <img src="/images/pa/channels-instagram-webhook.png" alt="The Connect via Instagram Login card switched on, with Instagram App ID, Instagram App Secret and OAuth Redirect URI, and the Webhook Configuration card with Callback URL, Verify Token and the Rotate button" />
+</Frame>
+
+| Field | What it is |
+| ----- | ---------- |
+| **Instagram App ID** | From **Instagram → API setup with Instagram login** in your Meta app. |
+| **Instagram App Secret** | From the same place. It is hidden after saving. |
+| **OAuth Redirect URI** | Copy it and paste it in your Meta app under **Business login settings → OAuth redirect URIs**. |
+
+<Note>
+  When a switch is on, you must fill in its fields before you can save. **App ID** and **App Secret** are needed for both. **Instagram App ID** and **Instagram App Secret** are needed only for Instagram Login.
+</Note>
+
+### Instagram webhook
+
+Instagram has no **Connect Webhook** button. The page shows two values. You copy them into your Meta app yourself.
+
+| Field | What it is |
+| ----- | ---------- |
+| **Callback URL** | The address where Meta sends Instagram messages and comments. |
+| **Verify Token** | A code Meta checks when you save the Callback URL. |
+
+<Steps>
+  <Step title="Save your settings">
+    Enter the app details, turn on the connect methods you want, and click **Save Changes**.
+  </Step>
+  <Step title="Paste the values in two places">
+    In your Meta app, paste the **Callback URL** and **Verify Token** in both places:
+
+    - **Webhooks → Instagram**. This is for accounts connected through a Facebook Page.
+    - **Instagram → API setup with Instagram login → Configure webhooks**. This is for accounts connected with Instagram Login.
+
+    In each place, click **Verify and save**.
+  </Step>
+  <Step title="Turn on the events">
+    In both places, subscribe to `messages`, `messaging_postbacks`, `messaging_seen`, `message_edit`, `messaging_referral`, `comments`, and `mentions`.
+
+    Tenants need `comments` and `mentions` to answer comments automatically.
+  </Step>
+  <Step title="Make your app Live">
+    Meta sends Instagram messages only while your Meta app is **Live**.
+  </Step>
+</Steps>
+
+To get a new token, click **Rotate** next to **Verify Token**. Then paste the new token in both places in your Meta app. Messages keep arriving while you do this.
+
 ## Shopify
 
 Create your Shopify app in the **Shopify Partner Dashboard**, then configure it here so tenants can connect their stores.
@@ -186,19 +271,23 @@ When enabled, tenants can optionally enter their own Shopify app credentials in 
 ## Common questions
 
 <AccordionGroup>
-  <Accordion title="Can I use one Meta app for both WhatsApp and Messenger?" icon="layers">
-    Yes. You can use the same **App ID** and **App Secret** for both. The Config IDs are different because each channel needs different permissions.
+  <Accordion title="Can I use one Meta app for WhatsApp, Messenger, and Instagram?" icon="layers">
+    Yes. You can use the same **App ID** and **App Secret** for all three. The Config IDs are different because each channel needs different permissions.
   </Accordion>
 
   <Accordion title="Why is the Connect Webhook button greyed out?" icon="circle-off">
     You need to save your **App ID** and **App Secret** first. Click **Save Changes**, then the button becomes available.
   </Accordion>
 
+  <Accordion title="Why is there no Connect Webhook button for Instagram?" icon="webhook">
+    Meta does not let the platform set up the Instagram webhook for you. Copy the **Callback URL** and **Verify Token** into your Meta app yourself. See [Instagram webhook](#instagram-webhook).
+  </Accordion>
+
   <Accordion title="Why can't I change the API Version?" icon="lock">
     The Meta Graph API version is managed by the platform and is read-only.
   </Accordion>
 
-  <Accordion title="Do I have to set up all three channels?" icon="list-checks">
+  <Accordion title="Do I have to set up all four channels?" icon="list-checks">
     No. Set up only the channels you want to offer to your tenants.
   </Accordion>
 </AccordionGroup>
@@ -211,5 +300,8 @@ When enabled, tenants can optionally enter their own Shopify app credentials in 
   </Card>
   <Card title="Messenger Permissions" icon="facebook" href="/pa/messenger-permissions">
     Get Advanced Access to the Page permissions Messenger needs.
+  </Card>
+  <Card title="Instagram Permissions" icon="instagram" href="/pa/instagram-permissions">
+    Get Meta to approve the permissions Instagram needs.
   </Card>
 </CardGroup>

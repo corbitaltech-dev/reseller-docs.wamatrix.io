@@ -61,7 +61,8 @@
               "pa/infrastructure-and-security",
               "pa/channels",
               "pa/tech-provider-approval",
-              "pa/messenger-permissions"
+              "pa/messenger-permissions",
+              "pa/instagram-permissions"
             ],
             "icon": "settings"
           },

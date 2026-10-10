@@ -1,0 +1,164 @@
+---
+title: "Instagram Permissions"
+description: "Set up your Meta app for Instagram and get the Instagram permissions approved."
+icon: "instagram"
+---
+
+Tenants connect their Instagram account through your Meta app. Meta must approve your app's Instagram permissions before tenants outside your team can connect.
+
+<Info>
+  Until Meta approves your app, only people with a role on your app (admins, developers, testers) can connect an account. Use this to test before you send your app for review.
+</Info>
+
+## Before you start
+
+| You need | Details |
+| -------- | ------- |
+| **A Meta app** | The same app you use for WhatsApp or Messenger works. |
+| **A verified Business Portfolio** | Meta asks for Business Verification before it approves the permissions. See [Tech Provider Approval](/pa/tech-provider-approval#complete-tech-provider-onboarding). |
+| **A test Instagram account** | An Instagram professional account (Business or Creator). To test **Connect via Facebook Page**, link it to a Facebook Page. |
+| **A second Instagram account** | To send test messages to your test account. |
+
+## Required permissions
+
+The permissions depend on how tenants connect.
+
+### Connect via Facebook Page
+
+| Permission | What the platform uses it for |
+| ---------- | ----------------------------- |
+| `public_profile` | Reads the basic profile of the person who logs in. |
+| `instagram_basic` | Reads the account's name, username, and photo. |
+| `instagram_manage_messages` | Sends and receives Instagram messages. |
+| `instagram_manage_comments` | Reads and replies to comments and mentions. |
+| `pages_show_list` | Lists the tenant's Facebook Pages so they can pick one. |
+| `pages_manage_metadata` | Links the Page to your app so messages arrive. |
+| `pages_messaging` | Sends messages through the Page. |
+| `pages_read_engagement` | Reads the Page details. |
+
+### Connect via Instagram Login
+
+| Permission | What the platform uses it for |
+| ---------- | ----------------------------- |
+| `instagram_business_basic` | Reads the account's name, username, and photo. |
+| `instagram_business_manage_messages` | Sends and receives Instagram messages. |
+| `instagram_business_manage_comments` | Reads and replies to comments and mentions. |
+
+## Set up your Meta app
+
+<Steps>
+  <Step title="Add the Instagram product" icon="plus">
+    In your Meta app, open **Add Product**. Find **Instagram** and click **Set up**.
+  </Step>
+
+  <Step title="Set up Connect via Facebook Page" icon="facebook">
+    Skip this step if you only use Instagram Login.
+
+    In your Meta app, go to **Facebook Login for Business → Configurations** and click **Create configuration**. On **Choose access token**, select **User access token**.
+
+    <Frame caption="The Create a Configuration screen in Meta, on the Choose access token step, with User access token selected">
+      <img src="/images/pa/instagram-meta-access-token.png" alt="The Create a Configuration screen in Meta, on the Choose access token step, with User access token selected" />
+    </Frame>
+
+    On **Permissions**, add the eight permissions from [Connect via Facebook Page](#connect-via-facebook-page). Save the configuration and copy its **Configuration ID**.
+
+    In the platform, go to **Settings → Channels → Instagram**. Paste the ID in the **Facebook Login for Business Config ID** field. On the same page, copy the **OAuth Redirect URI**.
+
+    Back in your Meta app, go to **Facebook Login for Business → Settings**. Paste the address in **Valid OAuth Redirect URIs** and save.
+
+    <Frame caption="Client OAuth settings in Meta, with the Valid OAuth Redirect URIs field marked">
+      <img src="/images/pa/instagram-meta-redirect-uris.png" alt="Client OAuth settings in Meta, with the Valid OAuth Redirect URIs field marked" />
+    </Frame>
+  </Step>
+
+  <Step title="Set up Connect via Instagram Login" icon="log-in">
+    Skip this step if you only use the Facebook Page way.
+
+    In your Meta app, go to **Instagram → API setup with Instagram login**. Copy the **Instagram app ID** and the **Instagram app secret**. Click **Show** to see the secret.
+
+    <Frame caption="API setup with Instagram login in Meta, with the Instagram app ID and Instagram app secret marked">
+      <img src="/images/pa/instagram-meta-app-id-secret.png" alt="API setup with Instagram login in Meta, with the Instagram app ID and Instagram app secret marked" />
+    </Frame>
+
+    In the platform, go to **Settings → Channels → Instagram**. Paste them in the **Instagram App ID** and **Instagram App Secret** fields. On the same page, copy the **OAuth Redirect URI**.
+
+    Back in your Meta app, on the same page, click **Business login settings**. Paste the address in **OAuth redirect URIs** and click **Save**.
+
+    <Frame caption="The Business login settings window in Meta, with the OAuth redirect URIs field">
+      <img src="/images/pa/instagram-meta-business-login.png" alt="The Business login settings window in Meta, with the OAuth redirect URIs field" />
+    </Frame>
+  </Step>
+
+  <Step title="Save and set up the webhook" icon="webhook">
+    In the platform, go to [**Settings → Channels → Instagram**](/pa/channels#instagram). Enter the **App ID** and **App Secret**, turn on your connect methods, and click **Save Changes**.
+
+    Then copy the **Callback URL** and **Verify Token** from the platform into your Meta app. See [Instagram webhook](/pa/channels#instagram-webhook) for the two places to paste them.
+
+    <Frame caption="Configure webhooks in Meta, with the Callback URL, Verify token, and webhook fields such as comments and messages set to Subscribed">
+      <img src="/images/pa/instagram-meta-webhooks.png" alt="Configure webhooks in Meta, with the Callback URL, Verify token, and webhook fields such as comments and messages set to Subscribed" />
+    </Frame>
+  </Step>
+
+  <Step title="Test with your own account" icon="flask-conical">
+    1. In your Meta app, open **App roles** and add your account as an **Admin** or **Tester**. For Instagram Login, also give your Instagram account the **Instagram Tester** role.
+    2. Log in to a tenant account on your platform and connect your test Instagram account.
+    3. Send a message to it from your second Instagram account. Reply from the platform inbox.
+
+    <Tip>
+      Record this test. You can use the video for App Review.
+    </Tip>
+  </Step>
+</Steps>
+
+## Submit for App Review
+
+<Steps>
+  <Step title="Ask for Advanced Access">
+    Go to **App Review → Permissions and Features**. Ask for **Advanced Access** to each permission in the list for your connect method.
+  </Step>
+  <Step title="Explain each permission">
+    For each permission, write one or two sentences on how tenants use it. Add your test video.
+  </Step>
+  <Step title="Give the reviewer a test login">
+    Give Meta's reviewer a tenant login on your platform and simple steps to repeat your test.
+
+    <Warning>
+      Meta rejects the whole request if the reviewer cannot log in and test. Do not give your personal Facebook or Instagram login.
+    </Warning>
+  </Step>
+  <Step title="Make your app Live">
+    After approval, switch your Meta app to **Live**. Meta sends Instagram messages only while the app is Live.
+  </Step>
+</Steps>
+
+<Note>
+  These rules come from Meta, not WaMatrix.io. Review can take from a few days to a few weeks.
+</Note>
+
+## Helpful resources
+
+<CardGroup cols={2}>
+  <Card title="Instagram API with Facebook Login" icon="book-open" href="https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login">
+    Meta's guide for accounts linked to a Facebook Page.
+  </Card>
+  <Card title="Instagram API with Instagram Login" icon="book-open" href="https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login">
+    Meta's guide for accounts with no Facebook Page.
+  </Card>
+  <Card title="Instagram webhooks" icon="webhook" href="https://developers.facebook.com/docs/instagram-platform/webhooks">
+    The events Meta can send, and what each one needs.
+  </Card>
+  <Card title="App Review" icon="badge-check" href="https://developers.facebook.com/docs/resp-plat-initiatives/individual-processes/app-review">
+    How Meta reviews permission requests.
+  </Card>
+</CardGroup>
+
+## What's next
+
+<CardGroup cols={2}>
+  <Card title="Plans and pricing" icon="layers" href="/pa/plans-and-pricing">
+    Add the Instagram connect methods to the plans you sell.
+  </Card>
+  <Card title="Users & roles" icon="users" href="/pa/users-and-roles">
+    Add your staff and decide what each one can open.
+  </Card>
+</CardGroup>
