@@ -214,9 +214,20 @@ Instagram has no **Connect Webhook** button. The page shows two values. You copy
     In each place, click **Verify and save**.
   </Step>
   <Step title="Turn on the events">
-    In both places, subscribe to `messages`, `messaging_postbacks`, `messaging_seen`, `message_edit`, `messaging_referral`, `comments`, and `mentions`.
+    An event is a type of update Meta sends to the platform. In both places, click **Subscribe** next to each of these:
 
-    Tenants need `comments` and `mentions` to answer comments automatically.
+    | Event | Meta sends an update when |
+    | ----- | ------------------------- |
+    | `messages` | Someone sends a message to the account. |
+    | `messaging_postbacks` | Someone taps a button in a message. |
+    | `messaging_seen` | Someone reads a message the account sent. |
+    | `message_edit` | Someone edits a message they sent. |
+    | `messaging_referral` | Someone starts a chat from a link or an ad. |
+    | `comments` | Someone comments on a post. |
+    | `live_comments` | Someone comments on a live video. |
+    | `mentions` | Someone tags the account in a post or comment. |
+
+    Tenants need `comments`, `live_comments` and `mentions` to answer comments automatically.
   </Step>
   <Step title="Make your app Live">
     Meta sends Instagram messages only while your Meta app is **Live**.

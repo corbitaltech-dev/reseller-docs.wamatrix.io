@@ -4,33 +4,44 @@ description: "Set up your Meta app for Facebook Messenger and get the Page permi
 icon: "facebook"
 ---
 
-Tenants connect a Facebook Page through **Embedded Signup** (Facebook Login) or **Manual Connect** (Page ID and Page Access Token). Embedded Signup runs on your Meta app, so the app needs the Messenger product, a Facebook Login for Business configuration, and **Advanced Access** to the Page permissions listed below.
+Tenants connect their Facebook Page in one of two ways. With **Embedded Signup**, they log in with Facebook and pick their Page. With **Manual Connect**, they paste their Page ID and Page Access Token.
+
+Embedded Signup runs on your Meta app. Before it works for everyone, Meta must check your app and approve the **permissions** it asks for. A permission is one thing your app is allowed to do, like sending messages from a Page. When Meta approves a permission, your app gets **Advanced Access** to it.
 
 <Info>
-  Until App Review is approved, the permissions work only for people who hold a role on your app (admins, developers, testers). Use this to test the connection before you submit for review.
+  Until Meta approves your app, only people you add to your app (admins, developers and testers) can connect a Page. Use this time to test everything before you send the app to Meta.
 </Info>
 
 ## Required permissions
 
-The platform requests these permissions when a tenant connects a Page. Include all seven in your Facebook Login configuration.
+The platform asks for these permissions when a tenant connects a Page. Add all seven to your Facebook Login configuration. Type the names exactly as shown.
 
 | Permission | What the platform uses it for | Access level |
 | ---------- | ----------------------------- | ------------ |
-| `pages_show_list` | Lists the Pages the tenant manages so they can choose one to connect. | Standard. No App Review needed. |
-| `pages_messaging` | Sends and receives messages in the Page's Messenger conversations. | App Review |
-| `pages_manage_metadata` | Subscribes the Page to your webhook so events reach the platform. | App Review |
-| `pages_read_engagement` | Reads the Page profile (name, category) shown in the tenant's channel list. | App Review |
+| `pages_show_list` | Shows the tenant a list of their Pages, so they can pick one. | No approval needed. |
+| `pages_messaging` | Reads and sends the Page's Messenger messages. | App Review |
+| `pages_manage_metadata` | Links the Page to your app, so new messages reach the platform. | App Review |
+| `pages_read_engagement` | Reads the Page's name and category, shown in the tenant's channel list. | App Review |
 | `pages_read_user_content` | Reads comments on the Page's posts, so Reply Bots can answer them. | App Review |
 | `pages_manage_engagement` | Replies to comments on the Page's posts. | App Review |
-| `business_management` | Lets tenants connect Pages that are owned by a Business Portfolio. | App Review and Business Verification |
+| `business_management` | Lets tenants connect Pages that belong to a Business Portfolio. | App Review, after your business is verified |
 
 <Warning>
-  `pages_messaging` and `pages_manage_metadata` are the two that matter most. Without both, a Page cannot be subscribed to the webhook and no messages arrive.
+  `pages_messaging` and `pages_manage_metadata` are the two that matter most. Without both, no messages reach the platform.
 </Warning>
+
+## Required features
+
+A **feature** is a special approval from Meta. It is not a permission, so you do not add it to your Facebook Login configuration. You ask for it on the same App Review screen as the permissions.
+
+| Feature | What it does | Without it |
+| ------- | ------------ | ---------- |
+| **Business Asset User Profile Access** | Shows the real name and photo of people who message the Page. | Contacts show as "Messenger User #…" with no photo. |
+| **Human Agent** | Lets your tenant's team reply up to 7 days after the customer's last message. | Replies work only for 24 hours after the customer's last message. |
 
 ## Webhook events
 
-The platform subscribes to these Page events. You do not select them in the Meta dashboard — **Connect Webhook** registers them at the app level, and each Page is subscribed when a tenant connects.
+A **webhook** is the link Meta uses to send new messages and updates to the platform. An event is one type of update. You do not turn these on in Meta yourself. **Connect Webhook** does it for you, and each Page is added when a tenant connects it.
 
 <Accordion title="The eight Page events the platform subscribes to" icon="webhook">
   | Event | Sent when |
@@ -40,7 +51,7 @@ The platform subscribes to these Page events. You do not select them in the Meta
   | `message_deliveries` | A message sent by the Page is delivered. |
   | `message_reads` | A customer reads a message sent by the Page. |
   | `message_echoes` | The Page sends a message, including messages sent outside the platform. |
-  | `messaging_handovers` | The conversation is handed over between apps (Handover Protocol). |
+  | `messaging_handovers` | The chat moves from another app to this one, or back. |
   | `messaging_referrals` | A customer starts a conversation from an m.me link or a click-to-Messenger ad. |
   | `feed` | Someone comments on the Page's posts, or the Page adds a new post. Reply Bots use it. |
 </Accordion>
@@ -144,6 +155,8 @@ The platform subscribes to these Page events. You do not select them in the Meta
   </Step>
   <Step title="Request Advanced Access">
     Request **Advanced Access** for `pages_messaging`, `pages_manage_metadata`, `pages_read_engagement`, `pages_read_user_content`, `pages_manage_engagement`, and `business_management`.
+
+    On the same screen, also request the **Business Asset User Profile Access** and **Human Agent** features. See [Required features](#required-features).
   </Step>
   <Step title="Describe each permission and attach the video">
     For each permission, describe in one or two sentences how tenants use it on your platform, and upload the screencast.
