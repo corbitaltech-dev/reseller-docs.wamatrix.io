@@ -16,7 +16,7 @@ This page shows which permissions to ask for, how to set up your Meta app, and h
 
 | You need | Why |
 | -------- | --- |
-| **A Meta app** | You can use the same app you use for WhatsApp or Messenger. |
+| **A Meta app** | Use your Messenger app for **Connect via Facebook Page**. To also offer **Connect via Instagram Login**, you need a second app. See [Two ways to connect](#two-ways-to-connect). |
 | **A verified Business Portfolio** | Meta checks that your business is real before it approves some permissions. See [Tech Provider Approval](/pa/tech-provider-approval#complete-tech-provider-onboarding). |
 | **A test Instagram account** | It must be a **Business** or **Creator** account, not a personal one. To test **Connect via Facebook Page**, link it to a Facebook Page. |
 | **A second Instagram account** | You use it to send test messages to your test account. |
@@ -25,10 +25,19 @@ This page shows which permissions to ask for, how to set up your Meta app, and h
 
 Tenants can connect Instagram in two ways. Each way needs its own permissions. Set up only the ways you want to offer.
 
-| Connect method | Use it when |
-| -------------- | ----------- |
-| **Connect via Facebook Page** | The tenant's Instagram account is linked to a Facebook Page. |
-| **Connect via Instagram Login** | The tenant's Instagram account has no Facebook Page. |
+| Connect method | Use it when | Setup in Meta |
+| -------------- | ----------- | ------------- |
+| **Connect via Facebook Page** | The tenant's Instagram account is linked to a Facebook Page. | **API setup with Facebook login** |
+| **Connect via Instagram Login** | The tenant's Instagram account has no Facebook Page. | **API setup with Instagram login** |
+
+<Note>
+  Meta lets each app use only one of these two setups. To offer both connect methods, use two Meta apps:
+
+  - **Connect via Facebook Page** — your Messenger app. Its **App ID** and **App Secret** go in the platform's **App ID** and **App Secret** fields.
+  - **Connect via Instagram Login** — a second app. Its **Instagram app ID** and **Instagram app secret** go in **Instagram App ID** and **Instagram App Secret**.
+
+  Meta explains this rule in [Customize the Instagram use case](https://developers.facebook.com/documentation/development/create-an-app/instagram-use-case).
+</Note>
 
 ## Permissions you need
 
@@ -73,26 +82,53 @@ A **feature** is a special approval from Meta. It is not a permission, but you a
 
 ## Set up your Meta app
 
+Meta's App Dashboard is built around **use cases**. A use case is one job your app does, like managing Instagram messages. When you add a use case, Meta adds the permissions and setup pages for it.
+
 <Steps>
-  <Step title="Add Instagram to your app" icon="plus">
-    Open your app in [Meta for Developers](https://developers.facebook.com/apps). Click **Add Product**, find **Instagram**, and click **Set up**.
+  <Step title="Add the Instagram use case" icon="plus">
+    **To add it to an app you already have** (for example, your Messenger app):
+
+    1. Open your app in [Meta for Developers](https://developers.facebook.com/apps).
+    2. In the left menu, click **Use cases**.
+    3. Add **Manage messaging & content on Instagram**.
+
+    **To create a new app:**
+
+    1. In [Meta for Developers](https://developers.facebook.com/apps), click **Create App**.
+    2. Enter the app name and contact email. Click **Next**.
+    3. Under **Use cases**, pick **Manage messaging & content on Instagram**. Click **Next**.
+    4. Pick your verified **Business Portfolio**. Click **Next**.
+    5. Check the **Requirements** and the **Overview**, then click **Go to dashboard**.
+
+    <Note>
+      Meta shows only the use cases that can work together in one app. If **Manage messaging & content on Instagram** is not in the list, create a new app for it. You cannot remove a use case after you add it.
+    </Note>
+  </Step>
+
+  <Step title="Open the Instagram setup page" icon="settings">
+    In the left menu, click **Use cases**. Next to **Manage messaging & content on Instagram**, click **Customize**.
+
+    The menu on this page shows **Permissions and features**, **API setup with Instagram login**, **API setup with Facebook login** and **Webhooks**. You use these in the next steps.
   </Step>
 
   <Step title="Set up Connect via Facebook Page" icon="facebook">
-    Skip this step if you only offer **Connect via Instagram Login**.
+    Skip this step if you only offer **Connect via Instagram Login**. Do this step in your Messenger app.
 
-    1. In your Meta app, go to **Facebook Login for Business → Configurations** and click **Create configuration**.
-    2. On the **Choose access token** screen, pick **User access token**.
+    1. Click **API setup with Facebook login**, then click **Add required messaging permissions**.
+    2. Click **Permissions and features**. Click **Add** next to `instagram_manage_comments`.
+    3. Check that the app also has the **Engage with customers on Messenger from Meta** use case. It gives you `pages_messaging` and `pages_manage_metadata`. The Instagram use case does not have these two. If you followed [Messenger Permissions](/pa/messenger-permissions), your app already has it.
+    4. In the left menu, go to **Facebook Login for Business → Configurations** and click **Create configuration**.
+    5. Enter a name, like `Instagram Page Connect`. On the **Choose access token** screen, pick **User access token**.
 
     <Frame caption="The Create a Configuration screen in Meta, on the Choose access token step, with User access token selected">
       <img src="/images/pa/instagram-meta-access-token.png" alt="The Create a Configuration screen in Meta, on the Choose access token step, with User access token selected" />
     </Frame>
 
-    3. On the **Permissions** screen, add the eight permissions from [Connect via Facebook Page](#connect-via-facebook-page).
-    4. Save. Meta shows a **Configuration ID**. Copy it.
-    5. In the platform, go to **Settings → System Settings → Channels → Instagram**. Paste the ID in **Facebook Login for Business Config ID**.
-    6. On the same page, copy the **OAuth Redirect URI**. This is the page Meta sends the tenant back to after they log in.
-    7. Back in your Meta app, go to **Facebook Login for Business → Settings**. Paste it in **Valid OAuth Redirect URIs** and save.
+    6. On the **Permissions** screen, add the eight permissions from [Connect via Facebook Page](#connect-via-facebook-page). Click **Create**.
+    7. Meta shows a **Configuration ID**. Copy it.
+    8. In the platform, go to **Settings → System Settings → Channels → Instagram**. Paste the ID in **Facebook Login for Business Config ID**. Enter this app's **App ID** and **App Secret**. You find them in Meta under **App settings → Basic**.
+    9. On the same page, copy the **OAuth Redirect URI** from the **Connect via Facebook Page** card. This is the page Meta sends the tenant back to after they log in.
+    10. Back in your Meta app, go to **Facebook Login for Business → Settings**. Paste it in **Valid OAuth Redirect URIs** and save.
 
     <Frame caption="Client OAuth settings in Meta, with the Valid OAuth Redirect URIs field marked">
       <img src="/images/pa/instagram-meta-redirect-uris.png" alt="Client OAuth settings in Meta, with the Valid OAuth Redirect URIs field marked" />
@@ -100,40 +136,54 @@ A **feature** is a special approval from Meta. It is not a permission, but you a
   </Step>
 
   <Step title="Set up Connect via Instagram Login" icon="log-in">
-    Skip this step if you only offer **Connect via Facebook Page**.
+    Skip this step if you only offer **Connect via Facebook Page**. If you offer both methods, do this step in your second app.
 
-    1. In your Meta app, go to **Instagram → API setup with Instagram login**.
+    1. Click **API setup with Instagram login**, then click **Add required messaging permissions**. Check that the list shows the three permissions from [Connect via Instagram Login](#connect-via-instagram-login).
     2. Copy the **Instagram app ID**. Click **Show** and copy the **Instagram app secret**.
 
-    <Frame caption="API setup with Instagram login in Meta, with the Instagram app ID and Instagram app secret marked">
-      <img src="/images/pa/instagram-meta-app-id-secret.png" alt="API setup with Instagram login in Meta, with the Instagram app ID and Instagram app secret marked" />
+    <Frame caption="The Customize use case page in Meta, on API setup with Instagram login, with the Instagram app ID and Instagram app secret marked">
+      <img src="/images/pa/instagram-meta-app-id-secret.png" alt="The Customize use case page in Meta, on API setup with Instagram login, with the Instagram app ID and Instagram app secret marked" />
     </Frame>
 
     3. In the platform, go to **Settings → System Settings → Channels → Instagram**. Paste them in **Instagram App ID** and **Instagram App Secret**.
-    4. On the same page, copy the **OAuth Redirect URI** from the **Connect via Instagram Login** card.
-    5. Back in your Meta app, on the same Instagram page, click **Business login settings**. Paste it in **OAuth redirect URIs** and click **Save**.
+    4. The platform also needs an **App ID** and **App Secret**. If you offer only Instagram Login, enter this app's. You find them in Meta under **App settings → Basic**.
+    5. Copy the **OAuth Redirect URI** from the **Connect via Instagram Login** card.
+    6. Back in your Meta app, on the same page, find **Set up Instagram business login** and click **Business login settings**. Paste it in **OAuth redirect URIs** and click **Save**.
 
     <Frame caption="The Business login settings window in Meta, with the OAuth redirect URIs field">
       <img src="/images/pa/instagram-meta-business-login.png" alt="The Business login settings window in Meta, with the OAuth redirect URIs field" />
     </Frame>
   </Step>
 
-  <Step title="Save and connect the webhook" icon="webhook">
+  <Step title="Connect the webhook" icon="webhook">
     A **webhook** is the link Meta uses to send new messages and comments to the platform.
 
-    1. In the platform, go to [**Settings → System Settings → Channels → Instagram**](/pa/channels#instagram).
-    2. Enter the **App ID** and **App Secret**, turn on the connect methods you want, and click **Save Changes**.
-    3. Copy the **Callback URL** and **Verify Token** into your Meta app, and turn on the events. [Instagram webhook](/pa/channels#instagram-webhook) shows where to paste them and which events to turn on.
+    1. In the platform, go to [**Settings → System Settings → Channels → Instagram**](/pa/channels#instagram). Turn on the connect methods you want and click **Save Changes**.
+    2. Copy the **Callback URL** and **Verify Token**.
+    3. In your Meta app, paste them in the place for each connect method you offer:
+
+    | Connect method | Where to paste them in Meta |
+    | -------------- | --------------------------- |
+    | **Connect via Facebook Page** | In the use case menu, click **Webhooks**. Pick **Instagram** as the product. |
+    | **Connect via Instagram Login** | **API setup with Instagram login → Configure webhooks**. |
+
+    4. Click **Verify and save**. Then turn on the events. [Instagram webhook](/pa/channels#instagram-webhook) shows which events to turn on.
 
     <Frame caption="Configure webhooks in Meta, with the Callback URL, Verify token, and webhook fields such as comments and messages set to Subscribed">
       <img src="/images/pa/instagram-meta-webhooks.png" alt="Configure webhooks in Meta, with the Callback URL, Verify token, and webhook fields such as comments and messages set to Subscribed" />
     </Frame>
+
+    <Note>
+      Meta sends webhooks only to a published app. You publish your app in the last step of [Send your app to Meta for approval](#send-your-app-to-meta-for-approval).
+    </Note>
   </Step>
 
   <Step title="Test with your own account" icon="flask-conical">
-    1. In your Meta app, open **App roles** and add yourself as an **Admin** or **Tester**. For Instagram Login, also give your Instagram account the **Instagram Tester** role.
-    2. Log in to a tenant account on your platform and connect your test Instagram account.
-    3. From your second Instagram account, send a message to the test account. Reply to it from the platform inbox.
+    1. In your Meta app, open **App roles → Roles** and add yourself as an **Admin** or **Tester**.
+    2. For Instagram Login, also add your test Instagram account. On **API setup with Instagram login**, under **Generate access tokens**, click **Add account** and log in.
+    3. Log in to a tenant account on your platform and connect your test Instagram account.
+    4. From your second Instagram account, send a message to the test account. Reply to it from the platform inbox.
+    5. In the left menu of your Meta app, open **Testing**. It shows if any permission still needs a test before App Review.
 
     <Tip>
       Record your screen while you test. Meta asks for this video when you send your app for approval.
@@ -145,30 +195,48 @@ A **feature** is a special approval from Meta. It is not a permission, but you a
 
 Meta calls this step **App Review**. When Meta approves a permission, your app gets **Advanced Access** to it. That means it works for all your tenants, not just your test accounts.
 
+If you use two Meta apps, do these steps for each app.
+
 <Steps>
-  <Step title="Open App Review">
-    In your Meta app, go to **App Review → Permissions and Features**.
+  <Step title="Tell Meta you serve other businesses">
+    On your app's **Dashboard**, click **Become a Tech Provider**, then **Yes, I'm a Tech Provider**. Meta then lists what your app still needs before you can publish it. See [Tech Provider Approval](/pa/tech-provider-approval) for business verification.
   </Step>
-  <Step title="Ask for Advanced Access">
-    Ask for **Advanced Access** to each permission for the connect methods you offer. Also ask for the **Business Asset User Profile Access** feature if you use this app for Messenger.
+  <Step title="Pick the permissions to send">
+    - **Connect via Instagram Login** — On **API setup with Instagram login**, open **Complete app review** and click **Go to app review**. Meta shows a list of permissions. Keep only the three from [Connect via Instagram Login](#connect-via-instagram-login). Untick the others, like `instagram_business_content_publish` and `instagram_business_manage_insights`. The platform does not use them.
+    - **Connect via Facebook Page** — Open **Permissions and features**. For each of the eight permissions, click **Actions** and pick **Add to App Review**. Also add the **Business Asset User Profile Access** feature if you use this app for Messenger.
+
+    Meta may also add the **Human Agent** feature by itself. The platform does not use it for Instagram. Remove it if Meta lets you. Meta rejects permissions and features that your app does not use.
   </Step>
-  <Step title="Explain each one">
-    For each permission, write one or two simple sentences on how your tenants use it. For example: "Tenants read and reply to their Instagram messages from our inbox." Add your test video.
+  <Step title="Open your request">
+    In the left menu, go to **Review → App Review** and click **Edit**.
+  </Step>
+  <Step title="Complete your app settings">
+    Click **Review your app settings**. Add your app icon (1024 × 1024 pixels), Privacy Policy URL, app category and business email. You cannot go on until these are done.
   </Step>
   <Step title="Give Meta a test login">
-    Meta's reviewer tests your app by hand. Give them a login to a tenant account on your platform, and short steps to repeat your test.
+    Meta's reviewer tests your app by hand. Click **Provide reviewer instructions**. Give them a login to a tenant account on your platform, and short steps to repeat your test.
 
     <Warning>
       If the reviewer cannot log in and test, Meta rejects the whole request. Never give your personal Facebook or Instagram login.
     </Warning>
   </Step>
-  <Step title="Make your app Live">
-    After Meta approves your app, switch it to **Live** at the top of your Meta app. Meta sends Instagram messages only while the app is Live.
+  <Step title="Explain each permission">
+    Click each permission in the request. For each one:
+
+    - Write one or two simple sentences on how your tenants use it. For example: "Tenants read and reply to their Instagram messages from our inbox."
+    - Upload your test video.
+    - Tick the box to agree to Meta's rules for that permission.
+  </Step>
+  <Step title="Submit">
+    Click **Submit for Review** at the bottom right. If your business is not verified yet, finish that first under **Review → Verification**.
+  </Step>
+  <Step title="Publish your app">
+    After Meta approves your app, click **Publish** in the left menu. Check the list, then click the **Publish** button at the bottom right. Meta sends Instagram messages to the platform only after your app is published.
   </Step>
 </Steps>
 
 <Note>
-  These rules come from Meta, not WaMatrix.io. Approval can take from a few days to a few weeks. Meta tells you the result by email.
+  These rules come from Meta, not WaMatrix.io. Approval can take from a few days to a few weeks. Meta tells you the result by email and in your app's **Alerts**. Meta's [App Review for Instagram API](https://developers.facebook.com/documentation/instagram-platform/app-review) page has the full details.
 </Note>
 
 ## Common questions
@@ -179,28 +247,32 @@ Meta calls this step **App Review**. When Meta approves a permission, your app g
   </Accordion>
 
   <Accordion title="Comments do not reach the platform. Why?" icon="message-square-off">
-    Check three things. Meta has approved your comments permission. You turned on the `comments`, `live_comments` and `mentions` events in your Meta app. Your app is **Live**.
+    Check three things. Meta has approved your comments permission. You turned on the `comments`, `live_comments` and `mentions` events in your Meta app. Your app is published.
   </Accordion>
 
   <Accordion title="Do I need a new Meta app for Instagram?" icon="layers">
-    No. You can use the same app you use for WhatsApp and Messenger.
+    Only if you offer both connect methods. Meta lets each app use one Instagram setup. Add **Connect via Facebook Page** to your Messenger app, and use a second app for **Connect via Instagram Login**.
+  </Accordion>
+
+  <Accordion title="My Meta app shows Add Product, not Use cases. What do I do?" icon="package-plus">
+    Your app was made with Meta's older app types. Click **Add Product**, find **Instagram** and click **Set up**. You then find **API setup with Instagram login** and **API setup with Facebook login** under **Instagram** in the left menu.
   </Accordion>
 </AccordionGroup>
 
 ## Helpful resources
 
 <CardGroup cols={2}>
-  <Card title="Instagram API with Facebook Login" icon="book-open" href="https://developers.facebook.com/docs/instagram-platform/instagram-api-with-facebook-login">
-    Meta's guide for accounts linked to a Facebook Page.
+  <Card title="Customize the Instagram use case" icon="book-open" href="https://developers.facebook.com/documentation/development/create-an-app/instagram-use-case">
+    Meta's steps for both Instagram setups in the App Dashboard.
   </Card>
-  <Card title="Instagram API with Instagram Login" icon="book-open" href="https://developers.facebook.com/docs/instagram-platform/instagram-api-with-instagram-login">
-    Meta's guide for accounts with no Facebook Page.
+  <Card title="Facebook Login for Business" icon="log-in" href="https://developers.facebook.com/documentation/facebook-login/facebook-login-for-business">
+    How configurations, access tokens and permissions work.
   </Card>
-  <Card title="Instagram webhooks" icon="webhook" href="https://developers.facebook.com/docs/instagram-platform/webhooks">
+  <Card title="Instagram webhooks" icon="webhook" href="https://developers.facebook.com/documentation/instagram-platform/webhooks">
     The events Meta can send, and what each one needs.
   </Card>
-  <Card title="App Review" icon="badge-check" href="https://developers.facebook.com/docs/resp-plat-initiatives/individual-processes/app-review">
-    How Meta checks and approves your app.
+  <Card title="App Review for Instagram API" icon="badge-check" href="https://developers.facebook.com/documentation/instagram-platform/app-review">
+    Which permissions each setup can ask for, and how Meta checks them.
   </Card>
 </CardGroup>
 
