@@ -49,7 +49,7 @@ Create your app in the [Meta Developers Console](https://developers.facebook.com
 | **App ID** | Your Meta app ID. |
 | **App Secret** | Your Meta app secret. It is hidden after saving. |
 | **Embedded Signup Config ID (no catalog)** | Configuration from **Meta App Dashboard → Facebook Login for Business** without `catalog_management`. |
-| **Embedded Signup Config ID (with catalog)** | Configuration that includes `catalog_management`. This option is **Coming Soon**. |
+| **Embedded Signup Config ID (with catalog)** | A second configuration that also includes `catalog_management`. It lets tenants connect their product catalog. |
 | **API Version** | The Meta Graph API version used by the platform. This is read-only. |
 
 The following switches control how tenants connect:
@@ -57,10 +57,10 @@ The following switches control how tenants connect:
 | Switch | What it does |
 | ------ | ------------ |
 | **Embedded Signup (no catalog)** | Lets tenants connect WhatsApp through Meta's onboarding process. |
-| **Embedded Signup with Catalog** | **Coming Soon** and currently disabled. |
+| **Embedded Signup with Catalog** | Lets tenants connect WhatsApp and their product catalog in one step. The switch stays greyed out until you enter the catalog Config ID. |
 
 <Note>
-  Catalog options are **Coming Soon**. You do not need to configure them now.
+  Tenants see the **Include catalog** option only when both switches are on. Their plan must also include **WhatsApp One-Click Connect** and **WhatsApp Catalog & Orders**.
 </Note>
 
 ### Webhook Configuration

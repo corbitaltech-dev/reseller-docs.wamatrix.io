@@ -229,7 +229,7 @@ Finish the app configuration that Embedded Signup relies on.
     In **Facebook Login for Business → Configurations**, create a configuration with the **Embedded Signup** login variation and the `whatsapp_business_management` and `whatsapp_business_messaging` permissions.
 
     <Warning>
-      Do **not** include `catalog_management`.
+      Do **not** include `catalog_management` here. Catalog access uses a second configuration. See the last step.
     </Warning>
   </Step>
   <Step title="Allow your domain">
@@ -243,6 +243,13 @@ Finish the app configuration that Embedded Signup relies on.
   </Step>
   <Step title="Turn on Embedded Signup">
     Enable **Embedded Signup (no catalog)** so tenants can start connecting.
+  </Step>
+  <Step title="Optional: let tenants connect a catalog">
+    Do this only if you sell **WhatsApp Catalog & Orders**.
+
+    1. Create a second configuration like the first one, and also add `catalog_management`. Add `business_management` too if tenants should create new catalogs from the platform.
+    2. In App Review, ask Meta for **Advanced Access** to `catalog_management`.
+    3. In the platform, go to [**Settings → Channels → WhatsApp**](/pa/channels#meta-app-credentials). Paste the new ID in **Embedded Signup Config ID (with catalog)**, turn on **Embedded Signup with Catalog**, and save.
   </Step>
 </Steps>
 
