@@ -270,8 +270,12 @@ Add these URLs to your Shopify app exactly as shown on the page:
 | **OAuth Scopes** | The permissions tenants approve when connecting their store. |
 
 <Warning>
-  **OAuth Scopes** must include `read_orders`, `read_checkouts`, and `read_customers` at minimum. They must match the scopes configured in your Shopify app.
+  **OAuth Scopes** must include `read_orders`, `read_checkouts`, `read_customers`, and `read_products` at minimum. They must match the scopes configured in your Shopify app.
 </Warning>
+
+<Note>
+  `read_products` lets tenants add their Shopify products to their WhatsApp catalog. If you add it now, tenants who connected a store before must disconnect and connect it again.
+</Note>
 
 ### Letting tenants use their own Shopify app
 
